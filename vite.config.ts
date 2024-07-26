@@ -7,6 +7,12 @@ export default defineConfig({
   root: __dirname,
   cacheDir: './node_modules/.vite/DED-WDS',
 
+  resolve: {
+    alias: {
+      '@ui': '/libs/src/ui',
+    },
+  },
+
   server: {
     port: 4200,
     host: 'localhost',

@@ -5,10 +5,17 @@
     "types": ["vite/client"]
   },
   "exclude": [
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.vue",
-    "src/**/*.test.vue"
+    "libs/src/**/*.spec.ts",
+    "libs/src/**/*.test.ts",
+    "libs/src/**/*.spec.vue",
+    "libs/src/**/*.test.vue",
+    "**/*.stories.ts",
+    "**/*.stories.js"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.vue"]
+  "include": [
+    "libs/src/**/*.js",
+    "libs/src/**/*.jsx",
+    "libs/src/**/*.ts",
+    "libs/src/**/*.vue"
+  ]
 }

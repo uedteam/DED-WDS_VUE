@@ -1,0 +1,22 @@
+@import './theme/_variable';
+@import './theme/_function';
+@import './theme/_base';
+@import './theme/_title';
+@import './theme/_button';
+@import './theme/_input';
+@import './theme/_textarea';
+@import './theme/_switch';
+@import './theme/_radio';
+@import './theme/_checkbox';
+@import './custom';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: 'Noto Sans', Arial, sans-serif;
+}

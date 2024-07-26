@@ -1,0 +1,39 @@
+.input {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  min-width: 300px;
+
+  border-width: $input-border-width;
+  border-style: solid;
+  border-color: $border-color-default;
+  border-radius: $radius-size-xsmall;
+  background-color: $color-white;
+
+  &:focus-within {
+    box-shadow: 0 0 0 3px $border-color-focus;
+  }
+
+  &::placeholder {
+    color: $color-text-placeholder;
+  }
+
+  &-small {
+    font-size: $text-size-small;
+    height: $input-size-small
+  }
+
+  &-medium {
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: $text-size-medium;
+    height: $input-size-medium ;
+  }
+
+  &-large {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: $text-size-large;
+    height: $input-size-large ;
+  }
+}

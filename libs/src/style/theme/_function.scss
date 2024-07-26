@@ -1,0 +1,54 @@
+@use 'sass:map';
+
+// @function getDarkLightColor($mode, $light-color, $dark-color) {
+//   @return if($mode =='light', $light-color, $dark-color);
+// }
+
+// @function getStatusColor($themeColor, $status) {
+//   @return color.scale($themeColor, $lightness: $status);
+// }
+
+// 動態獲取主題顏色
+@function getThemeColor($mode, $theme, $state) {
+  @return map-get(map-get(map-get($theme-colors, $theme), $mode), $state);
+}
+
+// 動態獲取文字顏色
+@function getTextColor($mode, $type) {
+  @return map-get(map-get($text-colors, $type), $mode);
+}
+
+// 函式：判斷色彩是否為 RGBA，否則轉換為 RGBA
+@function to-rgba($color) {
+  @if type-of($color)=='color' {
+    $alpha: alpha($color);
+    @return rgba(red($color), green($color), blue($color), $alpha);
+  }
+
+  @else {
+    @return rgba(0, 0, 0, 0); // 預設為透明黑色
+  }
+}
+
+// 函式：計算兩個 RGBA 色彩的疊加效果
+@function blend-rgba($color1, $color2) {
+  $rgba1: to-rgba($color1);
+  $rgba2: to-rgba($color2);
+
+  $r1: red($rgba1);
+  $g1: green($rgba1);
+  $b1: blue($rgba1);
+  $a1: alpha($rgba1);
+
+  $r2: red($rgba2);
+  $g2: green($rgba2);
+  $b2: blue($rgba2);
+  $a2: alpha($rgba2);
+
+  // 混合公式
+  $r: $r2 * $a2 + $r1 * (1 - $a2);
+  $g: $g2 * $a2 + $g1 * (1 - $a2);
+  $b: $b2 * $a2 + $b1 * (1 - $a2);
+
+  @return rgba($r, $g, $b, 1);
+}

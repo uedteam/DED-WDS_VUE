@@ -1,0 +1,27 @@
+.button-custom {
+  background-color: #0bc086aa;
+  color: #ffffff;
+  border-color: #f8f9fa;
+
+  &:hover {
+    background-color: hsla(161, 89%, 40%, 0.667);
+    color: #ffffff;
+    border-color: #f8f9fa;
+  }
+
+  &:active {
+    background-color: #0bc086aa;
+    color: #ffffff;
+    border-color: #f8f9fa;
+  }
+}
+
+.input-custom {
+  border-color: #0bc086;
+}
+
+.textarea-custom {
+  .textarea-label {
+    color: #fcc;
+  }
+}
