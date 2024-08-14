@@ -3,7 +3,7 @@ name: Deploy Storybook to GitHub Pages
 on:
   push:
     branches:
-      - dev # 監聽 main 分支上的變更
+      - gh-pages # 監聽 main 分支上的變更
 
 jobs:
   deploy:
