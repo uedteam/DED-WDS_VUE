@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import svgLoader from 'vite-svg-loader';
 
 export default defineConfig({
   root: __dirname,
@@ -10,6 +11,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@ui': '/libs/src/ui',
+
+      '@': '/libs/src',
     },
   },
 
@@ -23,7 +26,16 @@ export default defineConfig({
     host: 'localhost',
   },
 
-  plugins: [vue(), nxViteTsPaths()],
+  plugins: [
+    vue({
+      script: {
+        defineModel: true,
+      },
+    }),
+    ,
+    svgLoader(),
+    nxViteTsPaths(),
+  ],
 
   // Uncomment this if you are using workers.
   // worker: {
