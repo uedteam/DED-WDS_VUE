@@ -43,5 +43,6 @@ Thumbs.db
 .nx/cache
 .nx/workspace-data
 
-
+css/*
+libs/src/css/*
 storybook-static
