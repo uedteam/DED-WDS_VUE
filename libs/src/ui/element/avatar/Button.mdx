@@ -1,6 +1,10 @@
 import { Canvas, Meta, Controls, Story } from '@storybook/blocks';
-
 import * as ButtonStories from './Button.stories.js';
+
+{/* 👇 Documentation-only page */}
+{/* <Meta title="Documentation" /> */}
+
+{/* 👇 Component documentation page */}
 
 <Meta of={ButtonStories} />
 
@@ -46,5 +50,11 @@ Bootstrap 包括幾個按鈕變體，每個變體都有自己的語義目的，�
 {/* <Canvas of={ButtonStories.ButtonAppIcon} /> */}
 {/* <Canvas of={ButtonStories.ButtonIcon} /> */}
 
-{/* <Controls of={ButtonStories.ButtonPlayground} exclude={['style']} /> */}
+{/* 顯示控鍵 */}
+{/* <Controls of={ButtonStories.ButtonDefault} exclude={['style']} /> */}
+
+{/* 單獨顯示樣式 */}
 {/* <Story of={ButtonStories.ButtonDefault} /> */}
+
+{/* 顯示樣式並可複製程式碼 */}
+{/* <Canvas of={ButtonStories.ButtonDefault} /> */}
