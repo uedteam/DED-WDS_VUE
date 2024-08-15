@@ -6,28 +6,6 @@ export default {
   component: Button,
   // tags: ["autodocs"],
   argTypes: {
-    /**
-     * Color of the button.
-     */
-    intent: {
-      description: '按鈕樣式',
-      control: {
-        type: 'select',
-      },
-      options: ['contained', 'outlined', 'text'],
-    },
-    themeColor: {
-      control: { type: 'select' },
-      options: [
-        'primary',
-        'secondary',
-        'tertiary',
-        'success',
-        'warning',
-        'error',
-        'info',
-      ],
-    },
     type: {
       description: 'Overwritten description',
       control: { type: 'select' },
@@ -62,6 +40,23 @@ export default {
       control: { type: 'text' },
       description: '為按鈕添加文字',
     },
+    variant: {
+      description: '按鈕樣式',
+      control: { type: 'select' },
+      options: ['contained', 'outlined', 'text'],
+    },
+    themeColor: {
+      control: { type: 'select' },
+      options: [
+        'primary',
+        'secondary',
+        'tertiary',
+        'success',
+        'warning',
+        'error',
+        'info',
+      ],
+    },
   },
   parameters: {
     // docs: {
@@ -90,23 +85,14 @@ export const ButtonDefault = {
     template: '<Button v-bind="args">{{args.content}}</Button>',
   }),
   args: {
-    content: '送出',
-    intent: 'primary',
-    borderRound: 'base',
-    btnType: 'filled',
-    size: 'base',
+    content: 'Button Text',
+    variant: 'contained',
+    prefix: 'home',
   },
   // 控制各個stroys能夠顯示controls的量
   parameters: {
     controls: {
-      include: [
-        'intent',
-        'content',
-        'btnType',
-        'size',
-        'variant',
-        'prependIcon',
-      ],
+      include: ['variant', 'content', 'themeColor'],
     },
   },
 };

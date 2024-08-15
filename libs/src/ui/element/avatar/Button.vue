@@ -4,9 +4,11 @@ import { cva } from 'class-variance-authority';
 import AIcon from '@ui/element/baseIcon/BaseIcon.vue';
 
 const props = defineProps({
-  prependIcon: String,
-  appendIcon: String,
-  iconOnly: String,
+  variant: {
+    type: String,
+    default: 'contained',
+    validator: (value) => ['contained', 'outlined', 'text'].includes(value),
+  },
   themeColor: {
     type: String,
     default: 'primary',
@@ -21,174 +23,166 @@ const props = defineProps({
         'info',
       ].includes(value),
   },
-  type: {
-    type: String,
-    default: 'filled',
-    validator: (value) => ['filled', 'outline', 'text'].includes(value),
+  isDisable: {
+    type: Boolean,
   },
-  disable: Boolean,
-  // borderRound: {
-  //     type: String,
-  //     default: "md",
-  //     validator: (value) =>
-  //         ["none", "base", "md", "lg", "pill"].includes(value),
-  // },
-  // size: {
-  //     type: String,
-  //     default: "xl",
-  //     validator: (value) => ["xs", "sm", "base", "lg", "xl"].includes(value),
-  // },
-  // btnWidth: {
-  //     type: String,
-  //     default: "fit",
-  //     validator: (value) => ["fit", "full"].includes(value),
-  // },
+  size: {
+    type: String,
+    default: '',
+    validator: (value) => ['small', 'medium', 'large'].includes(value),
+  },
+  prefix: {
+    type: String,
+  },
+  suffix: {
+    type: String,
+  },
 });
 
 const buttonCVAClass = computed(() => {
   return cva('button', {
     variants: {
-      type: {
-        filled: 'button-contained',
-        outline: 'button-outlined',
+      variant: {
+        contained: 'button-contained',
+        outlined: 'button-outlined',
         text: 'button-text',
       },
     },
     compoundVariants: [
       // [ ThemeColor ] - primary
       {
-        type: 'filled',
+        variant: 'contained',
         themeColor: 'primary',
         class: 'button-contained-primary',
       },
       {
-        type: 'outline',
+        variant: 'outlined',
         themeColor: 'primary',
         class: 'button-outlined-primary',
       },
       {
-        type: 'text',
+        variant: 'text',
         themeColor: 'primary',
         class: 'button-text-primary',
       },
       // [ ThemeColor ] - secondary
       {
-        type: 'filled',
+        variant: 'contained',
         themeColor: 'secondary',
         class: 'button-contained-secondary',
       },
       {
-        type: 'outline',
+        variant: 'outlined',
         themeColor: 'secondary',
         class: 'button-outlined-secondary',
       },
       {
-        type: 'text',
+        variant: 'text',
         themeColor: 'secondary',
         class: 'button-text-secondary',
       },
       // [ ThemeColor ] - tertiary
       {
-        type: 'filled',
+        variant: 'contained',
         themeColor: 'tertiary',
         class: 'button-contained-tertiary',
       },
       {
-        type: 'outline',
+        variant: 'outlined',
         themeColor: 'tertiary',
         class: 'button-outlined-tertiary',
       },
       {
-        type: 'text',
+        variant: 'text',
         themeColor: 'tertiary',
         class: 'button-text-tertiary',
       },
       // [ ThemeColor ] - success
       {
-        type: 'filled',
+        variant: 'contained',
         themeColor: 'success',
         class: 'button-contained-success',
       },
       {
-        type: 'outline',
+        variant: 'outlined',
         themeColor: 'success',
         class: 'button-outlined-success',
       },
       {
-        type: 'text',
+        variant: 'text',
         themeColor: 'success',
         class: 'button-text-success',
       },
       // [ ThemeColor ] - warning
       {
-        type: 'filled',
+        variant: 'contained',
         themeColor: 'warning',
         class: 'button-contained-warning',
       },
       {
-        type: 'outline',
+        variant: 'outlined',
         themeColor: 'warning',
         class: 'button-outlined-warning',
       },
       {
-        type: 'text',
+        variant: 'text',
         themeColor: 'warning',
         class: 'button-text-warning',
       },
       // [ ThemeColor ] - error
       {
-        type: 'filled',
+        variant: 'contained',
         themeColor: 'error',
         class: 'button-contained-error',
       },
       {
-        type: 'outline',
+        variant: 'outlined',
         themeColor: 'error',
         class: 'button-outlined-error',
       },
       {
-        type: 'text',
+        variant: 'text',
         themeColor: 'error',
         class: 'button-text-error',
       },
       // [ ThemeColor ] - info
       {
-        type: 'filled',
+        variant: 'contained',
         themeColor: 'info',
         class: 'button-contained-info',
       },
       {
-        type: 'outline',
+        variant: 'outlined',
         themeColor: 'info',
         class: 'button-outlined-info',
       },
       {
-        type: 'text',
+        variant: 'text',
         themeColor: 'info',
         class: 'button-text-info',
       },
 
       // [ Disable ]
       {
-        type: 'filled',
-        disable: true,
+        variant: 'contained',
+        isdisable: true,
         class: 'button-container-disable',
       },
       {
-        type: 'outline',
-        disable: true,
+        variant: 'outlined',
+        isdisable: true,
         class: 'button-outline-disable',
       },
       {
-        type: 'text',
-        disable: true,
+        variant: 'text',
+        isdisable: true,
         class: 'button-text-disable',
       },
     ],
   })({
     //這裡設定 variants名稱接收 props的值
-    type: props.type,
-    disable: props.disable,
+    variant: props.variant,
+    isdisable: props.isdisable,
     themeColor: props.themeColor,
   });
 });
@@ -196,6 +190,10 @@ const buttonCVAClass = computed(() => {
 
 <template>
   <button :class="buttonCVAClass">
+    <a-icon class="" :name="prefix" size="20" v-if="prefix"></a-icon>
+    <slot></slot>
+  </button>
+  <!-- <button :class="buttonCVAClass">
     <a-icon
       class=""
       :name="prependIcon"
@@ -210,7 +208,7 @@ const buttonCVAClass = computed(() => {
     ></a-icon>
 
     <a-icon :name="iconOnly" size="20" v-if="iconOnly"></a-icon>
-  </button>
+  </button> -->
 </template>
 
 <style lang="scss" scoped></style>
