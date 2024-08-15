@@ -6,32 +6,7 @@ export default {
   component: Button,
   // tags: ["autodocs"],
   argTypes: {
-    type: {
-      description: 'Overwritten description',
-      control: { type: 'select' },
-      options: ['filled', 'outline', 'text', 'icon'],
-    },
-    size: {
-      control: { type: 'select' },
-      options: ['xs', 'sm', 'base', 'lg', 'xl'],
-    },
-    borderRound: {
-      control: { type: 'select' },
-      options: ['none', 'base', 'md', 'lg', 'pill'],
-    },
-    btnWidth: {
-      control: { type: 'radio' },
-      options: ['fit', 'full'],
-    },
     icon: {
-      control: { type: 'text' },
-    },
-    prependIcon: {
-      control: { type: 'select' },
-      options: ['home', 'folder'],
-      description: 'Overwritten description',
-    },
-    appendIcon: {
       control: { type: 'text' },
     },
 
@@ -56,6 +31,25 @@ export default {
         'error',
         'info',
       ],
+    },
+    isDisable: {
+      control: { type: 'boolean' },
+    },
+    size: {
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
+      description: '設定按鈕尺寸',
+    },
+
+    prefix: {
+      control: { type: 'select' },
+      options: ['home', 'folder', 'academi', 'arrow-forward', 'finger-print'],
+      description: '設定位於按鈕前方的 icon',
+    },
+    suffix: {
+      control: { type: 'select' },
+      options: ['home', 'folder'],
+      description: '設定位於按鈕後方的 icon',
     },
   },
   parameters: {
@@ -87,12 +81,13 @@ export const ButtonDefault = {
   args: {
     content: 'Button Text',
     variant: 'contained',
-    prefix: 'home',
+    prefix: 'folder',
+    isDisable: false,
   },
   // 控制各個stroys能夠顯示controls的量
   parameters: {
     controls: {
-      include: ['variant', 'content', 'themeColor'],
+      include: ['variant', 'content', 'themeColor', 'isDisable', 'prefix'],
     },
   },
 };

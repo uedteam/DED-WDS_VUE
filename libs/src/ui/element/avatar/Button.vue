@@ -165,24 +165,24 @@ const buttonCVAClass = computed(() => {
       // [ Disable ]
       {
         variant: 'contained',
-        isdisable: true,
+        isDisable: true,
         class: 'button-container-disable',
       },
       {
         variant: 'outlined',
-        isdisable: true,
+        isDisable: true,
         class: 'button-outline-disable',
       },
       {
         variant: 'text',
-        isdisable: true,
+        isDisable: true,
         class: 'button-text-disable',
       },
     ],
   })({
     //這裡設定 variants名稱接收 props的值
     variant: props.variant,
-    isdisable: props.isdisable,
+    isDisable: props.isDisable,
     themeColor: props.themeColor,
   });
 });
