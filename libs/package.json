@@ -8,11 +8,5 @@
       "import": "./index.mjs",
       "require": "./index.js"
     }
-  },
-  "devDependencies": {
-    "vite-svg-loader": "^5.1.0"
-  },
-  "dependencies": {
-    "@ded-wds/libs": "file:"
   }
 }
