@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import Button from '@ui/element/button/button.vue';
+import Button from '@ui/element/avatar/button.vue';
+import AIcon from '@ui/element/baseIcon/BaseIcon.vue';
 </script>
 
 <template>
   <div class="container">
-    <Button @click="console.log('點擊')">送出</Button>
+    <Button prependIcon="folder" type="outline">送出</Button>
+    <!-- <a-icon class="" name="folder" size="20"></a-icon> -->
   </div>
 </template>
 

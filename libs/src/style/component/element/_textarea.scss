@@ -8,7 +8,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding-bottom: 16px;
   border-width: $input-border-width;
   border-style: solid;
   border-color: $border-color-default;
@@ -16,8 +16,14 @@
   background-color: $color-white;
   overflow: hidden;
 
+  &:hover {
+    box-shadow: 0 0 0 2px getBorderColor($mode, 'primary', 'hover');
+    border: 1px solid getBorderColor($mode, 'primary', 'hover');
+  }
+
   &:focus-within {
-    box-shadow: 0 0 0 3px $border-color-focus;
+    box-shadow: 0 0 0 3px getBorderColor($mode, 'primary', 'focus');
+    border: 1px solid getBorderColor($mode, 'primary', 'focus');
   }
 
   .textarea {
@@ -28,9 +34,11 @@
     resize: none;
     margin-bottom: 8px;
     word-break: break-all;
+    padding-top: 16px;
+    padding-inline: 16px;
 
     &::placeholder {
-      color: $color-text-placeholder;
+      color: $text-color-placeholder;
     }
   }
 
@@ -54,12 +62,12 @@
 }
 
 .textarea-border-error {
-  border-color: $border-color-error;
+  border-color: getBorderColor($mode, 'error', 'default') !important;
 }
 
 .textarea-label {
   font-size: $text-size-caption1;
-  color: $color-text-secondary;
+  color: $text-color-secondary;
 }
 
 .textarea-hint {
@@ -68,9 +76,9 @@
 }
 
 .textarea-hint-desc {
-  color: $hint-color-desc;
+  color: $color-gray60;
 }
 
 .textarea-hint-error {
-  color: $hint-color-error;
+  color: getTextColor($mode, 'error') !important;
 }

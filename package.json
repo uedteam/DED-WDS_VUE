@@ -6,10 +6,14 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "storybook": "nx storybook"
+    "storybook": "nx storybook",
+    "deploy": "nx build && gh-pages -d build/DED-WDS",
+    "build-storybook": "nx build-storybook",
+    "deploy-storybook": "nx build-storybook && gh-pages -d dist/storybook"
   },
   "private": true,
   "dependencies": {
+    "@ded-wds/source": "file:",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vue": "^3.3.4"
@@ -45,6 +49,7 @@
     "@vue/eslint-config-prettier": "7.1.0",
     "@vue/eslint-config-typescript": "^11.0.3",
     "@vue/test-utils": "^2.4.1",
+    "class-variance-authority": "^0.7.0",
     "eslint": "~8.57.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-vue": "^9.16.1",
@@ -58,6 +63,7 @@
     "typescript": "~5.5.2",
     "vite": "^5.0.0",
     "vite-plugin-dts": "~3.8.1",
+    "vite-svg-loader": "^5.1.0",
     "vitest": "^1.3.1",
     "vue-tsc": "^2.0.0"
   },
