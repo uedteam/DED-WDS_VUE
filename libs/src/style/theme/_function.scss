@@ -1,13 +1,5 @@
 @use 'sass:map';
 
-// @function getDarkLightColor($mode, $light-color, $dark-color) {
-//   @return if($mode =='light', $light-color, $dark-color);
-// }
-
-// @function getStatusColor($themeColor, $status) {
-//   @return color.scale($themeColor, $lightness: $status);
-// }
-
 // 動態獲取主題顏色
 @function getThemeColor($mode, $theme, $state) {
   @return map-get(map-get(map-get($theme-colors, $theme), $mode), $state);
@@ -16,6 +8,41 @@
 // 動態獲取文字顏色
 @function getTextColor($mode, $type) {
   @return map-get(map-get($text-colors, $type), $mode);
+}
+
+// 動態獲取文字層級
+@function getTextLevel($type, $level) {
+  @return map-get(map-get($text-levels, $level), $type);
+}
+
+// 動態獲取邊框顏色
+@function getBorderColor($mode, $theme, $state) {
+  @return map-get(map-get(map-get($border-colors, $theme), $mode), $state);
+}
+
+// 動態獲取邊框樣式
+@function getBorderStyle($mode, $style, $type) {
+  @return map-get(map-get(map-get($border-styles, $style), $mode), $type);
+}
+
+// 動態獲取 avatar 狀態顏色
+@function getAvatarStatusColor($mode, $status) {
+  @return map-get(map-get($avatar-status-colors, $mode), $status);
+}
+
+// 動態獲取 avatar 形狀
+@function getAvatarShape($mode, $shape) {
+  @return map-get($avatar-shape, $shape);
+}
+
+// 動態獲取圖片比例
+@function getAspectRatio($ratio) {
+  @return map-get($aspect-ratio, $ratio);
+}
+
+// 動態獲取 Tooltip Arrow 位置
+@function getArrowPosition($position, $attribute) {
+  @return map-get(map-get($arrow-position, $position), $attribute);
 }
 
 // 函式：判斷色彩是否為 RGBA，否則轉換為 RGBA

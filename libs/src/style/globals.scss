@@ -1,22 +1,30 @@
+@import './theme/_reset';
 @import './theme/_variable';
 @import './theme/_function';
+@import './theme/_map';
 @import './theme/_base';
-@import './theme/_title';
-@import './theme/_button';
-@import './theme/_input';
-@import './theme/_textarea';
-@import './theme/_switch';
-@import './theme/_radio';
-@import './theme/_checkbox';
+@import './component/element/_title';
+@import './component/element/_button';
+@import './component/element/_input';
+@import './component/element/_textarea';
+@import './component/element/_toggle';
+@import './component/element/_radio';
+@import './component/element/_checkbox';
+@import './component/module/_tabs';
+@import './component/_accordion';
+@import './component/element/_breadcrumb';
+@import './component/element/_progress';
+@import './component/module/_search';
+@import './component/module/_slider';
+@import './component/section/_card';
+@import './component/element/_avatar';
+@import './component/element/_avatar_group';
+@import './component/module/_menu';
+@import './component/module/_password';
+@import './component/module/_tooltip';
 @import './custom';
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  font-size: 16px;
-  line-height: 1.5;
-  font-family: 'Noto Sans', Arial, sans-serif;
+.icon {
+  width: 24px;
+  height: 24px;
 }

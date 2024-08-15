@@ -20,6 +20,8 @@
   gap: 4px;
   cursor: pointer;
 
+
+
   &-input {
     display: none;
   }
@@ -39,8 +41,6 @@
   }
 
   @each $theme in $themes {
-
-
     &-checked-#{$theme} {
       background-color: getThemeColor($mode, $theme, 'default');
       border-color: getThemeColor($mode, $theme, 'default');
@@ -51,7 +51,7 @@
       }
 
       &:focus {
-        box-shadow: 0 0 0 3px getThemeColor($mode, $theme, 'default');
+        box-shadow: 0 0 0 3px blend-rgba(getThemeColor($mode, $theme, 'default'), $lightness80);
       }
     }
 
@@ -63,7 +63,7 @@
       }
 
       &:focus {
-        box-shadow: 0 0 0 3px getThemeColor($mode, $theme, 'default');
+        box-shadow: 0 0 0 3px blend-rgba(getThemeColor($mode, $theme, 'default'), $lightness80);
       }
     }
   }

@@ -1,4 +1,4 @@
-.switch {
+.toggle {
   position: relative;
   cursor: pointer;
   display: inline-flex;
@@ -73,27 +73,15 @@
     background-color: $color-gray40 !important;
   }
 
-  @each $theme in $themes {
-    &-#{$theme} {
-      background-color: getThemeColor($mode, $theme, 'default');
-      // &:hover {
-      //   background-color: getThemeColor($mode, $theme, 'hover');
-      // }
-
-      // &:focus {
-      //   background-color: getThemeColor($mode, $theme, 'focus');
-      // }
-
-      // &:active {
-      //   background-color: getThemeColor($mode, $theme, 'active');
-
-      // }
-    }
-  }
-
   &-disable {
     pointer-events: none !important;
     background-color: $color-disabled !important;
     color: $color-gray10 !important;
+  }
+
+  @each $theme in $themes {
+    &-#{$theme} {
+      background-color: getThemeColor($mode, $theme, 'default');
+    }
   }
 }
