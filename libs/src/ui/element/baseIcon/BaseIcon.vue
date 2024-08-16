@@ -7,12 +7,10 @@ const props = defineProps({
   },
   size: {
     type: String,
-    required: false,
-    default: 24,
+    required: true,
   },
   color: {
     type: String,
-    default: 'red',
   },
 });
 
