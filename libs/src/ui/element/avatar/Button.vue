@@ -189,8 +189,8 @@ const buttonCVAClass = computed(() => {
 </script>
 
 <template>
-  <button :class="buttonCVAClass">
-    <a-icon class="" :name="prefix" size="20" v-if="prefix"></a-icon>
+  <button class="example">
+    <!-- <a-icon class="" :name="prefix" size="20" v-if="prefix"></a-icon> -->
     <slot></slot>
   </button>
   <!-- <button :class="buttonCVAClass">
@@ -211,4 +211,9 @@ const buttonCVAClass = computed(() => {
   </button> -->
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '@/style/_sassloader_test.scss';
+.example {
+  background-color: $sassloader_test-color;
+}
+</style>
