@@ -29,9 +29,9 @@ const props = defineProps({
     label: {
         type: String,
     },
-  modelValue: {
-    type: [Array, String],
-  },
+    modelValue: {
+        type: [Array, String],
+    },
 });
 
 // 處理雙向綁定
@@ -58,7 +58,7 @@ const isChecked = computed(() => props.modelValue === props.value);
         <div
             :class="[
                 'radio-icon',
-                isChecked ? 'radio-checked-primary' : 'radio-unchecked-primary',
+                isChecked ? `radio-checked-${props.themeColor}` : `radio-unchecked-${props.themeColor}`,
             ]"
         >
         </div>
