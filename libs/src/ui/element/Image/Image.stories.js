@@ -1,5 +1,4 @@
 import Image from './Image.vue';
-import Divider from '@/ui/element/Divider/Divider.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -7,7 +6,24 @@ export default {
   component: Image,
   tags: ['autodocs'],
   argTypes: {
-    //以下參數不刪
+    src: {
+      description: '圖片來源',
+      table: {
+        defaultValue: { summary: '01' },
+      },
+      control: { type: 'select' },
+      options: ['01', '02', '03', '04'],
+      mapping: {
+        '01': 'libs/src/assets/fakeImg/avatar_01.jpg',
+        '02': 'libs/src/assets/fakeImg/avatar_02.jpg',
+        '03': 'libs/src/assets/fakeImg/avatar_03.jpg',
+        '04': 'libs/src/assets/fakeImg/avatar_04.jpg',
+      },
+    },
+    alt: {
+      description: '圖片替代文字',
+      control: { type: 'text' },
+    },
     objectFit: {
       description: '調整圖片適合其容器',
       control: { type: 'select' },
@@ -15,6 +31,10 @@ export default {
     },
     ratio: {
       description: '調整圖片比例',
+      //控制 argType Control default 顯示
+      table: {
+        defaultValue: { summary: '1/1' },
+      },
       control: { type: 'select' },
       options: ['1/1', '4/3', '5/4', '16/9'],
       mapping: {
@@ -43,8 +63,10 @@ export default {
 export const ImageDefault = {
   name: '基本圖片',
   args: {
-    ratio: '11',
+    src: '01',
+    alt: 'User Photo',
     objectFit: 'cover',
+    ratio: '11',
   },
   render: (args) => ({
     components: { Image },
@@ -55,23 +77,28 @@ export const ImageDefault = {
       };
     },
     template: `
-            <div style="width: 250px; height: 250px;">
-                <Image ratio="11" objectFit="cover" src="libs/src/assets/fakeImg/avatar_01.jpg"></Image>
-            </div>  
-            `,
+                <div style="width: 250px; height: 250px;">
+                    <Image 
+                        :ratio="args.ratio" 
+                        :objectFit="args.objectFit" 
+                        :src="args.src"
+                        :alt="args.alt"></Image>
+                </div>  
+                `,
   }),
   // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      // include: ['themeColor', 'label', 'value', 'name' ],
+      // include: ['objectFit', 'src', 'value', 'name' ],
     },
   },
 };
 
 //==== 圖片比例 ====//
 export const ImageRatio = {
-  name: '圖片比例',
+  name: '圖片比例總覽',
   args: {
+    src: '01',
     objectFit: 'cover',
   },
   render: (args) => ({
@@ -86,8 +113,8 @@ export const ImageRatio = {
         <div style="display:flex; gap: 24px;">
             <div style="position: relative; width: fit-content; height: fit-content;">
               <Image ratio="11"
-                     :objectFit="args.objectfit"
-                     src="libs/src/assets/fakeImg/avatar_01.jpg"
+                     :objectFit="args.objectFit"
+                     :src="args.src"
                      style="width: 250px"
               ></Image>
               <p
@@ -99,8 +126,8 @@ export const ImageRatio = {
             </div>
             <div style="position: relative; width: fit-content; height: fit-content;">
               <Image ratio="43"
-                     :objectFit="args.objectfit"
-                     src="libs/src/assets/fakeImg/avatar_01.jpg"
+                     :objectFit="args.objectFit"
+                     :src="args.src"
                      style="width: 250px"
               ></Image>
               <p
@@ -112,8 +139,8 @@ export const ImageRatio = {
             </div>
             <div style="position: relative; width: fit-content; height: fit-content;">
               <Image ratio="54"
-                     :objectFit="args.objectfit"
-                     src="libs/src/assets/fakeImg/avatar_01.jpg"
+                     :objectFit="args.objectFit"
+                     :src="args.src"
                      style="width: 250px"
               ></Image>
               <p
@@ -125,8 +152,8 @@ export const ImageRatio = {
             </div>
             <div style="position: relative; width: fit-content; height: fit-content;">
               <Image ratio="169"
-                     :objectFit="args.objectfit"
-                     src="libs/src/assets/fakeImg/avatar_01.jpg"
+                     :objectFit="args.objectFit"
+                     :src="args.src"
                      style="width: 250px"
               ></Image>
               <p
@@ -142,7 +169,7 @@ export const ImageRatio = {
   // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      // include: ['themeColor', 'label', 'value', 'name' ],
+      include: ['objectFit', 'src'],
     },
   },
 };
@@ -151,6 +178,8 @@ export const ImageRatio = {
 export const ImageFit = {
   name: '圖片自適應',
   args: {
+    src: '01',
+    objectFit: 'cover',
     ratio: '169',
   },
   render: (args) => ({
@@ -166,7 +195,7 @@ export const ImageFit = {
             <div style="position: relative; width: fit-content; height: fit-content;">
               <Image :ratio="args.ratio"
                      objectFit="cover"
-                     src="libs/src/assets/fakeImg/avatar_01.jpg"
+                     :src="args.src"
                      style="width: 250px"
               ></Image>
               <p
@@ -179,7 +208,7 @@ export const ImageFit = {
             <div style="position: relative; width: fit-content; height: fit-content;">
               <Image :ratio="args.ratio"
                      objectFit="contain"
-                     src="libs/src/assets/fakeImg/avatar_01.jpg"
+                     :src="args.src"
                      style="width: 250px"
               ></Image>
               <p
@@ -192,7 +221,7 @@ export const ImageFit = {
             <div style="position: relative; width: fit-content; height: fit-content;">
               <Image :ratio="args.ratio"
                      objectFit="fill"
-                     src="libs/src/assets/fakeImg/avatar_01.jpg"
+                     :src="args.src"
                      style="width: 250px"
               ></Image>
               <p
@@ -205,7 +234,7 @@ export const ImageFit = {
             <div style="position: relative; width: fit-content; height: fit-content;">
               <Image :ratio="args.ratio"
                      objectFit="none"
-                     src="libs/src/assets/fakeImg/avatar_01.jpg"
+                     :src="args.src"
                      style="width: 250px"
               ></Image>
               <p
@@ -222,7 +251,7 @@ export const ImageFit = {
   // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      // include: ['themeColor', 'label', 'value', 'name' ],
+      include: ['ratio', 'src'],
     },
   },
 };
