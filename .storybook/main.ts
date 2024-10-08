@@ -13,6 +13,8 @@ const config: StorybookConfig = {
     '@storybook/addon-themes',
     'storybook-addon-deep-controls',
     '@chromatic-com/storybook',
+    '@whitespace/storybook-addon-html', // 👈 story 中程式碼檢視功能
+    'storybook-addon-vue-slots', // 👈 處理 vue slot
   ],
 
   framework: {
