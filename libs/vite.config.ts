@@ -19,9 +19,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@ui': '/libs/src/ui',
-
-      '@': '/libs/src',
+      '@': path.resolve(__dirname, '/src'),
     },
   },
   // Uncomment this if you are using workers.
