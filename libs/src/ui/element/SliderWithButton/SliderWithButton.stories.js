@@ -1,10 +1,10 @@
-import Slider from "./Slider.vue";
+import SliderWithButton from "./SliderWithButton.vue";
 import {ref} from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Slider",
-	component: Slider,
+	title: "Design System/SliderWithButton",
+	component: SliderWithButton,
 	tags: ["autodocs"],
 	argTypes: {
 		themeColor: {
@@ -19,6 +19,22 @@ export default {
 				'error',
 				'info',
 			],
+		},
+		prefix: {
+			description: '設定位於前方按鈕的 icon',
+			control: { type: "select" },
+			options: ['None', 'increase', 'decrease'],
+			mapping: {
+				'None': '',
+			},
+		},
+		suffix: {
+			description: '設定位於後方按鈕的 icon',
+			control: { type: "select" },
+			options: ['None', 'increase', 'decrease'],
+			mapping: {
+				'None': '',
+			},
 		},
 		min: {
 			description: '最小值',
@@ -64,29 +80,32 @@ export default {
 	// args: { onClick: fn() },
 };
 
+
 //==== Slider 基礎樣式 ====//
-export const SliderDefault = {
+export const SliderButton = {
 	name: "Slider 基礎樣式",
 	args: {
 		themeColor: "primary",
-		min: 0,
+		min: -100,
 		max: 100,
 		step: 1,
-		initValue: "50",
+		initValue: 19,
 		unit: "℃",
-		isDisabled: false
+		isDisabled: false,
+		prefix: "decrease",
+		suffix: "increase",
 	},
 	render: (args) => ({
-		components: { Slider },
+		components: { SliderWithButton },
 		setup() {
-			const sliderValue = ref(20);
+			const sliderValue = ref(-10)
 			return {
 				args,
 				sliderValue
 			};
 		},
 		template: `
-			<slider
+			<sliderWithButton
 				:themeColor="args.themeColor"
 				:min="args.min"
 				:max="args.max"
@@ -94,9 +113,11 @@ export const SliderDefault = {
 				:initValue="args.initValue"
 				:unit="args.unit"
 				:isDisabled="args.isDisabled"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
 				v-model="sliderValue"
-			></slider>
-			
+			></sliderWithButton>
+
 			ModelValue: {{sliderValue}}
         `,
 	}),
