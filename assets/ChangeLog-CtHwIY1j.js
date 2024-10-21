@@ -1,4 +1,4 @@
-import{af as n,ag as a,ah as s}from"./index-BjB3YXQh.js";import{u as r}from"./index-CBKL2dDM.js";import"./iframe-BdY8iLAL.js";import"../sb-preview/runtime.js";import"./index-i39XpuQg.js";import"./index-DrFu-skq.js";const i=`## V1.0.0 (2024-10-21)
+import{af as n,ag as a,ah as s}from"./index-DurUIeoU.js";import{u as r}from"./index-BXW81T_l.js";import"./iframe-BLuqiaLB.js";import"../sb-preview/runtime.js";import"./index-i39XpuQg.js";import"./index-DrFu-skq.js";const i=`## V1.0.0 (2024-10-21)
 
 ✨ New Feature
 
