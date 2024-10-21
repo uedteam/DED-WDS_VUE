@@ -1,5 +1,3 @@
-import '@/dist/globals.min.css';
-
 import { createApp } from 'vue';
 import App from './app/App.vue';
 
