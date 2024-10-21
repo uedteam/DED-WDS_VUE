@@ -1,0 +1,2 @@
+import{ae as e,af as s}from"./index-DLzo5mA7.js";import{u as r}from"./index-FcK8KPPa.js";import"./iframe-CTsvu7iB.js";import"../sb-preview/runtime.js";import"./index-i39XpuQg.js";import"./index-DrFu-skq.js";function o(t){const n={h1:"h1",...r(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(s,{title:"AnyTitle"}),`
+`,e.jsx(n.h1,{id:"get-started",children:"Get started"})]})}function d(t={}){const{wrapper:n}={...r(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(o,{...t})}):o(t)}export{d as default};
