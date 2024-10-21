@@ -1,47 +1,54 @@
-import {ref} from "vue";
 import Slider from "./Slider.vue";
-import Input from "@/ui/element/Input/Input.vue";
+import {ref} from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	components: {Input},
 	title: "Design System/Slider",
 	component: Slider,
 	tags: ["autodocs"],
 	argTypes: {
-		sliderMinVal: {
-			description: "設定 Slider 的最小值，控制可滑動的起始範圍",
-			control: { type: "number" },
-		},
-		sliderMaxVal: {
-			description: "設定 Slider 的最大值，控制可滑動的結束範圍",
-			control: { type: "number" },
-		},
-		thumbSize: {
-			description: "設定 Slider 滑塊的大小，以像素為單位",
-			control: { type: "range",
-				min: 20,
-				max: 30,
-				step: 1  },
-		},
 		themeColor: {
-			description: "選擇 Slider 的主題顏色",
-			control: { type: "select" },
+			description: '主題顏色',
+			control: { type: 'select' },
 			options: [
-				"default",
-				"primary",
-				"secondary",
-				"tertiary",
-				"success",
-				"warning",
-				"error",
-				"info",
+				'primary',
+				'secondary',
+				'tertiary',
+				'success',
+				'warning',
+				'error',
+				'info',
 			],
 		},
-		range: {
-			description: "勾選以啟動 Range Slider，允許選擇一個範圍的值",
-			control: { type: "boolean" },
+		min: {
+			description: '最小值',
+			control: { type: 'number' },
 		},
+		max: {
+			description: '最大值',
+			control: { type: 'number' },
+		},
+		step: {
+			description: '步進值',
+			control: { type: 'number' },
+		},
+		initValue: {
+			description: '初始值',
+			control: { type: 'number' },
+		},
+		unit: {
+			description: '單位',
+			control: { type: 'text' },
+		},
+		isDisabled: {
+			description: '是否禁用',
+			control: { type: 'boolean' },
+		},
+		className: {
+			description: '客製化樣式',
+			control: { type: 'text' },
+		},
+
 	},
 	parameters: {
 		// 自動文件
@@ -57,243 +64,270 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== Slider 基礎樣式 ====//
+//==== 主要項目 ====//
 export const SliderDefault = {
-	name: "Slider 基礎樣式",
+	name: "主要項目",
 	args: {
-		sliderMinVal: 0,
-		sliderMaxVal: 5000,
-		thumbSize: 20,
 		themeColor: "primary",
+		min: 0,
+		max: 100,
+		step: 1,
+		initValue: "50",
+		unit: "℃",
+		isDisabled: false,
+		className: ''
 	},
 	render: (args) => ({
 		components: { Slider },
 		setup() {
-			const currentSliderValue = ref(250);
+			const sliderValue = ref(20);
 			return {
 				args,
-				currentSliderValue
+				sliderValue
 			};
 		},
 		template: `
-            <Slider
-	            :sliderMinVal="args.sliderMinVal"
-	            :sliderMaxVal="args.sliderMaxVal"
-	            :thumbSize="args.thumbSize"
-	            :themeColor="args.themeColor"
-	            v-model="currentSliderValue"
-            ></Slider>
-            {{currentSliderValue}}
+			<slider
+				:themeColor="args.themeColor"
+				:min="args.min"
+				:max="args.max"
+				:step="args.step"
+				:initValue="args.initValue"
+				:unit="args.unit"
+				:isDisabled="args.isDisabled"
+				v-model="sliderValue"
+				:className="sliderValue"
+			></slider>
+			
+			ModelValue: {{sliderValue}}
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude:['range']
+			// exclude:['range']
 		},
 	},
 };
 
-//==== Slider 範圍樣式 ====//
-export const RangeSlider = {
-	name: "Slider 範圍樣式",
-	args: {
-		sliderMinVal: 0,
-		sliderMaxVal: 5000,
-		thumbSize: 20,
-		themeColor: "primary",
-	},
-	render: (args) => ({
-		components: { Slider },
-		setup() {
-			const currentSliderMinValue  = ref(114);
-			const currentSliderMaxValue  = ref(514);
-			return {
-				args,
-				currentSliderMinValue,
-				currentSliderMaxValue
-			};
-		},
-		template: `
-            <Slider
-	            :sliderMinVal="args.sliderMinVal"
-	            :sliderMaxVal="args.sliderMaxVal"
-	            :thumbSize="args.thumbSize"
-	            :themeColor="args.themeColor"
-	            v-model:currentSliderMinValue="currentSliderMinValue"
-	            v-model:currentSliderMaxValue="currentSliderMaxValue"
-	            range
-            ></Slider>
-        `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
-		},
-	},
-};
-
-//==== Slider 基礎結合輸入框 ====//
-export const DefaultSliderWithInput = {
-	name: "Slider 基礎結合輸入框",
-	args: {
-		sliderMinVal: 0,
-		sliderMaxVal: 5000,
-		thumbSize: 20,
-		themeColor: "primary",
-	},
-	render: (args) => ({
-		components: { Slider, Input },
-		setup() {
-			const currentSliderValue = ref(250);
-			return {
-				args,
-				currentSliderValue
-			};
-		},
-		template: `
-            <Slider
-	            :sliderMinVal="args.sliderMinVal"
-	            :sliderMaxVal="args.sliderMaxVal"
-	            :thumbSize="args.thumbSize"
-	            :themeColor="args.themeColor"
-	            v-model="currentSliderValue"
-            ></Slider>
-            <Input type="number" v-model="currentSliderValue"/>
-        `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude:['range']
-		},
-	},
-};
-
-//==== Slider 範圍樣式結合輸入框  ====//
-export const RangeSliderWithInput = {
-	name: "Slider 範圍樣式結合輸入框",
-	args: {
-		sliderMinVal: 0,
-		sliderMaxVal: 5000,
-		thumbSize: 20,
-		themeColor: "primary",
-	},
-	render: (args) => ({
-		components: { Slider, Input },
-		setup() {
-			const currentSliderMinValue  = ref(114);
-			const currentSliderMaxValue  = ref(514);
-			return {
-				args,
-				currentSliderMinValue,
-				currentSliderMaxValue
-			};
-		},
-		template: `
-            <Slider
-	            :sliderMinVal="args.sliderMinVal"
-	            :sliderMaxVal="args.sliderMaxVal"
-	            :thumbSize="args.thumbSize"
-	            :themeColor="args.themeColor"
-	            v-model:currentSliderMinValue="currentSliderMinValue"
-	            v-model:currentSliderMaxValue="currentSliderMaxValue"
-	            range
-            ></Slider>
-            <div style="display:flex; gap: 16px;">
-	            <Input label="起始數值" type="number" v-model="currentSliderMinValue" style="flex-grow: 1"/>
-	            <Input label="結束數值" type="number" v-model="currentSliderMaxValue" style="flex-grow: 1"/>
-            </div>
-        `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
-		},
-	},
-};
-
-//==== Slider 顏色 ====//
+//==== 主題色滑桿 ====//
 export const SliderColors = {
-	name: "Slider 顏色",
+	name: "主題色滑桿",
 	args: {
-		sliderMinVal: 0,
-		sliderMaxVal: 5000,
-		thumbSize: 20,
-		themeColor: "primary",
+		min: 0,
+		max: 100,
+		step: 1,
+		initValue: "50",
+		unit: "℃",
+		isDisabled: false
 	},
 	render: (args) => ({
 		components: { Slider },
 		setup() {
-			const currentSliderValue = ref(250);
+			const sliderValue = ref(20);
 			return {
 				args,
-				currentSliderValue
+				sliderValue
 			};
 		},
 		template: `
 			<div style="display:flex; flex-direction: column;">
-				<Slider
-					:sliderMinVal="args.sliderMinVal"
-					:sliderMaxVal="args.sliderMaxVal"
+				<slider
 					themeColor="primary"
-					:thumbSize="args.thumbSize"
-					v-model="currentSliderValue"
-				></Slider>
-				<Slider
-					:sliderMinVal="args.sliderMinVal"
-					:sliderMaxVal="args.sliderMaxVal"
+					:min="args.min"
+					:max="args.max"
+					:step="args.step"
+					:initValue="args.initValue"
+					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					v-model="sliderValue"
+				></slider>
+				<slider
 					themeColor="secondary"
-					:thumbSize="args.thumbSize"
-					v-model="currentSliderValue"
-				></Slider>
-				<Slider
-					:sliderMinVal="args.sliderMinVal"
-					:sliderMaxVal="args.sliderMaxVal"
+					:min="args.min"
+					:max="args.max"
+					:step="args.step"
+					:initValue="args.initValue"
+					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					v-model="sliderValue"
+				></slider>
+				<slider
 					themeColor="tertiary"
-					:thumbSize="args.thumbSize"
-					v-model="currentSliderValue"
-				></Slider>
-				<Slider
-					:sliderMinVal="args.sliderMinVal"
-					:sliderMaxVal="args.sliderMaxVal"
+					:min="args.min"
+					:max="args.max"
+					:step="args.step"
+					:initValue="args.initValue"
+					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					v-model="sliderValue"
+				></slider>
+				<slider
 					themeColor="success"
-					:thumbSize="args.thumbSize"
-					v-model="currentSliderValue"
-				></Slider>
-				<Slider
-					:sliderMinVal="args.sliderMinVal"
-					:sliderMaxVal="args.sliderMaxVal"
+					:min="args.min"
+					:max="args.max"
+					:step="args.step"
+					:initValue="args.initValue"
+					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					v-model="sliderValue"
+				></slider>
+				<slider
 					themeColor="warning"
-					:thumbSize="args.thumbSize"
-					v-model="currentSliderValue"
-				></Slider>
-				<Slider
-					:sliderMinVal="args.sliderMinVal"
-					:sliderMaxVal="args.sliderMaxVal"
+					:min="args.min"
+					:max="args.max"
+					:step="args.step"
+					:initValue="args.initValue"
+					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					v-model="sliderValue"
+				></slider>
+				<slider
 					themeColor="error"
-					:thumbSize="args.thumbSize"
-					v-model="currentSliderValue"
-				></Slider>
-				<Slider
-					:sliderMinVal="args.sliderMinVal"
-					:sliderMaxVal="args.sliderMaxVal"
+					:min="args.min"
+					:max="args.max"
+					:step="args.step"
+					:initValue="args.initValue"
+					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					v-model="sliderValue"
+				></slider>
+				<slider
 					themeColor="info"
-					:thumbSize="args.thumbSize"
-					v-model="currentSliderValue"
-				></Slider>
+					:min="args.min"
+					:max="args.max"
+					:step="args.step"
+					:initValue="args.initValue"
+					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					v-model="sliderValue"
+				></slider>
 			</div>
+			
+			
+			ModelValue: {{sliderValue}}
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude:['themeColor'],
+			// exclude:['range']
 		},
 	},
 };
+
+
+
+//--- JONY VERSION START ---//
+
+// // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
+// export default {
+// 	title: "Design System/Slider",
+// 	component: Slider,
+// 	tags: ["autodocs"],
+// 	argTypes: {
+// 		themeColor: {
+// 			description: '主題顏色',
+// 			control: { type: 'select' },
+// 			options: [
+// 				'primary',
+// 				'secondary',
+// 				'tertiary',
+// 				'success',
+// 				'warning',
+// 				'error',
+// 				'info',
+// 			],
+// 		},
+// 		min: {
+// 			description: '最小值',
+// 			control: { type: 'number' },
+// 		},
+// 		max: {
+// 			description: '最大值',
+// 			control: { type: 'number' },
+// 		},
+// 		step: {
+// 			description: '步進值',
+// 			control: { type: 'number' },
+// 		},
+// 		initValue: {
+// 			description: '初始值',
+// 			control: { type: 'number' },
+// 		},
+// 		unit: {
+// 			description: '單位',
+// 			control: { type: 'text' },
+// 		},
+// 		isDisabled: {
+// 			description: '是否禁用',
+// 			control: { type: 'boolean' },
+// 		},
+// 		className: {
+// 			description: '客製化樣式',
+// 			control: { type: 'text' },
+// 		},
+//
+// 	},
+// 	parameters: {
+// 		// 自動文件
+// 		docs: {
+// 			title: "Slider",
+// 			description: {
+// 				component: "Slider組件的呈現及說明。",
+// 			},
+// 		},
+// 	},
+//
+// 	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+// 	// args: { onClick: fn() },
+// };
+//
+// //==== Slider 基礎樣式 ====//
+// export const SliderDefault = {
+// 	name: "Slider 基礎樣式",
+// 	args: {
+// 		themeColor: "primary",
+// 		min: 0,
+// 		max: 100,
+// 		step: 1,
+// 		initValue: "50",
+// 		unit: "℃",
+// 		isDisabled: false
+// 	},
+// 	render: (args) => ({
+// 		components: { Slider },
+// 		setup() {
+// 			const sliderValue = ref(20);
+// 			return {
+// 				args,
+// 				sliderValue
+// 			};
+// 		},
+// 		template: `
+// 			<slider
+// 				:themeColor="args.themeColor"
+// 				:min="args.min"
+// 				:max="args.max"
+// 				:step="args.step"
+// 				:initValue="args.initValue"
+// 				:unit="args.unit"
+// 				:isDisabled="args.isDisabled"
+// 				v-model="sliderValue"
+// 			></slider>
+//
+// 			ModelValue: {{sliderValue}}
+//         `,
+// 	}),
+// 	// 控制 controls 中能控制的參數
+// 	parameters: {
+// 		controls: {
+// 			// include: ['themeColor', 'label', 'value', 'name' ],
+// 			// exclude:['range']
+// 		},
+// 	},
+// };
+
+//--- JONY VERSION END ---//

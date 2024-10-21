@@ -32,7 +32,7 @@ const props = defineProps({
                 "info",
             ].includes(value),
     },
-    customClass: {
+    className: {
         type: String,
         default: "",
     },
@@ -46,11 +46,11 @@ const handleCheck = () => {
 </script>
 
 <template>
-    <label :for="props.value" class="checkbox">
+    <label :for="props.id" :class="{'checkbox': true, [props.className]: !!props.className}">
         <input
             class="checkbox-input"
             type="checkbox"
-            :id="props.value"
+            :id="props.id"
             :name="props.name"
             :value="props.value"
             v-model="modelValue"

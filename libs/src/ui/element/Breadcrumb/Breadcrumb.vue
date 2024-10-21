@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import BreadcrumbItem from "@/ui/element/Breadcrumb/BreadcrumbItem.vue";
 
 // 定義 Props
@@ -15,13 +15,18 @@ const props = defineProps({
 	href: {
 		type: String,
 	},
-	isCurrentPage: {
-		type: Boolean,
-		default: false,
-	}
+	className: {
+		type: String,
+		default: '',
+	},
 });
-const copyBreadcrumbsData = ref([...props.items])
-console.log(copyBreadcrumbsData.value.length)
+
+const copyBreadcrumbsData = ref([...props.items]);
+
+// 監視 props.items 的變化
+watch(() => props.items, (newData) => {
+	copyBreadcrumbsData.value = [...newData];
+});
 
 const truncatedBreadcrumbs = computed(() => {
 	const data = copyBreadcrumbsData.value;
@@ -52,7 +57,10 @@ const handleClick = () => {
 </script>
 
 <template>
-	<nav class="breadcrumb-container undefined">
+	<nav :class="{
+		'breadcrumb-container': true,
+		[ props.className ]: !!props.className
+	}">
 		<ul class="breadcrumb">
 			<li class="breadcrumb-item" v-for="(item, index) in truncatedBreadcrumbs">
 				<!-- breadcrumb - 等於...時折疊數據 -->

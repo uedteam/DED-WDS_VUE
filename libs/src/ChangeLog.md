@@ -1,11 +1,13 @@
-## V1.0.0 (Mon July 26 2024)
+## V1.0.0 (2024-10-21)
 
 ✨ New Feature
 
-- Add Button Story
+---
+
+🆙update
+
+- 同步學長版 storybook
 
 ---
 
 🪲 Bug Fix
-
-- Fix Button Hover Status
