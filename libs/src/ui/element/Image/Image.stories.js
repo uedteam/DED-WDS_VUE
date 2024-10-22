@@ -4,24 +4,29 @@ import Image from './Image.vue';
 export default {
   title: 'Design System/Image',
   component: Image,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     src: {
-      description: '圖片來源',
-      table: {
-        defaultValue: { summary: '01' },
-      },
-      control: { type: 'select' },
-      options: ['01', '02', '03', '04'],
-      mapping: {
-        '01': 'libs/src/assets/fakeImg/avatar_01.jpg',
-        '02': 'libs/src/assets/fakeImg/avatar_02.jpg',
-        '03': 'libs/src/assets/fakeImg/avatar_03.jpg',
-        '04': 'libs/src/assets/fakeImg/avatar_04.jpg',
-      },
+      description: "圖片來源",
+      control: { type: "text" },
     },
+    //DED VUE 用程式碼
+    // src: {
+    //   description: "圖片來源",
+    //   table: {
+    //      defaultValue: { summary: '01' }
+    //   },
+    //   control: { type: 'select' },
+    //   options: ['01', '02', '03', '04'],
+    //   mapping: {
+    //     '01': 'libs/src/assets/fakeImg/avatar_01.jpg',
+    //     '02': 'libs/src/assets/fakeImg/avatar_02.jpg',
+    //     '03': 'libs/src/assets/fakeImg/avatar_03.jpg',
+    //     '04': 'libs/src/assets/fakeImg/avatar_04.jpg',
+    //   },
+    // },
     alt: {
-      description: '圖片替代文字',
+      description: "圖片替代文字",
       control: { type: 'text' },
     },
     objectFit: {
@@ -33,7 +38,7 @@ export default {
       description: '調整圖片比例',
       //控制 argType Control default 顯示
       table: {
-        defaultValue: { summary: '1/1' },
+        defaultValue: { summary: '1/1' }
       },
       control: { type: 'select' },
       options: ['1/1', '4/3', '5/4', '16/9'],
@@ -43,7 +48,8 @@ export default {
         '5/4': '54',
         '16/9': '169',
       },
-    },
+    }
+
   },
   parameters: {
     // 自動文件
@@ -61,31 +67,31 @@ export default {
 
 //==== 基礎圖片 ====//
 export const ImageDefault = {
-  name: '基本圖片',
-  args: {
-    src: '01',
-    alt: 'User Photo',
-    objectFit: 'cover',
-    ratio: '11',
-  },
-  render: (args) => ({
-    components: { Image },
-    setup() {
-      // Create a ref for modelValue to be used with v-model
-      return {
-        args,
-      };
+    name: '基本圖片',
+    args: {
+        src: 'https://picsum.photos/300/300',
+        alt: 'User Photo',
+        objectFit: 'cover',
+        ratio: '11',
     },
-    template: `
-                <div style="width: 250px; height: 250px;">
-                    <Image 
-                        :ratio="args.ratio" 
-                        :objectFit="args.objectFit" 
-                        :src="args.src"
-                        :alt="args.alt"></Image>
-                </div>  
-                `,
-  }),
+    render: (args) => ({
+        components: { Image },
+        setup() {
+            // Create a ref for modelValue to be used with v-model
+            return {
+              args,
+            };
+        },
+        template: `
+            <div style="width: 250px; height: 250px;">
+                <Image 
+                    :ratio="args.ratio" 
+                    :objectFit="args.objectFit" 
+                    :src="args.src"
+                    :alt="args.alt"></Image>
+            </div>  
+            `,
+    }),
   // 控制 controls 中能控制的參數
   parameters: {
     controls: {
@@ -98,8 +104,8 @@ export const ImageDefault = {
 export const ImageRatio = {
   name: '圖片比例總覽',
   args: {
-    src: '01',
-    objectFit: 'cover',
+    src: 'https://picsum.photos/300/300',
+    objectFit: 'cover'
   },
   render: (args) => ({
     components: { Image },
@@ -169,7 +175,7 @@ export const ImageRatio = {
   // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      include: ['objectFit', 'src'],
+      include: ['objectFit', 'src' ],
     },
   },
 };
@@ -178,9 +184,9 @@ export const ImageRatio = {
 export const ImageFit = {
   name: '圖片自適應',
   args: {
-    src: '01',
+    src: 'https://picsum.photos/300/300',
     objectFit: 'cover',
-    ratio: '169',
+    ratio: '169'
   },
   render: (args) => ({
     components: { Image },
@@ -251,7 +257,8 @@ export const ImageFit = {
   // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      include: ['ratio', 'src'],
+      include: ['ratio', 'src' ],
     },
   },
 };
+

@@ -1,4 +1,4 @@
-import '../libs/src/style/globals.scss';
+import '@/style/globals.scss';
 import { Preview } from '@storybook/vue3';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
