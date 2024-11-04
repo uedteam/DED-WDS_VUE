@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
 	height: {
@@ -20,9 +20,9 @@ const computedHeight = computed(() => {
 <template>
 	<div :style="{ height: computedHeight }">
 		<div class="fakeContent" role="presentation" aria-hidden="true">
-			<b class="fakeContent--text">
+			<p class="fakeContent--text">
 				<slot></slot>
-			</b>
+			</p>
 		</div>
 	</div>
 </template>

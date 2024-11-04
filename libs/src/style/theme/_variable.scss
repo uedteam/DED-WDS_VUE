@@ -40,6 +40,7 @@ $darkness90: #000000e6;
 $input-border-width: 1px;
 $btn-border-width: 2px;
 
+$table-size-rounded: 8px;
 $image-size-rounded: 8px;
 $button-size-rounded: 8px;
 $textarea-size-rounded: 4px;
@@ -62,6 +63,24 @@ $text-size-xsmall: 13px;
 $text-size-small: 14px;
 $text-size-medium: 16px;
 $text-size-large: 18px;
+
+// table 尺寸
+$table-size-xsmall: 25%;
+$table-size-small: 50%;
+$table-size-medium: 70%;
+$table-size-large: 100%;
+
+// table-cell padding
+$table-cell-xsmall: 2px;
+$table-cell-small: 4px;
+$table-cell-medium: 6px;
+$table-cell-large: 8px;
+
+// table-text
+$table-text-xsmall: 12px;
+$table-text-small: 14px;
+$table-text-medium: 18px;
+$table-text-large: 24px;
 
 // 輸入框尺寸
 $component-size-small: 32px;
@@ -151,11 +170,20 @@ $space-size-gap6: 48px;
 $space-size-gap7: 56px;
 $space-size-gap8: 64px;
 
-// 斷點設定
-// 裝置: 依照需求填入樣式參數
-$breakpoint-size-mobile: 375px;
-$breakpoint-size-desktop: 1440px;
-$breakpoint-size-large-desktop: 1920px;
+// 格線系統斷點設定
+$breakpoint-size-mobile: 576px;
+$breakpoint-size-tablet: 768px;
+$breakpoint-size-desktop: 992px;
+$breakpoint-size-large-desktop: 1200px;
+
+// 格線系統最大寬度設定
+$layout-max-width-mobile: 540px;
+$layout-max-width-tablet: 720px;
+$layout-max-width-desktop: 960px;
+$layout-max-width-large-desktop: 1140px;
+
+// 格線系統間距設定
+$grid-gap: 8px;
 
 // 字體設定
 // 語系: 依照需求填入字型
