@@ -97,6 +97,24 @@ export const DefaultAvatar = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude: ['limit']
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Avatar',
+						`  shape="${args.shape}"`,
+						`  size="${args.size}"`,
+						`  username="${args.username}"`,
+						`  status="${args.status}"`,
+						`  imageSrc="${args.imageSrc}"`,
+						`  imageAlt="${args.imageAlt}"`,
+						`  className="${args.className}"`,
+						'></Avatar>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -109,6 +127,7 @@ export const AvatarShape = {
 		imageSrc: "https://picsum.photos/320/240",
 		imageAlt: "alt text",
 		username: "JonyWu",
+		className: ""
 	},
 	render: (args) => ({
 		components: { Avatar },
@@ -144,6 +163,33 @@ export const AvatarShape = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude: ['shape', 'limit']
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Avatar',
+						`  shape="circle"`,
+						`  size="${args.size}"`,
+						`  username="${args.username}"`,
+						`  status="${args.status}"`,
+						`  imageSrc="${args.imageSrc}"`,
+						`  imageAlt="${args.imageAlt}"`,
+						`  className="${args.className}"`,
+						'></Avatar>',
+						'<Avatar',
+						`  shape="square"`,
+						`  size="${args.size}"`,
+						`  username="${args.username}"`,
+						`  status="${args.status}"`,
+						`  imageSrc="${args.imageSrc}"`,
+						`  imageAlt="${args.imageAlt}"`,
+						`  className="${args.className}"`,
+						'></Avatar>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -156,6 +202,7 @@ export const AvatarStatus = {
 		imageSrc: "https://picsum.photos/320/240",
 		imageAlt: "alt text",
 		username: "JonyWu",
+		className: ""
 	},
 	render: (args) => ({
 		components: { Avatar },
@@ -216,6 +263,60 @@ export const AvatarStatus = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude: ['status', 'limit']
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Avatar',
+						`  shape="${args.shape}"`,
+						`  size="${args.size}"`,
+						`  username="${args.username}"`,
+						`  status="default"`,
+						`  imageSrc="${args.imageSrc}"`,
+						`  imageAlt="${args.imageAlt}"`,
+						`  className="${args.className}"`,
+						'></Avatar>',
+						'<Avatar',
+						`  shape="square"`,
+						`  size="${args.size}"`,
+						`  username="${args.username}"`,
+						`  status="online"`,
+						`  imageSrc="${args.imageSrc}"`,
+						`  imageAlt="${args.imageAlt}"`,
+						`  className="${args.className}"`,
+						'></Avatar>',
+						'<Avatar',
+						`  shape="square"`,
+						`  size="${args.size}"`,
+						`  username="${args.username}"`,
+						`  status="idle"`,
+						`  imageSrc="${args.imageSrc}"`,
+						`  imageAlt="${args.imageAlt}"`,
+						`  className="${args.className}"`,
+						'></Avatar>',
+						'<Avatar',
+						`  shape="square"`,
+						`  size="${args.size}"`,
+						`  username="${args.username}"`,
+						`  status="busy"`,
+						`  imageSrc="${args.imageSrc}"`,
+						`  imageAlt="${args.imageAlt}"`,
+						`  className="${args.className}"`,
+						'></Avatar>',
+						'<Avatar',
+						`  shape="square"`,
+						`  size="${args.size}"`,
+						`  username="${args.username}"`,
+						`  status="offline"`,
+						`  imageSrc="${args.imageSrc}"`,
+						`  imageAlt="${args.imageAlt}"`,
+						`  className="${args.className}"`,
+						'></Avatar>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
