@@ -33,6 +33,7 @@
 - 新增 Tabs parameters.docs.source 作為下載程式碼用
 - 新增 Textarea parameters.docs.source 作為下載程式碼用
 - 新增 Title parameters.docs.source 作為下載程式碼用
+- 新增 Toggle parameters.docs.source 作為下載程式碼用
 
 - 新增 AvatarGroup 必填項目
 - 新增 Badge 必填項目
