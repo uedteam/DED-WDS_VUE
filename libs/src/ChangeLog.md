@@ -24,6 +24,7 @@
 - 新增 Dropdown parameters.docs.source 作為下載程式碼用
 - 新增 Grid parameters.docs.source 作為下載程式碼用
 - 新增 Image parameters.docs.source 作為下載程式碼用
+- 新增 Input parameters.docs.source 作為下載程式碼用
 
 - 新增 AvatarGroup 必填項目
 - 新增 Badge 必填項目
