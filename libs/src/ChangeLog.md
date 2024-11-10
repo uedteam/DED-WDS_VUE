@@ -31,6 +31,7 @@
 - 新增 Progress-Circle parameters.docs.source 作為下載程式碼用
 - 新增 Progress-Line parameters.docs.source 作為下載程式碼用
 - 新增 Slider parameters.docs.source 作為下載程式碼用
+- 新增 SliderControl parameters.docs.source 作為下載程式碼用
 - 新增 Tabs parameters.docs.source 作為下載程式碼用
 - 新增 Textarea parameters.docs.source 作為下載程式碼用
 - 新增 Title parameters.docs.source 作為下載程式碼用
