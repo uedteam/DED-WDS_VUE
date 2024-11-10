@@ -14,6 +14,13 @@
 - 修改 breadcrumb story code 顯示方式
 - 修改 breadcrumb story table 顯示方式
 
+- 新增 Avatar parameters.docs.source 作為下載程式碼用
+- 新增 AvatarGroup parameters.docs.source 作為下載程式碼用
+- 新增 Badge parameters.docs.source 作為下載程式碼用
+
+- 新增 AvatarGroup 必填項目
+- 新增 Badge 必填項目
+
 ---
 
 🪲 Bug Fix
