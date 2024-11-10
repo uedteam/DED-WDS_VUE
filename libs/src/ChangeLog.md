@@ -8,7 +8,9 @@
 
 - 帶星號元件 story 名稱改全中文，第一個皆改預設樣式
 
-- 修改 checkbox vue 元件寫法
+- 改寫 checkbox vue 元件寫法
+- 改寫 Menu.vue 修改程式邏輯，增加必填
+
 - 修改 checkbox story code 顯示方式
 - 修改 checkbox story table 顯示方式
 
@@ -25,6 +27,9 @@
 - 新增 Grid parameters.docs.source 作為下載程式碼用
 - 新增 Image parameters.docs.source 作為下載程式碼用
 - 新增 Input parameters.docs.source 作為下載程式碼用
+- 新增 Menu parameters.docs.source 作為下載程式碼用
+- 新增 Progress-Circle parameters.docs.source 作為下載程式碼用
+- 新增 Progress-Line parameters.docs.source 作為下載程式碼用
 
 - 新增 AvatarGroup 必填項目
 - 新增 Badge 必填項目
