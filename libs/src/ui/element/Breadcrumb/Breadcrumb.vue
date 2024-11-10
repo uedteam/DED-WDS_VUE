@@ -1,19 +1,14 @@
 <script setup>
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
 import BreadcrumbItem from "@/ui/element/Breadcrumb/BreadcrumbItem.vue";
+import List from "@/ui/element/List/List.vue";
+import ListItem from "@/ui/element/List/ListItem.vue";
 
-// 定義 Props
 const props = defineProps({
-	datasource: {
+	dataSource: {
 		type: Array,
+		required:true,
 		default: () => []
-	},
-	// --  資料接口 -- //
-	label: {
-		type: String,
-	},
-	href: {
-		type: String,
 	},
 	className: {
 		type: String,
@@ -21,66 +16,100 @@ const props = defineProps({
 	},
 });
 
-const copyBreadcrumbsData = ref([...props.datasource]);
+const copyBreadcrumbsData = ref([...props.dataSource]);
 
-// 監視 props.datasource 的變化
-watch(() => props.datasource, (newData) => {
+watch(() => props.dataSource, (newData) => {
 	copyBreadcrumbsData.value = [...newData];
 });
 
 const truncatedBreadcrumbs = computed(() => {
 	const data = copyBreadcrumbsData.value;
-	if (data.length > 3) {
-		return [data[0], { label: '...', href: '#' }, ...data.slice(-2)];
-	} else {
-		return data;
-	}
+	return data.length > 3 ? [data[0], { label: '...', href: '#' }, ...data.slice(-2)] : data;
 });
 
 const restBreadcrumbs = computed(() => {
 	const data = copyBreadcrumbsData.value;
-	if (data.length > 3) {
-		return data.slice(1, -2);
-	} else {
-		return [];
-	}
+	return data.length > 3 ? data.slice(1, -2) : [];
 });
 
-console.log("1st",truncatedBreadcrumbs.value)
-console.log("2nd",restBreadcrumbs.value)
+const isOpen = ref(false);
+const dropdownPosition = ref({ top: 0, left: 0 });
 
-// 控制顯示剩餘未顯示數據
-const isOpen =ref(false)
-const handleClick = () => {
-	isOpen.value = !isOpen.value
-}
+const handleClick = (event) => {
+	isOpen.value = !isOpen.value;
+	if (isOpen.value) {
+		const rect = event.target.getBoundingClientRect();
+		dropdownPosition.value = {
+			top: rect.bottom + window.scrollY + 8,
+			left: rect.left + window.scrollX
+		};
+		document.addEventListener("click", handleClickOutside);
+	} else {
+		document.removeEventListener("click", handleClickOutside);
+	}
+};
+
+// 點擊外部時關閉下拉選單
+const handleClickOutside = (event) => {
+	const dropdownElement = document.querySelector('.rest');
+	const triggerElement = document.querySelector('.rest-label');
+
+	if (dropdownElement && triggerElement && !dropdownElement.contains(event.target) && !triggerElement.contains(event.target)) {
+		isOpen.value = false;
+		document.removeEventListener("click", handleClickOutside);
+	}
+};
+
+// 監聽視窗大小變化，重新計算下拉選單位置
+const updatePositionOnResize = () => {
+	if (isOpen.value) {
+		const restLabelElement = document.querySelector('.rest-label');
+		if (restLabelElement) {
+			const rect = restLabelElement.getBoundingClientRect();
+			dropdownPosition.value = {
+				top: rect.bottom + window.scrollY + 8,
+				left: rect.left + window.scrollX
+			};
+		}
+	}
+};
+
+onMounted(() => {
+	window.addEventListener('resize', updatePositionOnResize);
+});
+
+onBeforeUnmount(() => {
+	window.removeEventListener('resize', updatePositionOnResize);
+	document.removeEventListener("click", handleClickOutside);
+});
 </script>
 
 <template>
-	<nav :class="{
-		'breadcrumb-container': true,
-		[ props.className ]: !!props.className
-	}">
+	<nav :class="['breadcrumb-container', props.className]">
 		<ul class="breadcrumb">
-			<li class="breadcrumb-item" v-for="(item, index) in truncatedBreadcrumbs">
-				<!-- breadcrumb - 等於...時折疊數據 -->
+			<li class="breadcrumb-item" v-for="(item, index) in truncatedBreadcrumbs" :key="index">
 				<template v-if="item.label === '...'">
 					<div class="rest">
-						<span class="rest-label" @click="handleClick()">...</span>
-						<ul class="rest-dropdown-menu" v-if="isOpen">
-							<li class="drop-item" v-for="(restItem) in restBreadcrumbs">
-								<a class="drop-item-link" :href="restItem.href">{{ restItem.label }}</a>
-							</li>
-						</ul>
+						<span class="rest-label" @click="handleClick">...</span>
+						<teleport to="body">
+							<List v-if="isOpen" class="col-3 rest" :style="{ top: `${dropdownPosition.top}px`, left: `${dropdownPosition.left}px`, position: 'absolute' }">
+								<ListItem
+									v-for="(restItem, index) in restBreadcrumbs"
+									:key="index"
+									:label="restItem.label"
+									:href="restItem.href"
+									:openInNewTab="false"
+								/>
+							</List>
+						</teleport>
 					</div>
 				</template>
-				<!-- breadcrumb - 其餘非折疊數據 -->
 				<template v-else>
 					<BreadcrumbItem
 						:label="item.label"
 						:href="item.href"
-						:isCurrentPage="index === truncatedBreadcrumbs.length - 1">
-					</BreadcrumbItem>
+						:isCurrentPage="index === truncatedBreadcrumbs.length - 1"
+					/>
 				</template>
 			</li>
 		</ul>
@@ -88,5 +117,4 @@ const handleClick = () => {
 </template>
 
 <style scoped lang="scss">
-
 </style>
