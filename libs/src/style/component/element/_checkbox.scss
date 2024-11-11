@@ -56,6 +56,11 @@
           0
           3px
           blend-rgba(getThemeColor($mode, $theme, 'default'), $lightness80);
+        box-shadow: 0
+          0
+          0
+          3px
+          blend-rgba(getThemeColor($mode, $theme, 'default'), $lightness80);
       }
     }
 
@@ -67,6 +72,11 @@
       }
 
       &:focus {
+        box-shadow: 0
+          0
+          0
+          3px
+          blend-rgba(getThemeColor($mode, $theme, 'default'), $lightness80);
         box-shadow: 0
           0
           0

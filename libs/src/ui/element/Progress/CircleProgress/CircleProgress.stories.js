@@ -1,95 +1,96 @@
-import CircleProgress from "./CircleProgress.vue";
+import CircleProgress from './CircleProgress.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-    title: "Design System/Progress-Circle",
-    component: CircleProgress,
-    tags: ["autodocs"],
-    argTypes: {
-        themeColor: {
-            description: "主題顏色",
-            control: { type: "select" },
-            options: [
-                "primary",
-                "secondary",
-                "tertiary",
-                "success",
-                "warning",
-                "error",
-                "info",
-            ],
-        },
-        percent: {
-            description: "進度",
-            required: true,
-            control: {
-                type: "range",
-                min: 0,
-                max: 100,
-                step: 1, },
-            defaultValue: 66,
-        },
-        size: {
-            description: '直徑',
-            control: {
-                type: 'range',
-                min: 24,
-                max: 200,
-                step: 1,
-            },
-            defaultValue: 50,
-        },
-        strokeWidth: {
-            description: '線條寬度',
-            control: {
-                type: 'range',
-                min: 1,
-                max: 20,
-                step: 1,
-            },
-        },
-        label: {
-            description: "進度指示標籤",
-            control: { type: 'text' },
-        },
-        className: {
-            description: '客製化樣式',
-            control: { type: 'text' },
-        },
+  title: 'Design System/Progress-Circle',
+  component: CircleProgress,
+  tags: ['autodocs'],
+  argTypes: {
+    themeColor: {
+      description: '主題顏色',
+      control: { type: 'select' },
+      options: [
+        'primary',
+        'secondary',
+        'tertiary',
+        'success',
+        'warning',
+        'error',
+        'info',
+      ],
     },
-    parameters: {
-        // 自動文件
-        docs: {
-            title: "CircleProgress",
-            description: {
-                component: "CircleProgress 組件的呈現及說明。",
-            },
-        },
+    percent: {
+      description: '進度',
+      required: true,
+      control: {
+        type: 'range',
+        min: 0,
+        max: 100,
+        step: 1,
+      },
+      defaultValue: 66,
     },
-    // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-    // args: { onClick: fn() },
+    size: {
+      description: '直徑',
+      control: {
+        type: 'range',
+        min: 24,
+        max: 200,
+        step: 1,
+      },
+      defaultValue: 50,
+    },
+    strokeWidth: {
+      description: '線條寬度',
+      control: {
+        type: 'range',
+        min: 1,
+        max: 20,
+        step: 1,
+      },
+    },
+    label: {
+      description: '進度指示標籤',
+      control: { type: 'text' },
+    },
+    className: {
+      description: '客製化樣式',
+      control: { type: 'text' },
+    },
+  },
+  parameters: {
+    // 自動文件
+    docs: {
+      title: 'CircleProgress',
+      description: {
+        component: 'CircleProgress 組件的呈現及說明。',
+      },
+    },
+  },
+  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+  // args: { onClick: fn() },
 };
 
 //==== 預設項目 ====//
 export const DefaultCircleProgress = {
-    name: "預設項目",
-    args: {
-        themeColor: "primary",
-        percent: 66,
-        size: 120,
-        strokeWidth: 10,
-        label: "Saving",
-        className: '',
+  name: '預設項目',
+  args: {
+    themeColor: 'primary',
+    percent: 66,
+    size: 120,
+    strokeWidth: 10,
+    label: 'Saving',
+    className: '',
+  },
+  render: (args) => ({
+    components: { CircleProgress },
+    setup() {
+      // Create a ref for modelValue to be used with v-model
+      return {
+        args,
+      };
     },
-    render: (args) => ({
-        components: { CircleProgress },
-        setup() {
-            // Create a ref for modelValue to be used with v-model
-            return {
-                args,
-            };
-        },
-        template: `
+    template: `
             <CircleProgress 
                 :label="args.label"
                 :percent="args.percent"
@@ -99,53 +100,54 @@ export const DefaultCircleProgress = {
                 :className="args.className"
             ></CircleProgress>
         `,
-    }),
-    // 控制 controls 中能控制的參數
-    parameters: {
-        controls: {
-            // include: ['themeColor', 'label', 'value', 'name' ],
-        },
-        docs: {
-            source: {
-                transform: (src, storyContext) => {
-                    const { args } = storyContext;
-                    return [
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="${args.themeColor}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                    ].join('\n').trim();
-
-                }
-            }
-        }
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      // include: ['themeColor', 'label', 'value', 'name' ],
     },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const { args } = storyContext;
+          return [
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="${args.percent}"`,
+            `  :size="${args.size}"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="${args.themeColor}"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+          ]
+            .join('\n')
+            .trim();
+        },
+      },
+    },
+  },
 };
 
 //==== 顯示標籤 ====//
 export const CircleProgressLabelStory = {
-    name: "顯示標籤",
-    args: {
-        themeColor: "primary",
-        percent: 66,
-        size: 120,
-        strokeWidth: 10,
-        label: "測試",
-        className: '',
+  name: '顯示標籤',
+  args: {
+    themeColor: 'primary',
+    percent: 66,
+    size: 120,
+    strokeWidth: 10,
+    label: '測試',
+    className: '',
+  },
+  render: (args) => ({
+    components: { CircleProgress },
+    setup() {
+      // Create a ref for modelValue to be used with v-model
+      return {
+        args,
+      };
     },
-    render: (args) => ({
-        components: { CircleProgress },
-        setup() {
-            // Create a ref for modelValue to be used with v-model
-            return {
-                args,
-            };
-        },
-        template: `
+    template: `
             <div style="display:flex; align-items: center; gap: 24px">
                 <CircleProgress
                     :label="args.label"
@@ -166,59 +168,60 @@ export const CircleProgressLabelStory = {
             </div>
             
         `,
-    }),
-    // 控制 controls 中能控制的參數
-    parameters: {
-        controls: {
-            // include: ['themeColor', 'label', 'value', 'name' ],
-        },
-        docs: {
-            source: {
-                transform: (src, storyContext) => {
-                    const { args } = storyContext;
-                    return [
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="70"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="${args.themeColor}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="120"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="${args.themeColor}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                    ].join('\n').trim();
-
-                }
-            }
-        }
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      // include: ['themeColor', 'label', 'value', 'name' ],
     },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const { args } = storyContext;
+          return [
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="${args.percent}"`,
+            `  :size="70"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="${args.themeColor}"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="${args.percent}"`,
+            `  :size="120"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="${args.themeColor}"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+          ]
+            .join('\n')
+            .trim();
+        },
+      },
+    },
+  },
 };
 
 //==== 主題色彩 ====//
 export const CircleProgressColorStory = {
-    name: "主題色彩",
-    args: {
-        size: 120,
-        strokeWidth: 10,
-        label: "測試",
-        className: '',
+  name: '主題色彩',
+  args: {
+    size: 120,
+    strokeWidth: 10,
+    label: '測試',
+    className: '',
+  },
+  render: (args) => ({
+    components: { CircleProgress },
+    setup() {
+      // Create a ref for modelValue to be used with v-model
+      return {
+        args,
+      };
     },
-    render: (args) => ({
-        components: { CircleProgress },
-        setup() {
-            // Create a ref for modelValue to be used with v-model
-            return {
-                args,
-            };
-        },
-        template: `
+    template: `
             <div style="display:flex; align-items: center; flex-wrap: wrap; gap: 16px">
                 <CircleProgress
                     :label="args.label"
@@ -279,85 +282,81 @@ export const CircleProgressColorStory = {
             </div>
             
         `,
-    }),
-    // 控制 controls 中能控制的參數
-    parameters: {
-        controls: {
-            // include: ['themeColor', 'label', 'value', 'name' ],
-        },
-        docs: {
-            source: {
-                transform: (src, storyContext) => {
-                    const { args } = storyContext;
-                    return [
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="40"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="primary"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="50"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="secondary"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="60"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="tertiary"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="70"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="success"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="80"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="warning"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="90"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="error"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="100"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  themeColor="info"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                    ].join('\n').trim();
-
-                }
-            }
-        }
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      // include: ['themeColor', 'label', 'value', 'name' ],
     },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const { args } = storyContext;
+          return [
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="40"`,
+            `  :size="${args.size}"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="primary"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="50"`,
+            `  :size="${args.size}"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="secondary"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="60"`,
+            `  :size="${args.size}"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="tertiary"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="70"`,
+            `  :size="${args.size}"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="success"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="80"`,
+            `  :size="${args.size}"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="warning"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="90"`,
+            `  :size="${args.size}"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="error"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+            '<CircleProgress',
+            `  label="${args.label}"`,
+            `  :percent="100"`,
+            `  :size="${args.size}"`,
+            `  :strokeWidth="${args.strokeWidth}"`,
+            `  themeColor="info"`,
+            `  className="${args.className}"`,
+            '></CircleProgress>',
+          ]
+            .join('\n')
+            .trim();
+        },
+      },
+    },
+  },
 };
-
-
-
-
-
 
 //--- JONY VERSION START ---//
 
