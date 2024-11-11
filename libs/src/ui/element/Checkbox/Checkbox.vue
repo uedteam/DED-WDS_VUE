@@ -116,9 +116,4 @@ const handleCheck = (item, index) => {
   </div>
 </template>
 
-<style scoped lang="scss">
-.checkbox-group {
-  display: flex;
-  flex-direction: column;
-}
-</style>
+<style scoped lang="scss"></style>

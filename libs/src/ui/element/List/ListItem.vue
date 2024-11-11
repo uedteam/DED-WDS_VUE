@@ -56,6 +56,4 @@ const handleClick = () => {
   </div>
 </template>
 
-<style scoped lang="scss">
-/* 在此處加入必要的樣式 */
-</style>
+<style scoped lang="scss"></style>
