@@ -1,120 +1,129 @@
-import Breadcrumb from "./Breadcrumb.vue";
-import BreadcrumbItem from "./BreadcrumbItem.vue";
+import Breadcrumb from './Breadcrumb.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-    title: "Design System/Breadcrumb",
-    component: Breadcrumb,
-    subcomponents: { BreadcrumbItem },
-    tags: ["autodocs"],
-    argTypes: {
-        datasource: {
-            description: "資料來源",
-            control: { type: "object" },
+  title: 'Design System/Breadcrumb',
+  component: Breadcrumb,
+  tags: ['autodocs'],
+  argTypes: {
+    dataSource: {
+      description: '資料來源',
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: '{ label: string; href?: string | undefined; }[]',
+          //                     detail: `{
+          //     label: string,
+          //     id: string,
+          //     value: string,
+          //     name: string
+          // }`
         },
-        className: {
-            description: "客製化樣式",
-            control: { type: "text" },
-        },
+      },
     },
-    parameters: {
-        // 自動文件
-        deepControls: { enabled: true, },
-        docs: {
-            title: "Breadcrumb",
-            description: {
-                component: "Breadcrumb 組件的呈現及說明。",
-            },
-        },
+    className: {
+      description: '客製化樣式',
+      control: { type: 'text' },
     },
-    // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-    // args: { onClick: fn() },
+  },
+  parameters: {
+    // 自動文件
+    deepControls: { enabled: true },
+    docs: {
+      title: 'Breadcrumb',
+      description: {
+        component: 'Breadcrumb 組件的呈現及說明。',
+      },
+    },
+  },
+  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+  // args: { onClick: fn() },
 };
 
 //==== 預設項目 ====//
 export const BreadcrumbMany = {
-    name: "預設項目",
-    args: {
-        datasource: [
-            {
-                label: "首頁",
-                href: "/",
-            },
-            {
-                label: "第一層",
-                href: "/1st",
-            },
-            {
-                label: "第二層",
-                href: "/2nd",
-            },
-            {
-                label: "第三層",
-                href: "/3rd",
-            },
-            {
-                label: "第四層",
-                href: "/4th",
-            },
-            {
-                label: "第五層",
-                href: "/5th",
-            },
-            {
-                label: "第六層",
-                href: "/6th",
-            },
-            {
-                label: "第七層",
-                href: "/7th",
-            },
-            {
-                label: "第八層",
-                href: "/8th",
-            },
-            {
-                label: "當前頁",
-            },
-        ],
-        className: ""
+  name: '預設項目',
+  args: {
+    dataSource: [
+      {
+        label: '首頁',
+        href: '/',
+      },
+      {
+        label: '第一層',
+        href: '/1st',
+      },
+      {
+        label: '第二層',
+        href: '/2nd',
+      },
+      {
+        label: '第三層',
+        href: '/3rd',
+      },
+      {
+        label: '第四層',
+        href: '/4th',
+      },
+      {
+        label: '第五層',
+        href: '/5th',
+      },
+      {
+        label: '第六層',
+        href: '/6th',
+      },
+      {
+        label: '第七層',
+        href: '/7th',
+      },
+      {
+        label: '第八層',
+        href: '/8th',
+      },
+      {
+        label: '當前頁',
+      },
+    ],
+    className: '',
+  },
+  render: (args) => ({
+    components: { Breadcrumb },
+    setup() {
+      return {
+        args,
+      };
     },
-    render: (args) => ({
-        components: { Breadcrumb },
-        setup() {
-            return {
-                args,
-            };
-        },
-        template: `
+    template: `
             <Breadcrumb
-                :datasource="args.datasource"
+                :dataSource="args.dataSource"
                 :className="args.className"
             ></Breadcrumb>
         `,
-    }),
-    // 控制 controls 中能控制的參數
-    parameters: {
-        controls: {
-            include: ['datasource', 'className' ],
-        },
-        docs: {
-            source: {
-                transform: (src, storyContext) => {
-                    const { args } = storyContext;
-                    return [
-                        '<Breadcrumb',
-                        `  datasource="datasource"`,
-                        `  className="${args.className}"`,
-                        '>',
-                        '</Breadcrumb>'
-                    ].join('\n').trim();
-                }
-            }
-        }
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      include: ['dataSource', 'className'],
     },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const { args } = storyContext;
+          return [
+            '<Breadcrumb',
+            `  :dataSource="dataSource"`,
+            `  className="${args.className}"`,
+            '>',
+            '</Breadcrumb>',
+          ]
+            .join('\n')
+            .trim();
+        },
+      },
+    },
+  },
 };
-
-
 
 //--- JONY VERSION START ---//
 

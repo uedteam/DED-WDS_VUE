@@ -1,19 +1,19 @@
 @use 'sass:color';
 
-// .checkbox-container {
-//   display: inline-flex;
-//   flex-wrap: wrap;
-//   gap: 8px;
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 
-//   &-row {
-//     flex-direction: row;
-//   }
+  &-row {
+    flex-direction: row;
+  }
 
-//   &-column {
-//     flex-direction: column;
-//     align-items: flex-start;
-//   }
-// }
+  &-column {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 
 .checkbox {
   display: inline-flex;
@@ -56,6 +56,11 @@
           0
           3px
           blend-rgba(getThemeColor($mode, $theme, 'default'), $lightness80);
+        box-shadow: 0
+          0
+          0
+          3px
+          blend-rgba(getThemeColor($mode, $theme, 'default'), $lightness80);
       }
     }
 
@@ -67,6 +72,11 @@
       }
 
       &:focus {
+        box-shadow: 0
+          0
+          0
+          3px
+          blend-rgba(getThemeColor($mode, $theme, 'default'), $lightness80);
         box-shadow: 0
           0
           0
