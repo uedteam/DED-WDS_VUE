@@ -10,13 +10,15 @@
 
 - Avatar
 - AvatarGroup
-  Breadcrumb
+- Breadcrumb
+- Button
 
 [ 單引號改雙引號 ]
 
 - Avatar
 - AvatarGroup
-  Breadcrumb
+- Breadcrumb
+- Button
 
 [ 修改 Props 名稱 ]
 
@@ -24,7 +26,9 @@
 - AvatarGroup
 
 [ 刪除必填 ]
-Breadcrumb
+
+- Breadcrumb
+- Button
 
 - AvatarGroup.vue 修改沒 props.size 和 props.shape 的顯示邏輯
 
