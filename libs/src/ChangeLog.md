@@ -25,6 +25,7 @@
 - Checkbox
 - Divider
 - Input
+- Menu
 
 [ 修改 Props 名稱 ]
 
