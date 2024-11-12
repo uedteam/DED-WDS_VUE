@@ -10,16 +10,21 @@
 
 - Avatar
 - AvatarGroup
+  Breadcrumb
 
 [ 單引號改雙引號 ]
 
 - Avatar
 - AvatarGroup
+  Breadcrumb
 
 [ 修改 Props 名稱 ]
 
 - Avatar
 - AvatarGroup
+
+[ 刪除必填 ]
+Breadcrumb
 
 - AvatarGroup.vue 修改沒 props.size 和 props.shape 的顯示邏輯
 
