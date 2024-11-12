@@ -16,6 +16,7 @@
 - Divider
 - Input
 - Progress-Circle
+- Progress-Line
 
 [ 單引號改雙引號 ]
 
@@ -28,6 +29,7 @@
 - Input
 - Menu
 - Progress-Circle
+- Progress-Line
 
 [ 修改 Props 名稱 ]
 
