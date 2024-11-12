@@ -15,6 +15,7 @@
 - Checkbox
 - Divider
 - Input
+- Progress-Circle
 
 [ 單引號改雙引號 ]
 
@@ -26,6 +27,7 @@
 - Divider
 - Input
 - Menu
+- Progress-Circle
 
 [ 修改 Props 名稱 ]
 
