@@ -9,14 +9,19 @@
 [ 修改 Prop 順序 ]
 
 - Avatar
+- AvatarGroup
 
 [ 單引號改雙引號 ]
 
 - Avatar
+- AvatarGroup
 
 [ 修改 Props 名稱 ]
 
 - Avatar
+- AvatarGroup
+
+- AvatarGroup.vue 修改沒 props.size 和 props.shape 的顯示邏輯
 
 ---
 
