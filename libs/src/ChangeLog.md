@@ -32,12 +32,15 @@ Progress-Circle
 Menu
 Button
 Breadcrumb
+AvatarGroup
 
 [ 其他 ]
 Slider 移除 updeteWidth
 修復 Slider 邏輯
 預設 Title 顏色 primary
 Button isDidable 改 isDidabled
+
+<!-- AvatarGroup username 改 userName -->
 
 ---
 
