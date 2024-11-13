@@ -1,228 +1,194 @@
-import Checkbox from './Checkbox.vue';
-import { ref } from 'vue';
-
+import Checkbox from "./Checkbox.vue";
+import { ref } from "vue";
 function formatDataSource(dataSource) {
-  return `[
-    ${dataSource
-      .map(
-        (item) => `{
+    return `[
+    ${dataSource.map(item => `{
         label: '${item.label}',
            id: '${item.id}',
         value: '${item.value}',
         name: '${item.name}'
-    }`
-      )
-      .join(',\n    ')}
+    }`).join(',\n    ')}
   ]`;
 }
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-  title: 'Design System/Checkbox*',
-  component: Checkbox,
-  tags: ['autodocs'],
-  argTypes: {
-    themeColor: {
-      description: '主題顏色',
-      control: { type: 'select' },
-      options: [
-        'primary',
-        'secondary',
-        'tertiary',
-        'success',
-        'warning',
-        'error',
-        'info',
-      ],
-      table: {
-        type: {
-          summary:
-            'primary | secondary | tertiary | success | warning | error | info',
+    title: "Design System/Checkbox",
+    component: Checkbox,
+    tags: ["autodocs"],
+    argTypes: {
+        themeColor: {
+            description: "主題顏色",
+            control: { type: "select" },
+            options: [
+                "primary",
+                "secondary",
+                "tertiary",
+                "success",
+                "warning",
+                "error",
+                "info",
+            ],
+            table: {
+                type: {
+                    summary: "primary | secondary | tertiary | success | warning | error | info"
+                }
+            }
         },
-      },
-    },
-    dataSource: {
-      description: '資料來源',
-      control: { type: 'object' },
-      table: {
-        type: {
-          summary:
-            '{ label: string; id: string; value: string; name: string; }[]',
-          //                     detail: `{
-          //     label: string,
-          //     id: string,
-          //     value: string,
-          //     name: string
-          // }`
+        dataSource: {
+            description: "資料來源",
+            control: { type: "object" },
+            table: {
+                type: {
+                    summary: "{ label: string; id: string; value: string; name: string; }[]",
+                }
+            }
         },
-      },
-    },
-    direction: {
-      description: '排列方向',
-      control: { type: 'select' },
-      options: ['row', 'column'],
-      table: {
-        type: {
-          summary: 'row | column',
+        initValue: {
+            description: "選中的項目",
+            control: { type: "object" },
+            table: {
+                type: {
+                    summary: "string[]"
+                }
+            }
         },
-      },
-    },
-    initValue: {
-      description: '選中的項目',
-      control: { type: 'object' },
-      table: {
-        type: {
-          summary: 'string[]',
+        direction: {
+            description: "排列方向",
+            control: { type: "select" },
+            options: ["row", "column"],
+            table: {
+                type: {
+                    summary: "row | column"
+                }
+            }
         },
-      },
+        className: {
+            description: "客製化樣式",
+            control: { type: "text" },
+        },
     },
-    className: {
-      description: '客製化樣式',
-      control: { type: 'text' },
+    parameters: {
+        // 自動文件
+        docs: {
+            title: "Checkbox",
+            description: {
+                component: "Checkbox 組件的呈現及說明。",
+            },
+        },
     },
-    isChecked: {
-      description: '是否選擇',
-      control: { type: 'boolean' },
-    },
-    isMultiple: {
-      description: '是否複選框',
-      control: { type: 'boolean' },
-    },
-  },
-  parameters: {
-    // 自動文件
-    docs: {
-      title: 'Checkbox',
-      description: {
-        component: 'Checkbox 組件的呈現及說明。',
-      },
-    },
-  },
-
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  // args: { onClick: fn() },
 };
+
 
 //==== 預設項目 ====//
 export const CheckboxMultiStory = {
-  name: '預設項目',
-  args: {
-    themeColor: 'primary',
-    dataSource: [
-      { label: '選項ㄧ', id: 'option1', value: 'option1', name: 'group1' },
-      { label: '選項二', id: 'option2', value: 'option2', name: 'group1' },
-      { label: '選項三', id: 'option3', value: 'option3', name: 'group1' },
-    ],
-    initValue: ['option1', 'option3'],
-    direction: 'row',
-    className: '',
-  },
-  render: (args) => ({
-    components: { Checkbox },
-    setup() {
-      const checkedCheckboxOptions = ref([]);
-      return {
-        args,
-        checkedCheckboxOptions,
-      };
+    name: "預設項目",
+    args: {
+        themeColor: "primary",
+        dataSource: [
+            { label: "選項ㄧ", id: "option1", value: "option1", name: "group1" },
+            { label: "選項二", id: "option2", value: "option2", name: "group1" },
+            { label: "選項三", id: "option3", value: "option3", name: "group1" },
+        ],
+        direction: "row",
+        initValue: ["option1", "option3"],
+        className: "",
     },
-    template: `
+    render: (args) => ({
+        components: { Checkbox },
+        setup() {
+            const checkedCheckboxOptions = ref([]);
+            return {
+                args,
+                checkedCheckboxOptions,
+            };
+        },
+        template: `
             <Checkbox
                 :themeColor="args.themeColor"
                 :dataSource="args.dataSource"
-                :direction="args.direction"
                 :initValue="args.initValue"
+                :direction="args.direction"
                 v-model="checkedCheckboxOptions"></Checkbox>
         `,
-  }),
-  // 控制 controls 中能控制的參數
-  parameters: {
-    controls: {
-      // include: [ 'label', 'id', 'name', 'themeColor', 'className','datasource'],
-    },
-    docs: {
-      source: {
-        transform: (src, storyContext) => {
-          const { args } = storyContext;
-          const dataSourceString = formatDataSource(args.dataSource);
-          return [
-            '<Checkbox',
-            `  themeColor="'${args.themeColor}'"`,
-            `  direction="'${args.direction}'"`,
-            `  :initValue="[${args.initValue}]"`,
-            `  :dataSource="${dataSourceString}"`,
-            '  v-model="vModelData">',
-            '</Checkbox>',
-          ]
-            .join('\n')
-            .trim();
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: [ 'label', 'id', 'name', 'themeColor', 'className','datasource'],
         },
-      },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.dataSource);
+                    return [
+                        '<Checkbox',
+                        `  themeColor="'${args.themeColor}'"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :initValue="[${args.initValue}]"`,
+                        `  direction="'${args.direction}'"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
-  },
 };
 
 //==== 主題色彩 ====//
 export const CheckboxColorStory = {
-  name: '主題色彩',
-  args: {
-    datasourcePrimary: [
-      { label: '選項ㄧ', id: 'option01', value: 'option01', name: 'primary' },
-      { label: '選項二', id: 'option02', value: 'option02', name: 'primary' },
-      { label: '選項三', id: 'option03', value: 'option03', name: 'primary' },
-    ],
-    datasourceSecondary: [
-      { label: '選項ㄧ', id: 'option4', value: 'option4', name: 'secondary' },
-      { label: '選項二', id: 'option5', value: 'option5', name: 'secondary' },
-      { label: '選項三', id: 'option6', value: 'option6', name: 'secondary' },
-    ],
-    datasourceTertiary: [
-      { label: '選項ㄧ', id: 'option7', value: 'option7', name: 'tertiary' },
-      { label: '選項二', id: 'option8', value: 'option8', name: 'tertiary' },
-      { label: '選項三', id: 'option9', value: 'option9', name: 'tertiary' },
-    ],
-    datasourceSuccess: [
-      { label: '選項ㄧ', id: 'option10', value: 'option10', name: 'success' },
-      { label: '選項二', id: 'option11', value: 'option11', name: 'success' },
-      { label: '選項三', id: 'option12', value: 'option12', name: 'success' },
-    ],
-    datasourceWarning: [
-      { label: '選項ㄧ', id: 'option13', value: 'option13', name: 'warning' },
-      { label: '選項二', id: 'option14', value: 'option14', name: 'warning' },
-      { label: '選項三', id: 'option15', value: 'option15', name: 'warning' },
-    ],
-    datasourceError: [
-      { label: '選項ㄧ', id: 'option16', value: 'option16', name: 'error' },
-      { label: '選項二', id: 'option17', value: 'option17', name: 'error' },
-      { label: '選項三', id: 'option18', value: 'option18', name: 'error' },
-    ],
-    datasourceInfo: [
-      { label: '選項ㄧ', id: 'option19', value: 'option19', name: 'info' },
-      { label: '選項二', id: 'option20', value: 'option20', name: 'info' },
-      { label: '選項三', id: 'option21', value: 'option21', name: 'info' },
-    ],
-    initValue: [
-      'option01',
-      'option4',
-      'option7',
-      'option10',
-      'option13',
-      'option16',
-      'option19',
-    ],
-    direction: 'row',
-    className: '',
-  },
-  render: (args) => ({
-    components: { Checkbox },
-    setup() {
-      const checkedCheckboxOptions = ref([]);
-      return {
-        args,
-        checkedCheckboxOptions,
-      };
+    name: "主題色彩",
+    args: {
+        datasourcePrimary: [
+            { label: "選項ㄧ", id: "option01", value: "option01", name: "primary" },
+            { label: "選項二", id: "option02", value: "option02", name: "primary" },
+            { label: "選項三", id: "option03", value: "option03", name: "primary" },
+        ],
+        datasourceSecondary: [
+            { label: "選項ㄧ", id: "option4", value: "option4", name: "secondary" },
+            { label: "選項二", id: "option5", value: "option5", name: "secondary" },
+            { label: "選項三", id: "option6", value: "option6", name: "secondary" },
+        ],
+        datasourceTertiary: [
+            { label: "選項ㄧ", id: "option7", value: "option7", name: "tertiary" },
+            { label: "選項二", id: "option8", value: "option8", name: "tertiary" },
+            { label: "選項三", id: "option9", value: "option9", name: "tertiary" },
+        ],
+        datasourceSuccess: [
+            { label: "選項ㄧ", id: "option10", value: "option10", name: "success" },
+            { label: "選項二", id: "option11", value: "option11", name: "success" },
+            { label: "選項三", id: "option12", value: "option12", name: "success" },
+        ],
+        datasourceWarning: [
+            { label: "選項ㄧ", id: "option13", value: "option13", name: "warning" },
+            { label: "選項二", id: "option14", value: "option14", name: "warning" },
+            { label: "選項三", id: "option15", value: "option15", name: "warning" },
+        ],
+        datasourceError: [
+            { label: "選項ㄧ", id: "option16", value: "option16", name: "error" },
+            { label: "選項二", id: "option17", value: "option17", name: "error" },
+            { label: "選項三", id: "option18", value: "option18", name: "error" },
+        ],
+        datasourceInfo: [
+            { label: "選項ㄧ", id: "option19", value: "option19", name: "info" },
+            { label: "選項二", id: "option20", value: "option20", name: "info" },
+            { label: "選項三", id: "option21", value: "option21", name: "info" },
+        ],
+        direction: "row",
+        initValue: ["option01","option4","option7","option10","option13","option16","option19"],
+        className: "",
     },
-    template: `
+    render: (args) => ({
+        components: { Checkbox },
+        setup() {
+            const checkedCheckboxOptions = ref([]);
+            return {
+                args,
+                checkedCheckboxOptions,
+            };
+        },
+        template: `
             <div style="display: flex; flex-direction:column; gap: 16px;">
                 <Checkbox
                     themeColor="primary"
@@ -271,82 +237,86 @@ export const CheckboxColorStory = {
                     v-model="checkedCheckboxOptions"></Checkbox>
             </div>
         `,
-  }),
-  // 控制 controls 中能控制的參數
-  parameters: {
-    controls: {
-      include: ['label', 'id', 'name', 'themeColor', 'className', 'datasource'],
-    },
-    docs: {
-      source: {
-        transform: (src, storyContext) => {
-          const { args } = storyContext;
-          const datasourcePrimary = formatDataSource(args.datasourcePrimary);
-          const datasourceSecondary = formatDataSource(
-            args.datasourceSecondary
-          );
-          const datasourceTertiary = formatDataSource(args.datasourceTertiary);
-          const datasourceSuccess = formatDataSource(args.datasourceSuccess);
-          const datasourceWarning = formatDataSource(args.datasourceWarning);
-          const datasourceError = formatDataSource(args.datasourceError);
-          const datasourceInfo = formatDataSource(args.datasourceInfo);
-          return [
-            '<Checkbox',
-            `  themeColor="primary"`,
-            `  direction="'${args.direction}'"`,
-            `  :initValue="[${args.initValue[0]}]"`,
-            `  :dataSource="${datasourcePrimary}"`,
-            '  v-model="vModelData">',
-            '</Checkbox>',
-            '<Checkbox',
-            `  themeColor="secondary"`,
-            `  direction="'${args.direction}'"`,
-            `  :initValue="[${args.initValue[1]}]"`,
-            `  :dataSource="${datasourceSecondary}"`,
-            '  v-model="vModelData">',
-            '</Checkbox>',
-            '<Checkbox',
-            `  themeColor="tertiary"`,
-            `  direction="'${args.direction}'"`,
-            `  :initValue="[${args.initValue[2]}]"`,
-            `  :dataSource="${datasourceTertiary}"`,
-            '  v-model="vModelData">',
-            '</Checkbox>',
-            '<Checkbox',
-            `  themeColor="success"`,
-            `  direction="'${args.direction}'"`,
-            `  :initValue="[${args.initValue[3]}]"`,
-            `  :dataSource="${datasourceSuccess}"`,
-            '  v-model="vModelData">',
-            '<Checkbox',
-            `  themeColor="warning"`,
-            `  direction="'${args.direction}'"`,
-            `  :initValue="[${args.initValue[4]}]"`,
-            `  :dataSource="${datasourceWarning}"`,
-            '  v-model="vModelData">',
-            '</Checkbox>',
-            '<Checkbox',
-            `  themeColor="error"`,
-            `  direction="'${args.direction}'"`,
-            `  :initValue="[${args.initValue[5]}]"`,
-            `  :dataSource="${datasourceError}"`,
-            '  v-model="vModelData">',
-            '</Checkbox>',
-            '<Checkbox',
-            `  themeColor="info"`,
-            `  direction="'${args.direction}'"`,
-            `  :initValue="[${args.initValue[6]}]"`,
-            `  :dataSource="${datasourceInfo}"`,
-            '  v-model="vModelData">',
-            '</Checkbox>',
-          ]
-            .join('\n')
-            .trim();
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            include: [ 'label', 'id', 'name', 'themeColor', 'className','datasource'],
         },
-      },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const datasourcePrimary = formatDataSource(args.datasourcePrimary);
+                    const datasourceSecondary = formatDataSource(args.datasourceSecondary);
+                    const datasourceTertiary = formatDataSource(args.datasourceTertiary);
+                    const datasourceSuccess = formatDataSource(args.datasourceSuccess);
+                    const datasourceWarning = formatDataSource(args.datasourceWarning);
+                    const datasourceError = formatDataSource(args.datasourceError);
+                    const datasourceInfo = formatDataSource(args.datasourceInfo);
+                    return [
+                        '<Checkbox',
+                        `  themeColor="primary"`,
+                        `  :dataSource="${datasourcePrimary}"`,
+                        `  direction="'${args.direction}'"`,
+                        `  :initValue="[${args.initValue[0]}]"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                        '<Checkbox',
+                        `  themeColor="secondary"`,
+                        `  :dataSource="${datasourceSecondary}"`,
+                        `  direction="'${args.direction}'"`,
+                        `  :initValue="[${args.initValue[1]}]"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                        '<Checkbox',
+                        `  themeColor="tertiary"`,
+                        `  :dataSource="${datasourceTertiary}"`,
+                        `  direction="'${args.direction}'"`,
+                        `  :initValue="[${args.initValue[2]}]"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                        '<Checkbox',
+                        `  themeColor="success"`,
+                        `  :dataSource="${datasourceSuccess}"`,
+                        `  direction="'${args.direction}'"`,
+                        `  :initValue="[${args.initValue[3]}]"`,
+                        '  v-model="vModelData">',
+                        '<Checkbox',
+                        `  themeColor="warning"`,
+                        `  direction="'${args.direction}'"`,
+                        `  :initValue="[${args.initValue[4]}]"`,
+                        `  :dataSource="${datasourceWarning}"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                        '<Checkbox',
+                        `  themeColor="error"`,
+                        `  :dataSource="${datasourceError}"`,
+                        `  direction="'${args.direction}'"`,
+                        `  :initValue="[${args.initValue[5]}]"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                        '<Checkbox',
+                        `  themeColor="info"`,
+                        `  :dataSource="${datasourceInfo}"`,
+                        `  direction="'${args.direction}'"`,
+                        `  :initValue="[${args.initValue[6]}]"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
-  },
 };
+
+
+
+
+
+
+
+
 
 //--- JONY VERSION START ---//
 
@@ -504,5 +474,6 @@ export const CheckboxColorStory = {
 //         }
 //     },
 // };
+
 
 //--- JONY VERSION END ---//
