@@ -29,6 +29,7 @@ Tabs
 Checkbox
 Progress-Line
 Progress-Circle
+Menu
 
 [ 其他 ]
 Slider 移除 updeteWidth
