@@ -15,6 +15,8 @@ Tooltip
 Toggle
 Tabs
 Checkbox
+Progress-Line
+Progress-Circle
 
 [ 單引號改雙引號 ]
 
@@ -25,6 +27,8 @@ Tooltip
 Toggle
 Tabs
 Checkbox
+Progress-Line
+Progress-Circle
 
 [ 其他 ]
 Slider 移除 updeteWidth
