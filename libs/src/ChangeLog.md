@@ -1,7 +1,5 @@
 ## V1.0.0 (2024-11-13)
 
-✨ New Feature
-
 ---
 
 🆙update
@@ -33,15 +31,14 @@ Menu
 Button
 Breadcrumb
 AvatarGroup
+Input
 
 [ 其他 ]
 Slider 移除 updeteWidth
 修復 Slider 邏輯
 預設 Title 顏色 primary
 Button isDidable 改 isDidabled
-
-<!-- AvatarGroup username 改 userName -->
+Avatar username 改 userName
+Input 修復不能 build storybook
 
 ---
-
-🪲 Bug Fix
