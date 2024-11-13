@@ -10,15 +10,18 @@
 
 Slider
 Slider-Control
+Title
 
 [ 單引號改雙引號 ]
 
 Slider
 Slider-Control
+Title
 
 [ 其他 ]
 Slider 移除 updeteWidth
 修復 Slider 邏輯
+預設 Title 顏色 primary
 
 ---
 
