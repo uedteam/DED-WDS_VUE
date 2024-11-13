@@ -14,7 +14,11 @@ const props = defineProps({
 			["primary", "secondary", "tertiary", "success", "warning", "error", "info"].includes(value),
 	},
 	dataSource: {
-		type: Array,
+		type: Object,
+		default: () => [],
+	},
+	initValue: {
+		type: Object,
 		default: () => [],
 	},
 	direction: {
@@ -22,10 +26,6 @@ const props = defineProps({
 		default: "row",
 		validator: (value) =>
 			["row", "column"].includes(value),
-	},
-	initValue: {
-		type: Array,
-		default: () => [],
 	},
 	className: {
 		type: String,
@@ -104,8 +104,4 @@ const handleCheck = (item, index) => {
 </template>
 
 <style scoped lang="scss">
-.checkbox-group {
-	display: flex;
-	flex-direction: column;
-}
 </style>

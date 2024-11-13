@@ -14,6 +14,7 @@ Title
 Tooltip
 Toggle
 Tabs
+Checkbox
 
 [ 單引號改雙引號 ]
 
@@ -23,6 +24,7 @@ Title
 Tooltip
 Toggle
 Tabs
+Checkbox
 
 [ 其他 ]
 Slider 移除 updeteWidth
