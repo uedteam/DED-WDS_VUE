@@ -1,84 +1,86 @@
 <script setup>
 import { ref, watch } from 'vue';
-import TabItem from './TabItem.vue';
+import TabItem from "./TabItem.vue";
 
 // 定義 Props
 const props = defineProps({
-  themeColor: {
-    type: String,
-    default: 'primary',
-    validator: (value) =>
-      [
-        'primary',
-        'secondary',
-        'tertiary',
-        'success',
-        'warning',
-        'error',
-        'info',
-      ].includes(value),
-  },
-  type: {
-    type: String,
-    default: 'default',
-    validator: (value) => ['card', 'default'].includes(value),
-  },
-  isDisabled: {
-    type: Boolean,
-  },
-  dataSource: {
-    type: Array,
-    required: true,
-    default: () => [],
-  },
-  activeIndex: {
-    type: Number,
-    default: 2,
-  },
-  className: {
-    type: String,
-    default: '',
-  },
+	themeColor: {
+		type: String,
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
+			].includes(value),
+	},
+	dataSource: {
+		type: Array,
+		default: () => [],
+		validator: (value) =>
+			value.every(
+				(item) => typeof item.title === "string" && typeof item.content === "string"
+			),
+	},
+	activeIndex: {
+		type: Number,
+		default: 0,
+	},
+	type: {
+		type: String,
+		default: "default",
+		validator: (value) =>
+			["card", "default"].includes(value),
+	},
+	isDisabled: {
+		type: Boolean,
+		default: false
+	},
+	className: {
+		type: String,
+		default: "",
+	}
 });
 
 const activeTabIndex = ref(props.activeIndex || 0);
 
 //取得 dataset 的值
 const handleClick = (event) => {
-  activeTabIndex.value = parseInt(event.currentTarget.dataset.index, 10);
+    activeTabIndex.value = parseInt(event.currentTarget.dataset.index, 10);
 };
 
-watch(
-  () => props.activeIndex,
-  (newIndex) => {
+watch(() => props.activeIndex, (newIndex) => {
     activeTabIndex.value = newIndex || 0;
-  }
-);
+});
 </script>
 
 <template>
-  <div
-    :class="{ 'tabs-container': true, [props.className]: !!props.className }"
-  >
-    <!-- Tabs - 按鈕 -->
-    <div class="tabs">
-      <TabItem
-        v-for="(item, index) in props.dataSource"
-        :key="index"
-        :themeColor="props.themeColor"
-        :title="item.title"
-        :type="props.type"
-        :index="index"
-        :isActive="index === activeTabIndex"
-        :isDisabled="props.isDisabled || item.isDisabled"
-        @click="handleClick"
-      ></TabItem>
+    <div :class="{'tabs-container': true, [props.className]: !!props.className }">
+        <!-- Tabs - 按鈕 -->
+        <div class="tabs">
+            <TabItem
+                v-for="(item, index) in props.dataSource"
+                :key="index"
+                :themeColor="props.themeColor"
+                :title="item.title"
+                :type="props.type"
+                :index="index"
+                :isActive="index === activeTabIndex"
+                :isDisabled="props.isDisabled || item.isDisabled"
+                @click="handleClick"
+            ></TabItem>
+        </div>
+        <!-- Tabs - 內容顯示 -->
+        <div :class="['tab-content', {'tab-disable': props.isDisabled} ]">
+            {{ props.dataSource[activeTabIndex]?.content }}
+        </div>
     </div>
-    <!-- Tabs - 內容顯示 -->
-    <div :class="['tab-content', { 'tab-disable': props.isDisabled }]">
-      {{ props.dataSource[activeTabIndex]?.content }}
-    </div>
-  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+
+</style>

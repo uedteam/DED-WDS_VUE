@@ -12,6 +12,8 @@ Slider
 Slider-Control
 Title
 Tooltip
+Toggle
+Tabs
 
 [ 單引號改雙引號 ]
 
@@ -19,6 +21,8 @@ Slider
 Slider-Control
 Title
 Tooltip
+Toggle
+Tabs
 
 [ 其他 ]
 Slider 移除 updeteWidth
