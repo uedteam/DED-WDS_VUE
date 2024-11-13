@@ -6,47 +6,48 @@ const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
-    themeColor: {
-        type: String,
-        default: 'primary',
-        validator: (value) =>
-            [
-                'primary',
-                'secondary',
-                'tertiary',
-                'success',
-                'warning',
-                'error',
-                'info',
-            ].includes(value),
-    },
+	themeColor: {
+		type: String,
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
+			].includes(value),
+	},
+	min: {
+		type: Number,
+		default: 0,
+	},
+	max: {
+		type: Number,
+		default: 100,
+	},
+	step: {
+		type: [Number, String],
+		default: 1,
+	},
+	initValue: {
+		type: Number,
+		default: 0,
+	},
+	unit: {
+		type: String,
+		default: "%",
+	},
 	isDisabled: {
 		type: Boolean,
 		default: false,
 	},
-    min: {
-        type: Number,
-        default: 0,
-    },
-    max: {
-        type: Number,
-        default: 100,
-    },
-    step: {
-        type: [Number, String],
-        default: 1,
-    },
-    initValue: {
-        type: Number,
-    },
-    unit: {
-        type: String,
-        default: '%',
-    },
-    className: {
-        type: String,
-        default: '',
-    },
+	className: {
+		type: String,
+		default: "",
+	},
 });
 
 
@@ -55,7 +56,13 @@ const containerRef = useTemplateRef("containerRef");
 const rangeWidth = ref(0);
 
 // 設定值為初始值或是最小值
-const value = ref(modelValue.value || props.initValue || props.min);
+const value = ref(
+	modelValue.value !== undefined
+		? modelValue.value
+		: props.initValue !== undefined
+			? props.initValue
+			: props.min
+);
 
 // thumb 位置
 const thumbPosition = ref(0);
