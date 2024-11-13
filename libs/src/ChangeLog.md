@@ -15,6 +15,7 @@ Tabs
 Checkbox
 Progress-Line
 Progress-Circle
+Textarea
 
 [ 單引號改雙引號 ]
 
@@ -32,6 +33,7 @@ Button
 Breadcrumb
 AvatarGroup
 Input
+Textarea
 
 [ 其他 ]
 Slider 移除 updeteWidth
@@ -40,5 +42,6 @@ Slider 移除 updeteWidth
 Button isDidable 改 isDidabled
 Avatar username 改 userName
 Input 修復不能 build storybook
+Textarea 增加 initValue
 
 ---
