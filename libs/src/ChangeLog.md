@@ -31,6 +31,7 @@ Progress-Line
 Progress-Circle
 Menu
 Button
+Breadcrumb
 
 [ 其他 ]
 Slider 移除 updeteWidth
