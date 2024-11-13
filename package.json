@@ -17,6 +17,7 @@
     "@ded-wds/source": "file:",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "telejson": "^7.2.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
