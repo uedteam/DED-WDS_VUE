@@ -18,4 +18,12 @@
 - icon to prefix
 - 增加 disabled
 
+🆙update：Radio
+
+- 單引號改雙引號
+- 修改 Prop 順序
+- 補 datasource
+- 補 direction
+- 補 initValue
+
 ---
