@@ -7,4 +7,8 @@
 - checkedLabel to checkLabel
 - unCheckedLabel to unCheckLabel
 
+🆙update：Button
+
+- 修改顯示名稱
+
 ---
