@@ -1,6 +1,4 @@
-## V1.0.0 (2024-11-12)
-
-✨ New Feature
+## V1.0.0 (2024-11-13)
 
 ---
 
@@ -8,43 +6,42 @@
 
 [ 修改 Prop 順序 ]
 
-- Avatar
-- AvatarGroup
-- Breadcrumb
-- Button
-- Checkbox
-- Divider
-- Input
-- Progress-Circle
-- Progress-Line
+Slider
+Slider-Control
+Title
+Tooltip
+Toggle
+Tabs
+Checkbox
+Progress-Line
+Progress-Circle
+Textarea
 
 [ 單引號改雙引號 ]
 
-- Avatar
-- AvatarGroup
-- Breadcrumb
-- Button
-- Checkbox
-- Divider
-- Input
-- Menu
-- Progress-Circle
-- Progress-Line
+Slider
+Slider-Control
+Title
+Tooltip
+Toggle
+Tabs
+Checkbox
+Progress-Line
+Progress-Circle
+Menu
+Button
+Breadcrumb
+AvatarGroup
+Input
+Textarea
 
-[ 修改 Props 名稱 ]
-
-- Avatar
-- AvatarGroup
-
-[ 刪除必填 ]
-
-- Breadcrumb
-- Button
-
-- AvatarGroup.vue 修改沒 props.size 和 props.shape 的顯示邏輯
-- Divider.vue 增加 className
-- Input.vue 增加 initValue
+[ 其他 ]
+Slider 移除 updeteWidth
+修復 Slider 邏輯
+預設 Title 顏色 primary
+Button isDidable 改 isDidabled
+Avatar username 改 userName
+Input 修復不能 build storybook
+Textarea 增加 initValue
 
 ---
-
-🪲 Bug Fix

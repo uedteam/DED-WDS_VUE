@@ -1,46 +1,76 @@
 <script setup>
-	import { computed } from 'vue';
+import { computed, watch, ref } from 'vue';
 
-	// 定義 Model
-	const modelValue = defineModel()
+// 定義 Model
+const modelValue = defineModel();
 
-	// 定義 Props
-	const props = defineProps({
-		label: {
-			type: String,
-		},
-		placeholder: {
-			type: String,
-			default: "placeholder text",
-		},
-		limit: {
-			type: Number,
-			default: 100,
-		},
-		isDisabled: {
-			type: Boolean,
-			default: false,
-		},
-		hint: {
-			type: Object,
-			default: () => ({ error: '', description: '' }),
-		},
-		className: {
-			type: String,
-			default: '',
-		},
-	})
+// 定義 Props
+const props = defineProps({
+	label: {
+		type: String,
+	},
+	placeholder: {
+		type: String,
+		default: "請輸入...",
+	},
+	limit: {
+		type: Number,
+		default: 100,
+	},
+	initValue: {
+		type: String,
+		default: "",
+	},
+	hint: {
+		type: Object,
+		default: () => ({ error: "", description: "" }),
+	},
+	isDisabled: {
+		type: Boolean,
+		default: false,
+	},
+	className: {
+		type: String,
+		default: "",
+	},
+});
 
-	// 根據 hint 的值，計算屬性
-	const hintClass = computed(() => {
-		if (props.hint.error.length > 0) {
+// 初始化 modelValue
+if (!modelValue.value) {
+	modelValue.value = props.initValue;
+}
+
+// 控制是否允許覆蓋
+const isOverridable = ref(true);
+
+// 監聽 props.initValue 的變化，只在允許覆蓋時更新 modelValue
+watch(
+	() => props.initValue,
+	(newValue) => {
+		if (isOverridable.value) {
+			modelValue.value = newValue;
+		}
+	}
+);
+
+// 當 modelValue 發生變化時，設定為不可覆蓋，避免 props.initValue 覆蓋使用者輸入
+watch(
+	() => modelValue.value,
+	() => {
+		isOverridable.value = false;
+	}
+);
+
+// 根據 hint 的值，計算屬性
+const hintClass = computed(() => {
+	if (props.hint.error.length > 0) {
 		return 'error';
 	}
 	if (props.hint.description.length > 0) {
 		return 'desc';
 	}
-		return '';
-	});
+	return '';
+});
 </script>
 
 <template>
@@ -57,30 +87,30 @@
 			( props.hint.error.length > 0 && `textarea-border-${hintClass}`)]">
 			<!-- 多行輸入框 -->
 			<textarea id="id"
-			:class="['textarea', {'textarea-disable': props.isDisabled}]"
-			:maxlength="props.limit > 0 ? props.limit : undefined"
-			:placeholder="props.placeholder"
-			v-model="modelValue"
-			@input="handleInput"></textarea>
+			          :class="['textarea', {'textarea-disable': props.isDisabled}]"
+			          :maxlength="props.limit > 0 ? props.limit : undefined"
+			          :placeholder="props.placeholder"
+			          v-model="modelValue"
+			></textarea>
 
 			<!-- 多行輸入字數提示 -->
 			<template v-if="modelValue.length > 0 && props.limit === 0">
 				<small :class="['textarea-hint-count', {'textarea-disable': props.isDisabled}]">
-					{{ (modelValue.length > 0 ? `${modelValue.length}` : '') }}
+					{{ modelValue.length }}
 				</small>
 			</template>
 
 			<template v-else>
 				<small :class="['textarea-hint-count', {'textarea-disable': props.isDisabled}]">
-					{{ (modelValue.length > 0 ? `${modelValue.length} / ${props.limit}` : '') }}
+					{{ modelValue.length > 0 ? `${modelValue.length} / ${props.limit}` : '' }}
 				</small>
 			</template>
 		</div>
 
 		<!-- 多行輸入說明文字與提示 -->
 		<template v-if="props.hint.error.length > 0 || props.hint.description.length > 0">
-			<small :class="['textarea-hint',{'textarea-disable': props.isDisabled},`textarea-hint-${hintClass}`]">
-				{{props.hint.error.length > 0 ? props.hint.error : props.hint.description}}
+			<small :class="['textarea-hint', {'textarea-disable': props.isDisabled}, `textarea-hint-${hintClass}`]">
+				{{ props.hint.error.length > 0 ? props.hint.error : props.hint.description }}
 			</small>
 		</template>
 	</div>
