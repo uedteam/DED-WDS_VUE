@@ -26,4 +26,8 @@
 - 補 direction
 - 補 initValue
 
+🆙update：Accordion
+
+- 新增 parameters.docs.source 作為下載程式碼用
+
 ---
