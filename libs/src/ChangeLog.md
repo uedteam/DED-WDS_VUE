@@ -1,4 +1,4 @@
-## V1.0.0 (2024-11-14)
+## V1.0.0 (2024-11-14 fix)
 
 ---
 
@@ -17,6 +17,8 @@
 - 修改 Prop 順序
 - icon to prefix
 - 增加 disabled
+- closeable to closable
+- remove to onClose
 
 🆙update：Radio
 
