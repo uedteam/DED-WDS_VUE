@@ -1,47 +1,33 @@
-## V1.0.0 (2024-11-13)
+## V1.0.0 (2024-11-14)
 
 ---
 
-🆙update
+🆙update：Toggle
 
-[ 修改 Prop 順序 ]
+- checkedLabel to checkLabel
+- unCheckedLabel to unCheckLabel
 
-Slider
-Slider-Control
-Title
-Tooltip
-Toggle
-Tabs
-Checkbox
-Progress-Line
-Progress-Circle
-Textarea
+🆙update：Button
 
-[ 單引號改雙引號 ]
+- 修改顯示名稱
 
-Slider
-Slider-Control
-Title
-Tooltip
-Toggle
-Tabs
-Checkbox
-Progress-Line
-Progress-Circle
-Menu
-Button
-Breadcrumb
-AvatarGroup
-Input
-Textarea
+🆙update：Tag
 
-[ 其他 ]
-Slider 移除 updeteWidth
-修復 Slider 邏輯
-預設 Title 顏色 primary
-Button isDidable 改 isDidabled
-Avatar username 改 userName
-Input 修復不能 build storybook
-Textarea 增加 initValue
+- 單引號改雙引號
+- 修改 Prop 順序
+- icon to prefix
+- 增加 disabled
+
+🆙update：Radio
+
+- 單引號改雙引號
+- 修改 Prop 順序
+- 補 dataSource
+- 補 direction
+- 補 initValue
+
+🆙update：Accordion
+
+- 新增 parameters.docs.source 作為下載程式碼用
 
 ---
