@@ -1,69 +1,89 @@
 import { useToast } from '@/ui/element/Toast/useToast.js';
-import Toast from '@/ui/element/Toast/Toast.vue';
-import Icon from '@/ui/element/Icon/Icon.vue';
-import Button from '@/ui/element/Button/Button.vue';
+import Toast from "@/ui/element/Toast/Toast.vue";
+import Icon from "@/ui/element/Icon/Icon.vue";
+import Button from "@/ui/element/Button/Button.vue";
+
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-  components: { Icon, Toast },
-  title: 'Design System/Toast*',
-  component: Toast,
-  tags: ['autodocs'],
-  argTypes: {
-    title: {
-      description: 'Toast 標題',
-      control: { type: 'text' },
-    },
-    message: {
-      description: 'Toast 說明文字',
-      control: { type: 'text' },
-    },
-    severity: {
-      description: '用於指示 Toast 信息的性質',
-      control: { type: 'select' },
-      options: ['success', 'warning', 'error', 'info'],
-    },
-    duration: {
-      description: 'Toast 顯示的持續時間（毫秒）',
-      control: { type: 'range', min: 500, max: 10000, step: 500 },
-    },
-    show: { table: { disable: true } },
-  },
-  parameters: {
-    // 自動文件
-    docs: {
-      title: 'Toast',
-      description: {
-        component: 'Toast 組件的呈現及說明。',
-      },
-    },
-  },
+	components: {Icon, Toast},
+	title: "Design System/Toast*",
+	component: Toast,
+	tags: ["autodocs"],
+	argTypes: {
+		title: {
+			description: "Toast 標題",
+			control: { type: "text" },
+		},
+		message: {
+			description: "Toast 說明文字",
+			control: { type: "text" },
+		},
+		severity: {
+			description: "用於指示 Toast 信息的性質",
+			control: { type: "select" },
+			options: ['success', 'warning', 'error','info'],
+		},
+		duration: {
+			description: "Toast 顯示的持續時間（毫秒）",
+			control: { type: "range",
+						min: 500,
+						max: 10000,
+						step: 500  },
+		},
+		show: { table: { disable: true } },
+		icon: {
+			description: "icon",
+			control: {
+				type: "select",
+				labels: {
+					"": "None",
+					home: "home",
+					folder: "folder",
+					academy: "academy",
+					"arrow-forward": "arrow-forward",
+					"finger-print": "finger-print",
+				}
+			},
+			options: [ "", "home", "folder", "academy", "arrow-forward", "finger-print" ],
+		}
+	},
+	parameters: {
+		// 自動文件
+		docs: {
+			title: "Toast",
+			description: {
+				component: "Toast 組件的呈現及說明。",
+			},
+		},
+	},
 
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  // args: { onClick: fn() },
+	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+	// args: { onClick: fn() },
 };
 
 //==== 預設項目 ====//
 export const ToastType = {
-  name: '預設項目',
-  args: {
-    title: 'Toast Message',
-    message: 'Hello, world! This is a toast message.',
-    severity: 'success',
-    show: true,
-  },
-  render: (args) => ({
-    components: { Toast, Icon },
-    setup() {
-      const closeToast = () => {
-        args.show = false; // 处理关闭逻辑
-      };
-      return {
-        args,
-        closeToast,
-      };
-    },
-    template: `
+	name: "預設項目",
+	args: {
+		title: "Toast Message",
+		message: "Hello, world! This is a toast message.",
+		severity: "success",
+		show: true,
+		icon: "",
+	},
+	render: (args) => ({
+		components: { Toast, Icon },
+		setup() {
+			const closeToast = () => {
+				args.show = false; // 处理关闭逻辑
+			};
+			return {
+				args,
+				closeToast
+			};
+		},
+		template: `
 			<div style="width: 30rem; ">
 				<div class="toast" :class="\`toast-border-${args.severity}\`"  v-if="args.show">
 					<!-- toast - 關閉按鈕 -->
@@ -126,43 +146,93 @@ export const ToastType = {
 				</div>
 			</div>
         `,
-  }),
-  // 控制 controls 中能控制的參數
-  parameters: {
-    controls: {
-      include: ['title', 'message'],
-    },
-  },
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			include: ['title', 'message' ],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Toast',
+						`  v-for="toast in toasts"`,
+						`  :key="toast.id"`,
+						`  title="${args.title}"`,
+						`  message="${args.message}"`,
+						`  severity="success"`,
+						`  :duration="${args.duration}"`,
+						`  icon=""`,
+						`  @close="remove(toast.id)"`,
+						'></Toast>',
+						'<Toast',
+						`  v-for="toast in toasts"`,
+						`  :key="toast.id"`,
+						`  title="${args.title}"`,
+						`  message="${args.message}"`,
+						`  severity="error"`,
+						`  :duration="${args.duration}"`,
+						`  icon=""`,
+						`  @close="remove(toast.id)"`,
+						'></Toast>',
+						'<Toast',
+						`  v-for="toast in toasts"`,
+						`  :key="toast.id"`,
+						`  title="${args.title}"`,
+						`  message="${args.message}"`,
+						`  severity="warning"`,
+						`  :duration="${args.duration}"`,
+						`  icon=""`,
+						`  @close="remove(toast.id)"`,
+						'></Toast>',
+						'<Toast',
+						`  v-for="toast in toasts"`,
+						`  :key="toast.id"`,
+						`  title="${args.title}"`,
+						`  message="${args.message}"`,
+						`  severity="info"`,
+						`  :duration="${args.duration}"`,
+						`  icon=""`,
+						`  @close="remove(toast.id)"`,
+						'></Toast>',
+					].join('\n').trim();
+				}
+			}
+		}
+	},
 };
 
 //==== 觸發示意 ====//
 export const ToastDefaultNew = {
-  name: '觸發示意',
-  args: {
-    title: 'Toast Title',
-    message: 'Hello, world! This is a toast message.',
-    severity: 'success',
-    duration: 1100,
-  },
-  render: (args) => ({
-    components: { Toast, Button },
-    setup() {
-      const { add, toasts, remove } = useToast();
-      const showToast = () => {
-        add({
-          title: args.title,
-          message: args.message,
-          severity: args.severity,
-        });
-      };
-      return {
-        args,
-        toasts,
-        remove,
-        showToast,
-      };
-    },
-    template: `
+	name: "觸發示意",
+	args: {
+		title: "Toast Title",
+		message: "Hello, world! This is a toast message.",
+		severity: "success",
+		duration: 1100,
+		icon: "",
+	},
+	render: (args) => ({
+		components: { Toast, Button },
+		setup() {
+			const { add, toasts, remove } = useToast();
+			const showToast = () => {
+				add({
+					title: args.title,
+					message: args.message,
+					severity: args.severity,
+				});
+			};
+			return {
+				args,
+				toasts,
+				remove,
+				showToast,
+			};
+		},
+		template: `
 			<Toast
 				v-for="toast in toasts"
 				:key="toast.id"
@@ -170,22 +240,75 @@ export const ToastDefaultNew = {
 				:message="toast.message"
 				:severity="toast.severity"
 				:duration="args.duration"
+				:icon="args.icon"
 				@close="remove(toast.id)"
 			></Toast>
 
 			<div style="display:flex; flex-direction: column; gap: 16px; width: 200px">
-				<Button width="full" themeColor="primary" variant="contained" @click="showToast">Toast Trigger</Button>
+				<Button width="full" themeColor="primary" variant="contained" @click="showToast">
+					Toast Trigger
+				</Button>
 			</div>
         `,
-  }),
-  // 控制 controls 中能控制的參數
-  parameters: {
-    controls: {
-      // include: ['themeColor', 'label', 'value', 'name' ],
-      exclude: ['close'],
-    },
-  },
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['close']
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return `
+						<template>
+							<Toast
+								v-for="toast in toasts"
+								:key="toast.id"
+								:title="${args.title}"
+								:message="${args.message}"
+								:severity="${args.severity}"
+								:duration="${args.duration}"
+								:icon="${args.icon}"
+								@close="remove(toast.id)"
+							></Toast>
+						
+							<div style="display: flex; flex-direction: column; gap: 16px; width: 200px">
+								<Button width="full" themeColor="primary" variant="contained" @click="showToast">
+									Toast Trigger
+								</Button>
+							</div>
+						</template>
+						
+						<script setup>
+						import { useToast } from "@/path/to/useToast";
+						import Toast from "@/path/to/Toast";
+						import Button from "@/path/to/Button";
+						
+						const { add, toasts, remove } = useToast();
+						
+						const showToast = () => {
+							add({
+								title: "${args.title}",
+								message: "${args.message}",
+								severity: "${args.severity}",
+							});
+						};
+						</script>
+					`.trim();
+					// options: ['success', 'warning', 'error','info'],
+				}
+			}
+		}
+	},
 };
+
+
+
+
+
+
 
 //--- JONY VERSION START ---//
 
@@ -450,5 +573,6 @@ export const ToastDefaultNew = {
 // // 		},
 // // 	},
 // // };
+
 
 //--- JONY VERSION END ---//
