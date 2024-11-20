@@ -32,6 +32,11 @@
 - 同步 SCSS (要請學長同步我的)
 - 加 ded- 前綴
 
+🆙update：Dropdown (同步 SCSS)
+
+- 同步 SCSS (要請學長同步我的)
+- 加 ded- 前綴
+
 ---
 
 SCSS 待討論
@@ -39,3 +44,4 @@ SCSS 待討論
 - Avatar: &:not(:first-child) {margin-inline-start: -20px;} 建議加在 avatarGroup 比較適合
 
 - Divider: 與老師合作修正完新的 SCSS，需請學長同步我這版
+- Dropdown: 需請學長同步我這版

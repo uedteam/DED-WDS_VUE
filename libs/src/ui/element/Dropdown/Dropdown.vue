@@ -46,19 +46,19 @@ const handleSelect = (value) => {
 
 <template>
 
-	<div class="dropdown-container">
+	<div class="ded-dropdown-container">
 		<!-- 輸入框標題 -->
-		<label v-if="props.label" class="input-label">{{props.label}}</label>
+		<label v-if="props.label" class="ded-input-label">{{props.label}}</label>
 		<div ref="dropdown"
-		     :class="['dropdown', `dropdown-${props.size}`]"
+		     :class="['ded-dropdown', `ded-dropdown-${props.size}`]"
 		     role="listbox"
 		     tabindex="0"
 		     @click="isDropdownVisible = !isDropdownVisible">
-				<span :class="selectValue ? 'dropdown-selectValue-select' : 'dropdown-selectValue-unselect'">
+				<span :class="selectValue ? 'ded-dropdown-selectValue-select' : 'ded-dropdown-selectValue-unselect'">
 					{{ selectValue || props.placeholder }}
 				</span>
 
-				<Icon :class="`icon-${size}`"  style="margin-left: auto;" name="arrow_down"></Icon>
+				<Icon :class="`ded-icon-${size}`"  style="margin-left: auto;" name="arrow_down"></Icon>
 		</div>
 
 		<List
