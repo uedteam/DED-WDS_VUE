@@ -58,6 +58,12 @@
 
 - 加 ded- 前綴
 
+🆙update：Slider (同步 SCSS)
+
+- 加 ded- 前綴
+- 待確認 &-center 必要性(學)
+- 需請學長加 #20 #23
+
 ---
 
 SCSS 待討論
@@ -75,3 +81,8 @@ SCSS 待討論
 
 - Radio: 記得之前說要改點點
   jony> #43~#48 (點點設定動畫)
+
+- Slider:
+  jony> ded-tooltip 改 ded-slider-tooltip (避免與 ded-tooltip 相衝)
+  jony> #22 #25 (ded-slider-tooltip 對其居中用)
+  學長> #32 (建議可刪)
