@@ -46,6 +46,10 @@
 
 - 加 ded- 前綴
 
+🆙update：ProgressCircle (同步 SCSS)
+
+- 加 ded- 前綴
+
 ---
 
 SCSS 待討論
