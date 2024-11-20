@@ -54,6 +54,10 @@
 
 - 加 ded- 前綴
 
+🆙update：Radio (同步 SCSS)
+
+- 加 ded- 前綴
+
 ---
 
 SCSS 待討論
@@ -68,3 +72,6 @@ SCSS 待討論
 
 - Menu: jony> 有 ded-nav{width: 100%;} (學長寫在 inline style)
   學長> 有 margin-inline 8px (經 jony 判斷可不需要)
+
+- Radio: 記得之前說要改點點
+  jony> #43~#48 (點點設定動畫)
