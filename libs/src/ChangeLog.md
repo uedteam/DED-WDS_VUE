@@ -64,6 +64,14 @@
 - 待確認 &-center 必要性(學)
 - 需請學長加 #20 #23
 
+🆙update：SliderControl (同步 SCSS)
+
+- 加 ded- 前綴
+
+🆙update：Tabs (同步 SCSS)
+
+- 加 ded- 前綴
+
 ---
 
 SCSS 待討論
