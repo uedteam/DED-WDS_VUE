@@ -1,4 +1,4 @@
-## V1.0.0 (2024-11-20)
+## V1.0.0 (2024-11-20 SCSS 同步版)
 
 ---
 
@@ -109,9 +109,11 @@
 
 - 加 ded- 前綴
 
-## 🆙update：theme 基礎 SCSS
+🆙update：theme 基礎 SCSS
 
-SCSS 待討論
+---
+
+//-- SCSS 待討論 --//
 
 - Avatar: &:not(:first-child) {margin-inline-start: -20px;} 建議加在 avatarGroup 比較適合
 
