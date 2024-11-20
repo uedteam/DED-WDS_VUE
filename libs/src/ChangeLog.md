@@ -72,6 +72,11 @@
 
 - 加 ded- 前綴
 
+🆙update：Textarea (同步 SCSS)
+
+- 加 ded- 前綴
+- 全英文
+
 ---
 
 SCSS 待討論
