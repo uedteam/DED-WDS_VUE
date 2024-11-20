@@ -109,7 +109,7 @@
 
 - 加 ded- 前綴
 
----
+## 🆙update：theme 基礎 SCSS
 
 SCSS 待討論
 
@@ -134,3 +134,4 @@ SCSS 待討論
 
 - Tooltip: 記得之前說要改點點
   jony> #10~#16 (可刪除已沒作用)
+  \_map.scss \_tooltip arrow 位置 'left-top' 'left-bottom' 'right-top' 'right-bottom' top: 50%
