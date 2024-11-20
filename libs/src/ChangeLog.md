@@ -42,14 +42,21 @@
 - 同步 SCSS
 - 加 ded- 前綴
 
+🆙update：Menu (同步 SCSS)
+
+- 加 ded- 前綴
+
 ---
 
 SCSS 待討論
 
 - Avatar: &:not(:first-child) {margin-inline-start: -20px;} 建議加在 avatarGroup 比較適合
 
-- Divider: 與老師合作修正完新的 SCSS，需請學長同步我這版
-- Dropdown: 需請學長同步我這版
+- Divider: 與老師合作修正完新的 SCSS (需請學長同步我這版)
+- Dropdown: (需請學長同步我這版)
 
 - Input: jony> 有 ded-clear-button（用來刪除按鈕樣式）
-  學長> 有 ded-input-container 經 jony 判斷可不需要
+  學長> 有 ded-input-container (經 jony 判斷可不需要)
+
+- Menu: jony> 有 ded-nav{width: 100%;} (學長寫在 inline style)
+  學長> 有 margin-inline 8px (經 jony 判斷可不需要)
