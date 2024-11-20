@@ -89,6 +89,10 @@
 
 - 加 ded- 前綴
 
+🆙update：tooltip (同步 SCSS)
+
+- 加 ded- 前綴
+
 ---
 
 SCSS 待討論
@@ -111,3 +115,6 @@ SCSS 待討論
   jony> ded-tooltip 改 ded-slider-tooltip (避免與 ded-tooltip 相衝)
   jony> #22 #25 (ded-slider-tooltip 對其居中用)
   學長> #32 (建議可刪)
+
+- Tooltip: 記得之前說要改點點
+  jony> #10~#16 (可刪除已沒作用)
