@@ -1,7 +1,13 @@
-## V1.0.0 (2024-11-19)
+## V1.0.0 (2024-11-20)
 
 ---
 
-🐛fix：修復 avatar status 圖片取得問題。
+🆙update：Avatar (同步 SCSS)
+
+- 同步 SCSS
+- 加 ded- 前綴
 
 ---
+
+SCSS 待討論
+-Avatar: &:not(:first-child) {margin-inline-start: -20px;} 建議加在 avatarGroup 比較適合
