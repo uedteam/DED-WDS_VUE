@@ -83,20 +83,20 @@ const togglePasswordVisibility = () => {
 </script>
 
 <template>
-	<div :class="{'input-container': true, [props.className]: !!props.className}">
+	<div :class="{'ded-input-container': true, [props.className]: !!props.className}">
 		<!-- 輸入框標題 -->
-		<label v-if="props.label" class="input-label">{{props.label}}</label>
-		<div :class="['input-group', `component-${size}`, `input-border-${hintClass}`, { 'input-disable':
+		<label v-if="props.label" class="ded-input-label">{{props.label}}</label>
+		<div :class="['ded-input-group', `ded-component-${size}`, `ded-input-border-${hintClass}`, { 'ded-input-disable':
 		props.isDisabled }, ]">
 			<!-- 輸入框 prefix icon -->
 			<template v-if="prefix">
-				<Icon :class="`icon-${size}`" :name="props.prefix" ></Icon>
+				<Icon :class="`ded-icon-${size}`" :name="props.prefix" ></Icon>
 			</template>
 
 			<!-- 輸入框 -->
 			<input
 				:type="showPassword && props.type === 'password' ? 'text' : props.type"
-				:class="['input', `text-${size}`]"
+				:class="['ded-input', `text-${size}`]"
 				:placeholder="props.placeholder"
 				v-model="modelValue">
 
@@ -108,19 +108,19 @@ const togglePasswordVisibility = () => {
 			<!-- Suffix Icons -->
 			<template v-if=" modelValue || props.type === 'password'">
 				<!-- input type 等於 text -->
-				<button v-if="modelValue && props.type === 'text'" class="clear-button" @click="clearInput">
-					<Icon name="close" :class="`icon-${props.size}`" />
+				<button v-if="modelValue && props.type === 'text'" class="ded-clear-button" @click="clearInput">
+					<Icon name="close" :class="`ded-icon-${props.size}`" />
 				</button>
 
 				<!-- input type 等於 password -->
-				<button v-if="props.type === 'password'" class="clear-button" @click="togglePasswordVisibility">
-					<Icon :name="showPassword ? 'visibility' : 'visibility_off'" :class="`icon-${props.size}`" />
+				<button v-if="props.type === 'password'" class="ded-clear-button" @click="togglePasswordVisibility">
+					<Icon :name="showPassword ? 'visibility' : 'visibility_off'" :class="`ded-icon-${props.size}`" />
 				</button>
 			</template>
 		</div>
 
 		<!-- 輸入框說明文字 -->
-		<small :class="['input-hint', `input-hint-${hintClass}`, { 'input-disable': props.isDisabled }]">
+		<small :class="['ded-input-hint', `ded-input-hint-${hintClass}`, { 'ded-input-disable': props.isDisabled }]">
 			{{ hint.error.length > 0 ? hint.error : hint.description }}
 		</small>
 	</div>
