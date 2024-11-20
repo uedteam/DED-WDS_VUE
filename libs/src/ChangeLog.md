@@ -77,6 +77,10 @@
 - 加 ded- 前綴
 - 全英文
 
+🆙update：Title (同步 SCSS)
+
+- 加 ded- 前綴
+
 ---
 
 SCSS 待討論
