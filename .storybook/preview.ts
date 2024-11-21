@@ -1,12 +1,12 @@
+/** @type { import('@storybook/vue3').Preview } */
 import '@/style/globals.scss';
-import { Preview } from '@storybook/vue3';
+// import { Preview } from '@storybook/vue3';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
-/* snipped for brevity */
 // 創建 Toast 容器
 const toastContainer = document.createElement('div');
 toastContainer.id = 'toast';
-toastContainer.className = 'toast-container';
+toastContainer.className = 'ded-toast-container';
 document.body.appendChild(toastContainer);
 
 // 創建 Dialog 容器
@@ -14,7 +14,7 @@ const dialogContainer = document.createElement('div');
 dialogContainer.id = 'dialog';
 document.body.appendChild(dialogContainer);
 
-const preview: Preview = {
+const preview = {
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS, // 開啟更多 viewport 選擇

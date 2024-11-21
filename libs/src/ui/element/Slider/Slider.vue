@@ -154,23 +154,21 @@ defineExpose({ updateWidth });
 </script>
 
 <template>
-    <div :class="{ 'slider-container': true, [props.className]: !!props.className }" ref="containerRef">
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-            <input
-                ref="rangeRef"
-                type="range"
-                :min="props.min"
-                :max="props.max"
-                :step="props.step"
-                :disabled="props.isDisabled"
-                @input="handleChange"
-                v-model="value"
-                :class="['slider', props.isDisabled ? 'slider-disable' : `slider-${props.themeColor}`]"
-            />
-        </div>
-
+    <div :class="{ 'ded-slider-container': true, [props.className]: !!props.className }" ref="containerRef">
+        <input
+            ref="rangeRef"
+            type="range"
+            :min="props.min"
+            :max="props.max"
+            :step="props.step"
+            :disabled="props.isDisabled"
+            @input="handleChange"
+            v-model="value"
+            :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
+        />
         <div
-            :class="['tooltip', props.isDisabled ? 'tooltip-disable' : `tooltip-${props.themeColor}`]"
+            :class="['ded-slider-tooltip', props.isDisabled ? 'ded-slider-tooltip-disable' :
+            `ded-slider-tooltip-${props.themeColor}`]"
             :style="{ left: tooltipPosition }"
         >
             <span>{{ value }}</span>
