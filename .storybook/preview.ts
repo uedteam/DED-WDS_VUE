@@ -26,17 +26,13 @@ const preview = {
         date: /Date$/i,
       },
     },
-    // docs: {
-    //   toc: {
-    //     contentsSelector: '.sbdocs-content',
-    //     headingSelector: 'h2, h3',
-    //     ignoreSelector: '#primary',
-    //     disable: false,
-    //     unsafeTocbotOptions: {
-    //       orderedList: false,
-    //     },
-    //   }, // 👈 Enables the table of contents
-    // },
+    backgrounds: {
+      values: [
+        { name: 'light', value: '#fff' },
+        { name: 'dark', value: '#333' },
+        { name: 'gray', value: '#f0f0f0' },
+      ],
+    },
     options: {
       storySort: {
         method: 'alphabetical', // 可選擇 'alphabetical', 'configure', 或其他自定義方法
