@@ -1,139 +1,98 @@
-## V1.0.0 (2024-11-20 SCSS 同步版)
+## V1.0.0 (2024-11-22)
 
----
+## ✨feat：新增 Layout 元件
 
-🆙update：Avatar (同步 SCSS)
+🆙update：Datepicker
 
-- 同步 SCSS
-- 加 ded- 前綴
+- label 描述欄位文字改為「標題」(20241122 ok)
+- label 預設欄位文字改為「空值」(20241122 ok)
+- label 控制欄位文字改為「Label」(20241122 ok)
+- placeholder 描述欄位文字改為「輸入提示」(20241122 ok)
+- placeholder 預設欄位文字改為「空值」(20241122 ok)
+- placeholder 控制欄位文字改為「YYYY-MM-DD」(20241122 ok)
+- size 描述欄位文字改為「尺寸」(20241122 ok)
+- language 描述欄位文字改為「語系」(20241122 ok)
+- 添加參數「className」(20241122 ok)
 
-🆙update：AvatarGroup (同步 SCSS)
+  🆙update：Accordion
 
-- 同步 SCSS
-- 加 ded- 前綴
+- 預覽區文案修改成「Accordion title」、「Accordion content」(20241122 ok)
 
-🆙update：breadcrumb (同步 SCSS)
+  🆙update：AvatarGroup
 
-- 同步 SCSS
-- 加 ded- 前綴
+- 修復 AvatarGroup 顯示問題
 
-🆙update：Button (同步 SCSS)
+  🆙update：Image
 
-- 同步 SCSS
-- 加 ded- 前綴
+- alt 預設欄位文字改為「空值」(20241122 ok)
+- 添加參數「className」(20241122 ok)
 
-🆙update：Checkbox (同步 SCSS)
+  🆙update：Dropdown
 
-- 同步 SCSS
-- 加 ded- 前綴
+- label 控制欄位文字改為「Label」(20241122 ok)
+- label 預設欄位文字改為「””」(20241122 ok)
+- placeholderl 預設欄位文字改為「Placeholder…」(20241122 ok)
+- placeholderl 控制欄位文字改為「Placeholder…」(20241122 ok)
 
-🆙update：Divider (同步 SCSS)
+  🆙update：Input
 
-- 同步 SCSS (要請學長同步我的)
-- 加 ded- 前綴
+- placeholderl 預設欄位文字改為「Placeholder…」(20241122 ok)
 
-🆙update：Dropdown (同步 SCSS)
+  🆙update：Password
 
-- 同步 SCSS (要請學長同步我的)
-- 加 ded- 前綴
+- 隱藏 (20241122 ok)
 
-🆙update：Input (同步 SCSS)
+  🆙update：Search
 
-- 同步 SCSS
-- 加 ded- 前綴
+- 隱藏 (20241122 ok)
 
-🆙update：Menu (同步 SCSS)
+  🆙update：Toast
 
-- 加 ded- 前綴
+- 添加參數「themeColor」 (20241122 已添加)
+- 添加參數「durationTime」 (20241122 已添加)
+- 添加參數「className」 (20241122 已添加)
 
-🆙update：ProgressCircle (同步 SCSS)
+🔧 tool: 新增 DOMPurify 過濾 HTML，防範 XSS 攻擊
 
-- 加 ded- 前綴
+🆙update：Dialog
 
-🆙update：ProgressLine (同步 SCSS)
+- 同步學長ＣＳＳ，還有一些東西待開會確認 (20241122 ok)
+- 彈出視窗版面照學長的 (20241122 ok)
+- 彈出視窗參數照學長的 title(必), content(必) confirmText, CancelText, className (20241122 ok)
+- 安裝 Dompurify 確保安全性，在 dialogHeader 的輸入欄位故意添加 攻擊性 HTML(經測試可被過濾) (20241122 ok)
+- 添加參數「className」(20241122 ok)
 
-- 加 ded- 前綴
+  🆙update：Toast
 
-🆙update：Radio (同步 SCSS)
+- 添加參數「themeColor」 (20241122 已添加)
+- 添加參數「durationTime」 (20241122 已添加)
+- 添加參數「className」 (20241122 已添加)
 
-- 加 ded- 前綴
+  🆙update：Badge
 
-🆙update：Slider (同步 SCSS)
+- 調整參數順序 (20241122 ok)
+- themeColor 描述欄位文字改為「主題顏色」(20241122 ok)
+- isDot 改成 Type (20241122 ok)
+- isDot 描述欄位文字改為「顯示方式」(20241122 ok)
+- isDot 控制欄位改為下拉選單 (20241122 ok)
+- Value 描述欄位文字改為「數值」(20241122 ok)
+- Value 描述欄位參數類型僅保留「number」(20241122 ok)
+- Value 控制欄位輸入方式改成 input:number 方式 (20241122 ok)
+- maxValue 改為「limit」(20241122 ok)
+- maxValue 描述欄位文字改為「數值上限」(20241122 ok)
+- maxValue 控制欄位輸入方式改成 input:number 方式 (20241122 ok)
+- 移除「withIcon」、「position」參數 (20241122 ok)
 
-- 加 ded- 前綴
-- 待確認 &-center 必要性(學)
-- 需請學長加 #20 #23
+  🆙update：Slider
 
-🆙update：SliderControl (同步 SCSS)
+- 修改 HTML SCSS
 
-- 加 ded- 前綴
+🆙update：Divider
 
-🆙update：Tabs (同步 SCSS)
-
-- 加 ded- 前綴
-
-🆙update：Textarea (同步 SCSS)
-
-- 加 ded- 前綴
-- 全英文
-
-🆙update：Title (同步 SCSS)
-
-- 加 ded- 前綴
-
-🆙update：Toggle (同步 SCSS)
-
-- 加 ded- 前綴
-
-🆙update：Toast (同步 SCSS)(ing)
-
-- 加 ded- 前綴
-
-🆙update：tooltip (同步 SCSS)
-
-- 加 ded- 前綴
-
-🆙update：Image (同步 SCSS)
-
-- 加 ded- 前綴
-
-🆙update：Accordion (同步 SCSS)
-
-- 加 ded- 前綴
-
-🆙update：Datepicker (同步 SCSS)
-
-- 加 ded- 前綴
-
-🆙update：Tag (同步 SCSS)
-
-- 加 ded- 前綴
-
-🆙update：theme 基礎 SCSS
+- 刪除 content 之後的留白空間 無值無留白
 
 ---
 
 //-- SCSS 待討論 --//
 
-- Avatar: &:not(:first-child) {margin-inline-start: -20px;} 建議加在 avatarGroup 比較適合
-
-- Divider: 與老師合作修正完新的 SCSS (需請學長同步我這版)
-- Dropdown: (需請學長同步我這版)
-
-- Input: jony> 有 ded-clear-button（用來刪除按鈕樣式）
-  學長> 有 ded-input-container (經 jony 判斷可不需要)
-
-- Menu: jony> 有 ded-nav{width: 100%;} (學長寫在 inline style)
-  學長> 有 margin-inline 8px (經 jony 判斷可不需要)
-
-- Radio: 記得之前說要改點點
-  jony> #43~#48 (點點設定動畫)
-
-- Slider:
-  jony> ded-tooltip 改 ded-slider-tooltip (避免與 ded-tooltip 相衝)
-  jony> #22 #25 (ded-slider-tooltip 對其居中用)
-  學長> #32 (建議可刪)
-
-- Tooltip: 記得之前說要改點點
-  jony> #10~#16 (可刪除已沒作用)
-  \_map.scss \_tooltip arrow 位置 'left-top' 'left-bottom' 'right-top' 'right-bottom' top: 50%
+-
