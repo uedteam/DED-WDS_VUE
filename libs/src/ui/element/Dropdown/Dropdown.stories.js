@@ -20,12 +20,6 @@ export default {
 			table: {
 				type: {
 					summary: '{ label: string; value: string; }[]',
-//                     detail: `{
-//     label: string,
-//     id: string,
-//     value: string,
-//     name: string
-// }`
 				}
 			}
 		},
@@ -40,7 +34,12 @@ export default {
 		size: {
 			description: '輸入框尺寸',
 			control: { type: 'select' },
-			options: ['small', 'medium', 'large']
+			options: ['small', 'medium', 'large'],
+			table: {
+				type: {
+					summary: "small | medium | large",
+				}
+			}
 		},
 		maxHeight: {
 			description: "最大高度，自動顯示卷軸 (px)",
@@ -84,7 +83,7 @@ export const DropdownDefault = {
 			}
 		],
 		label: "Label",
-		placeholder: "PLease Select",
+		placeholder: "Placeholder...",
 		size: "medium",
 		maxHeight: "",
 		className: ""
