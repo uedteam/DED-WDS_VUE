@@ -15,23 +15,18 @@
     border-radius: 8px;
 }
 
-//jony有學長沒有 為避免與 tooltip 相衝 改 slider-tooltip
+
 .ded-slider-tooltip {
     position: absolute;
     top: -20px;
-    width: 40px; //jony有學長沒有
     height: 30px;
     display: flex;
-    justify-content: center; //jony有學長沒有
+    justify-content: center;
     align-items: center;
     border-radius: 4px;
     font-size: 14px;
     white-space: nowrap;
-
-    //學長有 （建議可刪）
-    //&-center {
-    //    justify-content: center;
-    //}
+    transform: translateX(-50%)
 }
 
 /* remove default style */
@@ -116,7 +111,6 @@ input[type="range"].ded-slider-disable::-webkit-slider-thumb {
     cursor: not-allowed;
 }
 
-//jony有學長沒有 為避免與 tooltip 相衝 改 slider-tooltip-disable
 .ded-slider-tooltip-disable {
     color: $color-gray20;
     pointer-events: none;
