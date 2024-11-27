@@ -1,98 +1,65 @@
-## V1.0.0 (2024-11-22)
-
-## ✨feat：新增 Layout 元件
-
-🆙update：Datepicker
-
-- label 描述欄位文字改為「標題」(20241122 ok)
-- label 預設欄位文字改為「空值」(20241122 ok)
-- label 控制欄位文字改為「Label」(20241122 ok)
-- placeholder 描述欄位文字改為「輸入提示」(20241122 ok)
-- placeholder 預設欄位文字改為「空值」(20241122 ok)
-- placeholder 控制欄位文字改為「YYYY-MM-DD」(20241122 ok)
-- size 描述欄位文字改為「尺寸」(20241122 ok)
-- language 描述欄位文字改為「語系」(20241122 ok)
-- 添加參數「className」(20241122 ok)
-
-  🆙update：Accordion
-
-- 預覽區文案修改成「Accordion title」、「Accordion content」(20241122 ok)
-
-  🆙update：AvatarGroup
-
-- 修復 AvatarGroup 顯示問題
-
-  🆙update：Image
-
-- alt 預設欄位文字改為「空值」(20241122 ok)
-- 添加參數「className」(20241122 ok)
-
-  🆙update：Dropdown
-
-- label 控制欄位文字改為「Label」(20241122 ok)
-- label 預設欄位文字改為「””」(20241122 ok)
-- placeholderl 預設欄位文字改為「Placeholder…」(20241122 ok)
-- placeholderl 控制欄位文字改為「Placeholder…」(20241122 ok)
-
-  🆙update：Input
-
-- placeholderl 預設欄位文字改為「Placeholder…」(20241122 ok)
-
-  🆙update：Password
-
-- 隱藏 (20241122 ok)
-
-  🆙update：Search
-
-- 隱藏 (20241122 ok)
-
-  🆙update：Toast
-
-- 添加參數「themeColor」 (20241122 已添加)
-- 添加參數「durationTime」 (20241122 已添加)
-- 添加參數「className」 (20241122 已添加)
-
-🔧 tool: 新增 DOMPurify 過濾 HTML，防範 XSS 攻擊
-
-🆙update：Dialog
-
-- 同步學長ＣＳＳ，還有一些東西待開會確認 (20241122 ok)
-- 彈出視窗版面照學長的 (20241122 ok)
-- 彈出視窗參數照學長的 title(必), content(必) confirmText, CancelText, className (20241122 ok)
-- 安裝 Dompurify 確保安全性，在 dialogHeader 的輸入欄位故意添加 攻擊性 HTML(經測試可被過濾) (20241122 ok)
-- 添加參數「className」(20241122 ok)
-
-  🆙update：Toast
-
-- 添加參數「themeColor」 (20241122 已添加)
-- 添加參數「durationTime」 (20241122 已添加)
-- 添加參數「className」 (20241122 已添加)
-
-  🆙update：Badge
-
-- 調整參數順序 (20241122 ok)
-- themeColor 描述欄位文字改為「主題顏色」(20241122 ok)
-- isDot 改成 Type (20241122 ok)
-- isDot 描述欄位文字改為「顯示方式」(20241122 ok)
-- isDot 控制欄位改為下拉選單 (20241122 ok)
-- Value 描述欄位文字改為「數值」(20241122 ok)
-- Value 描述欄位參數類型僅保留「number」(20241122 ok)
-- Value 控制欄位輸入方式改成 input:number 方式 (20241122 ok)
-- maxValue 改為「limit」(20241122 ok)
-- maxValue 描述欄位文字改為「數值上限」(20241122 ok)
-- maxValue 控制欄位輸入方式改成 input:number 方式 (20241122 ok)
-- 移除「withIcon」、「position」參數 (20241122 ok)
-
-  🆙update：Slider
-
-- 修改 HTML SCSS
-
-🆙update：Divider
-
-- 刪除 content 之後的留白空間 無值無留白
+## V1.0.0 (2024-11-28)
 
 ---
 
-//-- SCSS 待討論 --//
+🆙update：Image
 
--
+- class name 太通用可能衝突，改「ded-image-cover」
+
+🆙update：Avatar
+
+- class name 太通用可能衝突，改「ded-image-cover」
+- 頭像形狀把狀態依據 kevin 方式加上 (20241126 done)
+
+🆙update：Breadcrumb
+
+- 標籤 「ul」改「ol」 (20241126 done)
+
+🆙update：Button
+
+- 套用 width 時，滿版的 class 名稱應該是「ded-button-fluid」，目前使用了「ded-button-full」(20241126 done)
+- HTML 結構請採用 Kevin 的，添加 ded-icon-size ded-text-size (20241126 done)
+
+🆙update：Checkbox
+
+- svg 色彩 inline style 移除   (20241126 done)
+
+🆙update：Dropdown
+
+- Dropdonw vscode 異常提示需修正，需注意 Ref 使用方式 (只改 style 裡面的，HTML @click 後面的不用加 .value)(20241126 done)
+- 點擊空白處需要收合 (20241126 done)
+- 架構部分參照 kevin 的做法（有問題請 kevin 說明） (20241126 done)
+
+🆙update：LineProgress
+
+- 缺少父層容器 class 「ded-progress-line-container 」
+
+🆙update：Slider
+
+- CSS 採用 kevin 的寫法 (20241126 done)
+- 修正 transform 顯示問題 (20241126 done)
+- 刪除 v-model 資料 (20241126 done)
+
+🆙update：Tab
+
+- ded-tab class name 出現兩次(20241126 done)
+- class name 缺少前綴字(20241126 done)
+
+🆙update：Tag
+
+- 語意按照 kevin 的修改，並對應 class name(改用 button 去包叉叉)(20241126 done)
+
+🆙update：Textarea
+
+- Default => Placeholder...(20241126 done)
+- Control => Placeholder...(20241126 done)
+- limit Default => 0 (20241126 done)
+- limit Control => 500 (20241126 done)
+
+🆙update：Toggle
+
+- 移除 inline style，設定到 class 內(20241126 done)
+
+🆙update：storybook setting
+
+---
