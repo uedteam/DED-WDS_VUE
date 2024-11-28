@@ -1,65 +1,42 @@
-## V1.0.0 (2024-11-28)
+## V1.0.0 (2024-11-29)
 
 ---
 
-🆙update：Image
-
-- class name 太通用可能衝突，改「ded-image-cover」
-
+🆙update：Accordion
 🆙update：Avatar
-
-- class name 太通用可能衝突，改「ded-image-cover」
-- 頭像形狀把狀態依據 kevin 方式加上 (20241126 done)
-
+🆙update：AvatarGroup
+🆙update：Badge
 🆙update：Breadcrumb
-
-- 標籤 「ul」改「ol」 (20241126 done)
-
 🆙update：Button
-
-- 套用 width 時，滿版的 class 名稱應該是「ded-button-fluid」，目前使用了「ded-button-full」(20241126 done)
-- HTML 結構請採用 Kevin 的，添加 ded-icon-size ded-text-size (20241126 done)
-
 🆙update：Checkbox
-
-- svg 色彩 inline style 移除   (20241126 done)
-
+🆙update：Datepicker
+🆙update：Dialog
+🆙update：Divider
 🆙update：Dropdown
-
-- Dropdonw vscode 異常提示需修正，需注意 Ref 使用方式 (只改 style 裡面的，HTML @click 後面的不用加 .value)(20241126 done)
-- 點擊空白處需要收合 (20241126 done)
-- 架構部分參照 kevin 的做法（有問題請 kevin 說明） (20241126 done)
-
-🆙update：LineProgress
-
-- 缺少父層容器 class 「ded-progress-line-container 」
-
+🆙update：Grid
+🆙update：Image
+🆙update：Input
+🆙update：Layout
+🆙update：List
+🆙update：Menu
+🆙update：Progress-Circle
+🆙update：Progress-Line
+🆙update：Radio
+🆙update：SideNav
 🆙update：Slider
-
-- CSS 採用 kevin 的寫法 (20241126 done)
-- 修正 transform 顯示問題 (20241126 done)
-- 刪除 v-model 資料 (20241126 done)
-
-🆙update：Tab
-
-- ded-tab class name 出現兩次(20241126 done)
-- class name 缺少前綴字(20241126 done)
-
+🆙update：Tabs
 🆙update：Tag
-
-- 語意按照 kevin 的修改，並對應 class name(改用 button 去包叉叉)(20241126 done)
-
 🆙update：Textarea
-
-- Default => Placeholder...(20241126 done)
-- Control => Placeholder...(20241126 done)
-- limit Default => 0 (20241126 done)
-- limit Control => 500 (20241126 done)
-
+🆙update：Title
+🆙update：Toast
 🆙update：Toggle
+🆙update：Tooltip
 
-- 移除 inline style，設定到 class 內(20241126 done)
+- Design System 改 Component
+- 刪除不必要註解
 
-🆙update：storybook setting
+🆙update：Image -「ratio」與「objectFit」順序對調(20241129 done) -「11、43、54、169」改成「1x1、4x3、5x4、16x9」較易理解(20241129 done)
+
+- 加入必填紅色星號「src、alt、ratio、objectFit」(20241129 done) -「調整圖片比例」改成「圖片比例」(20241129 done) -「調整圖片適合其容器」改成「圖片填滿方式」(20241129 done)
 
 ---
