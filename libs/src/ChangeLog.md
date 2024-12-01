@@ -1,42 +1,17 @@
-## V1.0.0 (2024-11-29)
+## V1.0.0 (2024-12-02)
 
 ---
 
-🆙update：Accordion
-🆙update：Avatar
-🆙update：AvatarGroup
-🆙update：Badge
-🆙update：Breadcrumb
-🆙update：Button
-🆙update：Checkbox
-🆙update：Datepicker
-🆙update：Dialog
-🆙update：Divider
+🆙update：List, Menu
+
+- 改成 AMOS 新版 HTML
+
 🆙update：Dropdown
-🆙update：Grid
-🆙update：Image
-🆙update：Input
-🆙update：Layout
-🆙update：List
-🆙update：Menu
-🆙update：Progress-Circle
-🆙update：Progress-Line
-🆙update：Radio
-🆙update：SideNav
-🆙update：Slider
-🆙update：Tabs
-🆙update：Tag
-🆙update：Textarea
-🆙update：Title
-🆙update：Toast
-🆙update：Toggle
-🆙update：Tooltip
 
-- Design System 改 Component
-- 刪除不必要註解
+- 改新版 List 元件
 
-🆙update：Image -「ratio」與「objectFit」順序對調(20241129 done) -「11、43、54、169」改成「1x1、4x3、5x4、16x9」較易理解(20241129 done)
+🆙update：AvatarGroup
 
-- 加入必填紅色星號「src、alt、ratio、objectFit」(20241129 done) -「調整圖片比例」改成「圖片比例」(20241129 done) -「調整圖片適合其容器」改成「圖片填滿方式」(20241129 done)
+- class name 「rest-container-menu」改到跟 Kevin 一樣「ded-dropdown-menu 」(20241130 jony done)
 
 ---
