@@ -1,4 +1,4 @@
-import{af as n,ag as d,ah as u}from"./index-CA4-Zxjm.js";import{u as o}from"./index-aeUHhEVG.js";import"./iframe-gnUhrdvU.js";import"../sb-preview/runtime.js";import"./index-i39XpuQg.js";import"./index-DrFu-skq.js";const p=`## V1.0.0 (2024-11-29)
+import{af as n,ag as d,ah as u}from"./index-CqwmdypX.js";import{u as o}from"./index-D5XC6acK.js";import"./iframe-D3eZBiwH.js";import"../sb-preview/runtime.js";import"./index-i39XpuQg.js";import"./index-DrFu-skq.js";const p=`## V1.0.0 (2024-11-29)
 
 ---
 

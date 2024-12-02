@@ -1,4 +1,4 @@
-import{_ as l}from"./Menu-DeFoD8LO.js";import"./vue.esm-bundler-BHaSr8M7.js";import"./Icon-BoC-4iYi.js";import"./iframe-gnUhrdvU.js";import"../sb-preview/runtime.js";function c(a){return`[
+import{_ as l}from"./Menu-BAzpD2Da.js";import"./vue.esm-bundler-BHaSr8M7.js";import"./Icon-Cf7dsu_F.js";import"./iframe-D3eZBiwH.js";import"../sb-preview/runtime.js";function c(a){return`[
     ${a.map(n=>`{
         icon: '${n.icon}',
         label: '${n.label}',
