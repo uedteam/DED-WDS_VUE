@@ -1,0 +1,394 @@
+import{_ as o}from"./Image-DEoPWgDg.js";import"./vue.esm-bundler-XbWi-Ypr.js";import"./index-Bb4qSo10.js";const v={title:"Component/Image",component:o,tags:["autodocs"],argTypes:{src:{description:"圖片來源",control:{type:"text"}},alt:{description:"圖片替代文字",control:{type:"text"}},ratio:{description:"圖片比例",control:{type:"select",labels:{11:"1x1",43:"4x3",54:"5x4",169:"16x9"}},options:["11","43","54","169"],table:{type:{summary:"1x1 | 4x3 | 5x4 | 16x9"}}},objectFit:{description:"圖片填滿方式",control:{type:"select"},options:["cover","contain","fill","none"],table:{type:{summary:"cover | contain | fill | none"}}},className:{description:"客製化樣式",control:{type:"text"}}},parameters:{docs:{title:"圖片",description:{component:"圖片組件的呈現及說明。"}}}},s={name:"預設項目",args:{src:"https://picsum.photos/300/300",alt:"placeholder",ratio:"11",objectFit:"cover",className:""},render:a=>({components:{Image:o},setup(){return{args:a}},template:`
+            <div style="width: 250px; height: 250px;">
+                <Image
+                    :src="args.src"
+                    :alt="args.alt"
+                    :ratio="args.ratio"
+                    :objectFit="args.objectFit"
+                    :className="args.className"
+                ></Image>
+            </div>
+        `}),parameters:{controls:{},docs:{source:{transform:(a,e)=>{const{args:t}=e;return['<div style="width: 250px; height: 250px;">',"  <Image",`    src="${t.src}"`,`    alt="${t.alt}"`,`    ratio="${t.ratio}"`,`    objectFit="${t.objectFit}"`,`    className="${t.className}"`,"  ></Image>","</div>"].join(`
+`).trim()}}}}},n={name:"圖片比例總覽",args:{src:"https://picsum.photos/300/300",alt:"",objectFit:"cover",className:""},render:a=>({components:{Image:o},setup(){return{args:a}},template:`
+            <div style="display:flex; gap: 24px;">
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image 
+                       :src="args.src"
+                       :alt="args.alt"
+                       ratio="11"
+                       :objectFit="args.objectFit"
+                       style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">1:1</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                        :src="args.src"
+                        :alt="args.alt"
+                        ratio="43"
+                        :objectFit="args.objectFit"
+                        style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">4:3</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                        :src="args.src"
+                        :alt="args.alt"
+                        ratio="54"
+                        :objectFit="args.objectFit"
+                        style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">5:4</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                        :src="args.src"
+                        :alt="args.alt"
+                        ratio="169"
+                        :objectFit="args.objectFit"
+                        style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">16:9</p>
+                </div>
+            </div>
+        `}),parameters:{controls:{include:["objectFit","src"]},docs:{source:{transform:(a,e)=>{const{args:t}=e;return["  <Image",`    src="${t.src}"`,`    alt="${t.alt}"`,'    ratio="11"',`    objectFit="${t.objectFit}"`,`    className="${t.className}"`,"  ></Image>","  <Image",`    src="${t.src}"`,`    alt="${t.alt}"`,'    ratio="43"',`    objectFit="${t.objectFit}"`,`    className="${t.className}"`,"  ></Image>","  <Image",`    src="${t.src}"`,`    alt="${t.alt}"`,'    ratio="54"',`    objectFit="${t.objectFit}"`,`    className="${t.className}"`,"  ></Image>","  <Image",`    src="${t.src}"`,`    alt="${t.alt}"`,'    ratio="169"',`    objectFit="${t.objectFit}"`,`    className="${t.className}"`,"  ></Image>"].join(`
+`).trim()}}}}},r={name:"圖片自適應",args:{src:"https://picsum.photos/300/300",alt:"",ratio:"169",objectFit:"cover",className:""},render:a=>({components:{Image:o},setup(){return{args:a}},template:`
+            <div style="display:flex; gap: 24px;">
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image 
+                           :src="args.src"
+                           :alt="args.alt"
+                           :ratio="args.ratio"
+                           objectFit="cover"
+                           class="${a.className}"
+                           style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">cover</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                           :src="args.src"
+                           :alt="args.alt"
+                           :ratio="args.ratio"
+                           objectFit="contain"
+                           class="${a.className}"
+                           style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                      top: 50%; left: 50%;
+                      transform: translateX(-50%) translateY(-50%); ;
+                      font-size: 50px;
+                      color:white">contain</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                           :src="args.src"
+                           :alt="args.alt"
+                           :ratio="args.ratio"
+                           objectFit="fill"
+                           class="${a.className}"
+                           style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                        top: 50%; left: 50%;
+                        transform: translateX(-50%) translateY(-50%); ;
+                        font-size: 50px;
+                        color:white">fill</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image 
+                           :src="args.src"
+                           :alt="args.alt"
+                           :ratio="args.ratio"
+                           objectFit="none"
+                           class="${a.className}"
+                           style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                          top: 50%; left: 50%;
+                          transform: translateX(-50%) translateY(-50%); ;
+                          font-size: 50px;
+                          color:white">none</p>
+                </div>
+            </div>
+        `}),parameters:{controls:{include:["ratio","src"]},docs:{source:{transform:(a,e)=>{const{args:t}=e;return["  <Image",`    src="${t.src}"`,`    alt="${t.alt}"`,`    ratio="${t.ratio}"`,'    objectFit="cover"',`    className="${t.className}"`,"  ></Image>","  <Image",`    src="${t.src}"`,`    alt="${t.alt}"`,`    ratio="${t.ratio}"`,'    objectFit="contain"',`    className="${t.className}"`,"  ></Image>","  <Image",`    src="${t.src}"`,`    alt="${t.alt}"`,`    ratio="${t.ratio}"`,'    objectFit="fill"',`    className="${t.className}"`,"  ></Image>","  <Image",`    src="${t.src}"`,`    alt="${t.alt}"`,`    ratio="${t.ratio}"`,'    objectFit="none"',`    className="${t.className}"`,"  ></Image>"].join(`
+`).trim()}}}}};var i,c,l;s.parameters={...s.parameters,docs:{...(i=s.parameters)==null?void 0:i.docs,source:{originalSource:`{
+  name: '預設項目',
+  args: {
+    src: 'https://picsum.photos/300/300',
+    alt: 'placeholder',
+    ratio: '11',
+    objectFit: 'cover',
+    className: ''
+  },
+  render: args => ({
+    components: {
+      Image
+    },
+    setup() {
+      // Create a ref for modelValue to be used with v-model
+      return {
+        args
+      };
+    },
+    template: \`
+            <div style="width: 250px; height: 250px;">
+                <Image
+                    :src="args.src"
+                    :alt="args.alt"
+                    :ratio="args.ratio"
+                    :objectFit="args.objectFit"
+                    :className="args.className"
+                ></Image>
+            </div>
+        \`
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      // include: ['objectFit', 'src', 'value', 'name' ],
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          return ['<div style="width: 250px; height: 250px;">', '  <Image', \`    src="\${args.src}"\`, \`    alt="\${args.alt}"\`, \`    ratio="\${args.ratio}"\`, \`    objectFit="\${args.objectFit}"\`, \`    className="\${args.className}"\`, '  ></Image>', '</div>'].join('\\n').trim();
+        }
+      }
+    }
+  }
+}`,...(l=(c=s.parameters)==null?void 0:c.docs)==null?void 0:l.source}}};var m,g,p;n.parameters={...n.parameters,docs:{...(m=n.parameters)==null?void 0:m.docs,source:{originalSource:`{
+  name: '圖片比例總覽',
+  args: {
+    src: 'https://picsum.photos/300/300',
+    alt: '',
+    objectFit: 'cover',
+    className: ''
+  },
+  render: args => ({
+    components: {
+      Image
+    },
+    setup() {
+      // Create a ref for modelValue to be used with v-model
+      return {
+        args
+      };
+    },
+    template: \`
+            <div style="display:flex; gap: 24px;">
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image 
+                       :src="args.src"
+                       :alt="args.alt"
+                       ratio="11"
+                       :objectFit="args.objectFit"
+                       style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">1:1</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                        :src="args.src"
+                        :alt="args.alt"
+                        ratio="43"
+                        :objectFit="args.objectFit"
+                        style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">4:3</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                        :src="args.src"
+                        :alt="args.alt"
+                        ratio="54"
+                        :objectFit="args.objectFit"
+                        style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">5:4</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                        :src="args.src"
+                        :alt="args.alt"
+                        ratio="169"
+                        :objectFit="args.objectFit"
+                        style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">16:9</p>
+                </div>
+            </div>
+        \`
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      include: ['objectFit', 'src']
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          return ['  <Image', \`    src="\${args.src}"\`, \`    alt="\${args.alt}"\`, \`    ratio="11"\`, \`    objectFit="\${args.objectFit}"\`, \`    className="\${args.className}"\`, '  ></Image>', '  <Image', \`    src="\${args.src}"\`, \`    alt="\${args.alt}"\`, \`    ratio="43"\`, \`    objectFit="\${args.objectFit}"\`, \`    className="\${args.className}"\`, '  ></Image>', '  <Image', \`    src="\${args.src}"\`, \`    alt="\${args.alt}"\`, \`    ratio="54"\`, \`    objectFit="\${args.objectFit}"\`, \`    className="\${args.className}"\`, '  ></Image>', '  <Image', \`    src="\${args.src}"\`, \`    alt="\${args.alt}"\`, \`    ratio="169"\`, \`    objectFit="\${args.objectFit}"\`, \`    className="\${args.className}"\`, '  ></Image>'].join('\\n').trim();
+        }
+      }
+    }
+  }
+}`,...(p=(g=n.parameters)==null?void 0:g.docs)==null?void 0:p.source}}};var d,u,f;r.parameters={...r.parameters,docs:{...(d=r.parameters)==null?void 0:d.docs,source:{originalSource:`{
+  name: '圖片自適應',
+  args: {
+    src: 'https://picsum.photos/300/300',
+    alt: '',
+    ratio: '169',
+    objectFit: 'cover',
+    className: ''
+  },
+  render: args => ({
+    components: {
+      Image
+    },
+    setup() {
+      // Create a ref for modelValue to be used with v-model
+      return {
+        args
+      };
+    },
+    template: \`
+            <div style="display:flex; gap: 24px;">
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image 
+                           :src="args.src"
+                           :alt="args.alt"
+                           :ratio="args.ratio"
+                           objectFit="cover"
+                           class="\${args.className}"
+                           style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                    top: 50%; left: 50%;
+                    transform: translateX(-50%) translateY(-50%); ;
+                    font-size: 50px;
+                    color:white">cover</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                           :src="args.src"
+                           :alt="args.alt"
+                           :ratio="args.ratio"
+                           objectFit="contain"
+                           class="\${args.className}"
+                           style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                      top: 50%; left: 50%;
+                      transform: translateX(-50%) translateY(-50%); ;
+                      font-size: 50px;
+                      color:white">contain</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image
+                           :src="args.src"
+                           :alt="args.alt"
+                           :ratio="args.ratio"
+                           objectFit="fill"
+                           class="\${args.className}"
+                           style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                        top: 50%; left: 50%;
+                        transform: translateX(-50%) translateY(-50%); ;
+                        font-size: 50px;
+                        color:white">fill</p>
+                </div>
+                <div style="position: relative; width: fit-content; height: fit-content;">
+                    <Image 
+                           :src="args.src"
+                           :alt="args.alt"
+                           :ratio="args.ratio"
+                           objectFit="none"
+                           class="\${args.className}"
+                           style="width: 250px"
+                    ></Image>
+                    <p
+                        style="position: absolute; 
+                          top: 50%; left: 50%;
+                          transform: translateX(-50%) translateY(-50%); ;
+                          font-size: 50px;
+                          color:white">none</p>
+                </div>
+            </div>
+        \`
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      include: ['ratio', 'src']
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          return ['  <Image', \`    src="\${args.src}"\`, \`    alt="\${args.alt}"\`, \`    ratio="\${args.ratio}"\`, \`    objectFit="cover"\`, \`    className="\${args.className}"\`, '  ></Image>', '  <Image', \`    src="\${args.src}"\`, \`    alt="\${args.alt}"\`, \`    ratio="\${args.ratio}"\`, \`    objectFit="contain"\`, \`    className="\${args.className}"\`, '  ></Image>', '  <Image', \`    src="\${args.src}"\`, \`    alt="\${args.alt}"\`, \`    ratio="\${args.ratio}"\`, \`    objectFit="fill"\`, \`    className="\${args.className}"\`, '  ></Image>', '  <Image', \`    src="\${args.src}"\`, \`    alt="\${args.alt}"\`, \`    ratio="\${args.ratio}"\`, \`    objectFit="none"\`, \`    className="\${args.className}"\`, '  ></Image>'].join('\\n').trim();
+        }
+      }
+    }
+  }
+}`,...(f=(u=r.parameters)==null?void 0:u.docs)==null?void 0:f.source}}};const $=["ImageDefault","ImageRatio","ImageFit"];export{s as ImageDefault,r as ImageFit,n as ImageRatio,$ as __namedExportsOrder,v as default};
