@@ -2,8 +2,6 @@
 
 ---
 
-- 調整 storybook 左側選單順序
-
 🆙update：Dialog
 
 - 同步學長 CSS
