@@ -10,14 +10,6 @@ export default {
 	component: Dialog,
 	tags: ["autodocs"],
 	argTypes: {
-		// title: {
-		// 	description: "標題",
-		// 	control: { type: "text" },
-		// },
-		// content: {
-		// 	description: "內容",
-		// 	control: { type: "text" },
-		// },
 		hasClose: {
 			description:"是否有關閉按鈕",
 			control: { type: "boolean" },
@@ -26,7 +18,7 @@ export default {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
-		title: {
+		header: {
 			description: "標題",
 			control: { type: "text" },
 			table: {
@@ -51,7 +43,7 @@ export default {
 			},
 		},
 		footer: {
-			description: "footer 插槽",
+			description: "附註",
 			control: { type: "text" },
 
 			table: {
@@ -79,7 +71,7 @@ export const DialogDefault = {
 	args: {
 		hasClose: false,
 		className: '',
-		title: 'Title',
+		header: 'Title',
 		content: 'Content',
 	},
 	render: (args) => ({
@@ -112,7 +104,7 @@ export const DialogDefault = {
 					<Icon name="close" size="20"></Icon>
 				</button>
 				<div class="ded-dialog-header">
-					{{ args.title }}
+					{{ args.header }}
 				</div>
 				<div class="ded-dialog-body">
 					{{ args.content }}
@@ -170,10 +162,11 @@ export const DialogDefault = {
 };
 
 
-//==== Demo ====//
+//==== 互動模式 ====//
 export const DialogDemo = {
-	name: "Demo",
+	name: "互動模式",
 	args: {
+		content: 'Content',
 		hasClose: true,
 		className: '',
 	},
@@ -181,6 +174,10 @@ export const DialogDemo = {
 		components: { Dialog, Button, Title },
 		setup() {
 			const dialog = useDialog();
+			const onClose = () => {
+				window.alert('Close');
+				dialog.closeDialog(); // 關閉對話框
+			};
 			const onConfirm = () => {
 				window.alert('OK');
 				dialog.closeDialog(); // 關閉對話框
@@ -192,21 +189,23 @@ export const DialogDemo = {
 			return {
 				args,
 				dialog,
+				onClose,
 				onConfirm,
 				onCancel
 			}
 		},
 		template: `
 			<Dialog
-				title=""
-				:content="args.content"
 				:hasClose="args.hasClose"
 				className=""
 			>
-				<template #title>
-					<Title level="3">Title</Title>
+				<template #header>
+					<Title :level="3">Title</Title>
 				</template>
-				<template #footert>
+				<template #content>
+					<p>Content</p>
+				</template>
+				<template #footer>
 					<Button variant="contained" size="medium" class="ded-cancel-btn" @click="onCancel">
 						Cancel
 					</Button>
@@ -240,13 +239,14 @@ export const DialogDemo = {
 						`const dialog = useDialog();`,
 						'',
 						'<Dialog',
-						'  title=""',
-						'  :content="${args.content}"',
 						'  :hasClose="${args.hasClose}"',
 						'  className=""',
 						'>',
 						'  <template #title>',
 						'    <Title level="3">Title</Title>',
+						'  </template>',
+						'  <template #content>',
+						'    <p>Content</p>',
 						'  </template>',
 						'  <template #footer>',
 						'    <Button',

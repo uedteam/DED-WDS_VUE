@@ -12,14 +12,6 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	// title: {
-	// 	type: String,
-	// 	default: "Title",
-	// },
-	// content: {
-	// 	type: String,
-	// 	default: "Content",
-	// },
 	className: {
 		type: String,
 		default: "",
@@ -43,14 +35,14 @@ const props = defineProps({
 					</template>
 
 					<div class="ded-dialog-header">
-						<slot name="title">
-							{{ props.title }}
+						<slot name="header">
+<!--							{{ props.title }}-->
 						</slot>
 					</div>
 
 					<div class="ded-dialog-body">
 						<slot name="content">
-							{{ props.content }}
+<!--							{{ props.content }}-->
 						</slot>
 					</div>
 
