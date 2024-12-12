@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import Avatar from "@/ui/element/Avatar/Avatar.vue";
-import List from "@/ui/element/List/List.vue";
 
 // 定義 Props
 const props = defineProps({
@@ -60,30 +59,30 @@ const updateMenuPosition = () => {
 
 // 打開或關閉菜單時更新位置
 const handleClick = () => {
-	isOpen.value = !isOpen.value;
-	if (isOpen.value) {
-		updateMenuPosition();
-		window.addEventListener('resize', updateMenuPosition);
-		window.addEventListener('scroll', updateMenuPosition, true);
-		document.addEventListener('click', handleOutsideClick); // 新增
-	} else {
-		window.removeEventListener('resize', updateMenuPosition);
-		window.removeEventListener('scroll', updateMenuPosition, true);
-		document.removeEventListener('click', handleOutsideClick); // 新增
-	}
+    isOpen.value = !isOpen.value;
+    if (isOpen.value) {
+        updateMenuPosition();
+        window.addEventListener('resize', updateMenuPosition);
+        window.addEventListener('scroll', updateMenuPosition, true);
+        document.addEventListener('click', handleOutsideClick);
+    } else {
+        window.removeEventListener('resize', updateMenuPosition);
+        window.removeEventListener('scroll', updateMenuPosition, true);
+        document.removeEventListener('click', handleOutsideClick);
+    }
 };
+
 
 // 點擊外部時關閉菜單
 const handleOutsideClick = (event) => {
-	const menuElement = document.querySelector('.ded-dropdown-menu');
-	if (
-		restContainerRef.value &&
-		!restContainerRef.value.contains(event.target) &&
-		(!menuElement || !menuElement.contains(event.target))
-	) {
-		isOpen.value = false;
-		document.removeEventListener('click', handleOutsideClick);
-	}
+    if (
+        restContainerRef.value &&
+        !restContainerRef.value.contains(event.target) &&
+        (!document.querySelector('.ded-dropdown-menu')?.contains(event.target))
+    ) {
+        isOpen.value = false;
+        document.removeEventListener('click', handleOutsideClick);
+    }
 };
 
 
@@ -120,7 +119,7 @@ onBeforeUnmount(() => {
 			`ded-avatar-container-${props.size}` : 'ded-avatar-container-medium' ]">
 				<button
 					:class="[ 'ded-avatar', props.shape ? `ded-avatar-${props.shape}` : 'ded-avatar-circle' ]"
-					@click.prevent="handleClick"
+					@click="handleClick"
 				>
                     <span class="ded-avatar-text">
                         {{ `+${restCount}` }}
@@ -139,8 +138,7 @@ onBeforeUnmount(() => {
                         'z-index': 9999
                     }"
 				>
-
-					<List :hasOutline="true">
+					<ul class="ded-list ded-outline">
 						<li class="ded-list-item" v-for="(menu) in restList" :key="menu.userName">
 							<div class="ded-list-item-text">
 								<div class="ded-list-icon">
@@ -156,8 +154,7 @@ onBeforeUnmount(() => {
 								</div>
 							</div>
 						</li>
-					</List>
-
+					</ul>
 				</div>
 			</Teleport>
 		</template>

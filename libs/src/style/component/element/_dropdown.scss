@@ -1,89 +1,88 @@
 .ded-dropdown-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    font-size: $text-size-large;
-    width: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: $text-size-large;
+  width: auto;
 }
 
 .ded-dropdown {
-    display: flex;
-    align-items: center;
-    padding-inline: 4px;
-    color: $color-gray40;
-    border-width: $input-border-width;
-    border-style: solid;
-    border-color: $border-color-default;
-    border-radius: $radius-size-xsmall;
-    background-color: $color-white;
-    overflow: hidden;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $color-gray40;
+  border-width: $input-border-width;
+  border-style: solid;
+  border-color: $border-color-default;
+  border-radius: $radius-size-xsmall;
+  background-color: $color-white;
+  overflow: hidden;
+  cursor: pointer;
 
-    &-small {
-        padding-left: 8px;
-        padding-right: 8px;
-        font-size: $text-size-small;
-        height: $component-size-small
-    }
+  &-small {
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: $text-size-small;
+    height: $component-size-small;
+  }
 
-    &-medium {
-        padding-left: 12px;
-        padding-right: 12px;
-        font-size: $text-size-medium;
-        height: $component-size-medium ;
-    }
+  &-medium {
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: $text-size-medium;
+    height: $component-size-medium;
+  }
 
-    &-large {
-        padding-left: 16px;
-        padding-right: 16px;
-        font-size: $text-size-large;
-        height: $component-size-large ;
-    }
+  &-large {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: $text-size-large;
+    height: $component-size-large;
+  }
 
-    &-open {
-        transition: transform 0.3s;
-        transform: rotate(180deg);
-    }
+  &-open {
+    transition: transform 0.3s;
+    transform: rotate(180deg);
+  }
 
-    &-close {
-        transition: transform 0.3s;
-        transform: rotate(0deg);
-    }
+  &-close {
+    transition: transform 0.3s;
+    transform: rotate(0deg);
+  }
 }
 
 .ded-dropdown:hover {
-    border: 1px solid getBorderColor($mode, 'primary', 'hover');
-    box-shadow: 0 0 0 2px getBorderColor($mode, 'primary', 'hover');
+  border: 1px solid getBorderColor($mode, 'primary', 'hover');
+  box-shadow: 0 0 0 2px getBorderColor($mode, 'primary', 'hover');
 }
 
 .ded-dropdown:focus-within {
-    border: 1px solid getBorderColor($mode, 'primary', 'focus');
-    box-shadow: 0 0 0 3px getBorderColor($mode, 'primary', 'focus');
+  border: 1px solid getBorderColor($mode, 'primary', 'focus');
+  box-shadow: 0 0 0 3px getBorderColor($mode, 'primary', 'focus');
 }
 
 .ded-dropdown-selectValue-unselect {
-    color: $text-color-placeholder;
+  color: $text-color-placeholder;
 }
 
 .ded-dropdown-selectValue-select {
-    color: $color-black;
+  color: $color-black;
 }
 
 .ded-dropdown-input {
-    width: 100%;
+  width: 100%;
 
-    .ded-input-group {
-        border: none;
+  .ded-input-group {
+    border: none;
 
-        &:focus-within {
-            box-shadow: none;
-            border: none;
-        }
-
-        &:hover {
-            box-shadow: none;
-            border: none;
-        }
+    &:focus-within {
+      box-shadow: none;
+      border: none;
     }
+
+    &:hover {
+      box-shadow: none;
+      border: none;
+    }
+  }
 }
