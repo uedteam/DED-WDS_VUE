@@ -1,31 +1,30 @@
-## V1.0.0 (2024-12-12)
+## V1.0.0 (2024-12-16)
 
 ---
 
-🆙update：重寫 Input。
+🆙update：Input。
 
-- 同步學長 CSS
-- 增加 dropdown 判斷
+- 修改任何輸入方式都會出現叉叉
 
-🆙update：修改 dropdown。
+🆙update：Tooltip。
 
-- 同步學長 CSS
-- 修改彈窗
+- 修正 tooltip 滾動頁面位置沒更新問題
 
-🆙update：修改 List。
+🆙update：Dropdown。
 
-- 增加 emit 傳送選項到父層
+- 修正 Dropdown 滾動頁面下拉選單位置沒更新問題
 
-🆙update：修改 Breadcrumb。
+🆙update：List
 
-- 修改選單無法顯示問題
+- 增加 slot 功能，預設為 listItem 的 v-for 迴圈
 
-🆙update：AvatarStatus。
+🆙update：ListItem。
 
-- 修改顯示問題
+- 增加 icon slot 功能，可插入 avatar
+- 增加判斷 icon slot 是否有值，無值 label 往前移
 
-🆙update：AvatarGroup。
+🆙update：AvatarGroup
 
-- 修改顯示問題
+- 使用更新後的 List 元件
 
 ---
