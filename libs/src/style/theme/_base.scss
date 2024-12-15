@@ -17,18 +17,21 @@
 
   .ded-component-#{$size} {
     height: map.get($component-size, $size);
+    width: map.get($component-size, $size);
   }
 }
 
 // Loop: 邊框樣式
 @each $style in $borderStyles {
   .#{$style}-border {
-    @if ($style == 'line') {
-      border-width: getBorderStyle($mode, $style, 'width');
-      border-style: getBorderStyle($mode, $style, 'style');
-      border-color: getBorderStyle($mode, $style, 'color');
-    } @else {
-      box-shadow: getBorderStyle($mode, $style, 'fill');
+    @if($style =='line') {
+      border-width: getBorderStyle($style, 'width');
+      border-style: getBorderStyle($style, 'style');
+      border-color: getBorderStyle($style, 'color');
+    }
+
+    @else {
+      box-shadow: getBorderStyle($style, 'fill');
     }
   }
 }
