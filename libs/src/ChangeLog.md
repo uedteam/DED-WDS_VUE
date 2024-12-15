@@ -2,29 +2,169 @@
 
 ---
 
-🆙update：Input。
+# 🆙 Updates
 
-- 修改任何輸入方式都會出現叉叉
+### **Input**
 
-🆙update：Tooltip。
+- 所有輸入方式增加清除按鈕功能。
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
 
-- 修正 tooltip 滾動頁面位置沒更新問題
+### **Tooltip**
 
-🆙update：Dropdown。
+- 修正滾動頁面時 Tooltip 位置未更新的問題。
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
 
-- 修正 Dropdown 滾動頁面下拉選單位置沒更新問題
+### **Dropdown**
 
-🆙update：List
+- 修正滾動頁面時下拉選單位置未更新的問題。
+- 同步更新伊森修改版的 CSS。
 
-- 增加 slot 功能，預設為 listItem 的 v-for 迴圈
+### **List**
 
-🆙update：ListItem。
+- 增加 `slot` 功能，作為 `listItem` 預設的 `v-for` 迴圈。
+- 同步更新伊森修改版的 CSS。
 
-- 增加 icon slot 功能，可插入 avatar
-- 增加判斷 icon slot 是否有值，無值 label 往前移
+### **ListItem**
 
-🆙update：AvatarGroup
+- 增加 `icon` slot 功能，可插入 Avatar。
+- 判斷 `icon` slot 是否有值，無值時自動將 Label 前移。
 
-- 使用更新後的 List 元件
+### **AvatarGroup**
+
+- 使用更新後的 `List` 元件。
+- 同步更新伊森修改版的 CSS、HTML 結構及 Storybook 設定。
+
+### **Accordion**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Avatar**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Badge**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Breadcrumb**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Button**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+- 移除 CVA。
+
+### **Checkbox**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+- 微調相關細節。
+
+### **Dialog**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Divider**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Image**
+
+- 同步更新伊森修改版的 CSS。
+
+### **Menu**
+
+- 更新 Storybook 設定。
+
+### **Progress Circle Line**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Radio**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Slider**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **SliderControl**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Stepper**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Tabs**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Textarea**
+
+- 同步更新伊森修改版的 CSS。
+- 更新 Storybook 設定。
+
+### **Title**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Toggle**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
+
+### **Toast**
+
+- 同步更新伊森修改版的 CSS。
+- 調整 HTML 結構。
+- 更新 Storybook 設定。
 
 ---
+
+# ✨ New Features
+
+### **字體**
+
+- 新增 `Mabry` 字體檔至 `asset/Mabry`。
+
+---
+
+# 🆙 同步更新
+
+- 同步 `theme` 資料夾中的所有 CSS。
