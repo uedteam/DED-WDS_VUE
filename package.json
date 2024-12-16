@@ -11,7 +11,7 @@
     "deploy": "nx build && gh-pages -d build/DED-WDS",
     "build-storybook": "nx build-storybook",
     "deploy-storybook": "nx build-storybook && gh-pages -d dist/storybook",
-    "migrate-sass": "sass-migrator import libs/src/style"
+    "migrate-sass": "sass-migrator import ./libs/src/style"
   },
   "private": true,
   "dependencies": {
