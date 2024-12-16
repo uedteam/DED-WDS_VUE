@@ -1,9 +1,11 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, defineModel, onMounted, watch } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
-// 定義 Model
-const modelValue = defineModel();
+// 使用 defineModel 正確定義模型值
+const modelValue = defineModel({
+	default: []
+});
 
 // 定義 Props
 const props = defineProps({
@@ -11,14 +13,22 @@ const props = defineProps({
 		type: String,
 		default: "primary",
 		validator: (value) =>
-			["primary", "secondary", "tertiary", "success", "warning", "error", "info"].includes(value),
+			[
+				"primary",
+				"secondary",
+				"neutral",
+				"info",
+				"success",
+				"warning",
+				"error",
+			].includes(value),
 	},
 	dataSource: {
-		type: Object,
+		type: Array,
 		required: true,
 	},
 	initValue: {
-		type: Object,
+		type: Array,
 		required: true,
 	},
 	direction: {
@@ -30,78 +40,101 @@ const props = defineProps({
 	className: {
 		type: String,
 		default: "",
-	},
+	}
 });
 
-// 用於儲存每個選項的選中狀態
-const isCheck = ref([]);
+// 使用唯一識別碼生成方法
+const generateId = (value) => {
+	return `checkbox-${value}`;
+};
 
-// 根據傳入的 initValue 和 modelValue 設置初始值
-watch(
-	() => props.initValue,
-	(newVal) => {
-		const checkedValues = newVal;
-		// 初始化選中狀態
-		isCheck.value = props.dataSource.map((item) => checkedValues.includes(item.value));
-		modelValue.value = [...checkedValues];
-	},
-	{immediate: true}
+// 初始化選取狀態
+const isCheck = ref(
+	props.dataSource.map((item) =>
+		props.initValue.includes(item.value)
+	)
 );
 
-// 切換選中狀態
-const handleCheck = (item, index) => {
-	const isMultiple = Array.isArray(modelValue.value);
+// 監聽 modelValue
+watch(
+	modelValue, // 監聽 modelValue
+	(newModelValue) => {
+		// 當 modelValue 改變時，更新 isCheck
+		isCheck.value = props.dataSource.map((item) =>
+			newModelValue.includes(item.value)
+		);
+	},
+	{ immediate: true }
+);
 
-	if (isMultiple) {
-		if (isCheck.value[index]) {
-			modelValue.value = modelValue.value.filter((value) => value !== item.value);
-		} else {
-			modelValue.value.push(item.value);
-		}
-	} else {
-		modelValue.value = !isCheck.value[index];
-	}
+// 初始化時同步 modelValue
+onMounted(() => {
+	modelValue.value = props.initValue;
+});
+
+// 切換選取狀態
+const handleCheck = (item, index) => {
+	// 切換當前項的選取狀態
 	isCheck.value[index] = !isCheck.value[index];
+
+	// 更新 modelValue
+	if (isCheck.value[index]) {
+		// 如果選取，加入到 modelValue
+		modelValue.value = [...modelValue.value, item.value];
+	} else {
+		// 如果取消選取，從 modelValue 移除
+		modelValue.value = modelValue.value.filter(
+			(value) => value !== item.value
+		);
+	}
 };
 </script>
 
 <template>
-	<div :class="{
-		'ded-checkbox-container': true,
-		[`ded-checkbox-container-${props.direction}`]: props.direction,
-		[props.className]: !!props.className
-		}">
+	<div
+		:class="{
+      'ded-checkbox-container': true,
+      [`ded-checkbox-container-${direction}`]: direction,
+      [className]: !!className
+    }"
+	>
 		<label
-			v-for="(item, index) in props.dataSource"
-			:key="item.id"
-			:for="item.id"
-			:class="{'ded-checkbox': true}"
+			v-for="(item, index) in dataSource"
+			:key="item.value"
+			:for="generateId(item.value)"
+			class="ded-checkbox"
+			:class="item.isDisabled?'ded-checkbox-input-disabled':''"
 		>
 			<input
 				class="ded-checkbox-input"
 				type="checkbox"
-				:id="item.id"
+				:id="generateId(item.value)"
 				:name="item.name"
 				:value="item.value"
 				:checked="isCheck[index]"
 				@change="handleCheck(item, index)"
 			/>
-			<!-- checkbox - 選擇框樣式 -->
+			<!-- checkbox 選擇框樣式 -->
 			<div
 				:class="[
 					'ded-checkbox-icon',
+					item.isDisabled?'ded-checkbox-icon-disabled':'',
 					isCheck[index]
-						? `ded-checkbox-checked-${props.themeColor}`
-						: `ded-checkbox-unchecked-${props.themeColor}`,
+					? `ded-checkbox-checked-${themeColor}`
+					: `ded-checkbox-unchecked-${themeColor}`,
 				]"
 			>
 				<Icon v-if="isCheck[index]" name="check"></Icon>
 			</div>
-			<!-- checkbox - 選項文字 -->
-			<span class="ded-checkbox-text">{{ item.label }}</span>
+			<!-- checkbox 選項文字 -->
+			<span class="ded-checkbox-text"
+			      :class="item.isDisabled?'ded-checkbox-text-disabled':''"
+			>
+				{{ item.label }}
+			</span>
 		</label>
 	</div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 </style>

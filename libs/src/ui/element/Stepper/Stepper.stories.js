@@ -28,7 +28,12 @@ export default {
 		},
 		currentStep: {
 			description: "當前步驟（從 0 開始）",
-			control: { type: "number" },
+			control: {
+				type: "number",
+				min:0,
+				max:2,
+				step: 1
+			},
 		},
 		direction: {
 			description: "方向",
@@ -44,11 +49,6 @@ export default {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
-		'ded-step-content':{
-			table: {
-				disable: true,
-			}
-		}
 	},
 	parameters: {
 		// 自動文件
@@ -182,11 +182,11 @@ export const StepperHorizontal = {
 				:className="args.className"
 			>
 			</Stepper>
-			<div style="display:flex; justify-content: center; gap: 8px;">
-				<Button variant="contained" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">
+			<div style="display: flex; justify-content: flex-start; gap: 8px; margin-top: 16px;">
+				<Button variant="filled" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">
 					Previous
 				</Button>
-				<Button variant="contained" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">
+				<Button variant="filled" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">
 					Next
 				</Button>
 			</div>
@@ -210,10 +210,10 @@ export const StepperHorizontal = {
 						`  className="${args.className}"`,
 						'></Stepper>',
 						'<div style="display:flex; justify-content: center; gap: 8px;">',
-						'  <Button variant="contained" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">',
+						'  <Button variant="filled" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">',
 						'    Previous',
 						'  </Button>',
-						'  <Button variant="contained" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">',
+						'  <Button variant="filled" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">',
 						'    Next',
 						'  </Button>',
 						'</div>',
@@ -280,10 +280,10 @@ export const StepperVertical = {
 			>
 			</Stepper>
 			<div style="display:flex; justify-content: flex-start; gap: 8px; margin-top: 16px;">
-				<Button variant="contained" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">
+				<Button variant="filled" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">
 					Previous
 				</Button>
-				<Button variant="contained" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">
+				<Button variant="filled" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">
 					Next
 				</Button>
 			</div>
@@ -307,10 +307,10 @@ export const StepperVertical = {
 						`  className="${args.className}"`,
 						'></Stepper>',
 						'<div style="display:flex; justify-content: flex-start; gap: 8px; margin-top: 16px;">',
-						'  <Button variant="contained" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">',
+						'  <Button variant="filled" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">',
 						'    Previous',
 						'  </Button>',
-						'  <Button variant="contained" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">',
+						'  <Button variant="filled" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">',
 						'    Next',
 						'  </Button>',
 						'</div>',
