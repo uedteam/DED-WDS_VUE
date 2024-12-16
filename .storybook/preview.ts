@@ -15,17 +15,16 @@ dialogContainer.id = 'dialog';
 document.body.appendChild(dialogContainer);
 
 const preview = {
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS, // 開啟更多 viewport 選擇
-    },
-    controls: {
-      expanded: true,
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
+  initialGlobals: {
+    styles: {
+      body: {
+        margin: 0,
+        padding: 0,
+        fontFamily: 'Arial, sans-serif',
       },
     },
+  },
+  parameters: {
     backgrounds: {
       values: [
         { name: 'light', value: '#fff' },
@@ -37,6 +36,7 @@ const preview = {
       storySort: {
         method: 'alphabetical', // 可選擇 'alphabetical', 'configure', 或其他自定義方法
         order: ['Introduction', 'Components'], // 可根據需求調整順序
+        locales: 'en-US',
       },
     },
     html: {
@@ -45,16 +45,27 @@ const preview = {
         useTabs: true,
       },
     },
-  },
-
-  initialGlobals: {
-    styles: {
-      body: {
-        margin: 0,
-        padding: 0,
-        fontFamily: 'Arial, sans-serif',
+    viewport: {
+      viewports: INITIAL_VIEWPORTS, // 開啟更多 viewport 選擇
+    },
+    controls: {
+      expanded: true,
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
+    // docs: {
+    //   toc: {
+    //     contentsSelector: '.sbdocs-content',
+    //     headingSelector: 'h2, h3',
+    //     ignoreSelector: '#primary',
+    //     disable: false,
+    //     unsafeTocbotOptions: {
+    //       orderedList: false,
+    //     },
+    //   }, // 👈 Enables the table of contents
+    // },
   },
 
   tags: ['autodocs'],
