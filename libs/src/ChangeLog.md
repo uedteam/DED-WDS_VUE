@@ -1,23 +1,23 @@
-## V1.0.0 (2024-12-17)
+## V1.0.0 (2024-12-18)
 
-# 🐛fix
+# ✨new
 
-### **Tooltip**
+### **StatusIndicator**
 
-- lodash debounce 改 throttle。
-
----
+- 新增 StatusIndicator 元件。
+- 自網頁複製 CSS (待學長版更後更新)
+- 增加 7 個 circleIcons
 
 # 🆙 Updates
 
-### **ListItem**
+### **Dialog**
 
-- 刪除多餘文字。
+- 對調按鈕位置。
 
-### **\_Rest.scss**
+### **Tabs**
 
-- 調整 font-face 路徑。
+- 要擋最大值與負值。
 
-### **storybook**
+### **Title**
 
-- 同步 storybook 文件夾中設定。
+- default 改 none。
