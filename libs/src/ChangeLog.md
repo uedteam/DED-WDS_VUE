@@ -1,23 +1,37 @@
-## V1.0.0 (2024-12-18)
-
-# ✨new
-
-### **StatusIndicator**
-
-- 新增 StatusIndicator 元件。
-- 自網頁複製 CSS (待學長版更後更新)
-- 增加 7 個 circleIcons
+## V1.0.0 (2024-12-20)
 
 # 🆙 Updates
 
-### **Dialog**
+### **同步學長 SCSS (#71)**
 
-- 對調按鈕位置。
+### **Accordion**
 
-### **Tabs**
+- 調整 vue 元件
+- 調整 storybook 元件
 
-- 要擋最大值與負值。
+### **Breadcrumb**
+
+- 調整 vue 元件
+
+### **Button**
+
+- 調整 vue 元件
+- 調整 storybook 元件
+
+### **Divider**
+
+- 調整 vue 元件
+- 調整 storybook 元件
+
+### **Input**
+
+- 調整 vue 元件
+
+### **Tag**
+
+- 調整 vue 元件
+- 調整 storybook 元件
 
 ### **Title**
 
-- default 改 none。
+- 調整 storybook 元件
