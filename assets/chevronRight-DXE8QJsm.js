@@ -1,1 +1,0 @@
-import{o,a as r,e as t}from"./vue.esm-bundler-sK8WeL-9.js";const n={xmlns:"http://www.w3.org/2000/svg",fill:"none",stroke:"currentColor","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"2",viewBox:"0 0 24 24"};function s(l,e){return o(),r("svg",n,e[0]||(e[0]=[t("path",{d:"m9 18 6-6-6-6"},null,-1)]))}const i={render:s};export{i as default,s as render};
