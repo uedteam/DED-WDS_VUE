@@ -1,37 +1,62 @@
-## V1.0.0 (2024-12-20)
+## V1.0.0 (2024-12-23)
+
+# ✨feat
+
+### **Search**
+
+- vue 元件
+- storybook 元件
+
+### **Pagination**
+
+- 新增 Vue
+- 新增 storybook
+- 新增 icons
+
+### **Table**
+
+- vue 元件
+- storybook 元件
 
 # 🆙 Updates
 
-### **同步學長 SCSS (#71)**
+### **同步學長 SCSS (#72)**
 
-### **Accordion**
+### **Avatar**
 
 - 調整 vue 元件
 - 調整 storybook 元件
 
-### **Breadcrumb**
+### **Avatar-Group**
 
 - 調整 vue 元件
+- 調整 storybook 元件
 
 ### **Button**
 
-- 調整 vue 元件
-- 調整 storybook 元件
+- 修改 Vue
+- 修改 storybook
 
-### **Divider**
+### **Grid**
 
-- 調整 vue 元件
-- 調整 storybook 元件
+- 修改 Vue(與學長同步)
+- 修改 storybook(與學長同步)
+- 修改 SCSS(與學長同步)
 
-### **Input**
+### **Status Indicator**
 
-- 調整 vue 元件
+- 修改 Vue
+- 修改 storybook
 
 ### **Tag**
 
-- 調整 vue 元件
-- 調整 storybook 元件
+- 判斷 props.href 是否合法，true 則增加 a 標籤
 
-### **Title**
+### **Toast**
 
-- 調整 storybook 元件
+- 修改 Vue
+- 修改 storybook
+
+### **Tooltip**
+
+- 修改 storybook
