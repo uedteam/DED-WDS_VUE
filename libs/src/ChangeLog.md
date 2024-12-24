@@ -1,62 +1,54 @@
-## V1.0.0 (2024-12-23)
+## V1.0.0 (2024-12-24)
 
 # ✨feat
 
-### **Search**
+### **XXX**
 
-- vue 元件
-- storybook 元件
-
-### **Pagination**
-
-- 新增 Vue
-- 新增 storybook
-- 新增 icons
-
-### **Table**
-
-- vue 元件
-- storybook 元件
+- XXX
 
 # 🆙 Updates
 
-### **同步學長 SCSS (#72)**
-
-### **Avatar**
-
-- 調整 vue 元件
-- 調整 storybook 元件
-
-### **Avatar-Group**
-
-- 調整 vue 元件
-- 調整 storybook 元件
+### **同步學長 SCSS (#73)**
 
 ### **Button**
 
-- 修改 Vue
-- 修改 storybook
+- 修改 Vue (學 #73)
 
-### **Grid**
+### **Checkbox**
 
-- 修改 Vue(與學長同步)
-- 修改 storybook(與學長同步)
-- 修改 SCSS(與學長同步)
+- 修改 Vue (學 #73)
+- 修改 Storybook (學 #73)
 
-### **Status Indicator**
+### **Image**
 
-- 修改 Vue
-- 修改 storybook
+- 修改 Storybook (學 #73)
+
+### **Input**
+
+- 修改 vue (學 #73)
+
+### **Radio**
+
+- 修改 vue (學 #73)
+- 修改 Storybook (學 #73)
 
 ### **Tag**
 
-- 判斷 props.href 是否合法，true 則增加 a 標籤
+- 修改 vue (學 #73)
+- 修改 Storybook (學 #73)
 
 ### **Toast**
 
-- 修改 Vue
-- 修改 storybook
+- 修改 vue (學 #73)
+- 修改 Storybook (學 #73)
+- icon 部分未同步主題色 (待)
 
-### **Tooltip**
+### **Slider**
 
-- 修改 storybook
+- 修改 vue (學 #73)
+- 修改 Storybook (學 #73)
+
+### **SliderControl**
+
+- 修改 vue (學 #73)
+- 修改 Storybook (學 #73)
