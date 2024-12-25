@@ -2,7 +2,7 @@
 
 # ✨feat
 
-### **Date-Picker**
+### **Date-Picker (#73)**
 
 - 新增 Vue
 - 新增 Scss
@@ -14,6 +14,6 @@
 
 ### **同步學長 SCSS (#74)**
 
-### **Input**
+### **Input (#73)**
 
 - 修改 Vue
