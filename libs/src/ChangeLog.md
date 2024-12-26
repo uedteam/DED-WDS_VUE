@@ -1,54 +1,19 @@
-## V1.0.0 (2024-12-24)
+## V1.0.0 (2024-12-26)
 
 # ✨feat
 
-### **XXX**
+### **Date-Picker (#73)**
 
-- XXX
+- 新增 Vue
+- 新增 Scss
+- 新增 Storybook
+
+### **card_bg.png**
 
 # 🆙 Updates
 
-### **同步學長 SCSS (#73)**
+### **同步學長 SCSS (#74)**
 
-### **Button**
+### **Input (#73)**
 
-- 修改 Vue (學 #73)
-
-### **Checkbox**
-
-- 修改 Vue (學 #73)
-- 修改 Storybook (學 #73)
-
-### **Image**
-
-- 修改 Storybook (學 #73)
-
-### **Input**
-
-- 修改 vue (學 #73)
-
-### **Radio**
-
-- 修改 vue (學 #73)
-- 修改 Storybook (學 #73)
-
-### **Tag**
-
-- 修改 vue (學 #73)
-- 修改 Storybook (學 #73)
-
-### **Toast**
-
-- 修改 vue (學 #73)
-- 修改 Storybook (學 #73)
-- icon 部分未同步主題色 (待)
-
-### **Slider**
-
-- 修改 vue (學 #73)
-- 修改 Storybook (學 #73)
-
-### **SliderControl**
-
-- 修改 vue (學 #73)
-- 修改 Storybook (學 #73)
+- 修改 Vue

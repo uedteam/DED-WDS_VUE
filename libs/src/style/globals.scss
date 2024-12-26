@@ -6,7 +6,7 @@
 @import './theme/_reset';
 @import './theme/_map';
 @import './theme/_base';
-// @import './theme/_dark_light';
+//@import "./theme/_dark_light";
 
 //基礎設定
 @import './component/element/_accordion';
@@ -16,6 +16,7 @@
 @import './component/element/_breadcrumb';
 @import './component/element/_button';
 @import './component/element/_card';
+@import './component/element/_card_simple';
 @import './component/element/_checkbox';
 @import './component/element/_datepicker';
 @import './component/element/_dialog';
@@ -25,6 +26,7 @@
 @import './component/element/_input';
 @import './component/element/_list';
 @import './component/element/_menu';
+@import './component/element/_navbar';
 @import './component/element/_pagination';
 @import './component/element/_password';
 @import './component/element/_progress';
@@ -46,12 +48,12 @@
 @import './component/element/_tooltip';
 
 //舊的
-// @import "./component/old/_sliderJonyOldVer";
-// @import "./component/old/_tablePeter";
+// @import './component/old/_sliderJonyOldVer';
+// @import './component/old/_tablePeter';
 
 //頁面佈局
 @import './layout/_grid';
-// @import './layout/_gridSystem'; //已編譯，有加 ded- 前綴的
+//@import "./layout/_gridSystem"; //已編譯，有加 ded- 前綴的
 @import './layout/_layout';
 //@import "./layout/_gridLayout"; //不知為何非得編譯才能解讀
 //@import "./layout/_gridUtilities"; //不知為何非得編譯才能解讀
