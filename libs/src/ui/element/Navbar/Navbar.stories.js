@@ -47,7 +47,7 @@ export default {
 export const NavbarDefault = {
 	name: '預設項目',
 	args: {
-		options: [
+		links: [
 			{
 				"label": "Products",
 				"href": "#products",
