@@ -4,13 +4,23 @@
 
 ### **Card (#74)**
 
-- 修改 Vue (學 #74)
-- 修改 Storybook (學 #74)
+- 新增 Vue (學 #74)
+- 新增 Storybook (學 #74)
 
 ### **CardSimple (#74)**
 
-- 修改 Vue (學 #74)
-- 修改 Storybook (學 #74)
+- 新增 Vue (學 #74)
+- 新增 Storybook (學 #74)
+
+### **Select (#74)**
+
+- 新增 Vue (學 #74)
+- 新增 Storybook (學 #74)
+
+### **Navbar (#74)**
+
+- 新增 Vue (學 #74)
+- 新增 Storybook (學 #74)
 
 # 🆙 Updates
 
