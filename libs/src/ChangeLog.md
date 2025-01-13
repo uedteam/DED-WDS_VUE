@@ -1,19 +1,65 @@
-## V1.0.0 (2024-12-26)
+## V1.0.0 (2024-12-27)
 
 # ✨feat
 
-### **Date-Picker (#73)**
+### **Card (#74)**
 
-- 新增 Vue
-- 新增 Scss
-- 新增 Storybook
+- 新增 Vue (學 #74)
+- 新增 Storybook (學 #74)
 
-### **card_bg.png**
+### **CardSimple (#74)**
+
+- 新增 Vue (學 #74)
+- 新增 Storybook (學 #74)
+
+### **Select (#74)**
+
+- 新增 Vue (學 #74)
+- 新增 Storybook (學 #74)
+
+### **Navbar (#74)**
+
+- 新增 Vue (學 #74)
+- 新增 Storybook (學 #74)
 
 # 🆙 Updates
 
-### **同步學長 SCSS (#74)**
+### **Button (#74)**
 
-### **Input (#73)**
+- 修改 Storybook (學 #74)
 
-- 修改 Vue
+### **Date-Picker (#74)**
+
+- 修改 Vue (學 #74)
+- 修改 Storybook (學 #74)
+
+### **CircleProgress (#74)**
+
+- 修改 Vue (學 #74) 去除 themeColor
+- 修改 Storybook (學 #74) 去除 themeColor
+
+### **LineProgress (#74)**
+
+- 修改 Vue (學 #74) 去除 themeColor
+- 修改 Storybook (學 #74) 去除 themeColor
+
+### **Menu (#74)**
+
+- 修改 Vue (學 #74)
+- 修改 Storybook (學 #74)
+- 修改 SCSS (學 #74)
+
+### **Title (#74)**
+
+- 修改 Vue (學 #74) 去除 themeColor
+- 修改 Storybook (學 #74) 去除 themeColor
+
+### **Toast (#74)**
+
+- 修改 Vue (學 #74) 去除 themeColor
+- 修改 Storybook (學 #74) 去除 themeColor
+
+### **Table (#74)**
+
+- 修改 Vue (學 #74)
+- 修改 Storybook (學 #74)
