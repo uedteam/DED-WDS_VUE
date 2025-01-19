@@ -39,7 +39,7 @@ const props = defineProps({
             <!-- links -->
             <ul class="navbar-links">
                 <Button
-                    v-for="link in props.links"
+                    v-for="link in props.dataSource"
                     :key="link.href"
                     themeColor="primary"
                     variant="text"
