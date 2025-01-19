@@ -1,5 +1,4 @@
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Input from "@/ui/element/Input/Input.vue";
@@ -11,13 +10,14 @@ const modelValue = defineModel();
 
 // 定義 props
 const props = defineProps({
-    links: {
+    dataSource: {
         type: Array,
         required: true,
         default: () => [],
     },
     logoSrc: {
         type: String,
+        required: true,
         default: "",
     },
     className: {
@@ -34,7 +34,7 @@ const props = defineProps({
         <div class="navbar-menu">
             <!-- 公司logo -->
             <Button themeColor="primary" variant="text">
-                <Icon :src="props.logoSrc" />
+                <Icon :src="props.logoSrc" alt="Logo" class="navbar-logo"  />
             </Button>
             <!-- links -->
             <ul class="navbar-links">
@@ -55,7 +55,7 @@ const props = defineProps({
                 <Input
                     type="text"
                     :placeholder="props.placeholder"
-                    prefix="search"
+                    prefix="SvgSearch"
                     :size="props.size"
                     initValue=""
                     :isDisable="props.isDisable"
@@ -72,7 +72,7 @@ const props = defineProps({
                         :limit="99"
                         className=""
                     >
-                        <Icon name="notification" size="26"></Icon>
+                        <Icon name="SvgNotification" size="26"></Icon>
                     </Badge>
                 </div>
 	            <div class="navbar-icons-icon">
