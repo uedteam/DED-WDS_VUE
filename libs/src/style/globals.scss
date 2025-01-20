@@ -48,8 +48,8 @@
 @import './component/element/_tooltip';
 
 //舊的
-// @import './component/old/_sliderJonyOldVer';
-// @import './component/old/_tablePeter';
+// @import "./component/old/_sliderJonyOldVer";
+// @import "./component/old/_tablePeter";
 
 //頁面佈局
 @import './layout/_grid';
@@ -57,6 +57,9 @@
 @import './layout/_layout';
 //@import "./layout/_gridLayout"; //不知為何非得編譯才能解讀
 //@import "./layout/_gridUtilities"; //不知為何非得編譯才能解讀
+
+//預製版型
+@import './template/_auth_flow';
 
 //輔助工具
 @import './utility/fakeContent';
