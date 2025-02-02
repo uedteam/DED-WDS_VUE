@@ -1,6 +1,7 @@
 {
-  "name": "@ded-wds/source",
+  "name": "@ded-wds/ui-vue",
   "version": "0.0.0",
+  "description": "Web Design System",
   "license": "MIT",
   "type": "module",
   "scripts": {
