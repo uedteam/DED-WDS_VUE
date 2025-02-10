@@ -1,23 +1,29 @@
-## V1.0.0 (2025-02-08)
+## V1.0.0 (2025-02-11)
+
+# ✨feat
+
+### **Colors.mdx**
+
+### **Typography.mdx**
 
 # 🆙 Updates 修改 Amos 簡報修改項目
 
-### **DatePicker**
+### **Navbar**
 
-### **Dialog**
+### **Radio**
 
-### **Image**
+### **Search**
 
-### **Input**
+### **Select**
 
-### **List**
+### **SideNav**
 
-### **Pagination**
+### **Slider**
 
-### **CircleProgress**
+### **SliderControl**
 
-### **LineProgress**
+### **SliderControl**
 
-### **Tab**
+### **Stepper**
 
-### **Card**
+### **Table**
