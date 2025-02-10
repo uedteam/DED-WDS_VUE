@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import List from "@/ui/element/List/List.vue";
 import ListItem from "@/ui/element/List/ListItem.vue";
 function formatDataSource(dataSource) {
@@ -15,7 +16,7 @@ const dataSource = [
 		"label": "Option1",
 		"value": "option1",
 		"href": "",
-		"prefix": "SvgHome"
+		"prefix": "SvgAccount"
 	},
 	{
 		"label": "Option2",
@@ -27,7 +28,7 @@ const dataSource = [
 		"label": "Option3",
 		"value": "option3",
 		"href": "#",
-		"prefix": "SvgCalendar"
+		"prefix": "SvgAccount"
 	},
 ]
 
@@ -58,6 +59,13 @@ export default {
 			description: "客製化樣式",
 			control: { type: 'text' },
 		},
+		onSelect: {
+			description: "選擇項目時觸發的事件",
+			control: false,
+			table: {
+				category: 'emits',
+			}
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -69,7 +77,6 @@ export default {
 		},
 	},
 };
-
 
 //==== 預設項目 ====//
 export const ListDefaultStory = {
@@ -85,6 +92,7 @@ export const ListDefaultStory = {
 		setup() {
 			return {
 				args,
+				handleItemClick: action("onSelect"),
 			}
 		},
 		template: `
@@ -93,6 +101,7 @@ export const ListDefaultStory = {
 				:hasOutline="args.hasOutline"
 				:hasDivider="args.hasDivider"
 				:className="args.className"
+				@onSelect="handleItemClick"
 			>
 				
 			</List>
@@ -114,6 +123,7 @@ export const ListDefaultStory = {
 						`    :hasOutline="${args.hasOutline}"`,
 						`    :hasDivider="${args.hasDivider}"`,
 						`    className="${args.className}"`,
+						`    @onSelect="handleItemClick"`,
 						'>',
 						'</List>',
 					].join('\n').trim();
@@ -123,9 +133,9 @@ export const ListDefaultStory = {
 	},
 };
 
-//==== 選單樣式 ====//
-export const ListTypeStory = {
-	name: "選單樣式",
+//==== 清單樣式-外框 ====//
+export const ListOutLineStory = {
+	name: "清單樣式-外框",
 	args: {
 		dataSource:dataSource,
 		hasDivider: false,
@@ -136,6 +146,7 @@ export const ListTypeStory = {
 		setup() {
 			return {
 				args,
+				handleItemClick: action("onSelect"),
 			}
 		},
 		template: `
@@ -144,6 +155,7 @@ export const ListTypeStory = {
 				:hasOutline=true
 				:hasDivider="args.hasDivider"
 				:className="args.className"
+				@onSelect="handleItemClick"
 			>
 			</List>
         `,
@@ -151,7 +163,7 @@ export const ListTypeStory = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			exclude: ['default' ],
+			exclude: ['hasOutline', 'default' ],
 		},
 		docs: {
 			source: {
@@ -164,6 +176,62 @@ export const ListTypeStory = {
 						`    :hasOutline="true"`,
 						`    :hasDivider="${args.hasDivider}"`,
 						`    className="${args.className}"`,
+						`    @onSelect="handleItemClick"`,
+						'>',
+						'</List>',
+					].join('\n').trim();
+				}
+			}
+		}
+	},
+};
+
+//==== 清單樣式-分隔線 ====//
+export const ListDividerStory = {
+	name: "清單樣式-分隔線",
+	args: {
+		dataSource: dataSource,
+		hasOutline: false,
+		// hasDivider: false,
+		className: '',
+	},
+	render: (args) => ({
+		components: { List, ListItem },
+		setup() {
+			return {
+				args,
+				handleItemClick: action("onSelect"),
+			}
+		},
+		template: `
+			<List
+				:dataSource="args.dataSource"
+				:hasOutline="args.hasOutline"
+				:hasDivider="true"
+				:className="args.className"
+				@onSelect="handleItemClick"
+			>
+				
+			</List>
+        `,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			exclude: ['hasDivider', 'default' ],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const dataSourceString = formatDataSource(args.dataSource);
+					return [
+						'<List',
+						`    :dataSource="${dataSourceString}"`,
+						`    :hasOutline="${args.hasOutline}"`,
+						`    :hasDivider="true"`,
+						`    className="${args.className}"`,
+						`    @onSelect="handleItemClick"`,
 						'>',
 						'</List>',
 					].join('\n').trim();
