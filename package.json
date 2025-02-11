@@ -19,7 +19,8 @@
     "dompurify": "^3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
