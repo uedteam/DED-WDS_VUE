@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 // 定義 Props
@@ -33,20 +34,40 @@ const props = defineProps({
     // }
 });
 
-const emit = defineEmits(["itemClick"]);
+const emit = defineEmits(["itemClick", "toggleExpand"]);
 
 // 獲取導航組件類型
 const getComponentType = (item) => {
 	return props.useRouter && item.path ? "router-link" : "a";
 };
 
+// 點擊項目時觸發，傳遞 item 與 event 參數
+const onItemClick = (event) => {
+    emit("itemClick", { item: props.item, event });
+};
+
 // 切換展開/收起狀態
 const toggleExpand = (item) => {
-	// 切換當前項目的展開狀態
-	props.expandedItems[item.path] = !props.expandedItems[item.path];
+    emit("toggleExpand", item);
 };
+
+// 展開狀態
+const isExpanded = computed(() => props.expandedItems[props.item.path]);
+
+// 箭頭樣式
+const arrowStyle = computed(() => ({
+    color: props.color,
+    verticalAlign: 'middle',
+    transition: 'transform 0.3s',
+    transform: isExpanded.value ? 'rotate(180deg)' : 'rotate(0deg)'
+}));
 </script>
 
+<!--<script>-->
+<!--export default {-->
+<!--    name: "MenuItem"-->
+<!--};-->
+<!--</script>-->
 
 <template>
 	<li :class="{'ded-nav-item': true, 'ded-nav-item-side': props.hasDivider }">
@@ -56,7 +77,8 @@ const toggleExpand = (item) => {
 			:to="props.useRouter ? props.item.path : undefined"
 			:href="!props.useRouter ? props.item.path : undefined"
 			class="ded-nav-item-link"
-			:style="`color:${props.color}`"
+			:style="{ color: props.color }"
+            @click="onItemClick"
 		>
 			<!-- 圖標 -->
 			<template v-if="props.item.prefix">
@@ -82,12 +104,7 @@ const toggleExpand = (item) => {
 				<Icon
 					size="24"
 					name="SvgArrowDown"
-					:style="{
-						color: props.color,
-						verticalAlign: 'middle',
-			            transition: 'transform 0.3s',
-			            transform: props.expandedItems[props.item.path] ? 'rotate(180deg)' : 'rotate(0deg)'
-		            }"
+					:style="arrowStyle"
 				></Icon>
 			</div>
 		</template>
@@ -95,22 +112,23 @@ const toggleExpand = (item) => {
 		<!-- 子菜單 -->
 		<ul
 			class="ded-nav-subitem"
-			:class="{ 'expanded': props.expandedItems[props.item.path] }"
+			:class="{ 'expanded': isExpanded }"
 			v-show="
                     !props.isCollapsed &&
                     props.item.children &&
-                    props.expandedItems[props.item.path]
+                    isExpanded
                   "
         >
 			<MenuItem
 				v-for="child in props.item.children"
 				:key="child.path"
 				:item="child"
-				:is-collapsed="props.isCollapsed"
-				:use-router="props.useRouter"
+				:isCollapsed="props.isCollapsed"
+				:useRouter="props.useRouter"
 				:color="props.color"
-				:expanded-items="props.expandedItems"
-				@itemClick="emit('itemClick', $event)"
+				:expandedItems="props.expandedItems"
+                @itemClick="emit('itemClick', $event)"
+                @toggleExpand="emit('toggleExpand', $event)"
 			/>
 		</ul>
 	</li>

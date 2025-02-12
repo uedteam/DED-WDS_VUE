@@ -1,29 +1,19 @@
-## V1.0.0 (2025-02-11)
+## V1.0.0 (2025-02-12)
 
 # ✨feat
 
-### **Colors.mdx**
-
-### **Typography.mdx**
+### **vue router**
 
 # 🆙 Updates 修改 Amos 簡報修改項目
 
-### **Navbar**
+### **Menu**
 
-### **Radio**
+### **Tag**
 
-### **Search**
+### **Textarea**
 
-### **Select**
+### **Toast**
 
-### **SideNav**
+### **Toggle**
 
-### **Slider**
-
-### **SliderControl**
-
-### **SliderControl**
-
-### **Stepper**
-
-### **Table**
+### **Title**
