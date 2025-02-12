@@ -81,6 +81,7 @@ const prefixIcon = computed(() => {
     } else if (props.prefix === 'decrease') {
         return 'SvgMinus';
     }
+    return '';
 })
 const suffixIcon = computed(() => {
     if (props.suffix === 'increase') {
@@ -88,6 +89,7 @@ const suffixIcon = computed(() => {
     } else if (props.suffix === 'decrease') {
         return 'SvgMinus';
     }
+    return '';
 })
 </script>
 
