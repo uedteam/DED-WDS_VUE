@@ -24,6 +24,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	isDisabled: {
+		type: Boolean,
+		default: false,
+	},
     className: {
         type: String,
     },
@@ -51,10 +55,11 @@ const handleClick = (event) => {
 </script>
 
 <template>
-    <div
+    <li
         :class="{
 			'ded-list-item': true,
 			'ded-list-item-side': props.hasDivider,
+			'ded-list-item-disabled': props.isDisabled,
 			[props.className]: !!props.className
 		}"
         @click="handleClick">
@@ -84,7 +89,7 @@ const handleClick = (event) => {
                 <div class="ded-list-item-label">{{ props.label }}</div>
             </div>
         </template>
-    </div>
+    </li>
 </template>
 
 <style scoped lang="scss">
