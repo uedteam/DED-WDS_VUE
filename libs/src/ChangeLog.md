@@ -1,23 +1,25 @@
-## V1.0.0 (2025-02-13)
+## V1.0.0 (2025-02-14)
 
-# 🆙 Updates 修改 Amos 簡報修改項目
+# 修改 Amos 簡報修改項目 #8
+
+## 🆙 Updates
 
 ### **Accordion**
 
-### **Button**
+### **Dialog**
+
+### **Divider**
+
+### **List**
+
+### **Menu**
+
+### **Pagination**
 
 ### **Input**
 
-### **Dropdown**
-
-### **Checkbox**
-
-### **Radio**
-
-### **Select**
-
 ### **Search**
 
-### **Slider**
+### **Tabs**
 
-### **SliderControl**
+### **Toast**
