@@ -1,10 +1,10 @@
 <script setup>
-import { ref, computed, defineExpose  } from 'vue';
+import { ref, computed } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Model
 const modelValue = defineModel();
-// const emit = defineEmits(['clearInput', 'update:initValue']);
+const emits = defineEmits(['clearDatePicker']);
 
 // 定義 Props
 const props = defineProps({
@@ -77,7 +77,7 @@ const hintClass = computed(() => {
 // 功能: 清除輸入框
 const clearInput = () => {
 	modelValue.value = "";
-	// emit('clearInput');
+    emits('clearDatePicker');
 	// emit('update:initValue', '');
 };
 
