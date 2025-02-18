@@ -150,7 +150,7 @@ export const InputDefault = {
     parameters: {
         controls: {
             // include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'maxLimit', 'hint', 'isDisabled','className','modelValue'],
-            exclude: ['input'],
+            exclude: ['input','clearDatePicker'],
         },
         docs: {
             source: {
@@ -178,9 +178,9 @@ export const InputDefault = {
     },
 };
 
-//==== 輸入框類型 ====//
+//==== 輸入類型 ====//
 export const InputTypesStory = {
-    name: "輸入框類型",
+    name: "輸入類型",
     args: {
         // label: 'Account',
         // type: 'text',
@@ -262,7 +262,7 @@ export const InputTypesStory = {
     parameters: {
         controls: {
             // include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'modelValue', 'maxLimit', 'className'],
-            exclude: ['label', 'type', 'prefix','input'],
+            exclude: ['label', 'type', 'prefix','input','clearDatePicker'],
         },
         docs: {
             source: {
@@ -385,7 +385,7 @@ export const InputHintTypeStory = {
     parameters: {
         controls: {
             // include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'modelValue', 'maxLimit', 'className'],
-            exclude: ['hint', 'input'],
+            exclude: ['hint', 'input', 'clearDatePicker'],
         },
         docs: {
             source: {
