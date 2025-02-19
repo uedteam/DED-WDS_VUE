@@ -1,15 +1,15 @@
-## V1.0.0 (2025-02-18)
+## V1.0.0 (2025-02-19)
 
-# 修改 Amos 簡報修改項目 #8
+# 修改 Amos 簡報修改項目 #9
 
 ## 🆙 Updates
 
 ### **Input**
 
-### **DatePicker**
+### **Icon**
 
-### **Badge**
+### **Divider**
 
-# 修改 Amos 簡報修改項目 #9
+### **Select**
 
-### **SideNav**
+### **Textarea**
