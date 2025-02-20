@@ -15,10 +15,7 @@
   },
   "private": true,
   "dependencies": {
-    "@ded-wds/source": "file:",
     "dompurify": "^3.2.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "vue": "^3.3.4",
     "vue-router": "^4.5.0"
   },
