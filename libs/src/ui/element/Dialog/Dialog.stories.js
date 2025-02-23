@@ -86,7 +86,7 @@ export const DialogDefault = {
 		modelValue: true,
 		header: `<Title themeColor="primary" :level="2" >Title</Title>`,
 		content: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
-		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="md" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="md" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
+		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="4px" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="4px" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
 	},
 	render: (args) => ({
 		components: { Dialog, Button, Icon, Title, Grid, Row, Column },
@@ -112,7 +112,7 @@ export const DialogDefault = {
 		},
 		template: `
 			<div :class="['ded-dialog-content', ...args.className.split(' ')]" v-if="args.modelValue">
-				<button v-if="args.hasClose" class="ded-dialog-close-btn" @click="onClose">
+				<button v-if="args.hasClose" class="ded-dialog-close-btn" @click="onClose()">
 					<Icon name="SvgClose" size="20"></Icon>
 				</button>
 				<div class="ded-dialog-header">
@@ -125,12 +125,12 @@ export const DialogDefault = {
 					<Grid>
 						<Row :hasGap="true">
 							<Column :sm="4">
-								<Button variant="filled" radius="md" width="fluid" @click="onConfirm">
+								<Button variant="filled" radius="4px" width="fluid" @click="onConfirm">
 									OK
 								</Button>
 							</Column>
 							<Column :sm="4">
-								<Button variant="soft" radius="md" width="fluid" @click="onCancel">
+								<Button variant="soft" radius="4px" width="fluid" @click="onCancel">
 									Cancel
 								</Button>
 							</Column>
@@ -144,51 +144,74 @@ export const DialogDefault = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-
 		},
 		docs: {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Dialog`,
-						`  :hasClose="${args.hasClose}"`,
-						`  v-model="modelValue"`,
-						`  className=""`,
-						`>`,
-						`  <template #header>`,
-						`    <Title :level="2">Title</Title>`,
-						`  </template>`,
-						`  <template #content>`,
-						`    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
-						`  </template>`,
-						`  <template #footer>`,
-						`    <Button`,
-						`      variant="filled"`,
-						`      radius="md"`,
-						`      @click="onConfirm"`,
-						`    >`,
-						`      OK`,
-						`    </Button>`,
-						`    <Button`,
-						`      variant="filled"`,
-						`      radius="md"`,
-						`      class="ded-cancel-btn"`,
-						`      @click="onCancel"`,
-						`    >`,
-						`      Cancel`,
-						`    </Button>`,
-						`  </template>`,
-						`</Dialog>`,
-						``,
-						`<Button`,
-						`  variant="filled"`,
-						`  radius="md"`,
-						`  @click="dialog.showDialog"`,
-						`>`,
-						`  Open Dialog`,
-						`</Button>`,
-					].join("\n").trim();
+						`<script setup>`,
+						`import { ref } from "vue";`,
+						`import Dialog from "@/ui/element/Dialog/Dialog.vue";`,
+						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import Title from "@/ui/element/Title/Title.vue";`,
+						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
+						`import Row from "@/ui/layout/Grid/Row.vue";`,
+						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`const modelValue = ref(${args.modelValue});`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <Dialog`,
+						`    ${args.hasClose !== undefined ? `:hasClose="${args.hasClose}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  >`,
+						`    <template #header>`,
+						`      <Title themeColor="primary" :level="2">Title</Title>`,
+						`    </template>`,
+						`  `,
+						`    <template #content>`,
+						`      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
+						`    </template>`,
+						`  `,
+						`    <template #footer>`,
+						`      <Grid>`,
+						`        <Row :hasGap="true">`,
+						`          <Column :sm="4">`,
+						`            <Button`,
+						`              variant="filled"`,
+						`              radius="4px"`,
+						`              width="fluid"`,
+						`              @click="onConfirm()"`,
+						`            >`,
+						`              OK`,
+						`            </Button>`,
+						`          </Column>`,
+						`          <Column :sm="4">`,
+						`            <Button`,
+						`              variant="soft"`,
+						`              radius="4px"`,
+						`              width="fluid"`,
+						`              @click="onCancel()"`,
+						`            >`,
+						`              Cancel`,
+						`            </Button>`,
+						`          </Column>`,
+						`        </Row>`,
+						`      </Grid>`,
+						`    </template>`,
+						`  </Dialog>`,
+						`  `,
+						`  <Button`,
+						`    variant="filled"`,
+						`    radius="4px"`,
+						`    @click="modelValue = true"`,
+						`  >`,
+						`    Open Dialog`,
+						`  </Button>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
@@ -204,16 +227,11 @@ export const DialogDemo = {
 		className: '',
 		header: `<Title themeColor="primary" :level="2" >Title</Title>`,
 		content: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
-		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="md" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="md" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
+		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="4px" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="4px" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
 	},
 	render: (args) => ({
 		components: { Dialog, Button, Icon, Title, Grid, Row, Column },
 		setup() {
-
-			const onClose = () => {
-				window.alert('Close');
-				args.modelValue = false // 關閉對話框
-			};
 			const onConfirm = () => {
 				window.alert('OK');
 				args.modelValue = false // 關閉對話框
@@ -225,7 +243,6 @@ export const DialogDemo = {
 
 			return {
 				args,
-				onClose,
 				onConfirm,
 				onCancel,
 			}
@@ -246,12 +263,12 @@ export const DialogDemo = {
 					<Grid>
 						<Row :hasGap="true">
 							<Column :sm="4">
-								<Button variant="filled" radius="md" width="fluid" @click="onConfirm">
+								<Button variant="filled" radius="4px" width="fluid" @click="onConfirm()">
 									OK
 								</Button>
 							</Column>
 							<Column :sm="4">
-								<Button variant="soft" radius="md" width="fluid" @click="onCancel">
+								<Button variant="soft" radius="4px" width="fluid" @click="onCancel()">
 									Cancel
 								</Button>
 							</Column>
@@ -279,52 +296,68 @@ export const DialogDemo = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Dialog`,
-						`  :hasClose="${args.hasClose}"`,
-						`  className=""`,
-						`>`,
-						`  <template #header>`,
-						`    <Title :level="2">Title</Title>`,
-						`  </template>`,
-						`  <template #content>`,
-						`    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
-						`  </template>`,
-						`  <template #footer>`,
-						`    <Grid>`,
-						`      <Row :hasGap="true">`,
-						`        <Column :sm="4">`,
-						`          <Button`,
-						`            variant="filled"`,
-						`            radius="md"`,
-						`            width="fluid"`,
-						`            @click="onConfirm"`,
-						`          >`,
-						`            OK`,
-						`          </Button>`,
-						`        </Column>`,
-						`        <Column :sm="4">`,
-						`          <Button`,
-						`            variant="soft"`,
-						`            radius="md"`,
-						`            width="fluid"`,
-						`            @click="onCancel"`,
-						`          >`,
-						`            Cancel`,
-						`          </Button>`,
-						`        </Column>`,
-						`      </Row>`,
-						`    </Grid>`,
-						`  </template>`,
-						`</Dialog>`,
-						``,
-						`<Button`,
-						`  variant="filled"`,
-						`  radius="4px"`,
-						`  @click="dialog.showDialog"`,
-						`>`,
-						`  Open Dialog`,
-						`</Button>`,
-					].join("\n").trim();
+						`<script setup>`,
+						`import { ref } from "vue";`,
+						`import Dialog from "@/ui/element/Dialog/Dialog.vue";`,
+						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import Title from "@/ui/element/Title/Title.vue";`,
+						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
+						`import Row from "@/ui/layout/Grid/Row.vue";`,
+						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`const modelValue = ref(${args.modelValue});`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <Dialog`,
+						`    ${args.hasClose !== undefined ? `:hasClose="${args.hasClose}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  >`,
+						`    <template #header>`,
+						`      <Title themeColor="primary" :level="2">Title</Title>`,
+						`    </template>`,
+						`  `,
+						`    <template #content>`,
+						`      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
+						`    </template>`,
+						`  `,
+						`    <template #footer>`,
+						`      <Grid>`,
+						`        <Row :hasGap="true">`,
+						`          <Column :sm="4">`,
+						`            <Button`,
+						`              variant="filled"`,
+						`              radius="4px"`,
+						`              width="fluid"`,
+						`              @click="onConfirm()"`,
+						`            >`,
+						`              OK`,
+						`            </Button>`,
+						`          </Column>`,
+						`          <Column :sm="4">`,
+						`            <Button`,
+						`              variant="soft"`,
+						`              radius="4px"`,
+						`              width="fluid"`,
+						`              @click="onCancel()"`,
+						`            >`,
+						`              Cancel`,
+						`            </Button>`,
+						`          </Column>`,
+						`        </Row>`,
+						`      </Grid>`,
+						`    </template>`,
+						`  </Dialog>`,
+						`  `,
+						`  <Button`,
+						`    variant="filled"`,
+						`    radius="4px"`,
+						`    @click="modelValue = true"`,
+						`  >`,
+						`    Open Dialog`,
+						`  </Button>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
