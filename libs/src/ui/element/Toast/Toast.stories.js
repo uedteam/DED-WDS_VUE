@@ -1,10 +1,10 @@
-import { useToast } from '@/ui/element/Toast/useToast.js';
+import { useToast } from '@/composables/useToast.js';
 import { computed } from 'vue';
 import Toast from "@/ui/element/Toast/Toast.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Title from '@/ui/element/Title/Title.vue';
-import StatusIndicator from '@/ui/element/Status-Indicator/StatusIndicator.vue';
+import StatusIndicator from '@/ui/element/StatusIndicator/StatusIndicator.vue';
 
 export default {
 	components: {Icon, Toast},
@@ -142,7 +142,7 @@ export const ToastDefault = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message" :class="toastHeaderMsgThemeClass">
 						<Icon :name="args.prefix" size="20"></Icon>
-						<Title :themeColor="args.themeColor" level="5">
+						<Title :themeColor="args.themeColor" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -165,16 +165,32 @@ export const ToastDefault = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
+						'<script setup>',
+						'  import Toast from "@/ui/element/Toast/Toast.vue";',
+						`  import Button from "@/ui/element/Button/Button.vue";`,
+						'  import { useToast } from "@/composables/useToast.js";',
+						'  const { add, toasts, remove } = useToast();',
+						'  const showToast = () => {',
+						'    add({',
+						`      themeColor: "${args.themeColor}",`,
+						`      title: "${args.title}",`,
+						`      content: "${args.content}",`,
+						`      prefix: "${args.prefix}",`,
+						`      duration: ${args.duration},`,
+						'    });',
+						'  };',
+						'</script>',
+						'',
 						'<template>',
 						`  <Toast`,
 						`    v-for="toast in toasts"`,
 						`    :key="toast.id"`,
 						`    :themeColor="toast.themeColor"`,
-						`    :title="${args.title}"`,
-						`    :content="${args.content}"`,
-						`    :prefix="${args.prefix}"`,
-						`    :duration="${args.duration}"`,
-						`    :className="${args.className}"`,
+						`    :title="toast.title"`,
+						`    :content="toast.content"`,
+						`    :prefix="toast.prefix"`,
+						`    :duration="toast.duration"`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
 						`    @onClose="remove(toast.id)"`,
 						`  >`,
 						`    <template #action>`,
@@ -184,27 +200,13 @@ export const ToastDefault = {
 						`  <Button`,
 						`    themeColor="primary"`,
 						`    variant="filled"`,
-						`    radius="md"`,
+						`    radius="4px"`,
 						`    @click="showToast"`,
 						`  >`,
 						`    Toast Trigger`,
 						`  </Button>`,
 						'</template>',
-						'',
-						'<script setup>',
-						'  import { useToast } from "@/path/to/useToast";',
-						'',
-						'  const { add, toasts, remove } = useToast();',
-						'',
-						'  const showToast = () => {',
-						'    add({',
-						`      themeColor: "${args.themeColor}",`,
-						`      title: "${args.title}",`,
-						`      content: "${args.content}",`,
-						'    });',
-						'  };',
-						'</script>',
-					].join('\n').trim();
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
@@ -245,7 +247,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-success">
 						<Icon name="SvgSuccessCircle" size="20"></Icon>
-						<Title themeColor="success" level="5">
+						<Title themeColor="success" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -267,7 +269,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-warning">
 						<Icon name="SvgWarningTri" size="20"></Icon>
-						<Title themeColor="warning" level="5">
+						<Title themeColor="warning" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -289,7 +291,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-error">
 						<Icon name="SvgErrorCircle" size="20"></Icon>
-						<Title themeColor="error" level="5">
+						<Title themeColor="error" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -311,7 +313,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-info">
 						<Icon name="SvgInfoCircle" size="20"></Icon>
-						<Title themeColor="info" level="5">
+						<Title themeColor="info" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -333,7 +335,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-neutral">
 						<Icon name="SvgDisableCircle" size="20"></Icon>
-						<Title themeColor="neutral" level="5">
+						<Title themeColor="neutral" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -357,139 +359,116 @@ export const ToastTotal = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Toast`,
-						`    v-for="toast in toasts"`,
-						`    :key="toast.id"`,
-						`    themeColor="success"`,
-						`    :title="${args.title}"`,
-						`    :content="${args.content}"`,
-						`    prefix="SuccessCircleIcon"`,
-						`    :duration="${args.duration}"`,
-						`    className="${args.className}"`,
-						`    @onClose="remove(toast.id)"`,
-						`  >`,
-						`    <template #action>`,
-						`       <div>Action</div>`,
-						`    </template>`,
-						`</Toast>`,
-						`<Button`,
-						`    themeColor="primary"`,
-						`    variant="filled"`,
-						`    radius="4px"`,
-						`    @click="showToast"`,
-						`>`,
-						`    Toast Trigger`,
-						`</Button>`,
-
-						`<Toast`,
-						`    v-for="toast in toasts"`,
-						`    :key="toast.id"`,
-						`    themeColor="warning"`,
-						`    :title="${args.title}"`,
-						`    :content="${args.content}"`,
-						`    prefix="WarningCircleIcon"`,
-						`    :duration="${args.duration}"`,
-						`    className="${args.className}"`,
-						`    @onClose="remove(toast.id)"`,
-						`  >`,
-						`    <template #action>`,
-						`       <div>Action</div>`,
-						`    </template>`,
-						`</Toast>`,
-						`<Button`,
-						`    themeColor="primary"`,
-						`    variant="filled"`,
-						`    radius="4px"`,
-						`    @click="showToast"`,
-						`>`,
-						`    Toast Trigger`,
-						`</Button>`,
-
-						`<Toast`,
-						`    v-for="toast in toasts"`,
-						`    :key="toast.id"`,
-						`    themeColor="error"`,
-						`    :title="${args.title}"`,
-						`    :content="${args.content}"`,
-						`    prefix="ErrorCircleIcon"`,
-						`    :duration="${args.duration}"`,
-						`    className="${args.className}"`,
-						`    @onClose="remove(toast.id)"`,
-						`  >`,
-						`    <template #action>`,
-						`       <div>Action</div>`,
-						`    </template>`,
-						`</Toast>`,
-						`<Button`,
-						`    themeColor="primary"`,
-						`    variant="filled"`,
-						`    radius="4px"`,
-						`    @click="showToast"`,
-						`>`,
-						`    Toast Trigger`,
-						`</Button>`,
-
-						`<Toast`,
-						`    v-for="toast in toasts"`,
-						`    :key="toast.id"`,
-						`    themeColor="info"`,
-						`    :title="${args.title}"`,
-						`    :content="${args.content}"`,
-						`    prefix="InfoCircleIcon"`,
-						`    :duration="${args.duration}"`,
-						`    className="${args.className}"`,
-						`    @onClose="remove(toast.id)"`,
-						`  >`,
-						`    <template #action>`,
-						`       <div>Action</div>`,
-						`    </template>`,
-						`</Toast>`,
-						`<Button`,
-						`    themeColor="primary"`,
-						`    variant="filled"`,
-						`    radius="4px"`,
-						`    @click="showToast"`,
-						`>`,
-						`    Toast Trigger`,
-						`</Button>`,
-						`<Toast`,
-						`    v-for="toast in toasts"`,
-						`    :key="toast.id"`,
-						`    themeColor="neutral"`,
-						`    :title="${args.title}"`,
-						`    :content="${args.content}"`,
-						`    prefix="DisableCircleIcon"`,
-						`    :duration="${args.duration}"`,
-						`    className="${args.className}"`,
-						`    @onClose="remove(toast.id)"`,
-						`  >`,
-						`    <template #action>`,
-						`       <div>Action</div>`,
-						`    </template>`,
-						`</Toast>`,
-						`<Button`,
-						`    themeColor="primary"`,
-						`    variant="filled"`,
-						`    radius="4px"`,
-						`    @click="showToast"`,
-						`>`,
-						`    Toast Trigger`,
-						`</Button>`,
-						'',
 						'<script setup>',
-						'  import { useToast } from "@/path/to/useToast";',
-						'',
+						'  import Toast from "@/ui/element/Toast/Toast.vue";',
+						`  import Button from "@/ui/element/Button/Button.vue";`,
+						'  import { useToast } from "@/composables/useToast.js";',
 						'  const { add, toasts, remove } = useToast();',
-						'',
-						'  const showToast = () => {',
+						'  const showSuccessToast = () => {',
 						'    add({',
-						`      themeColor: "${args.themeColor}",`,
-						`      title: "${args.title}",`,
-						`      content: "${args.content}",`,
+						`      themeColor: "success",`,
+						`      ${args.title ? `title: "${args.title}",` : ""}`,
+						`      ${args.content ? `content: "${args.content}",` : ""}`,
+						`      prefix: "SvgSuccessCircle",`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
+						'    });',
+						'  };',
+						'  const showWarningToast = () => {',
+						'    add({',
+						`      themeColor: "warning",`,
+						`      ${args.title ? `title: "${args.title}",` : ""}`,
+						`      ${args.content ? `content: "${args.content}",` : ""}`,
+						`      prefix: "SvgWarningTri",`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
+						'    });',
+						'  };',
+						'  const showErrorToast = () => {',
+						'    add({',
+						`      themeColor: "error",`,
+						`      ${args.title ? `title: "${args.title}",` : ""}`,
+						`      ${args.content ? `content: "${args.content}",` : ""}`,
+						`      prefix: "SvgErrorCircle",`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
+						'    });',
+						'  };',
+						'  const showInfoToast = () => {',
+						'    add({',
+						`      themeColor: "info",`,
+						`      ${args.title ? `title: "${args.title}",` : ""}`,
+						`      ${args.content ? `content: "${args.content}",` : ""}`,
+						`      prefix: "SvgInfoCircle",`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
+						'    });',
+						'  };',
+						'  const showDisableToast = () => {',
+						'    add({',
+						`      themeColor: "neutral",`,
+						`      ${args.title ? `title: "${args.title}",` : ""}`,
+						`      ${args.content ? `content: "${args.content}",` : ""}`,
+						`      prefix: "SvgDisableCircle",`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
 						'    });',
 						'  };',
 						'</script>',
-					].join('\n').trim();
+						'',
+						'<template>',
+						`  <Toast`,
+						`    v-for="toast in toasts"`,
+						`    :key="toast.id"`,
+						`    :themeColor="toast.themeColor"`,
+						`    :title="toast.title"`,
+						`    :content="toast.content"`,
+						`    :prefix="toast.prefix"`,
+						`    :duration="toast.duration"`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    @onClose="remove(toast.id)"`,
+						`  >`,
+						`    <template #action>`,
+						`       <div>Action</div>`,
+						`    </template>`,
+						`  </Toast>`,
+						`  <Button`,
+						`    themeColor="success"`,
+						`    variant="filled"`,
+						`    radius="4px"`,
+						`    @click="showSuccessToast"`,
+						`  >`,
+						`    Success Trigger`,
+						`  </Button>`,
+						`  <Button`,
+						`    themeColor="warning"`,
+						`    variant="filled"`,
+						`    radius="4px"`,
+						`    @click="showWarningToast"`,
+						`  >`,
+						`    Warning Trigger`,
+						`  </Button>`,
+						`  <Button`,
+						`    themeColor="error"`,
+						`    variant="filled"`,
+						`    radius="4px"`,
+						`    @click="showErrorToast"`,
+						`  >`,
+						`    Error Trigger`,
+						`  </Button>`,
+						`  <Button`,
+						`    themeColor="info"`,
+						`    variant="filled"`,
+						`    radius="4px"`,
+						`    @click="showInfoToast"`,
+						`  >`,
+						`    Info Trigger`,
+						`  </Button>`,
+						`  <Button`,
+						`    themeColor="neutral"`,
+						`    variant="filled"`,
+						`    radius="4px"`,
+						`    @click="showDisableToast"`,
+						`  >`,
+						`    Disable Trigger`,
+						`  </Button>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
@@ -561,6 +540,22 @@ export const ToastInterAction = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
+						'<script setup>',
+						'  import Toast from "@/ui/element/Toast/Toast.vue";',
+						`  import Button from "@/ui/element/Button/Button.vue";`,
+						'  import { useToast } from "@/composables/useToast.js";',
+						'  const { add, toasts, remove } = useToast();',
+						'  const showToast = () => {',
+						'    add({',
+						`      themeColor: "${args.themeColor}",`,
+						`      title: "${args.title}",`,
+						`      content: "${args.content}",`,
+						`      prefix: "${args.prefix}",`,
+						`      duration: ${args.duration},`,
+						'    });',
+						'  };',
+						'</script>',
+						'',
 						'<template>',
 						`  <Toast`,
 						`    v-for="toast in toasts"`,
@@ -568,9 +563,9 @@ export const ToastInterAction = {
 						`    :themeColor="toast.themeColor"`,
 						`    :title="toast.title"`,
 						`    :content="toast.content"`,
-						`    :prefix="${args.prefix}"`,
-						`    :duration="${args.duration}"`,
-						`    :className="${args.className}"`,
+						`    :prefix="toast.prefix"`,
+						`    :duration="toast.duration"`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
 						`    @onClose="remove(toast.id)"`,
 						`  >`,
 						`    <template #action>`,
@@ -586,21 +581,7 @@ export const ToastInterAction = {
 						`    Toast Trigger`,
 						`  </Button>`,
 						'</template>',
-						'',
-						'<script setup>',
-						'  import { useToast } from "@/path/to/useToast";',
-						'',
-						'  const { add, toasts, remove } = useToast();',
-						'',
-						'  const showToast = () => {',
-						'    add({',
-						`      themeColor: "${args.themeColor}",`,
-						`      title: "${args.title}",`,
-						`      content: "${args.content}",`,
-						'    });',
-						'  };',
-						'</script>',
-					].join('\n').trim();
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}

@@ -1,4 +1,11 @@
 <script setup>
+if (!document.getElementById("toast")) {
+	const toastContainer = document.createElement("div");
+	toastContainer.id = "toast";
+	toastContainer.classList.add("ded-toast-container");
+	document.body.appendChild(toastContainer);
+}
+
 import { ref, onMounted, onUnmounted } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 import Button from '@/ui/element/Button/Button.vue';
@@ -82,7 +89,7 @@ onUnmounted(() => {
             <div class="ded-toast-header">
                 <div :class="['ded-toast-header-message', `ded-toast-header-message-${props.themeColor}`]">
                     <Icon :name="props.prefix" size="20"></Icon>
-                    <Title :themeColor="props.themeColor" level="5">
+                    <Title :themeColor="props.themeColor" :level="5">
                         {{ props.title }}
                     </Title>
                 </div>
