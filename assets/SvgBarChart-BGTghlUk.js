@@ -1,1 +1,0 @@
-import{o as r,c as t,a as o}from"./vue.esm-bundler-qCK_iSPY.js";const n={xmlns:"http://www.w3.org/2000/svg",fill:"currentColor",viewBox:"0 0 24 24"};function a(s,e){return r(),t("svg",n,e[0]||(e[0]=[o("path",{d:"M16 20v-7h4v7zm-6 0V4h4v16zm-6 0V9h4v11z"},null,-1)]))}const c={render:a};export{c as default,a as render};
