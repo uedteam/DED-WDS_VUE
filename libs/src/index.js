@@ -28,7 +28,7 @@ import Select from './ui/element/Select/Select.vue';
 import SideNav from './ui/element/SideNav/SideNav.vue';
 import Slider from './ui/element/Slider/Slider.vue';
 import SliderControl from './ui/element/SliderControl/SliderControl.vue';
-import StatusIndicator from './ui/element/Status-Indicator/StatusIndicator.vue';
+import StatusIndicator from './ui/element/StatusIndicator/StatusIndicator.vue';
 import Stepper from './ui/element/Stepper/Stepper.vue';
 import Table from './ui/element/Table/Table.vue';
 import Tag from './ui/element/Tag/Tag.vue';
