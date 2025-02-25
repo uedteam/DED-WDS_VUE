@@ -1,85 +1,9 @@
-## V1.0.0 (2025-02-24)
+## V1.0.0 (2025-02-25)
 
-# 檢整所有元件 showCode。經測試所有元件皆可拷貝 showCode 於專案內正常使用
+### ✨feat
 
-# 尚須調整：調整 import 路徑為打包 npm 的路徑
+- 新增 Vue Installation
 
-## 🆙 Updates
+### 🆙 Updates
 
-### **Accordion**
-
-### **Accordion**
-
-### **Avatar**
-
-### **AvatarGroup**
-
-### **Badge**
-
-### **Breadcrumb**
-
-### **Button**
-
-### **Card**
-
-### **CardSimple**
-
-### **Checkbox**
-
-### **DatePicker**
-
-### **Dialog**
-
-### **Divider**
-
-### **Grid**
-
-### **Icon**
-
-### **Image**
-
-### **Input**
-
-### **Layout**
-
-### **List**
-
-### **Menu**
-
-### **Navbar**
-
-### **Pagination**
-
-### **CircleProgress**
-
-### **LineProgress**
-
-### **Radio**
-
-### **Search**
-
-### **Select**
-
-### **SideNav**
-
-### **Slider**
-
-### **SliderControl**
-
-### **StatusIndicator**
-
-### **Stepper**
-
-### **Tabs**
-
-### **Tag**
-
-### **Textarea**
-
-### **Tooltip**
-
-### **Title**
-
-### **Toast**
-
-### **Table**
+- 所有storybook (40個元件) showCode 的 import 來源為 @ded-wds-vue/ui
