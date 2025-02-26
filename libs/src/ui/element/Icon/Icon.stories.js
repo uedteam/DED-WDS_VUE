@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 // 取得 icon 資料夾內所有名稱
-const iconFiles = import.meta.glob('@/assets/icon/*.svg', { eager: true });
+const iconFiles = import.meta.glob('@/assets/icons/*.svg', { eager: true });
 const icons = Object.keys(iconFiles).map((path) =>
 	path.replace(/^.*[\\/]/, '').replace(/\.svg$/, '')
 ).filter((name) => name !== "SvgAuo");
@@ -88,7 +88,7 @@ export const IconDefaultStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Icon from "@/ui/element/Icon/Icon.vue";`,
+						`import { Icon } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
