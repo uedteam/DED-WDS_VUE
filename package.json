@@ -38,7 +38,8 @@
     "storybook": "nx storybook",
     "deploy": "nx build && gh-pages -d build/DED-WDS",
     "build-storybook": "nx build-storybook",
-    "deploy-storybook": "nx build-storybook && gh-pages -d dist/storybook"
+    "artifactregistry-login": "npx google-artifactregistry-auth",
+    "print-access-token": "gcloud auth application-default print-access-token"
   },
   "dependencies": {
     "@ded-wds-vue/ui": "file:",
