@@ -1,36 +1,9 @@
 {
-  "name": "@ded-wds-vue/ui",
-  "version": "1.0.2",
+  "name": "@ded-wds/ui-vue",
+  "version": "0.0.0",
   "description": "Web Design System",
   "license": "MIT",
-  "author": "Kevin Yang <kevin.kk.yang@auo.com>",
-  "contributors": [
-    "Amos Lee <amos.lee@auo.com>"
-  ],
-  "homepage": "https://uedteam.github.io/DED-WDS_VUE",
-  "main": "dist/lib/index.umd.js",
   "type": "module",
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    "./composables": "./dist/lib/composables/index.js",
-    "./components": "./dist/lib/index.js",
-    ".": "./dist/lib/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/uedteam/DED-WDS_VUE.git"
-  },
-  "bugs": {
-    "url": "https://github.com/uedteam/DED-WDS_VUE/issues"
-  },
-  "keywords": [
-    "ded",
-    "design system",
-    "wds",
-    "ds"
-  ],
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
@@ -38,11 +11,10 @@
     "storybook": "nx storybook",
     "deploy": "nx build && gh-pages -d build/DED-WDS",
     "build-storybook": "nx build-storybook",
-    "artifactregistry-login": "npx google-artifactregistry-auth",
-    "print-access-token": "gcloud auth application-default print-access-token"
+    "deploy-storybook": "nx build-storybook && gh-pages -d dist/storybook"
   },
+  "private": true,
   "dependencies": {
-    "@ded-wds-vue/ui": "file:",
     "dompurify": "^3.2.1",
     "vue": "^3.3.4",
     "vue-router": "^4.5.0"
