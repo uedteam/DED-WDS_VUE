@@ -1,4 +1,4 @@
-import{j as n,M as r,e as i}from"./index-CgSJ_dCj.js";import{useMDXComponents as e}from"./index-Cu0fsqDN.js";import"./iframe-DhwQNC6M.js";import"./index-CEXj7t9i.js";import"./index-DrFu-skq.js";const a=`## V1.0.0 (2025-02-27)
+import{j as n,M as r,e as i}from"./index-CyrKxnOm.js";import{useMDXComponents as e}from"./index-DEFsA8g2.js";import"./iframe-D5bse4PZ.js";import"./index-CEXj7t9i.js";import"./index-DrFu-skq.js";const a=`## V1.0.0 (2025-02-27)
 
 ### 🆙 Updates
 
