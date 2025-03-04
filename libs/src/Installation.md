@@ -82,7 +82,7 @@ npm install @ded-wds-vue/ui@latest
 - 增加 vite config plugins svgLoader() 項目
 
 ```js
-import svgr from 'vite-svg-loader'; //👈 加入這行
+import svgLoader from 'vite-svg-loader'; //👈 加入這行
 
 export default defineConfig({
   plugins: [
@@ -97,9 +97,9 @@ export default defineConfig({
 
 - 移除專案預設樣式 (App.css、index.css)、移除預設匯入 css 檔 (App.css、index.css)
 
-- 複製 source/react 內相關資料夾至 src 資料夾並且取代
+- 複製 source/vue 內相關資料夾至 src 資料夾並且取代
 
-- 在進入點的檔案（App.tsx）引用「globals.scss」
+- 在 main.js 全局引用 globals.scss
 
 ```js
 import './style.css'; //👈 刪除這行
