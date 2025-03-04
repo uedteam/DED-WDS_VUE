@@ -4,11 +4,15 @@
   "description": "Web Design System",
   "license": "MIT",
   "author": "Kevin Yang <kevin.kk.yang@auo.com>",
-  "contributors": ["Amos Lee <amos.lee@auo.com>"],
+  "contributors": [
+    "Amos Lee <amos.lee@auo.com>"
+  ],
   "homepage": "https://uedteam.github.io/DED-WDS_VUE",
   "main": "dist/lib/index.umd.js",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/uedteam/DED-WDS_VUE.git"
@@ -16,9 +20,14 @@
   "bugs": {
     "url": "https://github.com/uedteam/DED-WDS_VUE/issues"
   },
-  "keywords": ["ded", "design system", "wds", "ds"],
+  "keywords": [
+    "ded",
+    "design system",
+    "wds",
+    "ds"
+  ],
   "scripts": {
-    "build": "rm -rf dist/lib && nx build",
+    "build": "nx build",
     "artifactregistry-login": "npx google-artifactregistry-auth",
     "print-access-token": "gcloud auth application-default print-access-token"
   },
@@ -26,6 +35,7 @@
     "vue": "^3.0.0"
   },
   "dependencies": {
+    "@ded-wds-vue/ui": "file:",
     "@nrwl/cli": "^15.9.3",
     "@vitejs/plugin-vue": "^5.2.1",
     "gh-pages": "^6.1.1",
