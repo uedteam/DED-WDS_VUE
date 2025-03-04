@@ -1,8 +1,5 @@
-## V1.0.0 (2025-03-04)
+## V1.0.0 (2025-03-05)
 
 ### 🆙 Updates: (@ded-wds-vue/ui)
-
-- 修改 libs/cite.config.js
-  1. 修正為 '@': path.resolve(__dirname, 'src')
-
-- 修改安裝指南文字
+- assets/icons 中再次加入 icons.js
+- 需確保使用者在 npm install 完之後下載壓縮包，並且使用vite 開發
