@@ -19,7 +19,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '/src'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   // Configuration for building your library.
@@ -40,6 +40,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue'],
       output: {
+        exports: "named",
         globals: {
           vue: 'Vue',
         },
