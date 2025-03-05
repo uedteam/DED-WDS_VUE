@@ -1,5 +1,5 @@
-## V1.0.0 (2025-03-05)
+## V1.0.0 (2025-03-06)
 
 ### 🆙 Updates: (@ded-wds-vue/ui)
-- assets/icons 中再次加入 icons.js
-- 需確保使用者在 npm install 完之後下載壓縮包，並且使用vite 開發
+- 修改 Icon.vue 寫法，優先使用 import.meta.glob() 載入的 Vue 組件
+- 如果 src/assets/icons/*.svg 在執行時新增，自動解析為 Vue 組件
