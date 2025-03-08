@@ -50,17 +50,16 @@
 }
 
 .diagonal-background {
-  background: linear-gradient(
-    315deg,
-    #e0e0e0 25%,
-    transparent 25%,
-    transparent 50%,
-    #e0e0e0 50%,
-    #e0e0e0 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 8px 8px;
+    background:
+      linear-gradient(315deg,
+      #e0e0e0 25%,
+      transparent 25%,
+      transparent 50%,
+      #e0e0e0 50%,
+      #e0e0e0 75%,
+      transparent 75%,
+      transparent);
+    background-size: 8px 8px;
 }
 
 // 用在 _input.scss
@@ -77,7 +76,7 @@
 
 .custom-border-color::after,
 .custom-border-color::before {
-  border-top-color: #ffffff !important;
+  border-top-color: #FFFFFF !important;
 }
 
 .custom-background-color {
@@ -85,46 +84,46 @@
 }
 
 .custom-primary-color {
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .custom-secondary-color {
-  color: #53cde6;
+  color: #53CDE6;
 }
 
 .custom-primary {
   .ded-progress-line-percent-form {
-    background-color: #53cde6;
+    background-color: #53CDE6;
   }
 }
 
 .custom-secondary {
   .ded-progress-line-percent-form {
-    background-color: #53cde6;
+    background-color: #53CDE6;
   }
 }
 
 .custom-success {
   .ded-progress-line-percent-form {
-    background-color: #28c76f;
+    background-color: #28C76F;
   }
 }
 
 .custom-info {
   .ded-progress-line-percent-form {
-    background-color: #53cde6;
+    background-color: #53CDE6;
   }
 }
 
 .custom-warning {
   .ded-progress-line-percent-form {
-    background-color: #ff9f43;
+    background-color: #FF9F43;
   }
 }
 
 .custom-error {
   .ded-progress-line-percent-form {
-    background-color: #ff4c51;
+    background-color: #FF4C51;
   }
 }
 
@@ -147,19 +146,20 @@
 
 // icon story 用
 .icon-button {
-  display: flex;
+  display:flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap:8px;
   width: 120px;
   padding: 24px;
-  border: 1px solid #0d64fb;
+  border: 1px solid #0D64FB;
   border-radius: 8px;
   cursor: pointer;
+
 }
 .icon-button:hover {
-  background-color: rgb(231.2745098039, 239.8039215686, 254.6078431373);
+  background-color: rgb(231.2745098039, 239.8039215686, 254.6078431373);;
 }
 .icon-button:focus {
   box-shadow: 0 0 0 3px rgb(206.6, 224, 254.2);
@@ -178,4 +178,11 @@
   border-radius: 4px;
   z-index: 50;
   white-space: normal;
+}
+
+// 全域 a 標籤設定
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: inherit;
 }
