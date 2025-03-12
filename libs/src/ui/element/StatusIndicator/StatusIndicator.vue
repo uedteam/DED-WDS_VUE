@@ -19,7 +19,11 @@ const props = defineProps({
 	variant: {
 		type: String,
 		default: "text",
-		validator: (value) => ["text", "filled"].includes(value),
+		validator: (value) => ["text", "soft", "filled"].includes(value),
+	},
+	isShowDot: {
+		type: Boolean,
+		default: true,
 	},
 	prefix: {
 		type: String,
@@ -50,12 +54,13 @@ const props = defineProps({
 			</div>
 		</template>
 
-        <template v-else>
+        <template v-if="props.isShowDot && !props.prefix">
             <div class="status-indicator-content">
 			    <span :class="{
                     'status-indicator-dot': true,
                     'status-indicator-dot-white': props.variant=== 'filled',
-			        [`status-indicator-dot-${props.themeColor}`]:props.variant=== 'text' && props.themeColor
+			        [`status-indicator-dot-${props.themeColor}`]:props.variant=== 'text' && props.themeColor ||
+			        props.variant=== 'soft' && props.themeColor
                 }"></span>
             </div>
         </template>
