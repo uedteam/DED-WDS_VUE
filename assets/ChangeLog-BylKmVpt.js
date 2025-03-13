@@ -1,0 +1,28 @@
+import{j as n,M as a,e as r}from"./index-CfYTCxnk.js";import{useMDXComponents as s}from"./index-D2yyMTH8.js";import"./iframe-tbUTvoDf.js";import"./index-CEXj7t9i.js";import"./index-DrFu-skq.js";const i=`## DEV V1.0.0 (2025-03-13)
+
+### 🆙 Updates: @ded-wds-vue/ui (學 #105)
+- 刪除 SvgMore.svg
+- 修改 icons.js import export
+- 同步學長 SCSS
+- Checkbox 1.加入唯一識別碼 2.在 Input 綁定 $attrs 接收 props 以外的屬性
+- Input 1.加入唯一識別碼 2.在 Input 綁定 $attrs 接收 props 以外的屬性
+- Radio 1.加入唯一識別碼 2.在 Input 綁定 $attrs 接收 props 以外的屬性
+- Table 1.修改 storybook
+- Textarea 1.加入唯一識別碼 2.在 Input 綁定 $attrs 接收 props 以外的屬性
+- ListItem 1.emits value 改 label
+- StatusIndicator 1.增加 isShowDot 屬性 2. variant 屬性增加 soft
+- Toast 1.改由 composable 控制
+- SideNave 1.修改 Navbar class
+
+### 🆙 Updates: @ded-wds-vue/ui (學 #106)
+- 同步學長 SCSS
+- 修改 storybook VNode
+
+### 🆙 Updates: @ded-wds-vue/ui (Amos 測試中)
+- 更新安裝指南文字
+- Icon 刪除 base64 讀取方法`;function e(t){const o={h1:"h1",...s(),...t.components};return n.jsxs(n.Fragment,{children:[`
+`,`
+`,`
+`,n.jsx(a,{title:"Introduction/Changelog"}),`
+`,n.jsx(o.h1,{id:"changelog",children:"Changelog"}),`
+`,n.jsx(r,{children:i})]})}function l(t={}){const{wrapper:o}={...s(),...t.components};return o?n.jsx(o,{...t,children:n.jsx(e,{...t})}):e(t)}export{l as default};
