@@ -1,17 +1,17 @@
 <script setup>
-	// 定義 Props
-	const props = defineProps({
-		className: {
-			type: String,
-			default: "",
-		}
-	})
+// 定義 Props
+const props = defineProps({
+  className: {
+    type: String,
+    default: "",
+  },
+})
 </script>
 
 <template>
-	<header :class="{'ded-header': true, [props.className]: !!props.className}">
-		<slot></slot>
-	</header>
+  <header class="ded-header" :class="{ [props.className]: !!props.className }">
+    <slot />
+  </header>
 </template>
 
 <style scoped lang="scss">
