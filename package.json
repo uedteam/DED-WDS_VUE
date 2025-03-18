@@ -44,7 +44,6 @@
   },
   "dependencies": {
     "@ded-wds-vue/ui": "file:",
-    "dompurify": "^3.2.1",
     "vue": "^3.3.4",
     "vue-router": "^4.5.0"
   },

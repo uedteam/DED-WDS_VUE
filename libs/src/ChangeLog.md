@@ -1,23 +1,22 @@
-## DEV V1.0.0 (2025-03-13)
+## DEV V1.0.0 (2025-03-17)
 
-### 🆙 Updates: @ded-wds-vue/ui (學 #105)
-- 刪除 SvgMore.svg
-- 修改 icons.js import export
+
+### 🆙 Updates: @ded-wds-vue/ui (學 #108)
 - 同步學長 SCSS
-- Checkbox 1.加入唯一識別碼 2.在 Input 綁定 $attrs 接收 props 以外的屬性
-- Input 1.加入唯一識別碼 2.在 Input 綁定 $attrs 接收 props 以外的屬性
-- Radio 1.加入唯一識別碼 2.在 Input 綁定 $attrs 接收 props 以外的屬性
-- Table 1.修改 storybook
-- Textarea 1.加入唯一識別碼 2.在 Input 綁定 $attrs 接收 props 以外的屬性
-- ListItem 1.emits value 改 label
-- StatusIndicator 1.增加 isShowDot 屬性 2. variant 屬性增加 soft
-- Toast 1.改由 composable 控制
-- SideNave 1.修改 Navbar class
+- List 1.修改 storybook 說明
+- Navbar 1.增加 logoLink 屬性 2.增加 avatarSrc 屬性
+- SideNav 1.增加 userName 屬性 2.增加 caption 屬性 3.增加 userStatus 屬性
+- Dashboard 1.增加 sideNave 屬性 2.增加 userName 屬性
 
-### 🆙 Updates: @ded-wds-vue/ui (學 #106)
+
+### 🆙 Updates: @ded-wds-vue/ui (學 #110)
 - 同步學長 SCSS
-- 修改 storybook VNode
+- Input 1.同步學長 storybook 故事排列方式 2.hint 改接收 VNode | string
 
-### 🆙 Updates: @ded-wds-vue/ui (Amos 測試中)
-- 更新安裝指南文字
-- Icon 刪除 base64 讀取方法
+
+### 🆙 Updates: @ded-wds-vue/ui (學長 測試發現)
+- Accordion 1.querySelector 改 Ref 2.刪除 dompurify
+
+
+### 🆙 Updates: @ded-wds-vue/ui (Eslint AntFu)
+- 全數元件 vue & storybook
