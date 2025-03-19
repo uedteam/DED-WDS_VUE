@@ -38,12 +38,10 @@ const modelValue = defineModel()
 
 // 根據 hint 的值，計算屬性
 const hintClass = computed(() => {
-  if (props.hint.error.length > 0) {
+  if (props.hint.error)
     return "error"
-  }
-  if (props.hint.description.length > 0) {
+  if (props.hint.description)
     return "desc"
-  }
   return ""
 })
 </script>
@@ -58,8 +56,9 @@ const hintClass = computed(() => {
     </template>
 
     <div
-      class="ded-textarea-group" :class="[{ 'ded-textarea-disable': props.isDisabled },
-                                          (props.hint.error.length > 0 && `ded-textarea-border-${hintClass}`)]"
+      class="ded-textarea-group"
+      :class="[{ 'ded-textarea-disable': props.isDisabled },
+               hintClass ? `ded-textarea-border-${hintClass}` : '']"
     >
       <!-- 多行輸入框 -->
       <textarea
@@ -80,11 +79,29 @@ const hintClass = computed(() => {
     </div>
 
     <!-- 多行輸入說明文字與提示 -->
-    <template v-if="props.hint.error.length > 0 || props.hint.description.length > 0">
-      <small class="ded-textarea-hint" :class="[{ 'ded-textarea-disable': props.isDisabled }, `ded-textarea-hint-${hintClass}`]">
-        {{ props.hint.error.length > 0 ? props.hint.error : props.hint.description }}
-      </small>
-    </template>
+
+    <small class="ded-textarea-hint" :class="[{ 'ded-textarea-disable': props.isDisabled }, `ded-textarea-hint-${hintClass}`]">
+      <!-- 若 error 存在，無論是函式還是字串，都優先顯示 -->
+      <template v-if="props.hint.error">
+        <template v-if="typeof props.hint.error === 'function'">
+          <component :is="props.hint.error" />
+        </template>
+        <template v-else>
+          {{ props.hint.error }}
+        </template>
+      </template>
+
+      <!-- 只有當 error 為空時，才會顯示 description -->
+      <template v-else-if="props.hint.description">
+
+        <template v-if="typeof props.hint.description === 'function'">
+          <component :is="props.hint.description" />
+        </template>
+        <template v-else>
+          {{ props.hint.description }}
+        </template>
+      </template>
+    </small>
   </div>
 </template>
 
