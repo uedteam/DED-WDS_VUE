@@ -370,7 +370,7 @@ export const InputHintTypeStory = {
         h(Icon, { name: "SvgErrorCircle", style: "color: red;", size: 16 }), // 加入 Icon
         h("span", "Error message"), // 一般文字
       ]),
-      description: "",
+      description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
     },
     hintPrompt: {
       error: "",
@@ -386,6 +386,7 @@ export const InputHintTypeStory = {
       return {
         args,
         StatusIndicator,
+        Icon,
       }
     },
     template: `
