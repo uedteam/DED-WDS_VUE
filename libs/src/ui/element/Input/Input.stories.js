@@ -157,7 +157,7 @@ export const InputDefault = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import { ref } from \"vue\";",
+            "import { ref, h } from \"vue\";",
             `import { Input, StatusIndicator } from "@ded-wds-vue/ui";`,
             "const modelValue = ref(\"\");",
             `</script>`,
@@ -275,7 +275,7 @@ export const InputTypesStory = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import { ref } from \"vue\";",
+            "import { ref, h } from \"vue\";",
             `import { Input, StatusIndicator } from "@ded-wds-vue/ui";`,
             "const modelValueAccount = ref(\"Account\");",
             "const modelValuePassword = ref(\"Password\");",
@@ -432,8 +432,6 @@ export const InputHintTypeStory = {
             `<script setup>`,
             "import { ref, h } from \"vue\";",
             "import { Input, Icon, StatusIndicator } from \"@ded-wds-vue/ui\";",
-            "import Icon from \"@ded-wds-vue/ui/Icon\";",
-            "import StatusIndicator from \"@ded-wds-vue/ui/StatusIndicator\";",
             "const modelValue = ref(\"\");",
             `</script>`,
             "",
