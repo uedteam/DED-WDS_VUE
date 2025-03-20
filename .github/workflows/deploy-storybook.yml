@@ -24,6 +24,9 @@ jobs:
         with:
           node-version: 18
 
+      - name: Cache Reset 🔄
+        run: nx reset
+
       - name: Install Dependencies 📥
         run: npm install
 
