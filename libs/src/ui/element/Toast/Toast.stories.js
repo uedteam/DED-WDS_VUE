@@ -202,8 +202,7 @@ export const ToastDefault = {
           return [
             "<script setup>",
             `  import { h } from "vue";`,
-            `  import { Toast, Button } from "@ded-wds-vue/ui";`,
-            "  import { useToast } from \"./composable/useToast.js\";",
+            `  import { Toast, Button, useToast } from "@ded-wds-vue/ui";`,
             "  const { add } = useToast();",
             `  const showToast = () => {`,
             `    add({`,
@@ -388,8 +387,7 @@ export const ToastTotal = {
           return [
             "<script setup>",
             `  import { h } from "vue";`,
-            `  import { Toast, Button } from "@ded-wds-vue/ui";`,
-            "  import { useToast } from \"./composable/useToast.js\";",
+            `  import { Toast, Button, useToast } from "@ded-wds-vue/ui";`,
             "  const { add } = useToast();",
             "",
             "  const showSuccessToast = () => {",
@@ -560,8 +558,7 @@ export const ToastInterAction = {
           return [
             "<script setup>",
             `  import { h } from "vue";`,
-            `  import { Toast, Button } from "@ded-wds-vue/ui";`,
-            "  import { useToast } from \"./composable/useToast.js\";",
+            `  import { Toast, Button, useToast } from "@ded-wds-vue/ui";`,
             "  const { add } = useToast();",
             `  const showToast = () => {`,
             `    add({`,

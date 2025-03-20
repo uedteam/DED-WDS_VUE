@@ -1,8 +1,6 @@
-## v1.0.14-beta (2025-03-19)
+## v1.0.15-beta (2025-03-20)
 
 
 ### 🆙 Updates: @ded-wds-vue/ui
-- Input 修改 storybook
-- Toast 修改 storybook
-- Layout 修改 storybook
-- Textarea 接收 h 函式
+- 修改 Toast useToast.js
+- 修改 Toast storybook
