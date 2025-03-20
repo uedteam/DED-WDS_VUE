@@ -36,7 +36,6 @@
     "vue": "^3.0.0"
   },
   "dependencies": {
-    "@ded-wds-vue/ui": "file:",
     "@nrwl/cli": "^15.9.3",
     "@vitejs/plugin-vue": "^5.2.1",
     "gh-pages": "^6.1.1",
