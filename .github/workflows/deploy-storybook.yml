@@ -24,11 +24,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Cache Reset 🔄
-        run: npm run reset
-
       - name: Install Dependencies 📥
         run: npm install
+
+      - name: Cache Reset 🔄
+        run: npm run reset
 
       - name: Build Storybook 📚
         run: npm run build-storybook
