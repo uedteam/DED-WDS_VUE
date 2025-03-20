@@ -65,7 +65,7 @@ export const LayoutDefaultStory = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import Layout, { Content } from \"@ded-wds-vue/ui\";",
+            "import { Layout, Content } from \"@ded-wds-vue/ui\";",
             `</script>`,
             "",
             "<template>",
@@ -174,7 +174,7 @@ export const LayoutThirdStory = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import Layout, { Header, Content, Footer } from \"@ded-wds-vue/ui\";",
+            "import { Layout, Header, Content, Footer } from \"@ded-wds-vue/ui\";",
             `</script>`,
             "",
             "<template>",
@@ -332,7 +332,7 @@ export const LayoutLeftDrawerStory = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import Layout, { Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
+            "import { Layout, Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
             `</script>`,
             "",
             "<template>",
@@ -508,7 +508,7 @@ export const LayoutRightDrawerStory = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import Layout, { Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
+            "import { Layout, Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
             `</script>`,
             "",
             "<template>",
@@ -684,7 +684,7 @@ export const LayoutLeftFixedStory = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import Layout, { Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
+            "import { Layout, Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
             `</script>`,
             "",
             "<template>",
@@ -862,7 +862,7 @@ export const LayoutLeftStory = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import Layout, { Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
+            "import { Layout, Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
             `</script>`,
             "",
             "<template>",
@@ -1060,7 +1060,7 @@ export const LayoutOfficialStory = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import Layout, { Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
+            "import { Layout, Header, Content, Side, Footer } from \"@ded-wds-vue/ui\";",
             `</script>`,
             "",
             "<template>",
@@ -1218,7 +1218,7 @@ export const LayoutArticleStory = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import Layout, { Content, Side } from \"@ded-wds-vue/ui\";",
+            "import { Layout, Content, Side } from \"@ded-wds-vue/ui\";",
             `</script>`,
             "",
             "<template>",

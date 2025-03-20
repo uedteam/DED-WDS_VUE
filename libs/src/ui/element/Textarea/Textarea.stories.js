@@ -1,4 +1,7 @@
 import Textarea from "@/ui/element/Textarea/Textarea.vue"
+import { h } from "vue"
+import Icon from "../Icon/Icon.vue"
+import StatusIndicator from "../StatusIndicator/StatusIndicator.vue"
 
 function formatDataSource(hint) {
   return `{
@@ -31,7 +34,7 @@ export default {
       },
       table: {
         type: {
-          summary: "{ error: string; description: string; }[]",
+          summary: "{ error: string | VNode; description: string | VNode; }",
         },
       },
     },
@@ -71,8 +74,10 @@ export const TextareaDefault = {
     label: "Label",
     placeholder: "Placeholder",
     limit: 0,
-    // initValue: "Type something...",
-    hint: { error: "", description: "" },
+    hint: {
+      error: "",
+      description: "",
+    },
     isDisabled: false,
     className: "",
     modelValue: "Type something",
@@ -108,7 +113,7 @@ export const TextareaDefault = {
           const dataSourceString = formatDataSource(args.hint)
           return [
             `<script setup>`,
-            "import { ref } from \"vue\";",
+            "import { ref, h } from \"vue\";",
             `import { Textarea } from "@ded-wds-vue/ui";`,
             `const modelValue = ref("${args.modelValue}");`,
             `</script>`,
@@ -174,7 +179,7 @@ export const TextareaLimit = {
           const dataSourceString = formatDataSource(args.hint)
           return [
             `<script setup>`,
-            "import { ref } from \"vue\";",
+            "import { ref, h } from \"vue\";",
             `import { Textarea } from "@ded-wds-vue/ui";`,
             `const modelValue = ref("${args.modelValue}");`,
             `</script>`,
@@ -203,8 +208,22 @@ export const TextareaStatus = {
   args: {
     label: "Label",
     placeholder: "Placeholder",
-    // initValue: "Type something...",
     limit: 30,
+    hintError: {
+      error: () => h("div", { style: "display: flex; align-items: center; gap: 4px;" }, [
+        h(Icon, { name: "SvgErrorCircle", style: "color: red;", size: 16 }),
+        h("span", "Error message"),
+      ]),
+      description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
+    },
+    hintPrompt: {
+      error: "",
+      description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
+    },
+    hint: {
+      error: "",
+      description: "",
+    },
     isDisabled: false,
     className: "",
     modelValue: "Type something",
@@ -214,25 +233,28 @@ export const TextareaStatus = {
     setup() {
       return {
         args,
+        StatusIndicator,
+        Icon,
       }
     },
     template: `
       <div style="display: flex; flex-direction: column; gap:16px">
-                <Textarea
-                  :label="args.label"
-                  :placeholder="args.placeholder"
-                  :limit="args.limit"
-                  :hint="{ error: '', description: 'Prompt message' }"
-                  :isDisabled="args.isDisabled"
-                  :className="args.className"
-                  v-model="args.modelValue"
-                ></Textarea>
-
+        
+        <Textarea
+            :label="args.label"
+            :placeholder="args.placeholder"
+            :limit="args.limit"
+            :hint="args.hintPrompt"
+            :isDisabled="args.isDisabled"
+            :className="args.className"
+            v-model="args.modelValue"
+        ></Textarea>
+        
         <Textarea
           :label="args.label"
           :placeholder="args.placeholder"
           :limit="args.limit"
-          :hint="{ error: 'Error', description: '' }"
+          :hint="args.hintError"
           :isDisabled="args.isDisabled"
           :className="args.className"
           v-model="args.modelValue"
@@ -242,7 +264,7 @@ export const TextareaStatus = {
           :label="args.label"
           :placeholder="args.placeholder"
           :limit="args.limit"
-          :hint="{ error: '', description: 'Prompt message' }"
+          :hint="args.hint"
           :isDisabled="true"
           :className="args.className"
           v-model="args.modelValue"
@@ -260,8 +282,8 @@ export const TextareaStatus = {
           const { args } = storyContext
           return [
             `<script setup>`,
-            "import { ref } from \"vue\";",
-            `import { Textarea } from "@ded-wds-vue/ui";`,
+            "import { ref, h } from \"vue\";",
+            `import { Textarea, Icon, StatusIndicator } from "@ded-wds-vue/ui";`,
             `const modelValue = ref("${args.modelValue}");`,
             `</script>`,
             "",
@@ -270,7 +292,13 @@ export const TextareaStatus = {
             `    ${args.label ? `label="${args.label}"` : ""}`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.limit !== undefined ? `:limit="${args.limit}"` : ""}`,
-            `    :hint="{ error: '', description: 'Prompt message' }"`,
+            `    :hint="{
+        error: () => h('div', { style: 'display: flex; align-items: center; gap: 4px;' }, [
+          h(Icon, { name: 'SvgErrorCircle', style: 'color: red;', size: 16 }),
+          h('span', 'Error message')
+        ]),
+        description: ''
+    }"`,
             `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             `    v-model="modelValue"`,
@@ -279,7 +307,15 @@ export const TextareaStatus = {
             `    ${args.label ? `label="${args.label}"` : ""}`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.limit !== undefined ? `:limit="${args.limit}"` : ""}`,
-            `    :hint="{ error: 'Error', description: '' }"`,
+            `    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,
             `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             `    v-model="modelValue"`,
@@ -288,7 +324,7 @@ export const TextareaStatus = {
             `    ${args.label ? `label="${args.label}"` : ""}`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.limit !== undefined ? `:limit="${args.limit}"` : ""}`,
-            `    :hint="{ error: '', description: 'Prompt message' }"`,
+            `    :hint="{ error: '', description: '' }"`,
             `    :isDisabled="true"`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             `    v-model="modelValue"`,

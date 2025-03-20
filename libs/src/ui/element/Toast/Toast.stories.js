@@ -131,7 +131,7 @@ export const ToastDefault = {
     content: "Content",
     prefix: "SvgSuccessCircle",
     duration: 1000,
-    action: `() => h ("div", {onClick: () => window.alert("action")}, "Action"),`,
+    action: `() => h ("div", {onClick: () => window.alert("action")}, "Action")`,
     className: "",
   },
   render: args => ({
@@ -246,7 +246,7 @@ export const ToastTotal = {
     content: "Content",
     // prefix:'SvgSuccessCircle',
     duration: 5000,
-    action: `() => h ("div", {onClick: () => window.alert("action")}, "Action"),`,
+    action: `() => h ("div", {onClick: () => window.alert("action")}, "Action")`,
     className: "",
   },
   render: args => ({
@@ -513,7 +513,7 @@ export const ToastInterAction = {
     content: "Content",
     prefix: "SvgSuccessCircle",
     duration: 5000,
-    action: `() => h ("div", {onClick: () => window.alert("action")}, "Action"),`,
+    action: `() => h ("div", {onClick: () => window.alert("action")}, "Action")`,
     className: "",
   },
   render: args => ({

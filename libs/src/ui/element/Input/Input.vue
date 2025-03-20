@@ -187,9 +187,25 @@ function toggleDropdown() {
         'ded-input-disable': props.isDisabled,
       }"
     >
-      <component :is="props.hint.error" v-if="typeof props.hint.error === 'function'" />
-      <component :is="props.hint.description" v-else-if="typeof props.hint.description === 'function'" />
-      <template v-else>{{ props.hint.error || props.hint.description }}</template>
+      <!-- 若 error 存在，無論是函式還是字串，都優先顯示 -->
+      <template v-if="props.hint.error">
+        <template v-if="typeof props.hint.error === 'function'">
+          <component :is="props.hint.error" />
+        </template>
+        <template v-else>
+          {{ props.hint.error }}
+        </template>
+      </template>
+
+      <!-- 只有當 error 為空時，才會顯示 description -->
+      <template v-else-if="props.hint.description">
+        <template v-if="typeof props.hint.description === 'function'">
+          <component :is="props.hint.description" />
+        </template>
+        <template v-else>
+          {{ props.hint.description }}
+        </template>
+      </template>
     </small>
   </div>
 </template>
