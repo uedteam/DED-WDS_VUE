@@ -1,0 +1,438 @@
+import{_ as m}from"./Icon-DPZA6u3a.js";import{_ as o}from"./Input-CGEMbczU.js";import{_ as t}from"./StatusIndicator-D-k-GenL.js";import{h as s}from"./vue.esm-bundler-CbCZpGld.js";const C={title:"Component/Input",component:o,tags:["autodocs"],argTypes:{label:{description:"標題",control:{type:"text"}},type:{description:"輸入類型",control:{type:"select"},options:["number","text","password","email"],table:{type:{summary:"number | text | password | email "}}},hasClear:{description:"是否顯示清除按鈕",control:{type:"boolean"}},placeholder:{description:"輸入提示",control:{type:"text"}},size:{description:"輸入框尺寸",control:{type:"select"},options:["small","medium","large"],table:{type:{summary:"small | medium | large "}}},prefix:{description:"前置元素",control:{type:"select",labels:{"":"none",SvgAccount:"SvgAccount",SvgSearch:"SvgSearch",SvgVisibility:"SvgVisibility",SvgVisibilityOff:"SvgVisibilityOff",SvgMail:"SvgMail"}},options:["","SvgAccount","SvgSearch","SvgVisibility","SvgVisibilityOff","SvgMail"]},maxLimit:{description:"最長輸入限制",control:{type:"number"}},hint:{description:"提示訊息",control:{type:"object"},table:{type:{summary:"{ error: string | VNode; description: string | VNode; }"}}},isDisabled:{description:"是否禁用",control:{type:"boolean"}},isOpen:{description:"下拉控制",control:{type:"boolean"},table:{disable:!0}},className:{description:"客製化樣式",control:{type:"text"}},modelValue:{description:"輸入值",control:{type:"text"},table:{type:{summary:"string"},category:"v-model"}}},parameters:{docs:{title:"Input",description:{component:"輸入框組件的呈現及說明。。"}}}},i={name:"預設項目",args:{label:"Label",type:"text",hasClear:!0,placeholder:"Placeholder",size:"medium",prefix:"SvgAccount",maxLimit:0,hint:{error:"",description:()=>s(t,{themeColor:"neutral",variant:"text",size:"medium",isShowDot:!1},"Prompt message")},isDisabled:!1,className:"",modelValue:""},render:a=>({components:{Input:o},setup(){return{args:a}},template:`
+      <Input
+        :label="args.label"
+        :type="args.type"
+        :hasClear="args.hasClear"
+        :placeholder="args.placeholder"
+        :size="args.size"
+        :prefix="args.prefix"
+        :maxLimit="args.maxLimit"
+        :hint="args.hint"
+        :isDisabled="args.isDisabled"
+        :className="args.className"
+        v-model="args.modelValue"
+      />
+    `}),parameters:{controls:{exclude:["input","clearDatePicker"]},docs:{source:{transform:(a,r)=>{const{args:e}=r;return["<script setup>",'import { ref, h } from "vue";','import { Input, StatusIndicator } from "@ded-wds-vue/ui";','const modelValue = ref("");',"<\/script>","","<template>","  <Input",`    ${e.label?`label="${e.label}"`:""}`,`    ${e.type?`type="${e.type}"`:""}`,`    ${e.hasClear!==void 0?`:hasClear="${e.hasClear}"`:""}`,`    ${e.placeholder?`placeholder="${e.placeholder}"`:""}`,`    ${e.size?`size="${e.size}"`:""}`,`    ${e.prefix?`prefix="${e.prefix}"`:""}`,`    ${e.maxLimit?`maxLimit="${e.maxLimit}"`:""}`,`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,`    ${e.isDisabled!==void 0?`:isDisabled="${e.isDisabled}"`:""}`,`    ${e.className?`className="${e.className}"`:""}`,'    v-model="modelValue"',"  />","</template>"].filter(Boolean).join(`
+`).trim()}}}}},l={name:"輸入類型",args:{hasClear:!0,placeholder:"Placeholder",size:"medium",maxLimit:0,hint:{error:"",description:()=>s(t,{themeColor:"neutral",variant:"text",size:"medium",isShowDot:!1},"Prompt message")},isDisabled:!1,className:"",modelValueAccount:"Account",modelValuePassword:"Password",modelValueAmount:12345},render:a=>({components:{Input:o},setup(){return{args:a}},template:`
+      <div style="display: flex; flex-direction: column; gap:8px">
+        <Input
+          label="Account"
+          type="text"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          prefix="SvgAccount"
+          :maxLimit="args.maxLimit"
+          :hint="args.hint"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValueAccount"
+        />
+        <Input
+          label="Password"
+          type="password"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          prefix="SvgLock"
+          :maxLimit="args.maxLimit"
+          :hint="args.hint"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValuePassword"
+        />
+        <Input
+          label="Amount"
+          type="number"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          prefix="SvgAccount"
+          :maxLimit="args.maxLimit"
+          :hint="args.hint"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValueAmount"
+        />
+      </div>
+    `}),parameters:{controls:{exclude:["label","type","prefix","input","clearDatePicker"]},docs:{source:{transform:(a,r)=>{const{args:e}=r;return["<script setup>",'import { ref, h } from "vue";','import { Input, StatusIndicator } from "@ded-wds-vue/ui";','const modelValueAccount = ref("Account");','const modelValuePassword = ref("Password");',"const modelValueAmount = ref(12345);","<\/script>","","<template>","  <Input",'    label="Account"','    type="text"',`    ${e.hasClear!==void 0?`:hasClear="${e.hasClear}"`:""}`,`    ${e.placeholder?`placeholder="${e.placeholder}"`:""}`,`    ${e.size?`size="${e.size}"`:""}`,'    prefix="SvgAccount"',`    ${e.maxLimit?`maxLimit="${e.maxLimit}"`:""}`,`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,`    ${e.isDisabled!==void 0?`:isDisabled="${e.isDisabled}"`:""}`,`    ${e.className?`className="${e.className}"`:""}`,'    v-model="modelValuePassword"',"  />","  <Input",'    label="Password"','    type="password"',`    ${e.hasClear!==void 0?`:hasClear="${e.hasClear}"`:""}`,`    ${e.placeholder?`placeholder="${e.placeholder}"`:""}`,`    ${e.size?`size="${e.size}"`:""}`,'    prefix="SvgLock"',`    ${e.maxLimit?`maxLimit="${e.maxLimit}"`:""}`,`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,`    ${e.isDisabled!==void 0?`:isDisabled="${e.isDisabled}"`:""}`,`    ${e.className?`className="${e.className}"`:""}`,'    v-model="modelValueAmount"',"  />","  <Input",'    label="Amount"','    type="number"',`    ${e.hasClear!==void 0?`:hasClear="${e.hasClear}"`:""}`,`    ${e.placeholder?`placeholder="${e.placeholder}"`:""}`,`    ${e.size?`size="${e.size}"`:""}`,'    prefix="SvgAccount"',`    ${e.maxLimit?`maxLimit="${e.maxLimit}"`:""}`,`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,`    ${e.isDisabled!==void 0?`:isDisabled="${e.isDisabled}"`:""}`,`    ${e.className?`className="${e.className}"`:""}`,'    v-model="modelValueAmount"',"  />","</template>"].filter(Boolean).join(`
+`).trim()}}}}},n={name:"提示訊息",args:{label:"Account",type:"text",hasClear:!0,placeholder:"Placeholder",size:"medium",prefix:"SvgAccount",maxLimit:0,hintError:{error:()=>s("div",{style:"display: flex; align-items: center; gap: 4px;"},[s(m,{name:"SvgErrorCircle",style:"color: red;",size:16}),s("span","Error message")]),description:()=>s(t,{themeColor:"neutral",variant:"text",size:"medium",isShowDot:!1},"Prompt message")},hintPrompt:{error:"",description:()=>s(t,{themeColor:"neutral",variant:"text",size:"medium",isShowDot:!1},"Prompt message")},isDisabled:!1,className:"",modelValue:""},render:a=>({components:{Input:o},setup(){return{args:a,StatusIndicator:t,Icon:m}},template:`
+      <div style="display: flex; flex-direction: column; gap:8px">
+        <Input
+          :label="args.label"
+          :type="args.type"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          :prefix="args.prefix"
+          :maxLimit="args.maxLimit"
+          :hint="args.hintError"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValue"
+        />
+        <Input
+          :label="args.label"
+          :type="args.type"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          :prefix="args.prefix"
+          :maxLimit="args.maxLimit"
+          :hint="args.hintPrompt"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValue"
+        />
+      </div>
+    `}),parameters:{controls:{exclude:["hint","input","clearDatePicker"]},docs:{source:{transform:(a,r)=>{const{args:e}=r;return["<script setup>",'import { ref, h } from "vue";','import { Input, Icon, StatusIndicator } from "@ded-wds-vue/ui";','const modelValue = ref("");',"<\/script>","","<template>","  <Input",`    ${e.label?`label="${e.label}"`:""}`,`    ${e.type?`type="${e.type}"`:""}`,`    ${e.hasClear!==void 0?`:hasClear="${e.hasClear}"`:""}`,`    ${e.placeholder?`placeholder="${e.placeholder}"`:""}`,`    ${e.size?`size="${e.size}"`:""}`,`    ${e.prefix?`prefix="${e.prefix}"`:""}`,`    ${e.maxLimit?`maxLimit="${e.maxLimit}"`:""}`,`    :hint="{
+        error: () => h('div', { style: 'display: flex; align-items: center; gap: 4px;' }, [
+          h(Icon, { name: 'SvgErrorCircle', style: 'color: red;', size: 16 }),
+          h('span', 'Error message')
+        ]),
+        description: ''
+    }"`,`    ${e.isDisabled!==void 0?`:isDisabled="${e.isDisabled}"`:""}`,`    ${e.className?`className="${e.className}"`:""}`,'    v-model="modelValue"',"  />","","  <Input",`    ${e.label?`label="${e.label}"`:""}`,`    ${e.type?`type="${e.type}"`:""}`,`    ${e.hasClear!==void 0?`:hasClear="${e.hasClear}"`:""}`,`    ${e.placeholder?`placeholder="${e.placeholder}"`:""}`,`    ${e.size?`size="${e.size}"`:""}`,`    ${e.prefix?`prefix="${e.prefix}"`:""}`,`    ${e.maxLimit?`maxLimit="${e.maxLimit}"`:""}`,`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,`    ${e.isDisabled!==void 0?`:isDisabled="${e.isDisabled}"`:""}`,`    ${e.className?`className="${e.className}"`:""}`,'    v-model="modelValue"',"  />","</template>"].filter(Boolean).join(`
+`).trim()}}}}};var d,c,p;i.parameters={...i.parameters,docs:{...(d=i.parameters)==null?void 0:d.docs,source:{originalSource:`{
+  name: "預設項目",
+  args: {
+    label: "Label",
+    type: "text",
+    hasClear: true,
+    placeholder: "Placeholder",
+    size: "medium",
+    prefix: "SvgAccount",
+    maxLimit: 0,
+    hint: {
+      error: "",
+      description: () => h(StatusIndicator, {
+        themeColor: "neutral",
+        variant: "text",
+        size: "medium",
+        isShowDot: false
+      }, "Prompt message")
+    },
+    isDisabled: false,
+    className: "",
+    modelValue: ""
+  },
+  render: args => ({
+    components: {
+      Input
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`
+      <Input
+        :label="args.label"
+        :type="args.type"
+        :hasClear="args.hasClear"
+        :placeholder="args.placeholder"
+        :size="args.size"
+        :prefix="args.prefix"
+        :maxLimit="args.maxLimit"
+        :hint="args.hint"
+        :isDisabled="args.isDisabled"
+        :className="args.className"
+        v-model="args.modelValue"
+      />
+    \`
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      exclude: ["input", "clearDatePicker"]
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          return [\`<script setup>\`, "import { ref, h } from \\"vue\\";", \`import { Input, StatusIndicator } from "@ded-wds-vue/ui";\`, "const modelValue = ref(\\"\\");", \`<\/script>\`, "", "<template>", "  <Input", \`    \${args.label ? \`label="\${args.label}"\` : ""}\`, \`    \${args.type ? \`type="\${args.type}"\` : ""}\`, \`    \${args.hasClear !== undefined ? \`:hasClear="\${args.hasClear}"\` : ""}\`, \`    \${args.placeholder ? \`placeholder="\${args.placeholder}"\` : ""}\`, \`    \${args.size ? \`size="\${args.size}"\` : ""}\`, \`    \${args.prefix ? \`prefix="\${args.prefix}"\` : ""}\`, \`    \${args.maxLimit ? \`maxLimit="\${args.maxLimit}"\` : ""}\`, \`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"\`, \`    \${args.isDisabled !== undefined ? \`:isDisabled="\${args.isDisabled}"\` : ""}\`, \`    \${args.className ? \`className="\${args.className}"\` : ""}\`, \`    v-model="modelValue"\`, "  />", "</template>"].filter(Boolean).join("\\n").trim();
+        }
+      }
+    }
+  }
+}`,...(p=(c=i.parameters)==null?void 0:c.docs)==null?void 0:p.source}}};var u,g,h;l.parameters={...l.parameters,docs:{...(u=l.parameters)==null?void 0:u.docs,source:{originalSource:`{
+  name: "輸入類型",
+  args: {
+    // label: 'Account',
+    // type: 'text',
+    hasClear: true,
+    placeholder: "Placeholder",
+    size: "medium",
+    // prefix: 'SvgAccount',
+    maxLimit: 0,
+    hint: {
+      error: "",
+      description: () => h(StatusIndicator, {
+        themeColor: "neutral",
+        variant: "text",
+        size: "medium",
+        isShowDot: false
+      }, "Prompt message")
+    },
+    isDisabled: false,
+    className: "",
+    modelValueAccount: "Account",
+    modelValuePassword: "Password",
+    modelValueAmount: 12345
+  },
+  render: args => ({
+    components: {
+      Input
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`
+      <div style="display: flex; flex-direction: column; gap:8px">
+        <Input
+          label="Account"
+          type="text"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          prefix="SvgAccount"
+          :maxLimit="args.maxLimit"
+          :hint="args.hint"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValueAccount"
+        />
+        <Input
+          label="Password"
+          type="password"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          prefix="SvgLock"
+          :maxLimit="args.maxLimit"
+          :hint="args.hint"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValuePassword"
+        />
+        <Input
+          label="Amount"
+          type="number"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          prefix="SvgAccount"
+          :maxLimit="args.maxLimit"
+          :hint="args.hint"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValueAmount"
+        />
+      </div>
+    \`
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      exclude: ["label", "type", "prefix", "input", "clearDatePicker"]
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          return [\`<script setup>\`, "import { ref, h } from \\"vue\\";", \`import { Input, StatusIndicator } from "@ded-wds-vue/ui";\`, "const modelValueAccount = ref(\\"Account\\");", "const modelValuePassword = ref(\\"Password\\");", "const modelValueAmount = ref(12345);", \`<\/script>\`, "", "<template>", "  <Input", \`    label="Account"\`, \`    type="text"\`, \`    \${args.hasClear !== undefined ? \`:hasClear="\${args.hasClear}"\` : ""}\`, \`    \${args.placeholder ? \`placeholder="\${args.placeholder}"\` : ""}\`, \`    \${args.size ? \`size="\${args.size}"\` : ""}\`, \`    prefix="SvgAccount"\`, \`    \${args.maxLimit ? \`maxLimit="\${args.maxLimit}"\` : ""}\`, \`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"\`, \`    \${args.isDisabled !== undefined ? \`:isDisabled="\${args.isDisabled}"\` : ""}\`, \`    \${args.className ? \`className="\${args.className}"\` : ""}\`, \`    v-model="modelValuePassword"\`, "  />", "  <Input", \`    label="Password"\`, \`    type="password"\`, \`    \${args.hasClear !== undefined ? \`:hasClear="\${args.hasClear}"\` : ""}\`, \`    \${args.placeholder ? \`placeholder="\${args.placeholder}"\` : ""}\`, \`    \${args.size ? \`size="\${args.size}"\` : ""}\`, \`    prefix="SvgLock"\`, \`    \${args.maxLimit ? \`maxLimit="\${args.maxLimit}"\` : ""}\`, \`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"\`, \`    \${args.isDisabled !== undefined ? \`:isDisabled="\${args.isDisabled}"\` : ""}\`, \`    \${args.className ? \`className="\${args.className}"\` : ""}\`, \`    v-model="modelValueAmount"\`, "  />", "  <Input", \`    label="Amount"\`, \`    type="number"\`, \`    \${args.hasClear !== undefined ? \`:hasClear="\${args.hasClear}"\` : ""}\`, \`    \${args.placeholder ? \`placeholder="\${args.placeholder}"\` : ""}\`, \`    \${args.size ? \`size="\${args.size}"\` : ""}\`, \`    prefix="SvgAccount"\`, \`    \${args.maxLimit ? \`maxLimit="\${args.maxLimit}"\` : ""}\`, \`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"\`, \`    \${args.isDisabled !== undefined ? \`:isDisabled="\${args.isDisabled}"\` : ""}\`, \`    \${args.className ? \`className="\${args.className}"\` : ""}\`, \`    v-model="modelValueAmount"\`, "  />", "</template>"].filter(Boolean).join("\\n").trim();
+        }
+      }
+    }
+  }
+}`,...(h=(g=l.parameters)==null?void 0:g.docs)==null?void 0:h.source}}};var x,$,f;n.parameters={...n.parameters,docs:{...(x=n.parameters)==null?void 0:x.docs,source:{originalSource:`{
+  name: "提示訊息",
+  args: {
+    label: "Account",
+    type: "text",
+    hasClear: true,
+    placeholder: "Placeholder",
+    size: "medium",
+    prefix: "SvgAccount",
+    maxLimit: 0,
+    hintError: {
+      error: () => h("div", {
+        style: "display: flex; align-items: center; gap: 4px;"
+      }, [h(Icon, {
+        name: "SvgErrorCircle",
+        style: "color: red;",
+        size: 16
+      }),
+      // 加入 Icon
+      h("span", "Error message") // 一般文字
+      ]),
+      description: () => h(StatusIndicator, {
+        themeColor: "neutral",
+        variant: "text",
+        size: "medium",
+        isShowDot: false
+      }, "Prompt message")
+    },
+    hintPrompt: {
+      error: "",
+      description: () => h(StatusIndicator, {
+        themeColor: "neutral",
+        variant: "text",
+        size: "medium",
+        isShowDot: false
+      }, "Prompt message")
+    },
+    isDisabled: false,
+    className: "",
+    modelValue: ""
+  },
+  render: args => ({
+    components: {
+      Input
+    },
+    setup() {
+      return {
+        args,
+        StatusIndicator,
+        Icon
+      };
+    },
+    template: \`
+      <div style="display: flex; flex-direction: column; gap:8px">
+        <Input
+          :label="args.label"
+          :type="args.type"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          :prefix="args.prefix"
+          :maxLimit="args.maxLimit"
+          :hint="args.hintError"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValue"
+        />
+        <Input
+          :label="args.label"
+          :type="args.type"
+          :hasClear="args.hasClear"
+          :placeholder="args.placeholder"
+          :size="args.size"
+          :prefix="args.prefix"
+          :maxLimit="args.maxLimit"
+          :hint="args.hintPrompt"
+          :isDisabled="args.isDisabled"
+          :className="args.className"
+          v-model="args.modelValue"
+        />
+      </div>
+    \`
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      exclude: ["hint", "input", "clearDatePicker"]
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          return [\`<script setup>\`, "import { ref, h } from \\"vue\\";", "import { Input, Icon, StatusIndicator } from \\"@ded-wds-vue/ui\\";", "const modelValue = ref(\\"\\");", \`<\/script>\`, "", "<template>", "  <Input", \`    \${args.label ? \`label="\${args.label}"\` : ""}\`, \`    \${args.type ? \`type="\${args.type}"\` : ""}\`, \`    \${args.hasClear !== undefined ? \`:hasClear="\${args.hasClear}"\` : ""}\`, \`    \${args.placeholder ? \`placeholder="\${args.placeholder}"\` : ""}\`, \`    \${args.size ? \`size="\${args.size}"\` : ""}\`, \`    \${args.prefix ? \`prefix="\${args.prefix}"\` : ""}\`, \`    \${args.maxLimit ? \`maxLimit="\${args.maxLimit}"\` : ""}\`, \`    :hint="{
+        error: () => h('div', { style: 'display: flex; align-items: center; gap: 4px;' }, [
+          h(Icon, { name: 'SvgErrorCircle', style: 'color: red;', size: 16 }),
+          h('span', 'Error message')
+        ]),
+        description: ''
+    }"\`, \`    \${args.isDisabled !== undefined ? \`:isDisabled="\${args.isDisabled}"\` : ""}\`, \`    \${args.className ? \`className="\${args.className}"\` : ""}\`, "    v-model=\\"modelValue\\"", "  />", "", "  <Input", \`    \${args.label ? \`label="\${args.label}"\` : ""}\`, \`    \${args.type ? \`type="\${args.type}"\` : ""}\`, \`    \${args.hasClear !== undefined ? \`:hasClear="\${args.hasClear}"\` : ""}\`, \`    \${args.placeholder ? \`placeholder="\${args.placeholder}"\` : ""}\`, \`    \${args.size ? \`size="\${args.size}"\` : ""}\`, \`    \${args.prefix ? \`prefix="\${args.prefix}"\` : ""}\`, \`    \${args.maxLimit ? \`maxLimit="\${args.maxLimit}"\` : ""}\`, \`    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"\`, \`    \${args.isDisabled !== undefined ? \`:isDisabled="\${args.isDisabled}"\` : ""}\`, \`    \${args.className ? \`className="\${args.className}"\` : ""}\`, "    v-model=\\"modelValue\\"", "  />", "</template>"].filter(Boolean).join("\\n").trim();
+        }
+      }
+    }
+  }
+}`,...(f=($=n.parameters)==null?void 0:$.docs)==null?void 0:f.source}}};const z=["InputDefault","InputTypesStory","InputHintTypeStory"];export{i as InputDefault,n as InputHintTypeStory,l as InputTypesStory,z as __namedExportsOrder,C as default};
