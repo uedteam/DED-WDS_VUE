@@ -39,9 +39,13 @@ function removeToastById(id, position) {
   const index = toasts[position].findIndex(toast => toast.id === id)
   if (index !== -1) {
     toasts[position].splice(index, 1)
+    if (toasts[position].length === 0 && toastContainers.has(position)) {
+      const container = toastContainers.get(position)
+      document.body.removeChild(container)
+      toastContainers.delete(position)
+    }
   }
 }
-
 function addToast(toast) {
   const id = `toast-${crypto.randomUUID()}`
   const position = toast.position || "top-right"
@@ -75,15 +79,19 @@ function clearAllToasts() {
 
   Object.keys(toasts).forEach((position) => {
     toasts[position].splice(0, toasts[position].length)
+    if (toastContainers.has(position)) {
+      const container = toastContainers.get(position)
+      document.body.removeChild(container)
+      toastContainers.delete(position)
+    }
   })
 }
 
-// **讓 `useToast()` 本身可以 inject 或 provide**
 export function useToast() {
   const injectedToast = inject("useToast", null)
 
   if (injectedToast) {
-    return injectedToast // 如果已經有 `provide` 過，就直接回傳
+    return injectedToast
   }
 
   const toastMethods = {
@@ -94,7 +102,7 @@ export function useToast() {
     positions,
   }
 
-  // **自己 provide 自己**
+
   provide("useToast", toastMethods)
 
   return toastMethods
