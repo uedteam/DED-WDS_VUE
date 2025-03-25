@@ -44,7 +44,6 @@
     "print-access-token": "gcloud auth application-default print-access-token"
   },
   "dependencies": {
-    "@ded-wds-vue/ui": "file:",
     "vue": "^3.3.4",
     "vue-router": "^4.5.0"
   },

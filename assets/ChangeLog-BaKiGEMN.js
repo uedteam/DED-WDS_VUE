@@ -1,4 +1,4 @@
-import{j as n,M as r,h as a}from"./index-Dph5g4J1.js";import{useMDXComponents as s}from"./index-DO0hYupm.js";import"./iframe-DnTNUmdR.js";import"./index-CEXj7t9i.js";import"./index-DrFu-skq.js";const i=`## v1.0.15-beta (2025-03-20)
+import{j as n,M as r,h as a}from"./index-BjUVoXlD.js";import{useMDXComponents as s}from"./index-CivWVCmj.js";import"./iframe-CgtqaBEV.js";import"./index-CEXj7t9i.js";import"./index-DrFu-skq.js";const i=`## v1.0.16-beta (2025-03-20-1)
 
 
 ### 🆙 Updates: @ded-wds-vue/ui
