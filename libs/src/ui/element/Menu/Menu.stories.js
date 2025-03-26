@@ -1,25 +1,23 @@
 import Menu from "@/ui/element/Menu/Menu.vue"
 
 function formatDataSource(dataSource) {
-  return `[
-        ${dataSource.map(item => `{
-            label: '${item.label}',
-            path: '${item.path}',
-            prefix: '${item.prefix}',
-            ${item.order !== undefined && item.order !== null ? `order: '${item.order}',` : ""}
+  return `        ${dataSource.map(item => `{
+            label: "${item.label}",
+            path: "${item.path}",
+            prefix: "${item.prefix}",
+            ${item.order !== undefined && item.order !== null ? `order: "${item.order}",` : ""}
             ${item.isDisabled !== undefined ? `isDisabled: ${item.isDisabled},` : ""}
             ${item.children && item.children.length
               ? `children: [
                 ${item.children.map(child => `{
-                    label: '${child.label}',
-                    path: '${child.path}',
-                    prefix: '${child.prefix}',
-                    ${child.order !== undefined && child.order !== null ? `order: '${child.order}',` : ""}
+                    label: "${child.label}",
+                    path: "${child.path}",
+                    prefix: "${child.prefix}",
+                    ${child.order !== undefined && child.order !== null ? `order: "${child.order}",` : ""}
                 }`).join(",\n                ")}
             ]`
               : ""}
-        }`).join(",\n        ")}
-    ]`
+        }`).join(",\n        ")}`
 }
 
 export default {
@@ -134,11 +132,14 @@ export const MenuDefault = {
           return [
             `<script setup>`,
             `import { Menu } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `</script>`,
             "",
             "<template>",
             "  <Menu",
-            `    ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
+            `    :dataSource="dataSource"`,
             `    ${args.isCollapsed !== undefined ? `:isCollapsed="${args.isCollapsed}"` : ""}`,
             `    ${args.color ? `color="${args.color}"` : ""}`,
             `    ${args.hasDivider !== undefined ? `:hasDivider="${args.hasDivider}"` : ""}`,

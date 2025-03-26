@@ -3,34 +3,34 @@ import Column from "@/ui/layout/Grid/Column.vue"
 import Grid from "@/ui/layout/Grid/Grid.vue"
 import Row from "@/ui/layout/Grid/Row.vue"
 
-function formatDataSource(dataSource) {
-  return `[
-        ${dataSource.map((item) => {
-          const properties = [
-            item.label ? `label: '${item.label}'` : "",
-            item.prefix !== undefined && item.prefix !== null ? `prefix: '${item.prefix}'` : "",
-            item.path ? `path: '${item.path}'` : "",
-            item.order !== undefined && item.order !== null ? `order: '${item.order}'` : "",
-            item.children && item.children.length
-              ? `children: [
-            ${item.children.map((child) => {
-              const childProps = [
-                child.label ? `label: '${child.label}'` : "",
-                child.prefix !== undefined && child.prefix !== null ? `prefix: '${child.prefix}'` : "",
-                child.path ? `path: '${child.path}'` : "",
-                child.order !== undefined && child.order !== null ? `order: '${child.order}'` : "",
-              ].filter(Boolean).join(",\n                    ")
-
-              return `  {\n                    ${childProps}\n              }`
-            }).join(",\n                    ")}
-            ]`
-              : "",
-          ].filter(Boolean).join(",\n            ")
-
-          return `{\n            ${properties}\n        }`
-        }).join(",\n        ")}
-    ]`
-}
+// function formatDataSource(dataSource) {
+//   return `[
+//         ${dataSource.map((item) => {
+//           const properties = [
+//             item.label ? `label: '${item.label}'` : "",
+//             item.prefix !== undefined && item.prefix !== null ? `prefix: '${item.prefix}'` : "",
+//             item.path ? `path: '${item.path}'` : "",
+//             item.order !== undefined && item.order !== null ? `order: '${item.order}'` : "",
+//             item.children && item.children.length
+//               ? `children: [
+//             ${item.children.map((child) => {
+//               const childProps = [
+//                 child.label ? `label: '${child.label}'` : "",
+//                 child.prefix !== undefined && child.prefix !== null ? `prefix: '${child.prefix}'` : "",
+//                 child.path ? `path: '${child.path}'` : "",
+//                 child.order !== undefined && child.order !== null ? `order: '${child.order}'` : "",
+//               ].filter(Boolean).join(",\n                    ")
+//
+//               return `  {\n                    ${childProps}\n              }`
+//             }).join(",\n                    ")}
+//             ]`
+//               : "",
+//           ].filter(Boolean).join(",\n            ")
+//
+//           return `{\n            ${properties}\n        }`
+//         }).join(",\n        ")}
+//     ]`
+// }
 
 const dataSource = [
   {
@@ -229,7 +229,7 @@ export const SideNavDefault = {
     template: `
       <Grid fluid>
         <Row hasGap>
-          <Column xs="12" sm="4" md="4" style="text-align: start;">
+          <Column :xs="12" :sm="4" :md="4" style="text-align: start;">
             <SideNav
               :themeColor="args.themeColor"
               :mobileLogoSrc="args.mobileLogoSrc"
@@ -258,16 +258,76 @@ export const SideNavDefault = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
-          const dataSourceString = formatDataSource(args.dataSource)
           return [
             `<script setup>`,
             `import { SideNav, Grid, Row, Column } from "@ded-wds-vue/ui";`,
-            `</script>`,
-            "",
+            ``,
+            `const dataSource = [`,
+            `  {`,
+            `    label: "Home",`,
+            `    prefix: "SvgHome",`,
+            `    path: "/Home",`,
+            `    isDisabled: true,`,
+            `    order: 1,`,
+            `  },`,
+            `  {`,
+            `    label: "User",`,
+            `    prefix: "SvgUser",`,
+            `    path: "/users",`,
+            `    order: 2,`,
+            `    children: [`,
+            `      { label: "Profile", path: "/user/profile", order: 1 },`,
+            `      { label: "Account", path: "/user/account", order: 2 },`,
+            `    ],`,
+            `  },`,
+            `  {`,
+            `    label: "Chart",`,
+            `    prefix: "SvgBarChart",`,
+            `    path: "/chart",`,
+            `    order: 3,`,
+            `    children: [`,
+            `      { label: "Profile", path: "/chart/profile", order: 1 },`,
+            `      { label: "Account", path: "/chart/account", order: 2 },`,
+            `      { label: "Account", path: "/chart/account", order: 3 },`,
+            `      { label: "Account", path: "/chart/account", order: 4 },`,
+            `    ],`,
+            `  },`,
+            `  {`,
+            `    label: "Database",`,
+            `    prefix: "SvgDatabase",`,
+            `    path: "/database",`,
+            `    order: 4,`,
+            `  },`,
+            `  {`,
+            `    label: "Favorite",`,
+            `    prefix: "SvgFavorite",`,
+            `    path: "/favorite",`,
+            `    order: 5,`,
+            `  },`,
+            `  {`,
+            `    label: "Calendar",`,
+            `    prefix: "SvgCalendar",`,
+            `    path: "/calendar",`,
+            `    order: 6,`,
+            `  },`,
+            `  {`,
+            `    label: "Notification",`,
+            `    prefix: "SvgNotification",`,
+            `    path: "/notification",`,
+            `    order: 7,`,
+            `  },`,
+            `  {`,
+            `    label: "Language",`,
+            `    prefix: "SvgLanguage",`,
+            `    path: "/language",`,
+            `    order: 8,`,
+            `  },`,
+            `]`,
+            "</script>",
             "<template>",
             `  <Grid fluid>`,
             `    <Row hasGap>`,
-            `      <Column xs="12" sm="4" md="4" style="text-align: start;">`,
+            `      <Column :xs="12" :sm="4" :md="4" style="text-align: start;">`,
             `        <SideNav`,
             `          ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
             `          ${args.mobileLogoSrc ? `mobileLogoSrc="${args.mobileLogoSrc}"` : ""}`,
@@ -279,7 +339,7 @@ export const SideNavDefault = {
             `          ${args.caption !== undefined ? `caption="${args.caption}"` : ""}`,
             `          ${args.userStatus !== undefined ? `userStatus="${args.userStatus}"` : ""}`,
             `          ${args.hasSearch !== undefined ? `:hasSearch="${args.hasSearch}"` : ""}`,
-            `          ${dataSourceString !== undefined ? `:dataSource="${dataSourceString}"` : ""}`,
+            `          :dataSource="dataSource"`,
             `          ${args.className ? `className="${args.className}"` : ""}`,
             `        ></SideNav>`,
             `      </Column>`,

@@ -2,13 +2,11 @@ import Button from "@/ui/element/Button/Button.vue"
 import Stepper from "@/ui/element/Stepper/Stepper.vue"
 
 function formatDataSource(dataSource) {
-  return `[
-        ${dataSource.map(item => `{
-            title: "${item.title}",
-            desc: "${item.desc}",
-            content: "${item.content}",
-        }`).join(",\n        ")}
-    ]`
+  return `    ${dataSource.map(item => `{
+        title: "${item.title}",
+        desc: "${item.desc}",
+        content: "${item.content}",
+    }`).join(",\n    ")}`
 }
 const dataSource = [
   {
@@ -116,11 +114,14 @@ export const StepperDefault = {
           return [
             `<script setup>`,
             `import { Stepper } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `</script>`,
             "",
             "<template>",
             "  <Stepper",
-            `      :dataSource='${dataSourceString}'`,
+            `      :dataSource="dataSource"`,
             `      ${args.currentStep !== undefined ? `:currentStep="${args.currentStep}"` : ""}`,
             `      ${args.direction ? `direction="${args.direction}"` : ""}`,
             `      ${args.className ? `className="${args.className}"` : ""}`,

@@ -1,12 +1,10 @@
 import Tabs from "@/ui/element/Tabs/Tabs.vue"
 
 function formatDataSource(dataSource) {
-  return `[
-    ${dataSource.map(item => `{
-        title: '${item.title}',
-        content: '${item.content}',
-    }`).join(",\n    ")}
-  ]`
+  return `    ${dataSource.map(item => `{
+        title: "${item.title}",
+        content: "${item.content}",
+    }`).join(",\n    ")}`
 }
 
 export default {
@@ -147,12 +145,15 @@ export const DefaultTabs = {
           return [
             `<script setup>`,
             `import { Tabs } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `</script>`,
             "",
             "<template>",
             "  <Tabs",
             `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
-            `    ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
+            `    :dataSource="dataSource"`,
             `    ${args.activeIndex !== undefined ? `:activeIndex="${args.activeIndex}"` : ""}`,
             `    ${args.type ? `type="${args.type}"` : ""}`,
             `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
@@ -240,24 +241,13 @@ export const TabsTypesStory = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
+          const dataSourceString = formatDataSource(args.dataSource)
           return [
             `<script setup>`,
             `import { Tabs } from "@ded-wds-vue/ui";`,
             `const dataSource = [`,
-            `  {`,
-            `    title: 'Tab 1',`,
-            `    content: 'Content 1',`,
-            `  },`,
-            `  {`,
-            `    title: 'Tab 2',`,
-            `    content: 'Content 2',`,
-            `  },`,
-            `  {`,
-            `    title: 'Tab 3',`,
-            `    content: 'Content 3',`,
-            `  }`,
+            `${dataSourceString}`,
             `];`,
-            ``,
             `</script>`,
             "",
             "<template>",
@@ -405,24 +395,13 @@ export const TabsColorStory = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
+          const dataSourceString = formatDataSource(args.dataSource)
           return [
             `<script setup>`,
             `import { Tabs } from "@ded-wds-vue/ui";`,
             `const dataSource = [`,
-            `  {`,
-            `    title: 'Tab 1',`,
-            `    content: 'Content 1',`,
-            `  },`,
-            `  {`,
-            `    title: 'Tab 2',`,
-            `    content: 'Content 2',`,
-            `  },`,
-            `  {`,
-            `    title: 'Tab 3',`,
-            `    content: 'Content 3',`,
-            `  }`,
+            `${dataSourceString}`,
             `];`,
-            ``,
             `</script>`,
             "",
             "<template>",

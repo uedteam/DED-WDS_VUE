@@ -1,12 +1,10 @@
 import Dropdown from "@/ui/element/Dropdown/Dropdown.vue"
 
 function formatDataSource(dataSource) {
-  return `[
-    ${dataSource.map(item => `{
-        label: '${item.label}',
-        value: '${item.value}',
-    }`).join(",\n    ")}
-  ]`
+  return `    ${dataSource.map(item => `{
+        label: "${item.label}",
+        value: "${item.value}",
+    }`).join(",\n    ")}`
 }
 
 export default {
@@ -131,12 +129,15 @@ export const DropdownDefault = {
             `<script setup>`,
             "import { ref } from \"vue\";",
             `import { Dropdown } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             "const modelValue = ref(\"\");",
             `</script>`,
             "",
             "<template>",
             "  <Dropdown",
-            `    :dataSource="${dataSourceString}"`,
+            `    :dataSource="dataSource"`,
             `    ${args.label ? `label="${args.label}"` : ""}`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.size ? `size="${args.size}"` : ""}`,

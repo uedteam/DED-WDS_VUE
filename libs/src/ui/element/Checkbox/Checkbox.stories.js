@@ -1,13 +1,11 @@
 import Checkbox from "@/ui/element/Checkbox/Checkbox.vue"
 
 function formatDataSource(dataSource) {
-  return `[
-    ${dataSource.map(item => `{
-        label: '${item.label}',
-        value: '${item.value}',
+  return `    ${dataSource.map(item => `{
+        label: "${item.label}",
+        value: "${item.value}",
         isDisabled: ${item.isDisabled}
-    }`).join(",\n    ")}
-  ]`
+    }`).join(",\n    ")}`
 }
 
 export default {
@@ -15,24 +13,6 @@ export default {
   component: Checkbox,
   tags: ["autodocs"],
   argTypes: {
-    // themeColor: {
-    //     description: "主題顏色",
-    //     control: { type: "select" },
-    //     options: [
-    //         "primary",
-    //         "secondary",
-    //         "neutral",
-    //         "info",
-    //         "success",
-    //         "warning",
-    //         "error",
-    //     ],
-    //     table: {
-    //         type: {
-    //             summary: "primary | secondary | tertiary | success | warning | error | info"
-    //         }
-    //     }
-    // },
     dataSource: {
       description: "資料來源",
       control: { type: "object" },
@@ -144,12 +124,15 @@ export const CheckboxMultiStory = {
             `<script setup>`,
             `import { ref } from "vue";`,
             `import { Checkbox } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `const modelValue = ref(["option1", "option3"]);`,
             `</script>`,
             "",
             "<template>",
             "  <Checkbox",
-            `    :dataSource="${dataSourceString}"`,
+            `    :dataSource="dataSource"`,
             `    ${args.direction ? `direction="${args.direction}"` : ""}`,
             `    ${args.size ? `size="${args.size}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
@@ -221,12 +204,15 @@ export const CheckboxColumnDirection = {
             `<script setup>`,
             `import { ref } from "vue";`,
             `import { Checkbox } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `const modelValue = ref(["option4", "option6"]);`,
             `</script>`,
             "",
             "<template>",
             "  <Checkbox",
-            `    :dataSource="${dataSourceString}"`,
+            `    :dataSource="dataSource"`,
             `    direction="column"`,
             `    ${args.size ? `size="${args.size}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
@@ -298,12 +284,15 @@ export const CheckboxRowDirection = {
             `<script setup>`,
             `import { ref } from "vue";`,
             `import { Checkbox } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `const modelValue = ref(["option7", "option9"]);`,
             `</script>`,
             "",
             "<template>",
             "  <Checkbox",
-            `    :dataSource="${dataSourceString}"`,
+            `    :dataSource="dataSource"`,
             `    direction="row"`,
             `    ${args.size ? `size="${args.size}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
@@ -394,26 +383,29 @@ export const CheckboxSizeStory = {
             `<script setup>`,
             `import { ref } from "vue";`,
             `import { Checkbox } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `const modelValue = ref(["option10", "option12"]);`,
             `</script>`,
             "",
             "<template>",
             "  <Checkbox",
-            `    :dataSource="${dataSourceString}"`,
+            `    :dataSource="dataSource"`,
             `    ${args.direction ? `direction="${args.direction}"` : ""}`,
             `    size="large"`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             `    v-model="modelValue"`,
             "  ></Checkbox>",
             "  <Checkbox",
-            `    :dataSource="${dataSourceString}"`,
+            `    :dataSource="dataSource"`,
             `    ${args.direction ? `direction="${args.direction}"` : ""}`,
             `    size="medium"`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             `    v-model="modelValue"`,
             "  ></Checkbox>",
             "  <Checkbox",
-            `    :dataSource="${dataSourceString}"`,
+            `    :dataSource="dataSource"`,
             `    ${args.direction ? `direction="${args.direction}"` : ""}`,
             `    size="small"`,
             `    ${args.className ? `className="${args.className}"` : ""}`,

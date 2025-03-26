@@ -1,12 +1,10 @@
 import Select from "@/ui/element/Select/Select.vue"
 
 function formatDataSource(dataSource) {
-  return `[
-    ${dataSource.map(item => `{
-        label: '${item.label}',
-        value: '${item.value}',
-    }`).join(",\n    ")}
-  ]`
+  return `    ${dataSource.map(item => `{
+        label: "${item.label}",
+        value: "${item.value}",
+    }`).join(",\n    ")}`
 }
 
 export default {
@@ -131,14 +129,17 @@ export const SelectDefault = {
           const dataSourceString = formatDataSource(args.dataSource)
           return [
             `<script setup>`,
-            "import { ref } from \"vue\";",
+            `import { ref } from "vue";`,
             `import { Select } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             "const modelValue = ref(\"\");",
             `</script>`,
             "",
             "<template>",
             `  <Select`,
-            `    ${dataSourceString !== undefined ? `:dataSource="${dataSourceString}"` : ""}`,
+            `    :dataSource="dataSource"`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
             `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,

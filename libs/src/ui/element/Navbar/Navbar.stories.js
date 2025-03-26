@@ -1,13 +1,11 @@
 import Navbar from "@/ui/element/Navbar/Navbar.vue"
 
 function formatDataSource(dataSource) {
-  return `[
-    ${dataSource.map(item => `{
-        label: '${item.label}',
-        href: '${item.href}',
-        order: '${item.order}',
-    }`).join(",\n    ")}
-  ]`
+  return `    ${dataSource.map(item => `{
+        label: "${item.label}",
+        href: "${item.href}",
+        order: "${item.order}",
+    }`).join(",\n    ")}`
 }
 
 export default {
@@ -118,11 +116,14 @@ export const NavbarDefault = {
           return [
             `<script setup>`,
             `import { Navbar } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `</script>`,
             "",
             "<template>",
             "  <Navbar",
-            `    :dataSource="${dataSourceString || ""}"`,
+            `    :dataSource="dataSource"`,
             `    ${args.hasLogo !== undefined ? `:hasLogo="${args.hasLogo}"` : ""}`,
             `    ${args.logoSrc ? `logoSrc="${args.logoSrc}"` : ""}`,
             `    ${args.logoLink ? `logoLink="${args.logoLink}"` : ""}`,
