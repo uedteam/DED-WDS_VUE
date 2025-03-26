@@ -1,18 +1,41 @@
 import AvatarGroup from "@/ui/element/AvatarGroup/AvatarGroup.vue"
 
 function formatDataSource(dataSource) {
-  return `[
-        ${dataSource.map(item => `{
-            userName: "${item.userName}"${item.caption
-              ? `,
-            caption: "${item.caption}"`
-              : ""}${item.src
-              ? `,
-            src: "${item.src}"`
-              : ""}
-        }`).join(",\n        ")}
-    ]`
+  return `${dataSource.map(item => `  {
+      userName: "${item.userName}"${item.caption
+        ? `,
+      caption: "${item.caption}"`
+        : ""}${item.src
+        ? `,
+      src: "${item.src}"`
+        : ""}
+  }`).join(",\n")}`
 }
+const dataSource = [
+  {
+    userName: "eason",
+    caption: "Eason",
+  },
+  {
+    userName: "KevinYang",
+    caption: "Kevin",
+  },
+  {
+    userName: "AmosLee",
+    caption: "Amos",
+    src: "https://picsum.photos/320/240",
+  },
+  {
+    userName: "JohnWu",
+    caption: "John",
+    src: "https://picsum.photos/320/340",
+  },
+  {
+    userName: "Peter",
+    caption: "Peter",
+    src: "https://picsum.photos/320/340",
+  },
+]
 
 export default {
   title: "Component/Avatar-Group",
@@ -62,31 +85,7 @@ export default {
 export const MultiAvatarStory = {
   name: "預設項目",
   args: {
-    dataSource: [
-      {
-        userName: "eason",
-        caption: "Eason",
-      },
-      {
-        userName: "KevinYang",
-        caption: "Kevin",
-      },
-      {
-        userName: "AmosLee",
-        caption: "Amos",
-        src: "https://picsum.photos/320/240",
-      },
-      {
-        userName: "JohnWu",
-        caption: "John",
-        src: "https://picsum.photos/320/340",
-      },
-      {
-        userName: "Peter",
-        caption: "Peter",
-        src: "https://picsum.photos/320/340",
-      },
-    ],
+    dataSource,
     size: "large",
     limit: 2,
     className: "",
@@ -121,11 +120,14 @@ export const MultiAvatarStory = {
           return [
             `<script setup>`,
             `import { AvatarGroup } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `</script>`,
             "",
             "<template>",
             "  <AvatarGroup",
-            `    :dataSource='${dataSourceString}'`,
+            `    :dataSource="dataSource"`,
             `    ${args.size ? `size="${args.size}"` : ""}`,
             `    ${args.limit ? `:limit="${args.limit}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,

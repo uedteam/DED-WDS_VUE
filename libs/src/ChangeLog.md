@@ -1,6 +1,5 @@
-## v1.0.16-beta (2025-03-20-1)
+## v1.0.16-beta (2025-03-26)
 
 
 ### 🆙 Updates: @ded-wds-vue/ui
-- 修改 Toast useToast.js
-- 修改 Toast storybook
+- 修改 storybook dataSource 顯示方式

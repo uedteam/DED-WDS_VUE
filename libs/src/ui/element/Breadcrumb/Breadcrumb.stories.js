@@ -1,13 +1,32 @@
 import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue"
 
 function formatDataSource(dataSource) {
-  return `[
-        ${dataSource.map(item => `{
-            label: "${item.label}",
-            href: "${item.href}",
-        }`).join(",\n    ")}
-    ]`
+  return `    ${dataSource.map(item => `{
+        label: "${item.label}",
+        href: "${item.href}",
+    }`).join(",\n    ")}`
 }
+const dataSource = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Level1",
+    href: "/first",
+  },
+  {
+    label: "Level2",
+    href: "https://tw.yahoo.com",
+  },
+  {
+    label: "Level3",
+    href: "/first/second/third/n",
+  },
+  {
+    label: "Current",
+  },
+]
 
 export default {
   title: "Component/Breadcrumb",
@@ -44,27 +63,7 @@ export default {
 export const BreadcrumbMany = {
   name: "預設項目",
   args: {
-    dataSource: [
-      {
-        label: "Home",
-        href: "/",
-      },
-      {
-        label: "Level1",
-        href: "/first",
-      },
-      {
-        label: "Level2",
-        href: "https://tw.yahoo.com",
-      },
-      {
-        label: "Level3",
-        href: "/first/second/third/n",
-      },
-      {
-        label: "Current",
-      },
-    ],
+    dataSource,
     className: "",
   },
   render: args => ({
@@ -94,11 +93,14 @@ export const BreadcrumbMany = {
           return [
             `<script setup>`,
             `import { Breadcrumb } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `</script>`,
             "",
             "<template>",
             "  <Breadcrumb",
-            `    :dataSource='${dataSourceString}'`,
+            `    :dataSource="dataSource"`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             "  >",
             "  </Breadcrumb>",

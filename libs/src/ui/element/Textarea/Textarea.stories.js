@@ -5,9 +5,9 @@ import StatusIndicator from "../StatusIndicator/StatusIndicator.vue"
 
 function formatDataSource(hint) {
   return `{
-        error: '${hint.error || ""}',
-        description: '${hint.description || ""}'
-    }`
+      error: "${hint.error || ""}",
+      description: "${hint.description || ""}"
+}`
 }
 
 export default {
@@ -115,6 +115,7 @@ export const TextareaDefault = {
             `<script setup>`,
             "import { ref, h } from \"vue\";",
             `import { Textarea } from "@ded-wds-vue/ui";`,
+            `const hint = ${dataSourceString};`,
             `const modelValue = ref("${args.modelValue}");`,
             `</script>`,
             "",
@@ -123,7 +124,7 @@ export const TextareaDefault = {
             `    ${args.label ? `label="${args.label}"` : ""}`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.limit !== undefined ? `:limit="${args.limit}"` : ""}`,
-            `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
+            `    :hint="hint"`,
             `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             `    v-model="modelValue"`,
@@ -181,6 +182,7 @@ export const TextareaLimit = {
             `<script setup>`,
             "import { ref, h } from \"vue\";",
             `import { Textarea } from "@ded-wds-vue/ui";`,
+            `const hint = ${dataSourceString};`,
             `const modelValue = ref("${args.modelValue}");`,
             `</script>`,
             "",
@@ -189,7 +191,7 @@ export const TextareaLimit = {
             `    ${args.label ? `label="${args.label}"` : ""}`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.limit !== undefined ? `:limit="${args.limit}"` : ""}`,
-            `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
+            `    :hint="hint"`,
             `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             `    v-model="modelValue"`,
@@ -209,16 +211,16 @@ export const TextareaStatus = {
     label: "Label",
     placeholder: "Placeholder",
     limit: 30,
+    hintPrompt: {
+      error: "",
+      description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
+    },
     hintError: {
       error: () => h("div", { style: "display: flex; align-items: center; gap: 4px;" }, [
         h(Icon, { name: "SvgErrorCircle", style: "color: red;", size: 16 }),
         h("span", "Error message"),
       ]),
-      description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
-    },
-    hintPrompt: {
-      error: "",
-      description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
+      description: "",
     },
     hint: {
       error: "",
@@ -280,10 +282,16 @@ export const TextareaStatus = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
+          const dataSourceStringPrompt = formatDataSource(args.hintPrompt)
+          const dataSourceStringError = formatDataSource(args.hintError)
+          const dataSourceString = formatDataSource(args.hint)
           return [
             `<script setup>`,
             "import { ref, h } from \"vue\";",
             `import { Textarea, Icon, StatusIndicator } from "@ded-wds-vue/ui";`,
+            `const hintPrompt = ${dataSourceStringPrompt};`,
+            `const hintError = ${dataSourceStringError};`,
+            `const hint = ${dataSourceString};`,
             `const modelValue = ref("${args.modelValue}");`,
             `</script>`,
             "",
@@ -292,13 +300,7 @@ export const TextareaStatus = {
             `    ${args.label ? `label="${args.label}"` : ""}`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.limit !== undefined ? `:limit="${args.limit}"` : ""}`,
-            `    :hint="{
-        error: () => h('div', { style: 'display: flex; align-items: center; gap: 4px;' }, [
-          h(Icon, { name: 'SvgErrorCircle', style: 'color: red;', size: 16 }),
-          h('span', 'Error message')
-        ]),
-        description: ''
-    }"`,
+            `    :hint="hintPrompt"`,
             `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             `    v-model="modelValue"`,
@@ -307,15 +309,7 @@ export const TextareaStatus = {
             `    ${args.label ? `label="${args.label}"` : ""}`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.limit !== undefined ? `:limit="${args.limit}"` : ""}`,
-            `    :hint="{
-        error: '',
-        description: () => h( StatusIndicator, {
-          themeColor: 'neutral',
-          variant: 'text',
-          size: 'medium',
-          isShowDot: false
-        }, 'Prompt message')
-    }"`,
+            `    :hint="hintError"`,
             `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
             `    v-model="modelValue"`,
@@ -324,10 +318,7 @@ export const TextareaStatus = {
             `    ${args.label ? `label="${args.label}"` : ""}`,
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.limit !== undefined ? `:limit="${args.limit}"` : ""}`,
-            `    :hint="{ error: '', description: '' }"`,
-            `    :isDisabled="true"`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `    v-model="modelValue"`,
+            `    :hint="hint"`,
             "  ></Textarea>",
             "</template>",
           ].filter(Boolean).join("\n").trim()

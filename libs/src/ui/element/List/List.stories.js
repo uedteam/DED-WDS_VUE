@@ -2,19 +2,17 @@ import List from "@/ui/element/List/List.vue"
 import { action } from "@storybook/addon-actions"
 
 function formatDataSource(dataSource) {
-  return `[
-        ${dataSource.map((item) => {
-          const properties = [
-            item.label ? `label: '${item.label}'` : "",
-            item.value ? `value: '${item.value}'` : "",
-            item.href ? `href: '${item.href}'` : "",
-            item.prefix ? `prefix: '${item.prefix}'` : "",
-            item.isDisabled !== undefined ? `isDisabled: ${item.isDisabled}` : "",
-          ].filter(Boolean).join(",\n            ")
+  return `    ${dataSource.map((item) => {
+    const properties = [
+      item.label ? `label: "${item.label}"` : "",
+      item.value ? `value: "${item.value}"` : "",
+      item.href ? `href: "${item.href}"` : "",
+      item.prefix ? `prefix: "${item.prefix}"` : "",
+      item.isDisabled !== undefined ? `isDisabled: ${item.isDisabled}` : "",
+    ].filter(Boolean).join(",\n        ")
 
-          return `{\n            ${properties}\n        }`
-        }).join(",\n        ")}
-    ]`
+    return `{\n        ${properties}\n    }`
+  }).join(",\n    ")}`
 }
 const dataSource = [
   {
@@ -126,12 +124,15 @@ export const ListDefaultStory = {
           return [
             `<script setup>`,
             `import { List } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `const handleItemClick = () => {};`,
             `</script>`,
             "",
             "<template>",
             `  <List`,
-            `    ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
+            `    :dataSource="dataSource"`,
             `    ${args.hasOutline !== undefined ? `:hasOutline="${args.hasOutline}"` : ""}`,
             `    ${args.hasDivider !== undefined ? `:hasDivider="${args.hasDivider}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
@@ -185,12 +186,15 @@ export const ListOutLineStory = {
           return [
             `<script setup>`,
             `import { List } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `const handleItemClick = () => {};`,
             `</script>`,
             "",
             "<template>",
             `  <List`,
-            `    ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
+            `    :dataSource="dataSource"`,
             `    :hasOutline="true"`,
             `    ${args.hasDivider !== undefined ? `:hasDivider="${args.hasDivider}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
@@ -245,12 +249,15 @@ export const ListDividerStory = {
           return [
             `<script setup>`,
             `import { List } from "@ded-wds-vue/ui";`,
+            `const dataSource = [`,
+            `${dataSourceString}`,
+            `];`,
             `const handleItemClick = () => {};`,
             `</script>`,
             "",
             "<template>",
             `  <List`,
-            `    ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
+            `    :dataSource="dataSource"`,
             `    ${args.hasOutline !== undefined ? `:hasOutline="${args.hasOutline}"` : ""}`,
             `    :hasDivider="true"`,
             `    ${args.className ? `className="${args.className}"` : ""}`,
