@@ -13,7 +13,8 @@ function formatDataSource(dataSource) {
                     label: "${child.label}",
                     path: "${child.path}",
                     prefix: "${child.prefix}",
-                    ${child.order !== undefined && child.order !== null ? `order: "${child.order}",` : ""}
+                    ${child.order !== undefined && child.order !== null ? `order: "${child.order}"` : ""},
+                    ${child.isDisabled !== undefined ? `isDisabled: ${child.isDisabled},` : ""}
                 }`).join(",\n                ")}
             ]`
               : ""}

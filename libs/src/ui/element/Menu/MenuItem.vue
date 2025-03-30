@@ -125,6 +125,7 @@ const arrowStyle = computed(() => ({
         :use-router="props.useRouter"
         :color="props.color"
         :expanded-items="props.expandedItems"
+        :is-disabled="child.isDisabled === true"
         @item-click="emit('itemClick', $event)"
         @toggle-expand="emit('toggleExpand', $event)"
       />
