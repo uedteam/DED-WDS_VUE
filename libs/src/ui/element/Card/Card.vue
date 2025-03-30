@@ -18,17 +18,21 @@ const props = defineProps({
       [props.className]: !!props.className }
     "
   >
-    <div class="ded-card-header" :class="{ 'ded-card-header-divider': props.hasHeaderDivider }">
-      <slot name="cardHeader" />
-    </div>
+    <template v-if="$slots.cardHeader">
+      <div class="ded-card-header" :class="{ 'ded-card-header-divider': props.hasHeaderDivider }">
+        <slot name="cardHeader" />
+      </div>
+    </template>
 
     <div class="ded-card-body">
       <slot />
     </div>
 
-    <div class="ded-card-footer">
-      <slot name="cardFooter" />
-    </div>
+    <template v-if="$slots.cardFooter">
+      <div class="ded-card-footer">
+        <slot name="cardFooter" />
+      </div>
+    </template>
   </div>
 </template>
 
