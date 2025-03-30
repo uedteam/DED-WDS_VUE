@@ -61,10 +61,10 @@ function handleLogoClick() {
       <ul class="navbar-links">
         <Button
           v-for="link in sortDataSource"
-          :key="link.href"
+          :key="link.path"
           theme-color="primary"
           variant="text"
-          @click="() => link.href && window.open(link.href, '_blank')"
+          @click="() => link.path && window.open(link.path, '_blank')"
         >
           {{ link.label }}
         </Button>
