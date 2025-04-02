@@ -5,8 +5,8 @@ import StatusIndicator from "../StatusIndicator/StatusIndicator.vue"
 
 function formatDataSource(hint) {
   return `{
-      error: "${hint.error || ""}",
-      description: "${hint.description || ""}"
+      error: ${typeof hint.error === "function" ? `${hint.error}` : "\"\""},
+      description: ${typeof hint.description === "function" ? `${hint.description}` : "\"\""}
 }`
 }
 
