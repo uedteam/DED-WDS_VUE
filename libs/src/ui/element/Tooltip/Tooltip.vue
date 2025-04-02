@@ -1,7 +1,7 @@
 <script setup>
 import { getTargetPosition } from "@/utils/positionUtils"
-import { nextTick, onBeforeUnmount, onMounted, ref } from "vue"
 import { v4 as uuidv4 } from "uuid"
+import { nextTick, onBeforeUnmount, onMounted, ref } from "vue"
 
 // 定義 Props
 const props = defineProps({
