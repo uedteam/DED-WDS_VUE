@@ -6,6 +6,7 @@
 - Fix Input Story Copy code
 - Fix Textarea Story Copy code
 - change "href" to "path"
+- install nanoid
 
 ### 🆙 Updates: @ded-wds-vue/ui (#template)
 - Fix Card #header #footer slot option
