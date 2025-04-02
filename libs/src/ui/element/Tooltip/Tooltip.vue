@@ -1,6 +1,7 @@
 <script setup>
 import { getTargetPosition } from "@/utils/positionUtils"
 import { nextTick, onBeforeUnmount, onMounted, ref } from "vue"
+import { v4 as uuidv4 } from "uuid"
 
 // 定義 Props
 const props = defineProps({
@@ -41,7 +42,8 @@ const tooltipContentRef = ref(null)
 const tooltipStyles = ref({})
 
 // 功能 - 生成 tooltip id
-const tooltipId = `tooltip-${Math.random().toString(36).substring(2, 9)}`
+const baseId = uuidv4()
+const tooltipId = `tooltip-${baseId}`
 
 // 功能 - 控制 tooltip 的顯示及隱藏
 const visible = ref(false)
