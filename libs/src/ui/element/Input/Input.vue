@@ -1,5 +1,6 @@
 <script setup>
 import Icon from "@/ui/element/Icon/Icon.vue"
+import { nanoid } from "nanoid"
 import { computed, ref } from "vue"
 
 // 阻止 Vue 自動將 $attrs 綁定到最外層 <div>
@@ -61,7 +62,7 @@ defineExpose({
 })
 
 // 或其他唯一ID生成方式
-const baseId = crypto.randomUUID()
+const baseId = nanoid()
 const uniqueId = `${baseId}-input`
 
 // 計算屬性
