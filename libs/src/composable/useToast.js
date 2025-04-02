@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid"
+import { v4 as uuidv4 } from "uuid"
 import { computed, inject, provide, reactive } from "vue"
 
 const toasts = reactive({
@@ -49,7 +49,7 @@ function removeToastById(id, position) {
   }
 }
 function addToast(toast) {
-  const id = `toast-${nanoid()}`
+  const id = `toast-${uuidv4()}`
   const position = toast.position || "top-right"
 
   if (!Array.isArray(toasts[position])) {
