@@ -5,8 +5,8 @@ import StatusIndicator from "../StatusIndicator/StatusIndicator.vue"
 
 function formatDataSource(hint) {
   return `{
-      error: "${hint.error || ""}",
-      description: "${hint.description || ""}"
+      error: ${typeof hint.error === "function" ? `${hint.error}` : "\"\""},
+      description: ${typeof hint.description === "function" ? `${hint.description}` : "\"\""}
 }`
 }
 
@@ -216,10 +216,7 @@ export const TextareaStatus = {
       description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
     },
     hintError: {
-      error: () => h("div", { style: "display: flex; align-items: center; gap: 4px;" }, [
-        h(Icon, { name: "SvgErrorCircle", style: "color: red;", size: 16 }),
-        h("span", "Error message"),
-      ]),
+      error: () => h(StatusIndicator, { themeColor: "error", variant: "text", size: "medium", prefix: "SvgErrorCircle", isShowDot: false }, "Error message"),
       description: "",
     },
     hint: {
@@ -319,6 +316,7 @@ export const TextareaStatus = {
             `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
             `    ${args.limit !== undefined ? `:limit="${args.limit}"` : ""}`,
             `    :hint="hint"`,
+            `    v-model="modelValue"`,
             "  ></Textarea>",
             "</template>",
           ].filter(Boolean).join("\n").trim()

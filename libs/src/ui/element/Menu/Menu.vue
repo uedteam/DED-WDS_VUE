@@ -45,16 +45,21 @@ const computedWidth = computed(() => (props.isCollapsed ? "auto" : "100%"))
 // 若啟用 useRouter，則取得 router 實例
 const router = props.useRouter ? useRouter() : null
 
-function handleItemClick({ item, event }) {
+function handleItemClick({ item }) {
   emit("navItemClick", item)
   emit("expandedNav")
-
-  if (item.children) {
-    event.preventDefault()
+  // 有 children 就展開（不管有沒有 path）
+  if (Array.isArray(item.children) && item.children.length > 0) {
     handleToggleExpand(item)
   }
-  else if (item.path && props.useRouter && router) {
-    router.push(item.path)
+  // 有 path 就跳轉
+  if (item.path) {
+    if (props.useRouter && router) {
+      router.push(item.path)
+    }
+    else {
+      window.location.href = item.path
+    }
   }
 }
 

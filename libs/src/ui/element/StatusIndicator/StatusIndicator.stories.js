@@ -137,7 +137,7 @@ export const StatusIndicatorDefault = {
             `  <StatusIndicator`,
             `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
             `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
+            `    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : `:isShowDot="${args.isShowDot}"`}`,
             `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
             `    ${args.size ? `size="${args.size}"` : ""}`,
             `    ${args.className ? `className="${args.className}"` : ""}`,

@@ -3,7 +3,7 @@ import Navbar from "@/ui/element/Navbar/Navbar.vue"
 function formatDataSource(dataSource) {
   return `    ${dataSource.map(item => `{
         label: "${item.label}",
-        href: "${item.href}",
+        path: "${item.path}",
         order: "${item.order}",
     }`).join(",\n    ")}`
 }
@@ -18,7 +18,7 @@ export default {
       control: { type: "object" },
       table: {
         type: {
-          summary: "{ label: string; href: string; order: number; }[]",
+          summary: "{ label: string; path: string; order: number; }[]",
         },
       },
     },
@@ -61,22 +61,22 @@ export const NavbarDefault = {
     dataSource: [
       {
         label: "Products",
-        href: "#products",
+        path: "#products",
         order: 1,
       },
       {
         label: "Solutions",
-        href: "#solutions",
+        path: "#solutions",
         order: 2,
       },
       {
         label: "About",
-        href: "#about",
+        path: "#about",
         order: 3,
       },
       {
         label: "Technologies",
-        href: "#technologies",
+        path: "#technologies",
         order: 4,
       },
     ],

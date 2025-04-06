@@ -3,35 +3,6 @@ import Column from "@/ui/layout/Grid/Column.vue"
 import Grid from "@/ui/layout/Grid/Grid.vue"
 import Row from "@/ui/layout/Grid/Row.vue"
 
-// function formatDataSource(dataSource) {
-//   return `[
-//         ${dataSource.map((item) => {
-//           const properties = [
-//             item.label ? `label: '${item.label}'` : "",
-//             item.prefix !== undefined && item.prefix !== null ? `prefix: '${item.prefix}'` : "",
-//             item.path ? `path: '${item.path}'` : "",
-//             item.order !== undefined && item.order !== null ? `order: '${item.order}'` : "",
-//             item.children && item.children.length
-//               ? `children: [
-//             ${item.children.map((child) => {
-//               const childProps = [
-//                 child.label ? `label: '${child.label}'` : "",
-//                 child.prefix !== undefined && child.prefix !== null ? `prefix: '${child.prefix}'` : "",
-//                 child.path ? `path: '${child.path}'` : "",
-//                 child.order !== undefined && child.order !== null ? `order: '${child.order}'` : "",
-//               ].filter(Boolean).join(",\n                    ")
-//
-//               return `  {\n                    ${childProps}\n              }`
-//             }).join(",\n                    ")}
-//             ]`
-//               : "",
-//           ].filter(Boolean).join(",\n            ")
-//
-//           return `{\n            ${properties}\n        }`
-//         }).join(",\n        ")}
-//     ]`
-// }
-
 const dataSource = [
   {
     label: "Home",
@@ -130,7 +101,7 @@ export default {
       options: ["blue", "yellow", "grape", "black"],
       table: {
         type: {
-          summary: "blue | yellow | grape | black",
+          summary: "string",
         },
       },
     },
@@ -206,7 +177,7 @@ export default {
 export const SideNavDefault = {
   name: "預設項目",
   args: {
-    themeColor: "blue",
+    themeColor: "#00467C",
     mobileLogoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
     desktopLogoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO_W.svg",
     logoLink: "https://www.auo.com",

@@ -1,5 +1,6 @@
 <script setup>
 import Icon from "@/ui/element/Icon/Icon.vue"
+import { v4 as uuidv4 } from "uuid"
 
 // 阻止 Vue 自動將 $attrs 綁定到最外層 <div>
 defineOptions({ inheritAttrs: false })
@@ -32,7 +33,7 @@ const modelValue = defineModel({
 })
 
 // 使用唯一識別碼生成方法
-const baseId = crypto.randomUUID()
+const baseId = uuidv4()
 const generateId = index => `${baseId}-checkbox-${index}`
 
 // 切換選取狀態

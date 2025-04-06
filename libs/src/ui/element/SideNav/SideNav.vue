@@ -11,7 +11,7 @@ import { computed, onMounted, onUnmounted, ref } from "vue"
 const props = defineProps({
   themeColor: {
     type: String,
-    default: "blue",
+    default: "#00467C",
   },
   mobileLogoSrc: {
     type: String,
@@ -83,35 +83,72 @@ function handleResize() {
 
 // 導航欄主題顏色
 const computedThemeColor = computed(() => {
-  switch (props.themeColor) {
-    case "blue":
-      return { backgroundColor: "#00467C" }
-    case "yellow":
-      return { backgroundColor: "#F4E069" }
-    case "grape":
-      return { backgroundColor: "#AB86D1" }
-    case "black":
-      return { backgroundColor: "#000000" }
-    default:
-      return { backgroundColor: "#ffffff" }
+  const color = props.themeColor
+
+  const presetColors = {
+    blue: "#00467C",
+    yellow: "#F4E069",
+    grape: "#AB86D1",
+    black: "#000000",
+  }
+
+  // 判斷是否為 hex 色碼
+  const isHexColor = /^#(?:[0-9A-F]{3}){1,2}$/i.test(color)
+
+  // 檢查是否 hex 等於預設顏色
+  const presetName = Object.entries(presetColors).find(
+    ([, value]) => value.toLowerCase() === color.toLowerCase(),
+  )?.[0]
+
+  if (presetName === "blue" || presetName === "yellow") {
+    return {
+      backgroundColor: presetColors[presetName],
+    }
+  }
+
+  return {
+    backgroundColor: presetColors[color] || (isHexColor ? color : "#ffffff"),
   }
 })
 
 // 文字內容顏色
 const computedContentColor = computed(() => {
-  switch (props.themeColor) {
-    case "blue":
-      return "#ffffff"
-    case "yellow":
-      return "#004E81"
-    case "grape":
-      return "#004E81"
-    case "black":
-      return "#cccccc"
-    default:
-      return "#000000"
+  const color = props.themeColor
+
+  const presetColors = {
+    blue: "#00467C",
+    yellow: "#F4E069",
+    grape: "#AB86D1",
+    black: "#000000",
   }
+
+  const presetTextColors = {
+    blue: "#ffffff",
+    yellow: "#004E81",
+    grape: "#004E81",
+    black: "#cccccc",
+  }
+
+  // 先判斷是否是 preset key
+  if (presetTextColors[color]) {
+    return presetTextColors[color]
+  }
+
+  // const isHexColor = /^#(?:[0-9A-F]{3}){1,2}$/i.test(color)
+
+  // 判斷是否 hex 等於預設顏色
+  const presetName = Object.entries(presetColors).find(
+    ([, value]) => value.toLowerCase() === color.toLowerCase(),
+  )?.[0]
+
+  if (presetName && presetTextColors[presetName]) {
+    return presetTextColors[presetName]
+  }
+
+  // 預設文字顏色（深色）
+  return "#000000"
 })
+
 const hasLogo = computed(() => {
   return props.logo !== ""
 })
@@ -172,7 +209,6 @@ onUnmounted(() => {
             :caption="props.caption"
             class-name=""
           />
-
           <Button
             theme-color="primary"
             variant="text"

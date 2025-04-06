@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid"
 import { computed, inject, provide, reactive } from "vue"
 
 const toasts = reactive({
@@ -20,6 +21,7 @@ function getToastContainer(position) {
 
   const container = document.createElement("div")
   container.id = `toast-container-${position}`
+  // container.style.zIndex = "9999"
   container.classList.add("ded-toast-container", `ded-toast-${position}`)
   document.body.appendChild(container)
   toastContainers.set(position, container)
@@ -47,7 +49,7 @@ function removeToastById(id, position) {
   }
 }
 function addToast(toast) {
-  const id = `toast-${crypto.randomUUID()}`
+  const id = `toast-${uuidv4()}`
   const position = toast.position || "top-right"
 
   if (!Array.isArray(toasts[position])) {
@@ -87,11 +89,12 @@ function clearAllToasts() {
   })
 }
 
+// **讓 `useToast()` 本身可以 inject 或 provide**
 export function useToast() {
   const injectedToast = inject("useToast", null)
 
   if (injectedToast) {
-    return injectedToast
+    return injectedToast // 如果已經有 `provide` 過，就直接回傳
   }
 
   const toastMethods = {
@@ -102,7 +105,7 @@ export function useToast() {
     positions,
   }
 
-
+  // **自己 provide 自己**
   provide("useToast", toastMethods)
 
   return toastMethods
