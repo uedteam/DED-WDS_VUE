@@ -1,0 +1,1 @@
+var _a,PARAM_KEY="viewport",modern={[PARAM_KEY]:{value:void 0,isRotated:!1}},initialGlobals=(null==(_a=globalThis.FEATURES)?void 0:_a.viewportStoryGlobals)?modern:{viewport:"reset",viewportRotated:!1};export{initialGlobals};
