@@ -1,0 +1,466 @@
+var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
+import { p as mergeModels, u as useModel, c as createElementBlock, F as Fragment, q as renderList, n as normalizeClass, o as openBlock, x as withDirectives, a as createBaseVNode, K as vModelRadio, s as mergeProps, t as toDisplayString } from "./vue.esm-bundler-K7CzQrxl.js";
+import { v as v4 } from "./v4-CjlX8hrF.js";
+const _hoisted_1 = ["for"];
+const _hoisted_2 = ["id", "value", "name"];
+const _sfc_main = /* @__PURE__ */ Object.assign({ inheritAttrs: false }, {
+  __name: "Radio",
+  props: /* @__PURE__ */ mergeModels({
+    dataSource: {
+      type: Array,
+      required: true
+    },
+    direction: {
+      type: String,
+      default: "row",
+      validator: (value) => ["row", "column"].includes(value)
+    },
+    size: {
+      type: String,
+      default: "medium",
+      validator: (value) => ["small", "medium", "large"].includes(value)
+    },
+    className: {
+      type: String,
+      default: ""
+    }
+  }, {
+    "modelValue": {},
+    "modelModifiers": {}
+  }),
+  emits: ["update:modelValue"],
+  setup(__props) {
+    const props = __props;
+    const baseId = v4();
+    const generateId = (index) => `${baseId}-radio-${index}`;
+    const modelValue = useModel(__props, "modelValue");
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", {
+        class: normalizeClass(["ded-radio-container", {
+          [`ded-radio-container-${props.direction}`]: props.direction,
+          [props.className]: !!props.className
+        }])
+      }, [
+        (openBlock(true), createElementBlock(Fragment, null, renderList(props.dataSource, (item, index) => {
+          return openBlock(), createElementBlock("label", {
+            key: index,
+            class: normalizeClass(["ded-radio", {
+              "ded-radio-input-disabled": item.isDisabled,
+              [`ded-text-${props.size}`]: props.size
+            }]),
+            for: generateId(index)
+          }, [
+            withDirectives(createBaseVNode("input", mergeProps({ ref_for: true }, _ctx.$attrs, {
+              id: generateId(index),
+              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => modelValue.value = $event),
+              class: "ded-radio-input",
+              type: "radio",
+              value: item.value,
+              name: item.name
+            }), null, 16, _hoisted_2), [
+              [vModelRadio, modelValue.value]
+            ]),
+            createBaseVNode("div", {
+              class: normalizeClass(["ded-radio-icon", {
+                [`ded-icon-${props.size}`]: props.size,
+                "ded-radio-icon-disabled": item.isDisabled,
+                "ded-radio-checked": modelValue.value === item.value,
+                "ded-radio-unchecked": modelValue.value !== item.value
+              }])
+            }, null, 2),
+            createBaseVNode("span", {
+              class: normalizeClass(["ded-radio-text", item.isDisabled ? "ded-radio-text-disabled" : ""])
+            }, toDisplayString(item.label), 3)
+          ], 10, _hoisted_1);
+        }), 128))
+      ], 2);
+    };
+  }
+});
+_sfc_main.__docgenInfo = { "exportName": "default", "displayName": "Radio", "description": "", "tags": {}, "props": [{ "name": "dataSource", "type": { "name": "array" }, "required": true }, { "name": "direction", "type": { "name": "string" }, "defaultValue": { "func": false, "value": '"row"' }, "values": ["row", "column"] }, { "name": "size", "type": { "name": "string" }, "defaultValue": { "func": false, "value": '"medium"' }, "values": ["small", "medium", "large"] }, { "name": "className", "type": { "name": "string" }, "defaultValue": { "func": false, "value": '""' } }], "sourceFiles": ["/Users/auouser/Desktop/Work_Space/DED-WDS_VUE/libs/src/ui/element/Radio/Radio.vue"] };
+function formatDataSource(dataSource) {
+  return `    ${dataSource.map((item) => `{
+        label: "${item.label}",
+        value: "${item.value}",
+        isDisabled: ${item.isDisabled}
+    }`).join(",\n    ")}`;
+}
+const Radio_stories = {
+  title: "Component/Radio",
+  component: _sfc_main,
+  tags: ["autodocs"],
+  argTypes: {
+    dataSource: {
+      description: "資料來源",
+      control: {
+        type: "object"
+      },
+      table: {
+        type: {
+          summary: "{ label: string; value: string; isDisabled: boolean; }[]"
+        }
+      }
+    },
+    direction: {
+      description: "排列方向",
+      control: {
+        type: "select"
+      },
+      options: ["row", "column"],
+      table: {
+        type: {
+          summary: "row | column"
+        }
+      }
+    },
+    size: {
+      description: "尺寸",
+      control: {
+        type: "select"
+      },
+      options: ["small", "medium", "large"],
+      table: {
+        type: {
+          summary: "small | medium | large "
+        }
+      }
+    },
+    className: {
+      description: "客製化樣式",
+      control: {
+        type: "text"
+      }
+    },
+    modelValue: {
+      description: "選中的項目",
+      control: {
+        type: "text"
+      },
+      table: {
+        type: {
+          summary: "string"
+        },
+        category: "v-model"
+        // defaultValue: { summary: 'string[]' },
+      }
+    }
+  },
+  parameters: {
+    // 自動文件
+    docs: {
+      title: "Radio",
+      description: {
+        component: "Radio 組件的呈現及說明。"
+      }
+    }
+  }
+};
+const RadioDefaultStory = {
+  name: "預設項目",
+  args: {
+    // themeColor: 'primary',
+    dataSource: [{
+      label: "Option1",
+      value: "option1",
+      isDisabled: false
+    }, {
+      label: "Option2",
+      value: "option2",
+      isDisabled: false
+    }, {
+      label: "Option3",
+      value: "option3",
+      isDisabled: true
+    }],
+    direction: "row",
+    size: "medium",
+    className: "",
+    modelValue: "option1"
+  },
+  render: (args) => ({
+    components: {
+      Radio: _sfc_main
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: `
+            <Radio
+                :dataSource="args.dataSource"
+                :direction="args.direction"
+                :size="args.size"
+                :className="args.className"
+                v-model="args.modelValue">
+            </Radio>
+        `
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      // expanded: true,
+      // include: ['themeColor', 'label', 'value', 'name' ],
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          const dataSourceString = formatDataSource(args.dataSource);
+          return [`<script setup>`, `import { ref } from "vue";`, `import { Radio } from "@ded-wds-vue/ui";`, `const dataSource = [`, `${dataSourceString}`, `];`, `const modelValue = ref("${args.modelValue}");`, `<\/script>`, "", "<template>", "<Radio", `  :dataSource="dataSource"`, `  ${args.direction ? `direction="${args.direction}"` : ""}`, `  ${args.size ? `size="${args.size}"` : ""}`, `  ${args.className ? `className="${args.className}"` : ""}`, `  v-model="modelValue"`, "></Radio>", "</template>"].filter(Boolean).join("\n").trim();
+        }
+      }
+    }
+  }
+};
+const RadioVerticalStory = {
+  name: "垂直排列",
+  args: {
+    // themeColor: 'primary',
+    dataSource: [{
+      label: "Option1",
+      value: "option1",
+      isDisabled: false
+    }, {
+      label: "Option2",
+      value: "option2",
+      isDisabled: false
+    }, {
+      label: "Option3",
+      value: "option3",
+      isDisabled: false
+    }],
+    direction: "column",
+    size: "medium",
+    className: "",
+    modelValue: "option1"
+  },
+  render: (args) => ({
+    components: {
+      Radio: _sfc_main
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: `
+            <Radio
+                :dataSource="args.dataSource"
+                :direction="args.direction"
+                :size="args.size"
+                :className="args.className"
+                v-model="args.modelValue">
+            </Radio>
+        `
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      expanded: true,
+      // include: ['themeColor', 'label', 'value', 'name' ],
+      exclude: ["direction"]
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          const dataSourceString = formatDataSource(args.dataSource);
+          return [`<script setup>`, `import { ref } from "vue";`, `import { Radio } from "@ded-wds-vue/ui";`, `const dataSource = [`, `${dataSourceString}`, `];`, `const modelValue = ref("${args.modelValue}");`, `<\/script>`, "", "<template>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="${args.size}"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "</template>"].filter(Boolean).join("\n").trim();
+        }
+      }
+    }
+  }
+};
+const RadioRowStory = {
+  name: "水平排列",
+  args: {
+    // themeColor: 'primary',
+    dataSource: [{
+      label: "Option1",
+      value: "option1",
+      isDisabled: false
+    }, {
+      label: "Option2",
+      value: "option2",
+      isDisabled: false
+    }, {
+      label: "Option3",
+      value: "option3",
+      isDisabled: false
+    }],
+    direction: "row",
+    size: "medium",
+    className: "",
+    modelValue: "option1"
+  },
+  render: (args) => ({
+    components: {
+      Radio: _sfc_main
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: `
+      <Radio
+        :dataSource="args.dataSource"
+        :direction="args.direction"
+        :size="args.size"
+        :className="args.className"
+        v-model="args.modelValue">
+      </Radio>`
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      expanded: true,
+      exclude: ["direction"]
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          const dataSourceString = formatDataSource(args.dataSource);
+          return [`<script setup>`, `import { ref } from "vue";`, `import { Radio } from "@ded-wds-vue/ui";`, `const dataSource = [`, `${dataSourceString}`, `];`, `const modelValue = ref("${args.modelValue}");`, `<\/script>`, "", "<template>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="${args.size}"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "</template>"].filter(Boolean).join("\n").trim();
+        }
+      }
+    }
+  }
+};
+const RadioSizeStory = {
+  name: "元件尺寸",
+  args: {
+    // themeColor: 'primary',
+    dataSource: [{
+      label: "Option1",
+      value: "option1",
+      isDisabled: false
+    }, {
+      label: "Option2",
+      value: "option2",
+      isDisabled: false
+    }, {
+      label: "Option3",
+      value: "option3",
+      isDisabled: false
+    }],
+    direction: "row",
+    // size: "medium",
+    className: "",
+    modelValue: "option1"
+  },
+  render: (args) => ({
+    components: {
+      Radio: _sfc_main
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 24px">
+        <Radio
+          :dataSource="args.dataSource"
+          :direction="args.direction"
+          size="large"
+          :className="args.className"
+          v-model="args.modelValue"
+        >
+        </Radio>
+
+        <Radio
+          :dataSource="args.dataSource"
+          :direction="args.direction"
+          size="medium"
+          :className="args.className"
+          v-model="args.modelValue"
+        >
+        </Radio>
+
+        <Radio
+          :dataSource="args.dataSource"
+          :direction="args.direction"
+          size="small"
+          :className="args.className"
+          v-model="args.modelValue"
+        >
+        </Radio>
+      </div>`
+  }),
+  // 控制 controls 中能控制的參數
+  parameters: {
+    controls: {
+      expanded: true,
+      exclude: ["size"]
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const {
+            args
+          } = storyContext;
+          const dataSourceString = formatDataSource(args.dataSource);
+          return [`<script setup>`, `import { ref } from "vue";`, `import { Radio } from "@ded-wds-vue/ui";`, `const dataSource = [`, `${dataSourceString}`, `];`, `const modelValue = ref("${args.modelValue}");`, `<\/script>`, "", "<template>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="large"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="medium"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="small"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "</template>"].filter(Boolean).join("\n").trim();
+        }
+      }
+    }
+  }
+};
+RadioDefaultStory.parameters = {
+  ...RadioDefaultStory.parameters,
+  docs: {
+    ...(_a = RadioDefaultStory.parameters) == null ? void 0 : _a.docs,
+    source: {
+      originalSource: '{\n  name: "預設項目",\n  args: {\n    // themeColor: \'primary\',\n    dataSource: [{\n      label: "Option1",\n      value: "option1",\n      isDisabled: false\n    }, {\n      label: "Option2",\n      value: "option2",\n      isDisabled: false\n    }, {\n      label: "Option3",\n      value: "option3",\n      isDisabled: true\n    }],\n    direction: "row",\n    size: "medium",\n    className: "",\n    modelValue: "option1"\n  },\n  render: args => ({\n    components: {\n      Radio\n    },\n    setup() {\n      return {\n        args\n      };\n    },\n    template: `\n            <Radio\n                :dataSource="args.dataSource"\n                :direction="args.direction"\n                :size="args.size"\n                :className="args.className"\n                v-model="args.modelValue">\n            </Radio>\n        `\n  }),\n  // 控制 controls 中能控制的參數\n  parameters: {\n    controls: {\n      // expanded: true,\n      // include: [\'themeColor\', \'label\', \'value\', \'name\' ],\n    },\n    docs: {\n      source: {\n        transform: (src, storyContext) => {\n          const {\n            args\n          } = storyContext;\n          const dataSourceString = formatDataSource(args.dataSource);\n          return [`<script setup>`, `import { ref } from "vue";`, `import { Radio } from "@ded-wds-vue/ui";`, `const dataSource = [`, `${dataSourceString}`, `];`, `const modelValue = ref("${args.modelValue}");`, `<\/script>`, "", "<template>", "<Radio", `  :dataSource="dataSource"`, `  ${args.direction ? `direction="${args.direction}"` : ""}`, `  ${args.size ? `size="${args.size}"` : ""}`, `  ${args.className ? `className="${args.className}"` : ""}`, `  v-model="modelValue"`, "></Radio>", "</template>"].filter(Boolean).join("\\n").trim();\n        }\n      }\n    }\n  }\n}',
+      ...(_c = (_b = RadioDefaultStory.parameters) == null ? void 0 : _b.docs) == null ? void 0 : _c.source
+    }
+  }
+};
+RadioVerticalStory.parameters = {
+  ...RadioVerticalStory.parameters,
+  docs: {
+    ...(_d = RadioVerticalStory.parameters) == null ? void 0 : _d.docs,
+    source: {
+      originalSource: '{\n  name: "垂直排列",\n  args: {\n    // themeColor: \'primary\',\n    dataSource: [{\n      label: "Option1",\n      value: "option1",\n      isDisabled: false\n    }, {\n      label: "Option2",\n      value: "option2",\n      isDisabled: false\n    }, {\n      label: "Option3",\n      value: "option3",\n      isDisabled: false\n    }],\n    direction: "column",\n    size: "medium",\n    className: "",\n    modelValue: "option1"\n  },\n  render: args => ({\n    components: {\n      Radio\n    },\n    setup() {\n      return {\n        args\n      };\n    },\n    template: `\n            <Radio\n                :dataSource="args.dataSource"\n                :direction="args.direction"\n                :size="args.size"\n                :className="args.className"\n                v-model="args.modelValue">\n            </Radio>\n        `\n  }),\n  // 控制 controls 中能控制的參數\n  parameters: {\n    controls: {\n      expanded: true,\n      // include: [\'themeColor\', \'label\', \'value\', \'name\' ],\n      exclude: ["direction"]\n    },\n    docs: {\n      source: {\n        transform: (src, storyContext) => {\n          const {\n            args\n          } = storyContext;\n          const dataSourceString = formatDataSource(args.dataSource);\n          return [`<script setup>`, `import { ref } from "vue";`, `import { Radio } from "@ded-wds-vue/ui";`, `const dataSource = [`, `${dataSourceString}`, `];`, `const modelValue = ref("${args.modelValue}");`, `<\/script>`, "", "<template>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="${args.size}"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "</template>"].filter(Boolean).join("\\n").trim();\n        }\n      }\n    }\n  }\n}',
+      ...(_f = (_e = RadioVerticalStory.parameters) == null ? void 0 : _e.docs) == null ? void 0 : _f.source
+    }
+  }
+};
+RadioRowStory.parameters = {
+  ...RadioRowStory.parameters,
+  docs: {
+    ...(_g = RadioRowStory.parameters) == null ? void 0 : _g.docs,
+    source: {
+      originalSource: '{\n  name: "水平排列",\n  args: {\n    // themeColor: \'primary\',\n    dataSource: [{\n      label: "Option1",\n      value: "option1",\n      isDisabled: false\n    }, {\n      label: "Option2",\n      value: "option2",\n      isDisabled: false\n    }, {\n      label: "Option3",\n      value: "option3",\n      isDisabled: false\n    }],\n    direction: "row",\n    size: "medium",\n    className: "",\n    modelValue: "option1"\n  },\n  render: args => ({\n    components: {\n      Radio\n    },\n    setup() {\n      return {\n        args\n      };\n    },\n    template: `\n      <Radio\n        :dataSource="args.dataSource"\n        :direction="args.direction"\n        :size="args.size"\n        :className="args.className"\n        v-model="args.modelValue">\n      </Radio>`\n  }),\n  // 控制 controls 中能控制的參數\n  parameters: {\n    controls: {\n      expanded: true,\n      exclude: ["direction"]\n    },\n    docs: {\n      source: {\n        transform: (src, storyContext) => {\n          const {\n            args\n          } = storyContext;\n          const dataSourceString = formatDataSource(args.dataSource);\n          return [`<script setup>`, `import { ref } from "vue";`, `import { Radio } from "@ded-wds-vue/ui";`, `const dataSource = [`, `${dataSourceString}`, `];`, `const modelValue = ref("${args.modelValue}");`, `<\/script>`, "", "<template>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="${args.size}"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "</template>"].filter(Boolean).join("\\n").trim();\n        }\n      }\n    }\n  }\n}',
+      ...(_i = (_h = RadioRowStory.parameters) == null ? void 0 : _h.docs) == null ? void 0 : _i.source
+    }
+  }
+};
+RadioSizeStory.parameters = {
+  ...RadioSizeStory.parameters,
+  docs: {
+    ...(_j = RadioSizeStory.parameters) == null ? void 0 : _j.docs,
+    source: {
+      originalSource: '{\n  name: "元件尺寸",\n  args: {\n    // themeColor: \'primary\',\n    dataSource: [{\n      label: "Option1",\n      value: "option1",\n      isDisabled: false\n    }, {\n      label: "Option2",\n      value: "option2",\n      isDisabled: false\n    }, {\n      label: "Option3",\n      value: "option3",\n      isDisabled: false\n    }],\n    direction: "row",\n    // size: "medium",\n    className: "",\n    modelValue: "option1"\n  },\n  render: args => ({\n    components: {\n      Radio\n    },\n    setup() {\n      return {\n        args\n      };\n    },\n    template: `\n      <div style="display: flex; flex-direction: column; gap: 24px">\n        <Radio\n          :dataSource="args.dataSource"\n          :direction="args.direction"\n          size="large"\n          :className="args.className"\n          v-model="args.modelValue"\n        >\n        </Radio>\n\n        <Radio\n          :dataSource="args.dataSource"\n          :direction="args.direction"\n          size="medium"\n          :className="args.className"\n          v-model="args.modelValue"\n        >\n        </Radio>\n\n        <Radio\n          :dataSource="args.dataSource"\n          :direction="args.direction"\n          size="small"\n          :className="args.className"\n          v-model="args.modelValue"\n        >\n        </Radio>\n      </div>`\n  }),\n  // 控制 controls 中能控制的參數\n  parameters: {\n    controls: {\n      expanded: true,\n      exclude: ["size"]\n    },\n    docs: {\n      source: {\n        transform: (src, storyContext) => {\n          const {\n            args\n          } = storyContext;\n          const dataSourceString = formatDataSource(args.dataSource);\n          return [`<script setup>`, `import { ref } from "vue";`, `import { Radio } from "@ded-wds-vue/ui";`, `const dataSource = [`, `${dataSourceString}`, `];`, `const modelValue = ref("${args.modelValue}");`, `<\/script>`, "", "<template>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="large"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="medium"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "  <Radio", `    :dataSource="dataSource"`, `    direction="${args.direction}"`, `    size="small"`, `    className="${args.className}"`, `    v-model="modelValue"`, "  ></Radio>", "</template>"].filter(Boolean).join("\\n").trim();\n        }\n      }\n    }\n  }\n}',
+      ...(_l = (_k = RadioSizeStory.parameters) == null ? void 0 : _k.docs) == null ? void 0 : _l.source
+    }
+  }
+};
+const __namedExportsOrder = ["RadioDefaultStory", "RadioVerticalStory", "RadioRowStory", "RadioSizeStory"];
+export {
+  RadioDefaultStory,
+  RadioRowStory,
+  RadioSizeStory,
+  RadioVerticalStory,
+  __namedExportsOrder,
+  Radio_stories as default
+};
