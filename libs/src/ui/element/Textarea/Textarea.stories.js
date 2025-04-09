@@ -3,13 +3,6 @@ import { h } from "vue"
 import Icon from "../Icon/Icon.vue"
 import StatusIndicator from "../StatusIndicator/StatusIndicator.vue"
 
-function formatDataSource(hint) {
-  return `{
-      error: ${typeof hint.error === "function" ? `${hint.error}` : "\"\""},
-      description: ${typeof hint.description === "function" ? `${hint.description}` : "\"\""}
-}`
-}
-
 export default {
   title: "Component/Textarea",
   component: Textarea,
@@ -110,12 +103,14 @@ export const TextareaDefault = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
-          const dataSourceString = formatDataSource(args.hint)
           return [
             `<script setup>`,
             "import { ref, h } from \"vue\";",
             `import { Textarea } from "@ded-wds-vue/ui";`,
-            `const hint = ${dataSourceString};`,
+            "const hint = {",
+            `  error: "",`,
+            `  description: ""`,
+            "};",
             `const modelValue = ref("${args.modelValue}");`,
             `</script>`,
             "",
@@ -177,12 +172,14 @@ export const TextareaLimit = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
-          const dataSourceString = formatDataSource(args.hint)
           return [
             `<script setup>`,
             "import { ref, h } from \"vue\";",
             `import { Textarea } from "@ded-wds-vue/ui";`,
-            `const hint = ${dataSourceString};`,
+            "const hint = {",
+            `  error: "",`,
+            `  description: ""`,
+            "};",
             `const modelValue = ref("${args.modelValue}");`,
             `</script>`,
             "",
@@ -279,16 +276,35 @@ export const TextareaStatus = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
-          const dataSourceStringPrompt = formatDataSource(args.hintPrompt)
-          const dataSourceStringError = formatDataSource(args.hintError)
-          const dataSourceString = formatDataSource(args.hint)
           return [
             `<script setup>`,
             "import { ref, h } from \"vue\";",
             `import { Textarea, Icon, StatusIndicator } from "@ded-wds-vue/ui";`,
-            `const hintPrompt = ${dataSourceStringPrompt};`,
-            `const hintError = ${dataSourceStringError};`,
-            `const hint = ${dataSourceString};`,
+            "const hintPrompt = {",
+            `  error: "",`,
+            `  description: () => h(StatusIndicator, {`,
+            `    themeColor: "neutral",`,
+            `    variant: "text",`,
+            `    size: "medium",`,
+            `    isShowDot: false`,
+            `  }, "Prompt message")`,
+            "};",
+            ``,
+            "const hintError = {",
+            `  error: () => h(StatusIndicator, {`,
+            `    themeColor: "error",`,
+            `    variant: "text",`,
+            `    size: "medium",`,
+            `    prefix: "SvgErrorCircle",`,
+            `    isShowDot: false`,
+            `  }, "Error message"),`,
+            `  description: ""`,
+            "};",
+            ``,
+            "const hint = {",
+            `  error: "",`,
+            `  description: ""`,
+            "};",
             `const modelValue = ref("${args.modelValue}");`,
             `</script>`,
             "",

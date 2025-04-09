@@ -3,13 +3,6 @@ import Input from "@/ui/element/Input/Input.vue"
 import StatusIndicator from "@/ui/element/StatusIndicator/StatusIndicator.vue"
 import { h } from "vue"
 
-function formatDataSource(hint) {
-  return `{
-    error: ${typeof hint.error === "function" ? `${hint.error}` : "\"\""},
-    description: ${typeof hint.description === "function" ? `${hint.description}` : "\"\""}
-}`
-}
-
 export default {
   title: "Component/Input",
   component: Input,
@@ -162,12 +155,19 @@ export const InputDefault = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
-          const dataSourceString = formatDataSource(args.hint)
           return [
             `<script setup>`,
             "import { ref, h } from \"vue\";",
             `import { Input, StatusIndicator } from "@ded-wds-vue/ui";`,
-            `const hint = ${dataSourceString};`,
+            "const hint = {",
+            `  error: "",`,
+            `  description: () => h(StatusIndicator, {`,
+            `    themeColor: "neutral",`,
+            `    variant: "text",`,
+            `    size: "medium",`,
+            `    isShowDot: false`,
+            `  }, "Prompt message")`,
+            "};",
             "const modelValue = ref(\"\");",
             `</script>`,
             "",
@@ -274,7 +274,6 @@ export const InputTypesStory = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
-          const dataSourceString = formatDataSource(args.hint)
           return [
             `<script setup>`,
             "import { ref, h } from \"vue\";",
@@ -282,7 +281,15 @@ export const InputTypesStory = {
             "const modelValueAccount = ref(\"Account\");",
             "const modelValuePassword = ref(\"Password\");",
             "const modelValueAmount = ref(12345);",
-            `const hint = ${dataSourceString};`,
+            "const hint = {",
+            `  error: "",`,
+            `  description: () => h(StatusIndicator, {`,
+            `    themeColor: "neutral",`,
+            `    variant: "text",`,
+            `    size: "medium",`,
+            `    isShowDot: false`,
+            `  }, "Prompt message")`,
+            "};",
             `</script>`,
             "",
             "<template>",
@@ -405,14 +412,30 @@ export const InputHintTypeStory = {
       source: {
         transform: (src, storyContext) => {
           const { args } = storyContext
-          const dataSourceStringPrompt = formatDataSource(args.hintPrompt)
-          const dataSourceStringError = formatDataSource(args.hintError)
           return [
             `<script setup>`,
             "import { ref, h } from \"vue\";",
             "import { Input, Icon, StatusIndicator } from \"@ded-wds-vue/ui\";",
-            `const hintError = ${dataSourceStringError};`,
-            `const hintPrompt = ${dataSourceStringPrompt};`,
+            "const hintError = {",
+            `  error: () => h(StatusIndicator, {`,
+            `    themeColor: "error",`,
+            `    variant: "text",`,
+            `    size: "medium",`,
+            `    prefix: "SvgErrorCircle",`,
+            `    isShowDot: false`,
+            `  }, "Error message"),`,
+            `  description: ""`,
+            "};",
+            ``,
+            "const hintPrompt = {",
+            `  error: "",`,
+            `  description: () => h(StatusIndicator, {`,
+            `    themeColor: "neutral",`,
+            `    variant: "text",`,
+            `    size: "medium",`,
+            `    isShowDot: false`,
+            `  }, "Prompt message")`,
+            "};",
             "const modelValue = ref(\"\");",
             `</script>`,
             "",
