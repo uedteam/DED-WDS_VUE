@@ -70,8 +70,39 @@ export default {
     docs: {
       title: 'FileUpload',
       description: {
-        component: '檔案上傳元件',
+        component:
+          '檔案上傳元件，支援多種檔案類型與大小限制，並提供上傳成功、失敗等事件回調。',
       },
+      source: {
+        transform: (src, storyContext) => {
+          const { args } = storyContext;
+          return [
+            `<script setup>`,
+            `import { h } from "vue";`,
+            `import { FileUpload, Title, Button } from "@ded-wds-vue/ui";`,
+            `</script>`,
+            '',
+            '<template>',
+            '  <FileUpload',
+            `    uploadUrl="${args.uploadUrl}"`,
+            `    allowedFileTypes="${args.allowedFileTypes}"`,
+            `    maxFileSize="${args.maxFileSize}"`,
+            `    maxTotalFileSize="${args.maxTotalFileSize}"`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
+            '    @onUploadSuccess="handleUploadSuccess"',
+            '    @onUploadError="handleUploadError"',
+            '    @onFileAdded="handleFileAdded"',
+            '    @onFileRemoved="handleFileRemoved"',
+            '  ></FileUpload>',
+            '</template>',
+          ]
+            .join('\n')
+            .trim();
+        },
+      },
+    },
+    controls: {
+      expanded: true, // 展開控制面板
     },
   },
 };
@@ -130,27 +161,4 @@ export const FileUploadDefault = {
       ></FileUpload>
         `,
   }),
-  parameters: {
-    docs: {
-      source: {
-        transform: (src, storyContext) => {
-          const { args } = storyContext;
-          return [
-            `<script setup>`,
-            `import { h } from "vue";`,
-            `import { Accordion, Title, Button } from "@ded-wds-vue/ui";`,
-            `</script>`,
-            '',
-            '<template>',
-            '  <FileUpload',
-            `    ${args.className ? `className="${args.className}"` : ''}`,
-            '  ></FileUpload>',
-            '</template>',
-          ]
-            .join('\n')
-            .trim();
-        },
-      },
-    },
-  },
 };
