@@ -1,4 +1,4 @@
-import{j as n,M as r,h as a}from"./index-D7hHOOYl.js";import{useMDXComponents as i}from"./index-KZ8n4Xwh.js";import"./iframe-DWGrR6Si.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./index-Cgug7aQA.js";import"./index-DrFu-skq.js";const s=`## v1.0.17-beta (2025-04-09)
+import{j as n,M as r,h as a}from"./index-JN3Xg1N5.js";import{useMDXComponents as i}from"./index-C-X-P5MQ.js";import"./iframe-Dz-GLubA.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./index-Cgug7aQA.js";import"./index-DrFu-skq.js";const s=`## v1.0.17-beta (2025-04-09)
 
 ### 🆙 Updates: @ded-wds-vue/ui
 - Modify copyCode to prevent variable renaming caused by minification
