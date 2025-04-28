@@ -1,4 +1,4 @@
-import{j as n,M as a,h as i}from"./index-_UrB_5Xg.js";import{useMDXComponents as o}from"./index-ic5aw8qC.js";import"./iframe-VqRVeCWY.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./index-Cgug7aQA.js";import"./index-DrFu-skq.js";const p=`# 關於 Web Design system Storybook
+import{j as n,M as a,h as i}from"./index-BM1TT4R1.js";import{useMDXComponents as o}from"./index-m9jmgEKQ.js";import"./iframe-DzpULoz7.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./index-Cgug7aQA.js";import"./index-DrFu-skq.js";const p=`# 關於 Web Design system Storybook
 
 ## 關於 AUO Design system
 
