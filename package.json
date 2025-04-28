@@ -44,6 +44,14 @@
     "print-access-token": "gcloud auth application-default print-access-token"
   },
   "dependencies": {
+    "@uppy/core": "^4.4.4",
+    "@uppy/dashboard": "^4.3.3",
+    "@uppy/drag-drop": "^4.1.2",
+    "@uppy/progress-bar": "^4.2.1",
+    "@uppy/remote-sources": "^2.3.2",
+    "@uppy/tus": "^4.2.2",
+    "@uppy/vue": "^2.1.1",
+    "@uppy/xhr-upload": "^4.3.3",
     "vue": "^3.3.4",
     "vue-router": "^4.5.0"
   },
