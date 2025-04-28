@@ -1,28 +1,27 @@
 <script setup>
-import Button from "@/ui/element/Button/Button.vue"
-import Icon from "@/ui/element/Icon/Icon.vue"
+import Button from '@/ui/element/Button/Button.vue';
+import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
 const props = defineProps({
   // --  樣式接口 -- //
   themeColor: {
     type: String,
-    validator: value =>
+    validator: (value) =>
       [
-        "primary",
-        "secondary",
-        "neutral",
-        "info",
-        "success",
-        "warning",
-        "error",
+        'primary',
+        'secondary',
+        'neutral',
+        'info',
+        'success',
+        'warning',
+        'error',
       ].includes(value),
   },
   type: {
     type: String,
-    default: "basic",
-    validator: value =>
-      ["basic", "outline", "button"].includes(value),
+    default: 'basic',
+    validator: (value) => ['basic', 'outline', 'button'].includes(value),
   },
   prefix: {
     type: String,
@@ -30,7 +29,7 @@ const props = defineProps({
   // --  內容接口 -- //
   title: {
     type: String,
-    default: "頁籤 1",
+    default: '頁籤 1',
   },
   index: {
     type: Number,
@@ -49,14 +48,14 @@ const props = defineProps({
   },
   className: {
     type: String,
-    default: "",
+    default: '',
   },
-})
+});
 
 // 處理 tab 點擊事件
 function handleClick(event) {
   if (!props.isDisabled && props.onClick) {
-    props.onClick(event)
+    props.onClick(event);
   }
 }
 </script>
@@ -71,15 +70,22 @@ function handleClick(event) {
     :class="{
       'ded-tab ': props.type !== 'button',
       [`ded-tab-${props.themeColor}`]: props.type === 'basic',
-      [`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'basic',
-      [`ded-tab-disable`]: props.isDisabled && props.type === 'basic' || props.isDisabled && props.type === 'outline',
+      [`ded-tab-${props.themeColor}-active`]:
+        props.isActive && props.type === 'basic',
+      [`ded-tab-disable`]:
+        (props.isDisabled && props.type === 'basic') ||
+        (props.isDisabled && props.type === 'outline'),
 
-      [`ded-tab-outline-${props.themeColor}`]: props.themeColor && props.type === 'outline',
-      [`ded-tab-outline-${props.themeColor}-active`]: props.isActive && props.type === 'outline',
+      [`ded-tab-outline-${props.themeColor}`]:
+        props.themeColor && props.type === 'outline',
+      [`ded-tab-outline-${props.themeColor}-active`]:
+        props.isActive && props.type === 'outline',
 
       'ded-tab-button ': !props.isActive && props.type === 'button',
-      [`ded-tab-button-${props.themeColor}`]: props.themeColor && props.type === 'button',
-      [`ded-tab-button-${props.themeColor}-active`]: props.isActive && props.type === 'button',
+      [`ded-tab-button-${props.themeColor}`]:
+        props.themeColor && props.type === 'button',
+      [`ded-tab-button-${props.themeColor}-active`]:
+        props.isActive && props.type === 'button',
       [`ded-tab-button-disable`]: props.isDisabled && props.type === 'button',
     }"
     @click="handleClick"
@@ -94,6 +100,4 @@ function handleClick(event) {
   </Button>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
