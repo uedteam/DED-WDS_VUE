@@ -1,11 +1,9 @@
 <script setup>
-
+import TestButton from '../test/button/TestButton.vue';
 </script>
 
 <template>
-  <div></div>
+  <TestButton />
 </template>
 
-<style>
-
-</style>
+<style></style>
