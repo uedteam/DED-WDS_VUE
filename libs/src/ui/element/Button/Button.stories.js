@@ -1,121 +1,134 @@
-import Button from "@/ui/element/Button/Button.vue"
+import Button from '@/ui/element/Button/Button.vue';
 
 export default {
-  title: "Component/Button",
+  title: 'Component/Button',
   component: Button,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     themeColor: {
-      description: "主題顏色",
-      control: { type: "select" },
+      description: '主題顏色',
+      control: { type: 'select' },
       options: [
-        "primary",
-        "secondary",
-        "neutral",
-        "info",
-        "success",
-        "warning",
-        "error",
+        'primary',
+        'secondary',
+        'neutral',
+        'info',
+        'success',
+        'warning',
+        'error',
       ],
       table: {
         type: {
-          summary: "primary | secondary | neutral | info | success | warning | error",
+          summary:
+            'primary | secondary | neutral | info | success | warning | error',
         },
       },
     },
     variant: {
-      description: "按鈕樣式",
+      description: '按鈕樣式',
       required: true,
-      control: { type: "select" },
-      options: ["filled", "ghost", "text", "soft"],
+      control: { type: 'select' },
+      options: ['filled', 'ghost', 'text', 'soft'],
       table: {
         type: {
-          summary: "filled | ghost | text | soft",
+          summary: 'filled | ghost | text | soft',
         },
       },
     },
     prefix: {
-      description: "前置元素",
+      description: '前置元素',
       control: {
-        type: "select",
+        type: 'select',
         labels: {
-          "": "none",
-          "SvgAccount": "SvgAccount",
-          "SvgSearch": "SvgSearch",
-          "SvgVisibility": "SvgVisibility",
-          "SvgVisibilityOff": "SvgVisibilityOff",
+          '': 'none',
+          SvgAccount: 'SvgAccount',
+          SvgSearch: 'SvgSearch',
+          SvgVisibility: 'SvgVisibility',
+          SvgVisibilityOff: 'SvgVisibilityOff',
         },
       },
-      options: ["", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff"],
+      options: [
+        '',
+        'SvgAccount',
+        'SvgSearch',
+        'SvgVisibility',
+        'SvgVisibilityOff',
+      ],
     },
     suffix: {
-      description: "後置元素",
+      description: '後置元素',
       control: {
-        type: "select",
+        type: 'select',
         labels: {
-          "": "none",
-          "SvgAccount": "SvgAccount",
-          "SvgSearch": "SvgSearch",
-          "SvgVisibility": "SvgVisibility",
-          "SvgVisibilityOff": "SvgVisibilityOff",
+          '': 'none',
+          SvgAccount: 'SvgAccount',
+          SvgSearch: 'SvgSearch',
+          SvgVisibility: 'SvgVisibility',
+          SvgVisibilityOff: 'SvgVisibilityOff',
         },
       },
-      options: ["", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff"],
+      options: [
+        '',
+        'SvgAccount',
+        'SvgSearch',
+        'SvgVisibility',
+        'SvgVisibilityOff',
+      ],
     },
     size: {
-      description: "按鈕尺寸",
-      control: { type: "select" },
-      options: ["small", "medium", "large"],
+      description: '按鈕尺寸',
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
       table: {
         type: {
-          summary: "small | medium | large",
+          summary: 'small | medium | large',
         },
       },
     },
     width: {
-      description: "按鈕寬度",
-      control: { type: "select" },
-      options: ["fluid", "fit"],
+      description: '按鈕寬度',
+      control: { type: 'select' },
+      options: ['fluid', 'fit'],
       table: {
         type: {
-          summary: "fluid | fit",
+          summary: 'fluid | fit',
         },
       },
     },
     borderWidth: {
-      description: "按鈕邊框寬度",
-      control: { type: "select" },
-      options: ["none", "1px", "2px", "3px", "4px", "5px"],
+      description: '按鈕邊框寬度',
+      control: { type: 'select' },
+      options: ['none', '1px', '2px', '3px', '4px', '5px'],
       table: {
         type: {
-          summary: "none | 1px | 2px | 3px | 4px | 5px",
+          summary: 'none | 1px | 2px | 3px | 4px | 5px',
         },
       },
     },
     radius: {
-      description: "按鈕圓角大小",
-      control: { type: "select" },
-      options: ["none", "2px", "4px", "8px", "12px", "16px", "32px", "full"],
+      description: '按鈕圓角大小',
+      control: { type: 'select' },
+      options: ['none', '2px', '4px', '8px', '12px', '16px', '32px', 'full'],
       table: {
         type: {
-          summary: "none | 2px | 4px | 8px | 12px | 16px | 32px |full",
+          summary: 'none | 2px | 4px | 8px | 12px | 16px | 32px |full',
         },
       },
     },
     isDisabled: {
-      description: "是否禁用",
-      control: { type: "boolean" },
+      description: '是否禁用',
+      control: { type: 'boolean' },
     },
     className: {
-      description: "客製化樣式",
-      control: { type: "text" },
+      description: '客製化樣式',
+      control: { type: 'text' },
     },
     default: {
-      description: "按鈕內容",
-      control: { type: "text" },
+      description: '按鈕內容',
+      control: { type: 'text' },
       table: {
         type: {
-          summary: "Vue Component | HTML",
+          summary: 'Vue Component | HTML',
         },
       },
     },
@@ -123,36 +136,34 @@ export default {
   parameters: {
     // 自動文件
     docs: {
-      title: "按鈕",
+      title: '按鈕',
       description: {
-        component: "按鈕組件的呈現及說明。",
+        component: '按鈕組件的呈現及說明。',
       },
     },
   },
-}
+};
 
 // ==== 預設項目 ====//
 export const DefaultButtonStory = {
-  name: "預設項目",
+  name: '預設項目',
   args: {
-    themeColor: "primary",
-    variant: "filled",
-    prefix: "",
-    suffix: "",
-    size: "medium",
-    width: "fit",
-    borderWidth: "1px",
-    radius: "4px",
+    themeColor: 'primary',
+    variant: 'filled',
+    prefix: '',
+    suffix: '',
+    size: 'medium',
+    width: 'fit',
+    borderWidth: '1px',
+    radius: '4px',
     isDisabled: false,
-    className: "",
-    default: "Button",
+    className: '',
+    default: 'Button',
   },
-  render: args => ({
+  render: (args) => ({
     components: { Button },
     setup() {
-      return {
-        args,
-      }
+      return { args };
     },
     template: `
       <Button
@@ -171,87 +182,94 @@ export const DefaultButtonStory = {
       </Button>
     `,
   }),
-  // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      // include: ['variant', 'content', 'themeColor', 'isDisabled', 'prefix'],
+      include: [
+        'themeColor',
+        'variant',
+        'prefix',
+        'suffix',
+        'size',
+        'width',
+        'borderWidth',
+        'radius',
+        'isDisabled',
+        'className',
+        'default',
+      ],
     },
     docs: {
       source: {
         transform: (src, storyContext) => {
-          const { args } = storyContext
+          const { args } = storyContext;
           return [
             `<script setup>`,
             `import { Button } from "@ded-wds-vue/ui";`,
             `</script>`,
-            "",
-            "<template>",
+            '',
+            '<template>',
             `  <Button`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
+            `    ${args.variant ? `variant="${args.variant}"` : ''}`,
+            `    ${args.prefix ? `prefix="${args.prefix}"` : ''}`,
+            `    ${args.suffix ? `suffix="${args.suffix}"` : ''}`,
+            `    ${args.size ? `size="${args.size}"` : ''}`,
+            `    ${args.width ? `width="${args.width}"` : ''}`,
+            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ''}`,
+            `    ${args.radius ? `radius="${args.radius}"` : ''}`,
+            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
-            `    ${args.default || ""}`,
+            `    ${args.default || ''}`,
             `  </Button>`,
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
         },
       },
     },
   },
-}
+};
 
 // ==== 附加元素 ====//
 export const ButtonPrefixSuffixStory = {
-  name: "附加元素",
+  name: '附加元素',
   args: {
-    themeColor: "primary",
-    variant: "ghost",
-    prefix: "",
-    suffix: "",
-    size: "medium",
-    width: "fit",
-    borderWidth: "1px",
-    radius: "4px",
+    themeColor: 'primary',
+    variant: 'ghost',
+    prefix: '',
+    suffix: '',
+    size: 'medium',
+    width: 'fit',
+    borderWidth: '1px',
+    radius: '4px',
     isDisabled: false,
-    className: "",
-    default: "Button",
+    className: '',
+    default: 'Button',
   },
-  render: args => ({
+  render: (args) => ({
     components: { Button },
     setup() {
+      const prefixSuffixCombinations = [
+        { prefix: 'SvgAccount', suffix: '' },
+        { prefix: '', suffix: 'SvgSearch' },
+      ];
       return {
         args,
-      }
+        prefixSuffixCombinations,
+      };
     },
     template: `
       <div style="display:flex; flex-wrap: wrap; gap: 16px">
         <Button
+          v-for="(combo, index) in prefixSuffixCombinations"
+          :key="index"
           :themeColor="args.themeColor"
           :variant="args.variant"
-          prefix="SvgAccount"
-          suffix=""
-          :size="args.size"
-          :width="args.width"
-          :borderWidth="args.borderWidth"
-          :radius="args.radius"
-          :isDisabled="args.isDisabled"
-          :className="args.className"
-        >
-          {{ args.default }}
-        </Button>
-        <Button
-          :themeColor="args.themeColor"
-          :variant="args.variant"
-          prefix=""
-          suffix="SvgSearch"
+          :prefix="combo.prefix"
+          :suffix="combo.suffix"
           :size="args.size"
           :width="args.width"
           :borderWidth="args.borderWidth"
@@ -264,247 +282,84 @@ export const ButtonPrefixSuffixStory = {
       </div>
     `,
   }),
-  // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      exclude: ["prefix", "suffix"],
+      exclude: ['prefix', 'suffix'],
     },
     docs: {
       source: {
         transform: (src, storyContext) => {
-          const { args } = storyContext
+          const { args } = storyContext;
           return [
             `<script setup>`,
             `import { Button } from "@ded-wds-vue/ui";`,
+            `const prefixSuffixCombinations = [`,
+            `  { prefix: 'SvgAccount', suffix: '' },`,
+            `  { prefix: '', suffix: 'SvgSearch' },`,
+            `];`,
             `</script>`,
-            "",
-            "<template>",
-            `  <Button`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    prefix="SvgAccount"`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    suffix="SvgSearch"`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
+            '',
+            '<template>',
+            `  <div style="display:flex; flex-wrap: wrap; gap: 16px">`,
+            `    <Button`,
+            `      v-for="(combo, index) in prefixSuffixCombinations"`,
+            `      :key="index"`,
+            `      ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
+            `      ${args.variant ? `variant="${args.variant}"` : ''}`,
+            `      :prefix="combo.prefix"`,
+            `      :suffix="combo.suffix"`,
+            `      ${args.size ? `size="${args.size}"` : ''}`,
+            `      ${args.width ? `width="${args.width}"` : ''}`,
+            `      ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ''}`,
+            `      ${args.radius ? `radius="${args.radius}"` : ''}`,
+            `      ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `      ${args.className ? `className="${args.className}"` : ''}`,
+            `    >`,
+            `      ${args.default || ''}`,
+            `    </Button>`,
+            `  </div>`,
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
         },
       },
     },
   },
-}
+};
 
 // ==== 外觀樣式 ====//
 export const ButtonTypeStory = {
-  name: "外觀樣式",
+  name: '外觀樣式',
   args: {
-    themeColor: "primary",
-    variant: "filled",
-    prefix: "",
-    suffix: "",
-    size: "medium",
-    width: "fit",
-    borderWidth: "1px",
-    radius: "4px",
+    themeColor: 'primary',
+    prefix: '',
+    suffix: '',
+    size: 'medium',
+    width: 'fit',
+    borderWidth: '1px',
+    radius: '4px',
     isDisabled: false,
-    className: "",
-    default: "Button",
+    className: '',
+    default: 'Button',
   },
-  render: args => ({
+  render: (args) => ({
     components: { Button },
     setup() {
+      const variants = ['filled', 'ghost', 'text', 'soft'];
       return {
         args,
-      }
-    },
-    template: `
-    <div style="display:flex; flex-wrap: wrap; gap: 16px">
-      <Button
-        :themeColor="args.themeColor"
-        variant="filled"
-        :prefix="args.prefix"
-        :suffix="args.suffix"
-        :size="args.size"
-        :width="args.width"
-        :borderWidth="args.borderWidth"
-        :radius="args.radius"
-        :isDisabled="args.isDisabled"
-        :className="args.className"
-      >
-        {{ args.default }}
-      </Button>
-      <Button
-        :themeColor="args.themeColor"
-        variant="ghost"
-        :prefix="args.prefix"
-        :suffix="args.suffix"
-        :size="args.size"
-        :width="args.width"
-        :borderWidth="args.borderWidth"
-        :radius="args.radius"
-        :isDisabled="args.isDisabled"
-        :className="args.className"
-      >
-        {{ args.default }}
-      </Button>
-      <Button
-        :themeColor="args.themeColor"
-        variant="text"
-        :prefix="args.prefix"
-        :suffix="args.suffix"
-        :size="args.size"
-        :width="args.width"
-        :borderWidth="args.borderWidth"
-        :radius="args.radius"
-        :isDisabled="args.isDisabled"
-        :className="args.className"
-      >
-        {{ args.default }}
-      </Button>
-      <Button
-        :themeColor="args.themeColor"
-        variant="soft"
-        :prefix="args.prefix"
-        :suffix="args.suffix"
-        :size="args.size"
-        :width="args.width"
-        :borderWidth="args.borderWidth"
-        :radius="args.radius"
-        :isDisabled="args.isDisabled"
-        :className="args.className"
-      >
-        {{ args.default }}
-      </Button>
-    </div>
-    `,
-  }),
-  // 控制 controls 中能控制的參數
-  parameters: {
-    controls: {
-      exclude: ["variant"],
-    },
-    docs: {
-      source: {
-        transform: (src, storyContext) => {
-          const { args } = storyContext
-          return [
-            `<script setup>`,
-            `import { Button } from "@ded-wds-vue/ui";`,
-            `</script>`,
-            "",
-            "<template>",
-            `  <Button`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
-            `    variant="filled"`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
-            `    variant="ghost"`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
-            `    variant="text"`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
-            `    variant="soft"`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
-        },
-      },
-    },
-  },
-}
-
-// ==== 主題色彩 ====//
-export const ButtonColorStory = {
-  name: "主題色彩",
-  args: {
-    variant: "filled",
-    prefix: "SvgAccount",
-    suffix: "",
-    size: "medium",
-    width: "fit",
-    borderWidth: "1px",
-    radius: "4px",
-    isDisabled: false,
-    className: "",
-    default: "Button",
-  },
-  render: args => ({
-    components: { Button },
-    setup() {
-      return {
-        args,
-      }
+        variants,
+      };
     },
     template: `
       <div style="display:flex; flex-wrap: wrap; gap: 16px">
         <Button
-          themeColor="primary"
-          :variant="args.variant"
+          v-for="variant in variants"
+          :key="variant"
+          :themeColor="args.themeColor"
+          :variant="variant"
           :prefix="args.prefix"
           :suffix="args.suffix"
           :size="args.size"
@@ -516,78 +371,90 @@ export const ButtonColorStory = {
         >
           {{ args.default }}
         </Button>
+      </div>
+    `,
+  }),
+  parameters: {
+    controls: {
+      exclude: ['variant'],
+    },
+    docs: {
+      source: {
+        transform: (src, storyContext) => {
+          const { args } = storyContext;
+          return [
+            `<script setup>`,
+            `import { Button } from "@ded-wds-vue/ui";`,
+            `const variants = ['filled', 'ghost', 'text', 'soft'];`,
+            `</script>`,
+            '',
+            '<template>',
+            `  <div style="display:flex; flex-wrap: wrap; gap: 16px">`,
+            `    <Button`,
+            `      v-for="variant in variants"`,
+            `      :key="variant"`,
+            `      ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
+            `      :variant="variant"`,
+            `      ${args.prefix ? `prefix="${args.prefix}"` : ''}`,
+            `      ${args.suffix ? `suffix="${args.suffix}"` : ''}`,
+            `      ${args.size ? `size="${args.size}"` : ''}`,
+            `      ${args.width ? `width="${args.width}"` : ''}`,
+            `      ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ''}`,
+            `      ${args.radius ? `radius="${args.radius}"` : ''}`,
+            `      ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `      ${args.className ? `className="${args.className}"` : ''}`,
+            `    >`,
+            `      ${args.default || ''}`,
+            `    </Button>`,
+            `  </div>`,
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
+        },
+      },
+    },
+  },
+};
+
+// ==== 主題色彩 ====//
+export const ButtonColorStory = {
+  name: '主題色彩',
+  args: {
+    variant: 'filled',
+    prefix: 'SvgAccount',
+    suffix: '',
+    size: 'medium',
+    width: 'fit',
+    borderWidth: '1px',
+    radius: '4px',
+    isDisabled: false,
+    className: '',
+    default: 'Button',
+  },
+  render: (args) => ({
+    components: { Button },
+    setup() {
+      return {
+        args,
+        themeColors: [
+          'primary',
+          'secondary',
+          'neutral',
+          'info',
+          'success',
+          'warning',
+          'error',
+        ],
+      };
+    },
+    template: `
+      <div style="display:flex; flex-wrap: wrap; gap: 16px">
         <Button
-          themeColor="secondary"
-          :variant="args.variant"
-          :prefix="args.prefix"
-          :suffix="args.suffix"
-          :size="args.size"
-          :width="args.width"
-          :borderWidth="args.borderWidth"
-          :radius="args.radius"
-          :isDisabled="args.isDisabled"
-          :className="args.className"
-        >
-          {{ args.default }}
-        </Button>
-        <Button
-          themeColor="neutral"
-          :variant="args.variant"
-          :prefix="args.prefix"
-          :suffix="args.suffix"
-          :size="args.size"
-          :width="args.width"
-          :borderWidth="args.borderWidth"
-          :radius="args.radius"
-          :isDisabled="args.isDisabled"
-          :className="args.className"
-        >
-          {{ args.default }}
-        </Button>
-        <Button
-          themeColor="info"
-          :variant="args.variant"
-          :prefix="args.prefix"
-          :suffix="args.suffix"
-          :size="args.size"
-          :width="args.width"
-          :borderWidth="args.borderWidth"
-          :radius="args.radius"
-          :isDisabled="args.isDisabled"
-          :className="args.className"
-        >
-          {{ args.default }}
-        </Button>
-        <Button
-          themeColor="success"
-          :variant="args.variant"
-          :prefix="args.prefix"
-          :suffix="args.suffix"
-          :size="args.size"
-          :width="args.width"
-          :borderWidth="args.borderWidth"
-          :radius="args.radius"
-          :isDisabled="args.isDisabled"
-          :className="args.className"
-        >
-          {{ args.default }}
-        </Button>
-        <Button
-          themeColor="warning"
-          :variant="args.variant"
-          :prefix="args.prefix"
-          :suffix="args.suffix"
-          :size="args.size"
-          :width="args.width"
-          :borderWidth="args.borderWidth"
-          :radius="args.radius"
-          :isDisabled="args.isDisabled"
-          :className="args.className"
-        >
-          {{ args.default }}
-        </Button>
-        <Button
-          themeColor="error"
+          v-for="themeColor in themeColors"
+          :key="themeColor"
+          :themeColor="themeColor"
           :variant="args.variant"
           :prefix="args.prefix"
           :suffix="args.suffix"
@@ -603,124 +470,46 @@ export const ButtonColorStory = {
       </div>
     `,
   }),
-  // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      exclude: ["themeColor"],
+      exclude: ['themeColor'],
     },
     docs: {
       source: {
         transform: (src, storyContext) => {
-          const { args } = storyContext
+          const { args } = storyContext;
           return [
             `<script setup>`,
             `import { Button } from "@ded-wds-vue/ui";`,
+            `const themeColors = ['primary', 'secondary', 'neutral', 'info', 'success', 'warning', 'error'];`,
             `</script>`,
-            "",
-            "<template>",
-            `  <Button`,
-            `    themeColor="primary"`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    themeColor="secondary"`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    themeColor="neutral"`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    themeColor="info"`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    themeColor="success"`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    themeColor="warning"`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-            `  <Button`,
-            `    themeColor="error"`,
-            `    ${args.variant ? `variant="${args.variant}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.width ? `width="${args.width}"` : ""}`,
-            `    ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ""}`,
-            `    ${args.radius ? `radius="${args.radius}"` : ""}`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            `  >`,
-            `    ${args.default || ""}`,
-            `  </Button>`,
-
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
+            '',
+            '<template>',
+            `  <div style="display:flex; flex-wrap: wrap; gap: 16px">`,
+            `    <Button`,
+            `      v-for="themeColor in themeColors"`,
+            `      :key="themeColor"`,
+            `      :themeColor="themeColor"`,
+            `      ${args.variant ? `variant="${args.variant}"` : ''}`,
+            `      ${args.prefix ? `prefix="${args.prefix}"` : ''}`,
+            `      ${args.suffix ? `suffix="${args.suffix}"` : ''}`,
+            `      ${args.size ? `size="${args.size}"` : ''}`,
+            `      ${args.width ? `width="${args.width}"` : ''}`,
+            `      ${args.borderWidth ? `borderWidth="${args.borderWidth}"` : ''}`,
+            `      ${args.radius ? `radius="${args.radius}"` : ''}`,
+            `      ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `      ${args.className ? `className="${args.className}"` : ''}`,
+            `    >`,
+            `      ${args.default || ''}`,
+            `    </Button>`,
+            `  </div>`,
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
         },
       },
     },
   },
-}
+};

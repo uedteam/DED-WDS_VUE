@@ -1,26 +1,27 @@
 <script setup>
-import Icon from "@/ui/element/Icon/Icon.vue"
+import { ref, defineExpose } from 'vue';
+import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
 const props = defineProps({
   themeColor: {
     type: String,
-    default: "primary",
-    validator: value =>
+    default: 'primary',
+    validator: (value) =>
       [
-        "primary",
-        "secondary",
-        "neutral",
-        "info",
-        "success",
-        "warning",
-        "error",
+        'primary',
+        'secondary',
+        'neutral',
+        'info',
+        'success',
+        'warning',
+        'error',
       ].includes(value),
   },
   variant: {
     type: String,
     required: true,
-    validator: value => ["text", "filled", "ghost", "soft"].includes(value),
+    validator: (value) => ['text', 'filled', 'ghost', 'soft'].includes(value),
   },
   prefix: {
     type: String,
@@ -30,21 +31,25 @@ const props = defineProps({
   },
   size: {
     type: String,
-    default: "medium",
-    validator: value => ["small", "medium", "large"].includes(value),
+    default: 'medium',
+    validator: (value) => ['small', 'medium', 'large'].includes(value),
   },
   width: {
     type: String,
-    default: "fit",
-    validator: value => ["fluid", "fit"].includes(value),
+    default: 'fit',
+    validator: (value) => ['fluid', 'fit'].includes(value),
   },
   borderWidth: {
     type: String,
-    validator: value => ["none", "1px", "2px", "3px", "4px", "5px"].includes(value),
+    validator: (value) =>
+      ['none', '1px', '2px', '3px', '4px', '5px'].includes(value),
   },
   radius: {
     type: String,
-    validator: value => ["none", "2px", "4px", "8px", "12px", "16px", "32px", "full"].includes(value),
+    validator: (value) =>
+      ['none', '2px', '4px', '8px', '12px', '16px', '32px', 'full'].includes(
+        value,
+      ),
   },
   isDisabled: {
     type: Boolean,
@@ -52,43 +57,49 @@ const props = defineProps({
   },
   className: {
     type: String,
-    default: "",
+    default: '',
   },
-})
+});
+
+const buttonClasses = {
+  [`ded-button-${props.width}`]: props.width,
+  [`ded-text-${props.size}`]: props.size,
+  [`ded-button-${props.variant}`]: props.variant,
+  [`ded-button-${props.variant}-${props.themeColor}`]:
+    props.variant && props.themeColor,
+  [`ded-button-${props.variant}-disabled`]: props.variant && props.isDisabled,
+  [`ded-button-border-width-${props.borderWidth}`]: props.borderWidth,
+  [`ded-button-radius-${props.radius}`]: props.radius,
+  [props.className]: !!props.className,
+};
+
+// 支援 ref 轉發
+const buttonRef = ref(null);
+
+// 轉發 ref 到實際的按鈕元素
+defineExpose({ buttonRef });
 </script>
 
 <template>
   <button
-    class="ded-button" :class="{
-      [`ded-button-${props.width}`]: props.width,
-      [`ded-text-${props.size}`]: props.size,
-      [`ded-button-${props.variant}`]: props.variant,
-      [`ded-button-${props.variant}-${props.themeColor}`]: props.variant && props.themeColor,
-      [`ded-button-${props.variant}-disabled`]: props.variant && props.isDisabled,
-      [`ded-button-border-width-${props.borderWidth}`]: props.borderWidth,
-      [`ded-button-radius-${props.radius}`]: props.radius,
-      [props.className]: !!props.className,
-    }"
+    ref="buttonRef"
+    class="ded-button"
+    :class="buttonClasses"
+    :disabled="props.isDisabled"
+    type="button"
   >
-    <template v-if="prefix">
-      <div :class="`ded-icon-${props.size}`">
-        <Icon :name="props.prefix" />
-      </div>
-    </template>
+    <div v-if="prefix" :class="`ded-icon-${props.size}`">
+      <Icon :name="props.prefix" />
+    </div>
 
-    <template v-if="$slots.default">
-      <div class="ded-button-content">
-        <slot />
-      </div>
-    </template>
+    <div v-if="$slots.default" class="ded-button-content">
+      <slot />
+    </div>
 
-    <template v-if="suffix">
-      <div :class="`ded-icon-${props.size}`">
-        <Icon :name="props.suffix" />
-      </div>
-    </template>
+    <div v-if="suffix" :class="`ded-icon-${props.size}`">
+      <Icon :name="props.suffix" />
+    </div>
   </button>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
