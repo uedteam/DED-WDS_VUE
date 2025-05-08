@@ -1,19 +1,19 @@
 <script setup>
-import Icon from "@/ui/element/Icon/Icon.vue"
-import { v4 as uuidv4 } from "uuid"
-import { computed, ref } from "vue"
+import Icon from '@/ui/element/Icon/Icon.vue';
+import { v4 as uuidv4 } from 'uuid';
+import { computed, ref } from 'vue';
 
 // 阻止 Vue 自動將 $attrs 綁定到最外層 <div>
-defineOptions({ inheritAttrs: false })
+defineOptions({ inheritAttrs: false });
 // 定義 Props
 const props = defineProps({
   label: {
     type: String,
-    default: "",
+    default: '',
   },
   type: {
     type: String,
-    default: "text",
+    default: 'text',
   },
   hasClear: {
     type: Boolean,
@@ -21,16 +21,16 @@ const props = defineProps({
   },
   placeholder: {
     type: String,
-    default: "Placeholder",
+    default: 'Placeholder',
   },
   prefix: {
     type: String,
-    default: "",
+    default: '',
   },
   size: {
     type: String,
-    default: "medium",
-    validator: value => ["small", "medium", "large"].includes(value),
+    default: 'medium',
+    validator: (value) => ['small', 'medium', 'large'].includes(value),
   },
   maxLimit: {
     type: Number,
@@ -38,7 +38,7 @@ const props = defineProps({
   },
   hint: {
     type: Object,
-    default: () => ({ error: "", description: "" }),
+    default: () => ({ error: '', description: '' }),
   },
   isDisabled: {
     type: Boolean,
@@ -50,53 +50,89 @@ const props = defineProps({
   },
   className: {
     type: String,
-    default: "",
+    default: '',
   },
-})
-const emits = defineEmits(["clearDatePicker"])
-const modelValue = defineModel()
+});
+const emits = defineEmits(['clearDatePicker']);
+const modelValue = defineModel();
 // 暴露內部的 <input> 節點 (datepicker用)
-const inputRef = ref(null)
-defineExpose({
-  input: inputRef,
-})
+const inputRef = ref(null);
 
 // 或其他唯一ID生成方式
-const baseId = uuidv4()
-const uniqueId = `${baseId}-input`
+const baseId = uuidv4();
+const uniqueId = `${baseId}-input`;
 
 // 計算屬性
-const hintClass = computed(() => {
-  if (props.hint.error)
-    return "error"
-  if (props.hint.description)
-    return "desc"
-  return ""
-})
+const hintClass = computed(() =>
+  props.hint.error ? 'error' : props.hint.description ? 'desc' : '',
+);
+
+// 計算輸入框的類型
+const inputType = computed(() =>
+  showPassword.value && props.type === 'password' ? 'text' : props.type,
+);
+
+// 計算輸入框組的 class
+const inputGroupClasses = computed(() => ({
+  [`ded-text-${props.size}`]: props.size,
+  [`ded-input-border-${hintClass.value}`]: hintClass.value,
+  'ded-input-disable': props.isDisabled,
+}));
+
+// 計算輸入框的 class
+const inputClasses = computed(() => ({
+  [`ded-text-${props.size}`]: props.size,
+  'ded-input-prefix': props.prefix,
+  'ded-input-disable': props.isDisabled,
+}));
+
+// 計算提示文字的 class
+const hintClasses = computed(() => ({
+  [`ded-input-hint-${hintClass.value}`]: hintClass.value && !props.isDisabled,
+  'ded-input-disable': props.isDisabled,
+}));
+
+// 判斷是否顯示清除按鈕
+const shouldShowClearButton = computed(
+  () => modelValue.value && props.hasClear && !props.isDisabled,
+);
+
+// 判斷是否顯示密碼切換按鈕
+const shouldShowPasswordToggle = computed(
+  () => props.type === 'password' && modelValue.value,
+);
 
 // 功能: 清除輸入框
 function clearInput() {
-  modelValue.value = ""
+  modelValue.value = '';
   // datepicker用
-  emits("clearDatePicker")
+  emits('clearDatePicker');
 }
 
 // 功能: 控制密碼顯示/隱藏
-const showPassword = ref(false)
+const showPassword = ref(false);
 function togglePasswordVisibility() {
-  showPassword.value = !showPassword.value
+  showPassword.value = !showPassword.value;
 }
 
 // 功能: 下拉控制箭頭
 function toggleDropdown() {
   if (props.isOpen !== undefined) {
-    modelValue.value = "" // 可選擇性操作
+    modelValue.value = ''; // 可選擇性操作
   }
 }
+
+// 設置對外暴露的方法
+defineExpose({
+  input: inputRef,
+});
 </script>
 
 <template>
-  <div class="ded-input-container" :class="{ [ props.className ]: !!props.className }">
+  <div
+    class="ded-input-container"
+    :class="{ [props.className]: !!props.className }"
+  >
     <!-- 標籤 -->
     <label
       v-if="label"
@@ -107,21 +143,18 @@ function toggleDropdown() {
     </label>
 
     <!-- 輸入框組 -->
-    <div
-      class="ded-input-group" :class="{
-        [`ded-text-${props.size}`]: props.size,
-        [`ded-input-border-${hintClass}`]: hintClass,
-        'ded-input-disable': props.isDisabled,
-      }"
-    >
+    <div class="ded-input-group" :class="inputGroupClasses">
       <!-- Prefix Icon -->
       <label
         v-if="prefix"
         :for="uniqueId"
-        class="ded-input-icon" :class="{
+        class="ded-input-icon"
+        :class="{
           [`ded-icon-${props.size}`]: props.size,
           'ded-input-icon-disable': props.isDisabled,
-          'ded-input-icon-error': props.hint.error.length > 0 || typeof props.hint.error === 'function',
+          'ded-input-icon-error':
+            props.hint.error.length > 0 ||
+            typeof props.hint.error === 'function',
         }"
       >
         <Icon :name="props.prefix" />
@@ -132,22 +165,19 @@ function toggleDropdown() {
         :id="uniqueId"
         ref="inputRef"
         v-model="modelValue"
-        :type="showPassword && props.type === 'password' ? 'text' : props.type"
+        :type="inputType"
         :placeholder="props.placeholder"
         :maxlength="props.maxLimit > 0 ? props.maxLimit : undefined"
-        class="ded-input" :class="{
-          [`ded-text-${props.size}`]: props.size,
-          'ded-input-prefix': props.prefix,
-          'ded-input-disable': props.isDisabled,
-        }"
+        class="ded-input"
+        :class="inputClasses"
         v-bind="$attrs"
-      >
+      />
 
       <!-- 功能圖示 -->
       <div class="ded-input-feat-icon">
         <!-- 清除按鈕 -->
         <div
-          v-if="modelValue && props.hasClear && !props.isDisabled"
+          v-if="shouldShowClearButton"
           :class="`ded-icon-${props.size}`"
           style="cursor: pointer"
           @click="clearInput()"
@@ -157,7 +187,7 @@ function toggleDropdown() {
 
         <!-- 密碼顯示/隱藏 -->
         <div
-          v-if="props.type === 'password' && modelValue"
+          v-if="shouldShowPasswordToggle"
           :class="`ded-icon-${props.size}`"
           style="cursor: pointer"
           @click="togglePasswordVisibility"
@@ -182,12 +212,7 @@ function toggleDropdown() {
     </div>
 
     <!-- 提示文字 -->
-    <small
-      class="ded-input-hint" :class="{
-        [`ded-input-hint-${hintClass}`]: hintClass && !props.isDisabled,
-        'ded-input-disable': props.isDisabled,
-      }"
-    >
+    <small class="ded-input-hint" :class="hintClasses">
       <!-- 若 error 存在，無論是函式還是字串，都優先顯示 -->
       <template v-if="props.hint.error">
         <template v-if="typeof props.hint.error === 'function'">
@@ -211,6 +236,4 @@ function toggleDropdown() {
   </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

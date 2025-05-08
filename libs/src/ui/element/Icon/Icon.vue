@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject } from "vue"
+import { computed, inject } from 'vue';
 
 const props = defineProps({
   name: {
@@ -16,17 +16,17 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: "currentColor",
+    default: 'currentColor',
   },
   src: {
     type: String,
   },
-})
+});
 // 假設 `icons` 來自 Vue `provide()`
-const icons = inject("icons", {})
+const icons = inject('icons', {});
 
 // 根據 `name` 取得對應的 SVG Vue 元件
-const IconComponent = computed(() => icons[props.name] || null)
+const IconComponent = computed(() => icons[props.name] || null);
 </script>
 
 <template>
