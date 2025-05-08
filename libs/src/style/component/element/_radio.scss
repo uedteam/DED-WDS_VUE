@@ -3,82 +3,82 @@
 @use '../../theme/index' as *;
 
 .ded-radio-container {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: $spacing-8;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: $spacing-8;
 
-    &-row {
-        flex-direction: row;
-    }
+  &-row {
+    flex-direction: row;
+  }
 
-    &-column {
-        flex-direction: column;
-    }
+  &-column {
+    flex-direction: column;
+  }
 }
 
 .ded-radio {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-4;
+  cursor: pointer;
+
+  &-input {
+    display: none;
+  }
+
+  &-text {
+    font-size: inherit;
+    color: list.nth($text-primary, $site);
+  }
+
+  &-icon {
+    border-width: $border-width;
+    border-style: solid;
+    border-color: list.nth($neutral-200, $site);
+    border-radius: $radius-999;
     display: inline-flex;
-    justify-content: center;
     align-items: center;
-    gap: $spacing-4;
-    cursor: pointer;
+    justify-content: center;
+  }
 
-    &-input {
-        display: none;
+  &-checked {
+    background-color: list.nth($neutral-0, $site);
+    border-color: $auo-form-default;
+    border-width: 5px;
+    transition: border-width 0.1s;
+
+    &:hover {
+      border-color: $auo-form-hover;
     }
 
-    &-text {
-        font-size: inherit;
-        color: list.nth($text-primary, $site);
+    &:focus {
+      box-shadow: 0 0 0 3px $auo-form-outline;
+    }
+  }
+
+  &-unchecked {
+    background-color: transparent;
+
+    &:hover {
+      border-color: $auo-form-hover;
     }
 
-    &-icon {
-        border-width: $border-width;
-        border-style: solid;
-        border-color: list.nth($neutral-200, $site);
-        border-radius: $radius-999;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+    &:focus {
+      border-color: $auo-form-default;
+      box-shadow: 0 0 0 3px $auo-form-outline;
     }
+  }
 
-    &-checked {
-        background-color: list.nth($neutral-0, $site);
-        border-color: $auo-form-default;
-        border-width: 5px;
-        transition: border-width 0.1s;
-
-        &:hover {
-            border-color: $auo-form-hover;
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 3px $auo-form-outline;
-        }
-    }
-
-    &-unchecked {
-        background-color: transparent;
-
-        &:hover {
-            border-color: $auo-form-hover;
-        }
-
-        &:focus {
-            border-color: $auo-form-default;
-            box-shadow: 0 0 0 3px $auo-form-outline;
-        }
-    }
-}
-
-.ded-radio-input-disabled {
+  &-input-disabled {
     pointer-events: none !important;
-}
+  }
 
-.ded-radio-icon-disabled {
+  &-icon-disabled {
     border-color: list.nth($disabled-border, $site) !important;
-}
+  }
 
-.ded-radio-text-disabled {
+  &-text-disabled {
     color: list.nth($disabled-text, $site) !important;
+  }
 }
