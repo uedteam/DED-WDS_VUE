@@ -1,94 +1,101 @@
-import Icon from "@/ui/element/Icon/Icon.vue"
-import Input from "@/ui/element/Input/Input.vue"
-import StatusIndicator from "@/ui/element/StatusIndicator/StatusIndicator.vue"
-import { h } from "vue"
+import Icon from '@/ui/element/Icon/Icon.vue';
+import Input from '@/ui/element/Input/Input.vue';
+import StatusIndicator from '@/ui/element/StatusIndicator/StatusIndicator.vue';
+import { h } from 'vue';
 
 export default {
-  title: "Component/Input",
+  title: 'Component/Input',
   component: Input,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     label: {
-      description: "標題",
-      control: { type: "text" },
+      description: '標題',
+      control: { type: 'text' },
     },
     type: {
-      description: "輸入類型",
-      control: { type: "select" },
-      options: ["number", "text", "password", "email"],
+      description: '輸入類型',
+      control: { type: 'select' },
+      options: ['number', 'text', 'password', 'email'],
       table: {
         type: {
-          summary: "number | text | password | email ",
+          summary: 'number | text | password | email ',
         },
       },
     },
     hasClear: {
-      description: "是否顯示清除按鈕",
-      control: { type: "boolean" },
+      description: '是否顯示清除按鈕',
+      control: { type: 'boolean' },
     },
     placeholder: {
-      description: "輸入提示",
-      control: { type: "text" },
+      description: '輸入提示',
+      control: { type: 'text' },
     },
     size: {
-      description: "輸入框尺寸",
-      control: { type: "select" },
-      options: ["small", "medium", "large"],
+      description: '輸入框尺寸',
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
       table: {
         type: {
-          summary: "small | medium | large ",
+          summary: 'small | medium | large ',
         },
       },
     },
     prefix: {
-      description: "前置元素",
+      description: '前置元素',
       control: {
-        type: "select",
+        type: 'select',
         labels: {
-          "": "none",
-          "SvgAccount": "SvgAccount",
-          "SvgSearch": "SvgSearch",
-          "SvgVisibility": "SvgVisibility",
-          "SvgVisibilityOff": "SvgVisibilityOff",
-          "SvgMail": "SvgMail",
+          '': 'none',
+          SvgAccount: 'SvgAccount',
+          SvgSearch: 'SvgSearch',
+          SvgVisibility: 'SvgVisibility',
+          SvgVisibilityOff: 'SvgVisibilityOff',
+          SvgMail: 'SvgMail',
         },
       },
-      options: ["", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff", "SvgMail"],
+      options: [
+        '',
+        'SvgAccount',
+        'SvgSearch',
+        'SvgVisibility',
+        'SvgVisibilityOff',
+        'SvgMail',
+      ],
     },
     maxLimit: {
-      description: "最長輸入限制",
-      control: { type: "number" },
+      description: '最長輸入限制',
+      control: { type: 'number' },
     },
     hint: {
-      description: "提示訊息",
+      description: '提示訊息',
       control: {
-        type: "object",
+        type: 'object',
       },
       table: {
         type: {
-          summary: "{ error: string | VNode; description: string | VNode; }",
+          summary: '{ error: string | VNode; description: string | VNode; }',
         },
       },
     },
     isDisabled: {
-      description: "是否禁用",
-      control: { type: "boolean" },
+      description: '是否禁用',
+      control: { type: 'boolean' },
     },
     isOpen: {
-      description: "下拉控制",
-      control: { type: "boolean" },
+      description: '下拉控制',
+      control: { type: 'boolean' },
       table: { disable: true },
     },
     className: {
-      description: "客製化樣式",
-      control: { type: "text" },
+      description: '客製化樣式',
+      control: { type: 'text' },
     },
     modelValue: {
-      description: "輸入值",
-      control: { type: "text" },
+      description: '輸入值',
+      control: { type: 'text' },
       table: {
-        type: { summary: "string" },
-        category: "v-model",
+        type: { summary: 'string' },
+        category: 'v-model',
         // defaultValue: { summary: '""' },
       },
     },
@@ -96,39 +103,49 @@ export default {
   parameters: {
     // 自動文件
     docs: {
-      title: "Input",
+      title: 'Input',
       description: {
-        component: "輸入框組件的呈現及說明。。",
+        component: '輸入框組件的呈現及說明。。',
       },
     },
   },
-}
+};
 
 // ==== 預設項目 ====//
 export const InputDefault = {
-  name: "預設項目",
+  name: '預設項目',
   args: {
-    label: "Label",
-    type: "text",
+    label: 'Label',
+    type: 'text',
     hasClear: true,
-    placeholder: "Placeholder",
-    size: "medium",
-    prefix: "SvgAccount",
+    placeholder: 'Placeholder',
+    size: 'medium',
+    prefix: 'SvgAccount',
     maxLimit: 0,
     hint: {
-      error: "",
-      description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
+      error: '',
+      description: () =>
+        h(
+          StatusIndicator,
+          {
+            themeColor: 'neutral',
+            variant: 'text',
+            size: 'medium',
+            isShowDot: false,
+          },
+          'Prompt message',
+        ),
     },
     isDisabled: false,
-    className: "",
-    modelValue: "",
+    className: '',
+    modelValue: '',
   },
-  render: args => ({
+  render: (args) => ({
     components: { Input },
     setup() {
       return {
         args,
-      }
+      };
     },
     template: `
       <Input
@@ -149,17 +166,17 @@ export const InputDefault = {
   // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      exclude: ["input", "clearDatePicker"],
+      exclude: ['input', 'clearDatePicker'],
     },
     docs: {
       source: {
         transform: (src, storyContext) => {
-          const { args } = storyContext
+          const { args } = storyContext;
           return [
             `<script setup>`,
-            "import { ref, h } from \"vue\";",
+            'import { ref, h } from "vue";',
             `import { Input, StatusIndicator } from "@ded-wds-vue/ui";`,
-            "const hint = {",
+            'const hint = {',
             `  error: "",`,
             `  description: () => h(StatusIndicator, {`,
             `    themeColor: "neutral",`,
@@ -167,59 +184,72 @@ export const InputDefault = {
             `    size: "medium",`,
             `    isShowDot: false`,
             `  }, "Prompt message")`,
-            "};",
-            "const modelValue = ref(\"\");",
+            '};',
+            'const modelValue = ref("");',
             `</script>`,
-            "",
-            "<template>",
-            "  <Input",
-            `    ${args.label ? `label="${args.label}"` : ""}`,
-            `    ${args.type ? `type="${args.type}"` : ""}`,
-            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
+            '',
+            '<template>',
+            '  <Input',
+            `    ${args.label ? `label="${args.label}"` : ''}`,
+            `    ${args.type ? `type="${args.type}"` : ''}`,
+            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ''}`,
+            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ''}`,
+            `    ${args.size ? `size="${args.size}"` : ''}`,
+            `    ${args.prefix ? `prefix="${args.prefix}"` : ''}`,
+            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ''}`,
             `    :hint="hint"`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `    v-model="modelValue"`,
-            "  />",
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
+            '  />',
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
         },
       },
     },
   },
-}
+};
 
 // ==== 輸入類型 ====//
 export const InputTypesStory = {
-  name: "輸入類型",
+  name: '輸入類型',
   args: {
     // label: 'Account',
     // type: 'text',
     hasClear: true,
-    placeholder: "Placeholder",
-    size: "medium",
+    placeholder: 'Placeholder',
+    size: 'medium',
     // prefix: 'SvgAccount',
     maxLimit: 0,
     hint: {
-      error: "",
-      description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
+      error: '',
+      description: () =>
+        h(
+          StatusIndicator,
+          {
+            themeColor: 'neutral',
+            variant: 'text',
+            size: 'medium',
+            isShowDot: false,
+          },
+          'Prompt message',
+        ),
     },
     isDisabled: false,
-    className: "",
-    modelValueAccount: "Account",
-    modelValuePassword: "Password",
+    className: '',
+    modelValueAccount: 'Account',
+    modelValuePassword: 'Password',
     modelValueAmount: 12345,
   },
-  render: args => ({
+  render: (args) => ({
     components: { Input },
     setup() {
       return {
         args,
-      }
+      };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap:8px">
@@ -268,20 +298,20 @@ export const InputTypesStory = {
   // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      exclude: ["label", "type", "prefix", "input", "clearDatePicker"],
+      exclude: ['label', 'type', 'prefix', 'input', 'clearDatePicker'],
     },
     docs: {
       source: {
         transform: (src, storyContext) => {
-          const { args } = storyContext
+          const { args } = storyContext;
           return [
             `<script setup>`,
-            "import { ref, h } from \"vue\";",
+            'import { ref, h } from "vue";',
             `import { Input, StatusIndicator } from "@ded-wds-vue/ui";`,
-            "const modelValueAccount = ref(\"Account\");",
-            "const modelValuePassword = ref(\"Password\");",
-            "const modelValueAmount = ref(12345);",
-            "const hint = {",
+            'const modelValueAccount = ref("Account");',
+            'const modelValuePassword = ref("Password");',
+            'const modelValueAmount = ref(12345);',
+            'const hint = {',
             `  error: "",`,
             `  description: () => h(StatusIndicator, {`,
             `    themeColor: "neutral",`,
@@ -289,88 +319,112 @@ export const InputTypesStory = {
             `    size: "medium",`,
             `    isShowDot: false`,
             `  }, "Prompt message")`,
-            "};",
+            '};',
             `</script>`,
-            "",
-            "<template>",
-            "  <Input",
+            '',
+            '<template>',
+            '  <Input',
             `    label="Account"`,
             `    type="text"`,
-            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
+            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ''}`,
+            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ''}`,
+            `    ${args.size ? `size="${args.size}"` : ''}`,
             `    prefix="SvgAccount"`,
-            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
+            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ''}`,
             `    :hint="hint"`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `    v-model="modelValueAccount"`,
-            "  />",
-            "  <Input",
+            '  />',
+            '  <Input',
             `    label="Password"`,
             `    type="password"`,
-            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
+            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ''}`,
+            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ''}`,
+            `    ${args.size ? `size="${args.size}"` : ''}`,
             `    prefix="SvgLock"`,
-            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
+            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ''}`,
             `    :hint="hint"`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `    v-model="modelValuePassword"`,
-            "  />",
-            "  <Input",
+            '  />',
+            '  <Input',
             `    label="Amount"`,
             `    type="number"`,
-            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
+            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ''}`,
+            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ''}`,
+            `    ${args.size ? `size="${args.size}"` : ''}`,
             `    prefix="SvgAccount"`,
-            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
+            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ''}`,
             `    :hint="hint"`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `    v-model="modelValueAmount"`,
-            "  />",
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
+            '  />',
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
         },
       },
     },
   },
-}
+};
 
 // ==== 提示訊息 ====//
 export const InputHintTypeStory = {
-  name: "提示訊息",
+  name: '提示訊息',
   args: {
-    label: "Account",
-    type: "text",
+    label: 'Account',
+    type: 'text',
     hasClear: true,
-    placeholder: "Placeholder",
-    size: "medium",
-    prefix: "SvgAccount",
+    placeholder: 'Placeholder',
+    size: 'medium',
+    prefix: 'SvgAccount',
     maxLimit: 0,
     hintError: {
-      error: () => h(StatusIndicator, { themeColor: "error", variant: "text", size: "medium", prefix: "SvgErrorCircle", isShowDot: false }, "Error message"),
-      description: "",
+      error: () =>
+        h(
+          StatusIndicator,
+          {
+            themeColor: 'error',
+            variant: 'text',
+            size: 'medium',
+            prefix: 'SvgErrorCircle',
+            isShowDot: false,
+          },
+          'Error message',
+        ),
+      description: '',
     },
     hintPrompt: {
-      error: "",
-      description: () => h(StatusIndicator, { themeColor: "neutral", variant: "text", size: "medium", isShowDot: false }, "Prompt message"),
+      error: '',
+      description: () =>
+        h(
+          StatusIndicator,
+          {
+            themeColor: 'neutral',
+            variant: 'text',
+            size: 'medium',
+            isShowDot: false,
+          },
+          'Prompt message',
+        ),
     },
     isDisabled: false,
-    className: "",
-    modelValue: "",
+    className: '',
+    modelValue: '',
   },
-  render: args => ({
+  render: (args) => ({
     components: { Input },
     setup() {
       return {
         args,
         StatusIndicator,
         Icon,
-      }
+      };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap:8px">
@@ -406,17 +460,17 @@ export const InputHintTypeStory = {
   // 控制 controls 中能控制的參數
   parameters: {
     controls: {
-      exclude: ["hint", "input", "clearDatePicker"],
+      exclude: ['hint', 'input', 'clearDatePicker'],
     },
     docs: {
       source: {
         transform: (src, storyContext) => {
-          const { args } = storyContext
+          const { args } = storyContext;
           return [
             `<script setup>`,
-            "import { ref, h } from \"vue\";",
-            "import { Input, Icon, StatusIndicator } from \"@ded-wds-vue/ui\";",
-            "const hintError = {",
+            'import { ref, h } from "vue";',
+            'import { Input, Icon, StatusIndicator } from "@ded-wds-vue/ui";',
+            'const hintError = {',
             `  error: () => h(StatusIndicator, {`,
             `    themeColor: "error",`,
             `    variant: "text",`,
@@ -425,9 +479,9 @@ export const InputHintTypeStory = {
             `    isShowDot: false`,
             `  }, "Error message"),`,
             `  description: ""`,
-            "};",
+            '};',
             ``,
-            "const hintPrompt = {",
+            'const hintPrompt = {',
             `  error: "",`,
             `  description: () => h(StatusIndicator, {`,
             `    themeColor: "neutral",`,
@@ -435,45 +489,48 @@ export const InputHintTypeStory = {
             `    size: "medium",`,
             `    isShowDot: false`,
             `  }, "Prompt message")`,
-            "};",
-            "const modelValue = ref(\"\");",
+            '};',
+            'const modelValue = ref("");',
             `</script>`,
-            "",
-            "<template>",
-            "  <Input",
-            `    ${args.label ? `label="${args.label}"` : ""}`,
-            `    ${args.type ? `type="${args.type}"` : ""}`,
-            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
+            '',
+            '<template>',
+            '  <Input',
+            `    ${args.label ? `label="${args.label}"` : ''}`,
+            `    ${args.type ? `type="${args.type}"` : ''}`,
+            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ''}`,
+            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ''}`,
+            `    ${args.size ? `size="${args.size}"` : ''}`,
+            `    ${args.prefix ? `prefix="${args.prefix}"` : ''}`,
+            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ''}`,
             `    :hint="hintError"`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            "    v-model=\"modelValue\"",
-            "  />",
-            "",
-            "  <Input",
-            `    ${args.label ? `label="${args.label}"` : ""}`,
-            `    ${args.type ? `type="${args.type}"` : ""}`,
-            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-            `    ${args.size ? `size="${args.size}"` : ""}`,
-            `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
+            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
+            '    v-model="modelValue"',
+            '  />',
+            '',
+            '  <Input',
+            `    ${args.label ? `label="${args.label}"` : ''}`,
+            `    ${args.type ? `type="${args.type}"` : ''}`,
+            `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ''}`,
+            `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ''}`,
+            `    ${args.size ? `size="${args.size}"` : ''}`,
+            `    ${args.prefix ? `prefix="${args.prefix}"` : ''}`,
+            `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ''}`,
             `    :hint="hintPrompt"`,
-            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
-            "    v-model=\"modelValue\"",
-            "  />",
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
+            `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
+            '    v-model="modelValue"',
+            '  />',
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
         },
       },
     },
   },
-}
+};
 
 // ==== 輸入框狀態 ====//
 // export const InputStatusStory = {
