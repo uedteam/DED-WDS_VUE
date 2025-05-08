@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineExpose } from 'vue';
+import { ref, computed, defineExpose } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
@@ -21,7 +21,8 @@ const props = defineProps({
   variant: {
     type: String,
     required: true,
-    validator: (value) => ['text', 'filled', 'ghost', 'soft'].includes(value),
+    validator: (value) =>
+      ['text', 'filled', 'ghost', 'soft', 'outlined'].includes(value),
   },
   prefix: {
     type: String,
@@ -37,7 +38,7 @@ const props = defineProps({
   width: {
     type: String,
     default: 'fit',
-    validator: (value) => ['fluid', 'fit'].includes(value),
+    validator: (value) => ['fluid', 'fit', 'full'].includes(value),
   },
   borderWidth: {
     type: String,
@@ -49,7 +50,7 @@ const props = defineProps({
     validator: (value) =>
       ['none', '2px', '4px', '8px', '12px', '16px', '32px', 'full'].includes(
         value,
-      ),
+      ) || /^\d+px$/.test(value), // 添加對任意數字+px的支援
   },
   isDisabled: {
     type: Boolean,
@@ -61,7 +62,8 @@ const props = defineProps({
   },
 });
 
-const buttonClasses = {
+// 使用 computed 確保在 props 變化時重新計算 class
+const buttonClasses = computed(() => ({
   [`ded-button-${props.width}`]: props.width,
   [`ded-text-${props.size}`]: props.size,
   [`ded-button-${props.variant}`]: props.variant,
@@ -71,7 +73,7 @@ const buttonClasses = {
   [`ded-button-border-width-${props.borderWidth}`]: props.borderWidth,
   [`ded-button-radius-${props.radius}`]: props.radius,
   [props.className]: !!props.className,
-};
+}));
 
 // 支援 ref 轉發
 const buttonRef = ref(null);
