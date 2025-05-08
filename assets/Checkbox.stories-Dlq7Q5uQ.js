@@ -1,4 +1,4 @@
-import{_ as r}from"./Checkbox-BQplRPtc.js";import"./vue.esm-bundler-CIcyrfsw.js";import"./Icon-DjPu9lgd.js";import"./v4-CtRu48qb.js";function i(o){return`    ${o.map(a=>`{
+import{_ as r}from"./Checkbox-BfemZQdB.js";import"./vue.esm-bundler-CIcyrfsw.js";import"./Icon-DjPu9lgd.js";import"./v4-CtRu48qb.js";function i(o){return`    ${o.map(a=>`{
         label: "${a.label}",
         value: "${a.value}",
         isDisabled: ${a.isDisabled}
