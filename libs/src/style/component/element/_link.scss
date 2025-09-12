@@ -1,0 +1,21 @@
+@use 'sass:list';
+@use '../../theme/index' as *;
+
+.ded-link {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  color: $auo-link-default;
+
+  &-disable {
+    color: list.nth($disabled-text, $site) !important;
+  }
+
+  &-icon {
+    color: $auo-link-default;
+
+    &-error {
+      color: getThemeColor('error', 'default');
+    }
+  }
+}

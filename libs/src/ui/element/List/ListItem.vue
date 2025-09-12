@@ -1,22 +1,22 @@
 <script setup>
-import Icon from "@/ui/element/Icon/Icon.vue"
+import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
 const props = defineProps({
   label: {
     type: String,
-    default: "",
+    default: '',
   },
   value: {
     type: String,
-    default: "value1",
+    default: 'value1',
   },
   href: {
     type: String,
   },
   prefix: {
     type: String,
-    default: "",
+    default: '',
   },
   hasDivider: {
     type: Boolean,
@@ -33,32 +33,31 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
+});
 
-const emits = defineEmits(["selectedItem"])
+const emits = defineEmits(['selectedItem']);
 
 // 點擊事件處理
 function handleClick(event) {
   if (!props.href) {
-    emits("selectedItem", props.label) // 如果沒有 href，直接觸發事件，傳遞 value
-  }
-  else {
+    emits('selectedItem', props.label); // 如果沒有 href，直接觸發事件，傳遞 value
+  } else {
     // 檢查 openInNewTab 的值，決定是否在新分頁開啟
     if (props.openInNewTab) {
-      event.preventDefault()
-      window.open(props.href, "_blank", "noopener,noreferrer") // 開新分頁
+      event.preventDefault();
+      window.open(props.href, '_blank', 'noopener,noreferrer'); // 開新分頁
+    } else {
+      window.location.href = props.href; // 在當前分頁開啟
     }
-    else {
-      window.location.href = props.href // 在當前分頁開啟
-    }
-    emits("selectedItem", props.value) // 開啟連結後觸發事件，傳遞 value
+    emits('selectedItem', props.value); // 開啟連結後觸發事件，傳遞 value
   }
 }
 </script>
 
 <template>
   <li
-    class="ded-list-item" :class="{
+    class="ded-list-item"
+    :class="{
       'ded-list-item-side': props.hasDivider,
       'ded-list-item-disabled': props.isDisabled,
       [props.className]: !!props.className,
@@ -95,5 +94,4 @@ function handleClick(event) {
   </li>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

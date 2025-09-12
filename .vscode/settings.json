@@ -1,0 +1,16 @@
+{
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "file": "copilot-codeGeneration-instructions.md"
+    },
+    {
+      "text": "必須是中文註解的 Vue 函數組件，並且必須包含 props 的類型定義",
+      "language": "vue"
+    }
+  ],
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "file": "copilot-commit-instructions.md"
+    }
+  ]
+}

@@ -1,80 +1,90 @@
-import Title from "@/ui/element/Title/Title.vue"
+import Title from '@/ui/element/Title/Title.vue';
 
 export default {
-  title: "Component/Typography/Title",
+  title: 'Component/Typography/Title',
   component: Title,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     themeColor: {
-      description: "主題顏色",
+      description: '主題顏色',
       control: {
-        type: "select",
+        type: 'select',
         labels: {
-          "": "none",
-          "primary": "primary",
-          "secondary": "secondary",
-          "neutral": "neutral",
-          "info": "info",
-          "success": "success",
-          "warning": "warning",
-          "error": "error",
+          '': 'none',
+          primary: 'primary',
+          secondary: 'secondary',
+          neutral: 'neutral',
+          info: 'info',
+          success: 'success',
+          warning: 'warning',
+          error: 'error',
         },
       },
-      options: ["", "primary", "secondary", "neutral", "info", "success", "warning", "error"],
+      options: [
+        '',
+        'primary',
+        'secondary',
+        'neutral',
+        'info',
+        'success',
+        'warning',
+        'error',
+      ],
       table: {
         type: {
-          summary: "none | primary | secondary | neutral | info | success | warning | error",
+          summary:
+            'none | primary | secondary | neutral | info | success | warning | error',
         },
         defaultValue: {
-          summary: "none",
+          summary: 'none',
         },
       },
     },
     level: {
-      description: "標題等級",
-      control: { type: "select" },
+      description: '標題等級',
+      control: { type: 'select' },
       options: [0, 1, 2, 3, 4, 5, 6],
       table: {
         type: {
-          summary: "0 | 1 | 2 | 3 | 4 | 5 | 6",
+          summary: '0 | 1 | 2 | 3 | 4 | 5 | 6',
         },
       },
     },
     className: {
-      description: "客製化樣式",
-      control: { type: "text" },
+      description: '客製化樣式',
+      control: { type: 'text' },
     },
     default: {
-      description: "標題內容",
-      control: { type: "text" },
+      description: '標題內容',
+      control: { type: 'text' },
     },
   },
   parameters: {
     // 自動文件
     docs: {
-      title: "Title",
+      title: 'Title',
       description: {
-        component: "標題組件的呈現及說明。",
+        component: '標題組件的呈現及說明。',
       },
     },
   },
-}
+};
 
 // ==== 預設項目 ====//
 export const HeadingDefault = {
-  name: "預設項目",
+  name: '預設項目',
   args: {
-    themeColor: "",
+    themeColor: '',
     level: 1,
-    className: "",
-    default: "Title",
+    className: '',
+    default: 'Title',
   },
-  render: args => ({
+  render: (args) => ({
     components: { Title },
     setup() {
       return {
         args,
-      }
+      };
     },
     template: `
       <Title
@@ -93,43 +103,46 @@ export const HeadingDefault = {
     docs: {
       source: {
         transform: (src, storyContext) => {
-          const { args } = storyContext
+          const { args } = storyContext;
           return [
             `<script setup>`,
             `import { Title } from "@ded-wds-vue/ui";`,
             `</script>`,
-            "",
-            "<template>",
+            '',
+            '<template>',
             `  <Title`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
-            `    ${args.level !== undefined ? `:level="${args.level}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
+            `    ${args.level !== undefined ? `:level="${args.level}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
-            `    ${args.default || ""}`,
+            `    ${args.default || ''}`,
             `  </Title>`,
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
         },
       },
     },
   },
-}
+};
 
 // ==== 標題大小 ====//
 export const HeadingSizeDefault = {
-  name: "標題大小",
+  name: '標題大小',
   args: {
-    themeColor: "",
+    themeColor: '',
     // level: 1,
-    className: "",
-    default: "Title",
+    className: '',
+    default: 'Title',
   },
-  render: args => ({
+  render: (args) => ({
     components: { Title },
     setup() {
       return {
         args,
-      }
+      };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 8px">
@@ -188,90 +201,93 @@ export const HeadingSizeDefault = {
   parameters: {
     controls: {
       // include: ['themeColor', 'label', 'value', 'name' ],
-      exclude: ["level"],
+      exclude: ['level'],
     },
     docs: {
       source: {
         transform: (src, storyContext) => {
-          const { args } = storyContext
+          const { args } = storyContext;
           return [
             `<script setup>`,
             `import { Title } from "@ded-wds-vue/ui";`,
             `</script>`,
-            "",
-            "<template>",
+            '',
+            '<template>',
             `  <Title`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
+            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
             `    :level="1"`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
             `    Level:1 Title`,
             `  </Title>`,
             `  <Title`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
+            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
             `    :level="2"`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
             `    Level:2 Title`,
             `  </Title>`,
             `  <Title`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
+            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
             `    :level="3"`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
             `    Level:3 Title`,
             `  </Title>`,
             `  <Title`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
+            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
             `    :level="4"`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
             `    Level:4 Title`,
             `  </Title>`,
             `  <Title`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
+            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
             `    :level="5"`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
             `    Level:5 Title`,
             `  </Title>`,
             `  <Title`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
+            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
             `    :level="6"`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
             `    Level:6 Title`,
             `  </Title>`,
             `  <Title`,
-            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
+            `    ${args.themeColor ? `themeColor="${args.themeColor}"` : ''}`,
             `    :level="0"`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
             `    Level:0 Title`,
             `  </Title>`,
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
         },
       },
     },
   },
-}
+};
 
 // ==== 主題色彩 ====//
 export const HeadingColorDefault = {
-  name: "主題色彩",
+  name: '主題色彩',
   args: {
     // themeColor: "",
     level: 3,
-    className: "",
-    default: "Title",
+    className: '',
+    default: 'Title',
   },
-  render: args => ({
+  render: (args) => ({
     components: { Title },
     setup() {
       return {
         args,
-      }
+      };
     },
     template: `
       <div style="display: flex; gap: 8px">
@@ -336,71 +352,74 @@ export const HeadingColorDefault = {
   parameters: {
     controls: {
       // include: ['themeColor', 'label', 'value', 'name' ],
-      exclude: ["themeColor"],
+      exclude: ['themeColor'],
     },
     docs: {
       source: {
         transform: (src, storyContext) => {
-          const { args } = storyContext
+          const { args } = storyContext;
           return [
             `<script setup>`,
             `import { Title } from "@ded-wds-vue/ui";`,
             `</script>`,
-            "",
-            "<template>",
+            '',
+            '<template>',
             `  <Title`,
             `    themeColor="primary"`,
-            `    ${args.level !== undefined ? `:level="${args.level}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.level !== undefined ? `:level="${args.level}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
-            `    ${args.default || ""}`,
+            `    ${args.default || ''}`,
             `  </Title>`,
             `  <Title`,
             `    themeColor="secondary"`,
-            `    ${args.level !== undefined ? `:level="${args.level}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.level !== undefined ? `:level="${args.level}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
-            `    ${args.default || ""}`,
+            `    ${args.default || ''}`,
             `  </Title>`,
             `  <Title`,
             `    themeColor="neutral"`,
-            `    ${args.level !== undefined ? `:level="${args.level}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.level !== undefined ? `:level="${args.level}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
-            `    ${args.default || ""}`,
+            `    ${args.default || ''}`,
             `  </Title>`,
             `  <Title`,
             `    themeColor="info"`,
-            `    ${args.level !== undefined ? `:level="${args.level}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.level !== undefined ? `:level="${args.level}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
-            `    ${args.default || ""}`,
+            `    ${args.default || ''}`,
             `  </Title>`,
             `  <Title`,
             `    themeColor="success"`,
-            `    ${args.level !== undefined ? `:level="${args.level}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.level !== undefined ? `:level="${args.level}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
-            `    ${args.default || ""}`,
+            `    ${args.default || ''}`,
             `  </Title>`,
             `  <Title`,
             `    themeColor="warning"`,
-            `    ${args.level !== undefined ? `:level="${args.level}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.level !== undefined ? `:level="${args.level}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
-            `    ${args.default || ""}`,
+            `    ${args.default || ''}`,
             `  </Title>`,
             `  <Title`,
             `    themeColor="error"`,
-            `    ${args.level !== undefined ? `:level="${args.level}"` : ""}`,
-            `    ${args.className ? `className="${args.className}"` : ""}`,
+            `    ${args.level !== undefined ? `:level="${args.level}"` : ''}`,
+            `    ${args.className ? `className="${args.className}"` : ''}`,
             `  >`,
-            `    ${args.default || ""}`,
+            `    ${args.default || ''}`,
             `  </Title>`,
-            "</template>",
-          ].filter(Boolean).join("\n").trim()
+            '</template>',
+          ]
+            .filter(Boolean)
+            .join('\n')
+            .trim();
         },
       },
     },
   },
-}
+};

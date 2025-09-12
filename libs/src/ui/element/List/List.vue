@@ -1,5 +1,5 @@
 <script setup>
-import ListItem from "@/ui/element/List/ListItem.vue"
+import ListItem from '@/ui/element/List/ListItem.vue';
 
 // 定義 Props
 const props = defineProps({
@@ -17,22 +17,24 @@ const props = defineProps({
   },
   className: {
     type: String,
-    default: "",
+    default: '',
   },
-})
+});
 
-const emits = defineEmits(["onSelect"])
+const emits = defineEmits(['onSelect']);
 
 function handleItemClick(value) {
-  emits("onSelect", value) // 冒泡子元件的值
+  emits('onSelect', value); // 冒泡子元件的值
 }
 </script>
 
 <template>
   <ul
-    class="ded-list" :class="{
+    class="ded-list"
+    :class="{
       'ded-outline': props.hasOutline,
-      [props.className]: !!props.className }"
+      [props.className]: !!props.className,
+    }"
   >
     <slot>
       <ListItem
@@ -51,6 +53,4 @@ function handleItemClick(value) {
   </ul>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
