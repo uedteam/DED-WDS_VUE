@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, defineExpose } from 'vue';
+import { ref, computed } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
@@ -49,7 +49,7 @@ const props = defineProps({
     type: String,
     validator: (value) =>
       ['none', '2px', '4px', '8px', '12px', '16px', '32px', 'full'].includes(
-        value,
+        value
       ) || /^\d+px$/.test(value), // 添加對任意數字+px的支援
   },
   isDisabled: {

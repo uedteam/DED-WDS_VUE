@@ -125,7 +125,7 @@ watch(
   () => {
     initializeUppy();
   },
-  { deep: true },
+  { deep: true }
 );
 
 onBeforeUnmount(() => {
