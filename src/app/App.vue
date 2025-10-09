@@ -1,531 +1,784 @@
 <script setup>
-import TestButton from '../test/button/TestButton.vue';
-import TestInput from '../test/input/TestInput.vue';
-import TestRadio from '../test/radio/TestRadio.vue';
-import TestCheckbox from '../test/checkbox/TestCheckbox.vue';
-import TestTag from '../test/tag/TestTag.vue';
-import TestTextarea from '../test/textarea/TestTextarea.vue';
-import TestBadge from '../test/badge/TestBadge.vue';
-import TestPagination from '../test/pagination/TestPagination.vue';
-import TestStepper from '../test/stepper/TestStepper.vue';
-import TestSlider from '../test/slider/TestSlider.vue';
-import TestTable from '../test/table/TestTable.vue';
-import TestAvatar from '../test/avatar/TestAvatar.vue';
-import TestAccordion from '../test/accordion/TestAccordion.vue';
-import TestBreadcrumb from '../test/breadcrumb/TestBreadcrumb.vue';
-import TestDatePicker from '../test/datepicker/TestDatePicker.vue';
-import TestDivider from '../test/divider/TestDivider.vue';
-import TestImage from '../test/image/TestImage.vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { Icon } from '../../libs/src/index';
 
-import { ref, onMounted, onUnmounted, nextTick } from 'vue';
+const route = useRoute();
+const isTemplateDropdownOpen = ref(false);
 
-const showBackTop = ref(false);
-const quickListScrollTop = ref(false);
-const quickListScrollBottom = ref(false);
-const quickListRef = ref(null);
+const toggleTemplateDropdown = () => {
+  isTemplateDropdownOpen.value = !isTemplateDropdownOpen.value;
+};
 
-function handleScroll() {
-  // 取得第二個元件區塊的位置
-  const secondSection = document.getElementById('section-input');
-  if (!secondSection) return;
-  const threshold = secondSection.getBoundingClientRect().top;
-  showBackTop.value = window.scrollY > threshold;
-}
+const closeTemplateDropdown = () => {
+  isTemplateDropdownOpen.value = false;
+};
 
-function handleQuickListScroll(event) {
-  const target = event.target;
-  const scrollTop = target.scrollTop;
-  const scrollHeight = target.scrollHeight;
-  const clientHeight = target.clientHeight;
-
-  // 檢查是否可以向上滾動（有上方內容）
-  quickListScrollTop.value = scrollTop > 5;
-
-  // 檢查是否可以向下滾動（有下方內容）
-  quickListScrollBottom.value = scrollTop < scrollHeight - clientHeight - 5;
-}
-
-function checkInitialScrollState() {
-  nextTick(() => {
-    if (quickListRef.value) {
-      const target = quickListRef.value;
-      const scrollHeight = target.scrollHeight;
-      const clientHeight = target.clientHeight;
-
-      // 初始狀態：如果內容超出容器高度，顯示底部漸層
-      quickListScrollBottom.value = scrollHeight > clientHeight;
-      quickListScrollTop.value = false;
-    }
-  });
-}
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-  checkInitialScrollState();
-});
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
-
-// ...existing code...
-
-const sections = [
-  { label: '按鈕 Button', id: 'section-button' },
-  { label: '輸入框 Input', id: 'section-input' },
-  { label: '單選框 Radio', id: 'section-radio' },
-  { label: '多選框 Checkbox', id: 'section-checkbox' },
-  { label: '標籤 Tag', id: 'section-tag' },
-  { label: '文字區域 Textarea', id: 'section-textarea' },
-  { label: '徽章 Badge', id: 'section-badge' },
-  { label: '分頁 Pagination', id: 'section-pagination' },
-  { label: '步進器 Stepper', id: 'section-stepper' },
-  { label: '滑桿 Slider', id: 'section-slider' },
-  { label: '表格 Table', id: 'section-table' },
-  { label: '頭像 Avatar', id: 'section-avatar' },
-  { label: '手風琴 Accordion', id: 'section-accordion' },
-  { label: '麵包屑 Breadcrumb', id: 'section-breadcrumb' },
-  { label: '日期選擇器 DatePicker', id: 'section-datepicker', isNew: true },
-  { label: '分隔線 Divider', id: 'section-divider', isNew: true },
-  { label: '圖片 Image', id: 'section-image', isNew: true },
-];
-
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+// 點擊外部區域關閉下拉選單
+const handleClickOutside = (event) => {
+  if (!event.target.closest('.nav-dropdown')) {
+    isTemplateDropdownOpen.value = false;
   }
-}
+};
+
+// 監聽全域點擊事件
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <template>
-  <div class="p-6">
-    <transition name="fade">
-      <button
-        v-if="showBackTop"
-        class="back-to-top-btn"
-        @click="scrollToTop"
-        aria-label="回到最上層"
-      >
-        ▲
-      </button>
-    </transition>
+  <div id="app">
+    <!-- 全域導航欄 -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <router-link to="/" class="brand-link">
+            <Icon
+              name="SvgLogo"
+              size="32"
+              color="transparent"
+              class="brand-icon"
+            />
+            <span class="brand-text">Web Design System</span>
+          </router-link>
+        </div>
 
-    <!-- 組件快速清單浮動側欄 -->
-    <div class="quick-list">
-      <!-- 上方漸層提示 -->
-      <div
-        v-if="quickListScrollTop"
-        class="scroll-gradient scroll-gradient-top"
-      ></div>
-
-      <!-- 滾動內容區域 -->
-      <div
-        ref="quickListRef"
-        class="quick-list-content"
-        @scroll="handleQuickListScroll"
-      >
-        <ul>
-          <li v-for="section in sections" :key="section.id">
-            <button class="quick-list-btn" @click="scrollToSection(section.id)">
-              <span class="btn-content">
-                <span class="btn-text">{{ section.label }}</span>
-                <span v-if="section.isNew" class="new-badge">NEW</span>
-              </span>
+        <div class="nav-menu">
+          <router-link
+            to="/components"
+            class="nav-link"
+            :class="{ 'router-link-active': route.name === 'components' }"
+          >
+            組件測試
+          </router-link>
+          <div class="nav-dropdown">
+            <button
+              class="nav-link dropdown-toggle"
+              :class="{
+                'router-link-active': ['login', 'landing'].includes(route.name),
+              }"
+              @click="toggleTemplateDropdown"
+            >
+              Template
+              <Icon
+                name="SvgArrowDown"
+                size="20"
+                color="currentColor"
+                class="dropdown-icon"
+                :class="{ 'rotate-180': isTemplateDropdownOpen }"
+              />
             </button>
-          </li>
-        </ul>
+            <div
+              class="dropdown-menu"
+              :style="{ display: isTemplateDropdownOpen ? 'block' : 'none' }"
+            >
+              <router-link
+                to="/login"
+                class="dropdown-item"
+                :class="{ active: route.name === 'login' }"
+                @click="closeTemplateDropdown"
+              >
+                <Icon
+                  name="SvgLogin"
+                  size="20"
+                  color="transparent"
+                  className="item-icon login-item"
+                />
+                Login 模板
+              </router-link>
+              <router-link
+                to="/landing"
+                class="dropdown-item"
+                :class="{ active: route.name === 'landing' }"
+                @click="closeTemplateDropdown"
+              >
+                <Icon
+                  name="SvgHome"
+                  size="20"
+                  color="currentColor"
+                  className="item-icon landing-item"
+                />
+                Landing 模板
+              </router-link>
+            </div>
+          </div>
+          <a
+            href="https://github.com/uedteam/DED-WDS_VUE"
+            target="_blank"
+            class="nav-link external-link"
+          >
+            GitHub
+            <Icon
+              name="SvgExternalLink"
+              size="16"
+              color="transparent"
+              class="item-icon"
+            />
+          </a>
+        </div>
       </div>
+    </nav>
 
-      <!-- 下方漸層提示 -->
-      <div
-        v-if="quickListScrollBottom"
-        class="scroll-gradient scroll-gradient-bottom"
-      ></div>
-    </div>
-
-    <div class="test-title flex items-center justify-center mb-10">
-      <span class="icon mr-4">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-          <rect
-            x="6"
-            y="6"
-            width="14"
-            height="14"
-            rx="4"
-            fill="url(#grad1)"
-            stroke="#2563eb"
-            stroke-width="2"
-          />
-          <rect
-            x="28"
-            y="6"
-            width="14"
-            height="14"
-            rx="4"
-            fill="url(#grad2)"
-            stroke="#2563eb"
-            stroke-width="2"
-          />
-          <rect
-            x="6"
-            y="28"
-            width="14"
-            height="14"
-            rx="4"
-            fill="url(#grad3)"
-            stroke="#2563eb"
-            stroke-width="2"
-          />
-          <rect
-            x="28"
-            y="28"
-            width="14"
-            height="14"
-            rx="4"
-            fill="url(#grad4)"
-            stroke="#2563eb"
-            stroke-width="2"
-          />
-          <defs>
-            <linearGradient
-              id="grad1"
-              x1="6"
-              y1="6"
-              x2="20"
-              y2="20"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#2563eb" />
-              <stop offset="1" stop-color="#60a5fa" />
-            </linearGradient>
-            <linearGradient
-              id="grad2"
-              x1="28"
-              y1="6"
-              x2="42"
-              y2="20"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#60a5fa" />
-              <stop offset="1" stop-color="#2563eb" />
-            </linearGradient>
-            <linearGradient
-              id="grad3"
-              x1="6"
-              y1="28"
-              x2="20"
-              y2="42"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#38bdf8" />
-              <stop offset="1" stop-color="#2563eb" />
-            </linearGradient>
-            <linearGradient
-              id="grad4"
-              x1="28"
-              y1="28"
-              x2="42"
-              y2="42"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#2563eb" />
-              <stop offset="1" stop-color="#38bdf8" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </span>
-      <h1
-        class="gradient-text text-5xl font-extrabold drop-shadow-lg tracking-wide"
-      >
-        UI 元件測試 (Vue)
-      </h1>
-    </div>
-
-    <!-- <div
-      class="search-bar"
-      style="
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 24px;
-        justify-content: center;
-      "
-    >
-      <input
-        v-model="searchText"
-        @keyup.enter="handleSearch"
-        type="text"
-        placeholder="搜尋元件名稱..."
-        style="
-          padding: 6px 12px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          width: 220px;
-        "
-      />
-      <button
-        @click="handleSearch"
-        style="
-          padding: 6px 16px;
-          border-radius: 4px;
-          background: #2563eb;
-          color: #fff;
-          border: none;
-          cursor: pointer;
-        "
-      >
-        搜尋
-      </button>
-    </div> -->
-
-    <div class="flex flex-col items-center" id="section-button">
-      <h2>按鈕 Button</h2>
-      <TestButton />
-    </div>
-    <div class="flex flex-col items-center" id="section-input">
-      <h2>輸入框 Input</h2>
-      <TestInput />
-    </div>
-    <div class="flex flex-col items-center" id="section-radio">
-      <h2>單選框 Radio</h2>
-      <TestRadio />
-    </div>
-    <div class="flex flex-col items-center" id="section-checkbox">
-      <h2>多選框 Checkbox</h2>
-      <TestCheckbox />
-    </div>
-    <div class="flex flex-col items-center" id="section-tag">
-      <h2>標籤 Tag</h2>
-      <TestTag />
-    </div>
-    <div class="flex flex-col items-center" id="section-textarea">
-      <h2>文字區域 Textarea</h2>
-      <TestTextarea />
-    </div>
-    <div class="flex flex-col items-center" id="section-badge">
-      <h2>徽章 Badge</h2>
-      <TestBadge />
-    </div>
-    <div class="flex flex-col items-center" id="section-pagination">
-      <h2>分頁 Pagination</h2>
-      <TestPagination />
-    </div>
-    <div class="flex flex-col items-center" id="section-stepper">
-      <h2>步進器 Stepper</h2>
-      <TestStepper />
-    </div>
-    <div class="flex flex-col items-center" id="section-slider">
-      <h2>滑桿 Slider</h2>
-      <TestSlider />
-    </div>
-    <div class="flex flex-col items-center" id="section-table">
-      <h2>表格 Table</h2>
-      <TestTable />
-    </div>
-    <div class="flex flex-col items-center" id="section-avatar">
-      <h2>頭像 Avatar</h2>
-      <TestAvatar />
-    </div>
-    <div class="flex flex-col items-center" id="section-accordion">
-      <h2>手風琴 Accordion</h2>
-      <TestAccordion />
-    </div>
-    <div class="flex flex-col items-center" id="section-breadcrumb">
-      <h2>麵包屑 Breadcrumb</h2>
-      <TestBreadcrumb />
-    </div>
-    <div class="flex flex-col items-center" id="section-datepicker">
-      <h2>日期選擇器 DatePicker</h2>
-      <TestDatePicker />
-    </div>
-    <div class="flex flex-col items-center" id="section-divider">
-      <h2>分隔線 Divider</h2>
-      <TestDivider />
-    </div>
-    <div class="flex flex-col items-center" id="section-image">
-      <h2>圖片 Image</h2>
-      <TestImage />
-    </div>
+    <!-- 路由視圖 -->
+    <main class="main-content">
+      <router-view />
+    </main>
   </div>
 </template>
 
-<style></style>
 <style scoped>
-.back-to-top-btn {
-  position: fixed;
-  right: 32px;
-  bottom: 32px;
-  z-index: 100;
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  font-size: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: background 0.2s;
+#app {
+  min-height: 100vh;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
-.back-to-top-btn:hover {
-  background: #1e40af;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-.quick-list {
-  position: fixed;
-  top: 50%;
-  right: 32px;
-  transform: translateY(-50%);
-  z-index: 99;
+
+/* 導航欄樣式 */
+.navbar {
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  min-width: 140px;
-  max-height: 70vh;
-  overflow: hidden;
-}
-
-.quick-list-content {
-  min-width: 250px;
-  padding: 12px 8px;
-  max-height: 50vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(37, 99, 235, 0.3) transparent;
-}
-
-.quick-list-content::-webkit-scrollbar {
-  width: 3px;
-}
-
-.quick-list-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.quick-list-content::-webkit-scrollbar-thumb {
-  background: rgba(37, 99, 235, 0.3);
-  border-radius: 2px;
-}
-
-.quick-list-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(37, 99, 235, 0.5);
-}
-
-.scroll-gradient {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 24px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.scroll-gradient-top {
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
   top: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.8) 50%,
-    transparent 100%
-  );
-  border-radius: 12px 12px 0 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
 }
 
-.scroll-gradient-bottom {
-  bottom: 0;
-  background: linear-gradient(
-    to top,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.8) 50%,
-    transparent 100%
-  );
-  border-radius: 0 0 12px 12px;
-}
-.quick-list ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.quick-list-btn {
+.nav-container {
   width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  padding: 6px 8px;
-  border-radius: 6px;
-  font-size: 15px;
-  color: #2563eb;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.quick-list-btn:hover {
-  background: #e0e7ff;
-}
-
-.btn-content {
+  padding: 0 24px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  height: 64px;
 }
 
-.btn-text {
-  flex: 1;
-}
-
-.new-badge {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
-  color: white;
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 8px;
-  margin-left: 8px;
-  box-shadow: 0 1px 3px rgba(255, 107, 107, 0.3);
-  animation: pulse-new 2s ease-in-out infinite;
-  letter-spacing: 0.5px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes pulse-new {
-  0%,
-  100% {
-    transform: scale(1);
-    box-shadow: 0 1px 3px rgba(255, 107, 107, 0.3);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 2px 6px rgba(255, 107, 107, 0.4);
-  }
-}
-
-.test-title {
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-.test-title .icon {
+.nav-brand {
   display: flex;
   align-items: center;
 }
-.gradient-text {
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.brand-link:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.brand-icon {
+  flex-shrink: 0;
+}
+
+.brand-text {
   background: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #64748b;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #2563eb;
+  background: #f1f5f9;
+}
+
+.nav-link.router-link-active {
+  color: #2563eb;
+  background: #dbeafe;
+  font-weight: 600;
+}
+
+.external-link {
+  color: #64748b !important;
+}
+
+.external-link:hover {
+  color: #2563eb !important;
+}
+
+/* 下拉選單樣式 - 現代化設計 */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown-icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 2px;
+  opacity: 0.7;
+}
+
+.dropdown-toggle:hover .dropdown-icon {
+  opacity: 1;
+}
+
+.dropdown-icon.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 180px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 12px;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(37, 99, 235, 0.05);
+  z-index: 1000;
+  padding: 8px;
+  backdrop-filter: blur(16px);
+  transform: translateY(-10px) scale(0.95);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-menu[style*='block'] {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  color: #64748b;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  border-radius: 8px;
+  margin-bottom: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdown-item:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(37, 99, 235, 0.08),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.dropdown-item:hover::before {
+  left: 100%;
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  color: #2563eb;
+  transform: translateX(2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+}
+
+.dropdown-item.active {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1d4ed8;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.dropdown-item.active::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #2563eb;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+}
+
+/* 進場動畫 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-menu[style*='block'] {
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 項目依序進場動畫 */
+.dropdown-item:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.dropdown-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+/* 無障礙設計 */
+.dropdown-toggle:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.dropdown-item:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
+}
+
+/* 暗色模式支援 */
+@media (prefers-color-scheme: dark) {
+  .dropdown-menu {
+    background: rgba(17, 24, 39, 0.98);
+    border-color: rgba(75, 85, 99, 0.6);
+  }
+
+  .dropdown-item {
+    color: #d1d5db;
+  }
+
+  .dropdown-item:hover {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+    color: #60a5fa;
+  }
+
+  .dropdown-item.active {
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+    color: #dbeafe;
+  }
+
+  .dropdown-item.active::after {
+    background: #60a5fa;
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+  }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 16px;
+  }
+
+  .nav-menu {
+    gap: 16px;
+  }
+
+  .nav-link {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .brand-text {
+    font-size: 1.1rem;
+  }
+
+  .dropdown-menu {
+    min-width: 160px;
+    right: 0;
+    left: auto;
+  }
+
+  .dropdown-item {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-menu {
+    gap: 8px;
+  }
+
+  .brand-text {
+    display: none;
+  }
+
+  .dropdown-menu {
+    min-width: 140px;
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+
+  .dropdown-item {
+    padding: 8px 12px;
+  }
+}
+
+/* 減少動畫偏好設定 */
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-menu,
+  .dropdown-item,
+  .dropdown-icon {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .dropdown-item::before {
+    display: none;
+  }
+}
+
+/* Template 圖標樣式 */
+.template-icon {
+  transition: all 0.3s ease;
+}
+
+.dropdown-toggle:hover .template-icon {
+  color: #2563eb;
+  transform: scale(1.1);
+}
+
+/* 項目圖標樣式 */
+.item-icon {
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover .item-icon {
+  color: #2563eb;
+  transform: scale(1.1) rotate(5deg);
+}
+
+.dropdown-item.active .item-icon {
+  color: #1d4ed8;
+  transform: scale(1.1);
+}
+
+/* 項目徽章樣式 */
+.item-badge {
+  margin-left: auto;
+  padding: 2px 8px;
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dropdown-item:hover .item-badge {
+  background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+  color: #1d4ed8;
+  transform: scale(1.05);
+}
+
+.dropdown-item.active .item-badge {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: white;
+  box-shadow: 0 2px 4px rgba(29, 78, 216, 0.3);
+}
+
+/* 特殊項目樣式 */
+.login-item:hover {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-left: 3px solid #f59e0b;
+}
+
+.landing-item:hover {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-left: 3px solid #10b981;
+}
+
+.login-item.active {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  border-left: 3px solid #d97706;
+}
+
+.landing-item.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-left: 3px solid #047857;
+}
+
+/* 下拉選單開啟動畫 */
+@keyframes dropdownSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-menu[style*='block'] {
+  animation: dropdownSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 項目入場動畫 */
+.dropdown-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.dropdown-item:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dropdown-menu[style*='block'] .dropdown-item {
+  animation: slideInFromLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.dropdown-menu[style*='block'] .dropdown-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.dropdown-menu[style*='block'] .dropdown-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.main-content {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 64px);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 16px;
+  }
+
+  .nav-menu {
+    gap: 16px;
+  }
+
+  .nav-link {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .brand-text {
+    font-size: 1.1rem;
+  }
+
+  .dropdown-menu {
+    min-width: 160px;
+    right: 0;
+    left: auto;
+  }
+
+  .dropdown-item {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .item-badge {
+    font-size: 10px;
+    padding: 1px 6px;
+  }
+
+  .template-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .item-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-menu {
+    gap: 8px;
+  }
+
+  .brand-text {
+    display: none;
+  }
+
+  .dropdown-menu {
+    min-width: 140px;
+    font-size: 0.85rem;
+  }
+
+  .dropdown-item {
+    padding: 8px 12px;
+  }
+
+  .item-badge {
+    display: none;
+  }
+
+  .dropdown-toggle {
+    gap: 4px;
+  }
+
+  .template-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .dropdown-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* 暗色模式支援 */
+@media (prefers-color-scheme: dark) {
+  .dropdown-menu {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: rgba(75, 85, 99, 0.6);
+  }
+
+  .dropdown-item {
+    color: #d1d5db;
+  }
+
+  .dropdown-item:hover {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+    color: #60a5fa;
+  }
+
+  .dropdown-item.active {
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+    color: #dbeafe;
+  }
+
+  .item-badge {
+    background: linear-gradient(135deg, #4b5563, #6b7280);
+    color: #d1d5db;
+  }
+
+  .dropdown-item:hover .item-badge {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+  }
+}
+
+/* 高對比度模式支援 */
+@media (prefers-contrast: high) {
+  .dropdown-menu {
+    border-width: 2px;
+    border-color: #000;
+  }
+
+  .dropdown-item {
+    border: 1px solid transparent;
+  }
+
+  .dropdown-item:hover {
+    border-color: #2563eb;
+  }
+
+  .dropdown-item.active {
+    border-color: #1d4ed8;
+    border-width: 2px;
+  }
+}
+
+/* 減少動畫模式支援 */
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-icon,
+  .template-icon,
+  .item-icon,
+  .item-badge,
+  .dropdown-item,
+  .dropdown-menu {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* 聚焦樣式無障礙支援 */
+.dropdown-toggle:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.dropdown-item:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
+}
+
+/* 添加微妙的脈衝效果 */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.dropdown-toggle.router-link-active .template-icon {
+  animation: pulse 2s infinite;
 }
 </style>

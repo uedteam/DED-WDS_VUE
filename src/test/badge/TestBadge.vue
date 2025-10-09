@@ -96,6 +96,7 @@ onMounted(() => {
 
 <style scoped>
 .test-badge-container {
+  background-color: #ffffff;
   padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
