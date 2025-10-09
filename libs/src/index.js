@@ -45,6 +45,7 @@ import Header from './ui/layout/Layout/Header.vue';
 import Side from './ui/layout/Layout/Side.vue';
 import Layout from './ui/layout/Layout/index.vue';
 import { useToast } from './composable/useToast';
+import icons from './assets/icons/icons.js';
 
 export {
   Accordion,
@@ -93,7 +94,8 @@ export {
   Header,
   Side,
   Layout,
-  useToast
+  useToast,
+  icons,
 };
 
 const components = [
