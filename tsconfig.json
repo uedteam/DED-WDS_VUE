@@ -6,11 +6,7 @@
     "jsx": "preserve",
     "jsxImportSource": "vue",
     "resolveJsonModule": true,
-    "paths": {
-      "@libs/*": ["libs/src/*"], // 指向 libs/src
-      "@src/*": ["src/*"] // 新增指向 src 的 paths
-    },
-    "types": ["vite/client"] // 確保支援 Vite 特性
+    "types": ["vite/client"]
   },
   "files": [],
   "include": [],
