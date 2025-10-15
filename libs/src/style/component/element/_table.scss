@@ -2,81 +2,110 @@
 @use '../../theme/index' as *;
 
 .ded-table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; // 觸控設備優化
+
+  .ded-table {
     width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; // 觸控設備優化
+    border-collapse: collapse;
+    font-size: 16px;
+    color: list.nth($text-secondary, $site);
+    table-layout: fixed; // 使用 fixed 以精確控制欄位寬度
 
-    .ded-table {
-        // width: 100%;
-        border-collapse: collapse;
-        font-size: 16px;
-        color: list.nth($text-secondary, $site);
-        table-layout: fixed;
+    &-thead,
+    &-tbody {
+      &-tr {
 
-        &-thead,
-        &-tbody {
-            &-tr {
+        &-th,
+        &-td {
+          padding: 0.75em;
+          text-align: left;
+          border-top-width: $border-width-1;
+          border-top-style: solid;
+          border-top-color: list.nth($neutral-100, $site);
+          border-bottom-width: $border-width-1;
+          border-bottom-style: solid;
+          border-bottom-color: list.nth($neutral-100, $site);
+          word-wrap: break-word;
+          box-sizing: border-box;
+          vertical-align: middle; // 確保所有欄位垂直對齊
+          // overflow: hidden;
+          // text-overflow: ellipsis;
 
-                &-th,
-                &-td {
-                    padding: 0.75em;
-                    text-align: left;
-                    border-top-width: $border-width-1;
-                    border-top-style: solid;
-                    border-top-color: list.nth($neutral-100, $site);
-                    border-bottom-width: $border-width-1;
-                    border-bottom-style: solid;
-                    border-bottom-color: list.nth($neutral-100, $site);
-                    word-wrap: break-word;
-                    // overflow: hidden;
-                    // text-overflow: ellipsis;
-
-                    &-border {
-                        border-left-width: $border-width-1;
-                        border-left-style: solid;
-                        border-left-color: list.nth($neutral-100, $site);
-                        border-right-width: $border-width-1;
-                        border-right-style: solid;
-                        border-right-color: list.nth($neutral-100, $site);
-                    }
-                }
-            }
+          &-border {
+            border-left-width: $border-width-1;
+            border-left-style: solid;
+            border-left-color: list.nth($neutral-100, $site);
+            border-right-width: $border-width-1;
+            border-right-style: solid;
+            border-right-color: list.nth($neutral-100, $site);
+          }
         }
-
-        &-thead {
-            // background-color: list.nth($neutral-50, $site);
-
-            &-tr {
-                &-th {
-                    font-weight: bold;
-                    color: list.nth($text-primary, $site);
-                }
-            }
-        }
-
-        &-tbody {
-            &-tr {
-                &-sprite:nth-child(odd) {
-                    background-color: list.nth($neutral-50, $site);
-                }
-
-                &-td {
-                    padding: 0.75em;
-                    text-align: left;
-
-                    &:first-child {
-                        font-weight: bold;
-                    }
-                }
-
-                &:hover {
-                    background-color: list.nth($neutral-50, $site);
-                }
-            }
-        }
+      }
     }
+
+    &-thead {
+      // background-color: list.nth($neutral-50, $site);
+
+      &-tr {
+        &-th {
+          font-weight: bold;
+          color: list.nth($text-primary, $site);
+          background-color: list.nth($neutral-50, $site);
+        }
+      }
+    }
+
+    &-tbody {
+      &-tr {
+        &-sprite:nth-child(odd) {
+          background-color: list.nth($neutral-50, $site);
+        }
+
+        &-td {
+          padding: 0.75em;
+          text-align: left;
+
+          &:first-child {
+            font-weight: bold;
+          }
+        }
+
+        &:hover {
+          background-color: list.nth($neutral-50, $site);
+        }
+      }
+    }
+  }
 }
 
 .ded-table-checkbox {
-    width: 32px;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.ded-table-checkbox-col {
+  width: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  text-align: center !important;
+  padding: 0.75em 0.5em !important;
+
+  // 防止 checkbox 欄位被壓縮
+  flex-shrink: 0 !important;
+
+  // 確保內容對齊
+  vertical-align: middle;
+
+  // 針對 th 元素的特殊處理
+  &.ded-table-thead-tr-th {
+    text-align: center !important;
+  }
+
+  // 針對 td 元素的特殊處理
+  &.ded-table-tbody-tr-td {
+    text-align: center !important;
+  }
 }

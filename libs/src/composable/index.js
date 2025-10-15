@@ -1,4 +1,4 @@
-import useToast from "./useToast";
+import useToast from './useToast';
+import { useChartData } from './useChartData';
 
-
-export { useToast };
+export { useToast, useChartData };

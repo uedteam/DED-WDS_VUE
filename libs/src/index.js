@@ -7,6 +7,7 @@ import Button from './ui/element/Button/Button.vue';
 import Card from './ui/element/Card/Card.vue';
 import CardSimple from './ui/element/CardSimple/CardSimple.vue';
 import Checkbox from './ui/element/Checkbox/Checkbox.vue';
+import CodeBlock from './ui/element/CodeBlock/CodeBlock.vue';
 import DatePicker from './ui/element/DatePicker/DatePicker.vue';
 import Dialog from './ui/element/Dialog/Dialog.vue';
 import Divider from './ui/element/Divider/Divider.vue';
@@ -36,6 +37,11 @@ import Title from './ui/element/Title/Title.vue';
 import Toast from './ui/element/Toast/Toast.vue';
 import Toggle from './ui/element/Toggle/Toggle.vue';
 import Tooltip from './ui/element/Tooltip/Tooltip.vue';
+import BaseChart from './ui/element/Chart/BaseChart.vue';
+import LineChart from './ui/element/Chart/LineChart.vue';
+import PieChart from './ui/element/Chart/PieChart.vue';
+import ColumnChart from './ui/element/Chart/ColumnChart.vue';
+import AreaChart from './ui/element/Chart/AreaChart.vue';
 import Column from './ui/layout/Grid/Column.vue';
 import Grid from './ui/layout/Grid/Grid.vue';
 import Row from './ui/layout/Grid/Row.vue';
@@ -57,6 +63,7 @@ export {
   Card,
   CardSimple,
   Checkbox,
+  CodeBlock,
   DatePicker,
   Dialog,
   Divider,
@@ -86,6 +93,11 @@ export {
   Toast,
   Toggle,
   Tooltip,
+  BaseChart,
+  LineChart,
+  PieChart,
+  ColumnChart,
+  AreaChart,
   Column,
   Grid,
   Row,
@@ -108,6 +120,7 @@ const components = [
   { key: 'Card', value: Card },
   { key: 'CardSimple', value: CardSimple },
   { key: 'Checkbox', value: Checkbox },
+  { key: 'CodeBlock', value: CodeBlock },
   { key: 'DatePicker', value: DatePicker },
   { key: 'Dialog', value: Dialog },
   { key: 'Divider', value: Divider },
@@ -137,6 +150,11 @@ const components = [
   { key: 'Toast', value: Toast },
   { key: 'Toggle', value: Toggle },
   { key: 'Tooltip', value: Tooltip },
+  { key: 'BaseChart', value: BaseChart },
+  { key: 'LineChart', value: LineChart },
+  { key: 'PieChart', value: PieChart },
+  { key: 'ColumnChart', value: ColumnChart },
+  { key: 'AreaChart', value: AreaChart },
   { key: 'Column', value: Column },
   { key: 'Grid', value: Grid },
   { key: 'Row', value: Row },
