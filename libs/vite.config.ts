@@ -22,6 +22,16 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+        importers: [],
+      },
+    },
+  },
+
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
@@ -40,7 +50,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue'],
       output: {
-        exports: "named",
+        exports: 'named',
         globals: {
           vue: 'Vue',
         },

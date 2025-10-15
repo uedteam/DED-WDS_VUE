@@ -60,7 +60,12 @@ onUnmounted(() => {
             <button
               class="nav-link dropdown-toggle"
               :class="{
-                'router-link-active': ['login', 'landing'].includes(route.name),
+                'router-link-active': [
+                  'login',
+                  'landing',
+                  'cms',
+                  'crm',
+                ].includes(route.name),
               }"
               @click="toggleTemplateDropdown"
             >
@@ -104,6 +109,29 @@ onUnmounted(() => {
                   className="item-icon landing-item"
                 />
                 Landing 模板
+              </router-link>
+              <!-- <router-link
+                to="/cms"
+                class="dropdown-item"
+                :class="{ active: route.name === 'cms' }"
+                @click="closeTemplateDropdown"
+              >
+                <Icon
+                  name="SvgDocument"
+                  size="20"
+                  color="transparent"
+                  className="item-icon cms-item"
+                />
+                CMS 模板
+              </router-link> -->
+              <router-link
+                to="/crm"
+                class="dropdown-item"
+                :class="{ active: route.name === 'crm' }"
+                @click="closeTemplateDropdown"
+              >
+                <Icon name="SvgUser" size="20" className="item-icon crm-item" />
+                CRM 模板
               </router-link>
             </div>
           </div>
@@ -294,7 +322,7 @@ onUnmounted(() => {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   border-radius: 8px;
-  margin-bottom: 2px;
+  margin-bottom: 8px;
   position: relative;
   overflow: hidden;
 }
@@ -364,15 +392,6 @@ onUnmounted(() => {
 
 .dropdown-menu[style*='block'] {
   animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* 項目依序進場動畫 */
-.dropdown-item:nth-child(1) {
-  animation-delay: 0.05s;
-}
-
-.dropdown-item:nth-child(2) {
-  animation-delay: 0.1s;
 }
 
 /* 無障礙設計 */
@@ -542,6 +561,16 @@ onUnmounted(() => {
   border-left: 3px solid #10b981;
 }
 
+.cms-item:hover {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  border-left: 3px solid #6366f1;
+}
+
+.crm-item:hover {
+  background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+  border-left: 3px solid #ec4899;
+}
+
 .login-item.active {
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
   border-left: 3px solid #d97706;
@@ -550,6 +579,16 @@ onUnmounted(() => {
 .landing-item.active {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   border-left: 3px solid #047857;
+}
+
+.cms-item.active {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  border-left: 3px solid #4338ca;
+}
+
+.crm-item.active {
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+  border-left: 3px solid #be185d;
 }
 
 /* 下拉選單開啟動畫 */
@@ -569,14 +608,6 @@ onUnmounted(() => {
 }
 
 /* 項目入場動畫 */
-.dropdown-item:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.dropdown-item:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
 @keyframes slideInFromLeft {
   0% {
     opacity: 0;
@@ -599,6 +630,14 @@ onUnmounted(() => {
 
 .dropdown-menu[style*='block'] .dropdown-item:nth-child(2) {
   animation-delay: 0.2s;
+}
+
+.dropdown-menu[style*='block'] .dropdown-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.dropdown-menu[style*='block'] .dropdown-item:nth-child(4) {
+  animation-delay: 0.4s;
 }
 
 .main-content {

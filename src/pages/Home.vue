@@ -104,6 +104,21 @@
           <router-link to="/components" class="btn btn-primary">
             查看組件
           </router-link>
+          <router-link to="/charts-control" class="btn btn-primary">
+            圖表控制台
+          </router-link>
+          <router-link to="/charts" class="btn btn-secondary">
+            圖表展示
+          </router-link>
+          <router-link to="/crm" class="btn btn-secondary">
+            CRM 系統
+          </router-link>
+          <router-link to="/cms" class="btn btn-secondary">
+            CMS 系統
+          </router-link>
+          <router-link to="/landing" class="btn btn-secondary">
+            Landing Page
+          </router-link>
           <a
             href="https://github.com/uedteam/DED-WDS_VUE"
             target="_blank"
