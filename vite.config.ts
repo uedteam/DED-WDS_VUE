@@ -17,12 +17,12 @@ export default defineConfig({
 
   server: {
     port: 4200,
-    host: 'localhost',
+    host: true,
   },
 
   preview: {
     port: 4300,
-    host: 'localhost',
+    host: true,
   },
 
   plugins: [
@@ -49,11 +49,23 @@ export default defineConfig({
     },
   },
 
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+        importers: [],
+      },
+    },
+  },
+
   test: {
     watch: false,
     globals: true,
     environment: 'jsdom',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    include: [
+      'src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+      'libs/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+    ],
 
     reporters: ['default'],
     coverage: {

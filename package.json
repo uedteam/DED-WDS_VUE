@@ -53,6 +53,11 @@
     "@uppy/tus": "^4.2.2",
     "@uppy/vue": "^2.1.1",
     "@uppy/xhr-upload": "^4.3.3",
+    "chart.js": "^4.5.1",
+    "highcharts": "^12.4.0",
+    "highcharts-more": "^0.1.7",
+    "highcharts-vue": "^2.0.1",
+    "highlight.js": "^11.11.1",
     "vue": "^3.3.4",
     "vue-router": "^4.5.0"
   },
