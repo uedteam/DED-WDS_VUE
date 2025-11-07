@@ -4,6 +4,7 @@ import TestInput from '../test/input/TestInput.vue';
 import TestRadio from '../test/radio/TestRadio.vue';
 import TestCheckbox from '../test/checkbox/TestCheckbox.vue';
 import TestTag from '../test/tag/TestTag.vue';
+import TestTabs from '../test/tab/TestTabs.vue';
 import TestTextarea from '../test/textarea/TestTextarea.vue';
 import TestBadge from '../test/badge/TestBadge.vue';
 import TestPagination from '../test/pagination/TestPagination.vue';
@@ -78,9 +79,9 @@ onUnmounted(() => {
 const sections = [
   { label: '按鈕 Button', id: 'section-button' },
   { label: '輸入框 Input', id: 'section-input' },
-  { label: '單選框 Radio', id: 'section-radio' },
-  { label: '多選框 Checkbox', id: 'section-checkbox' },
-  { label: '標籤 Tag', id: 'section-tag' },
+  { label: '單選框 Radio', id: 'section-radio', isUpdated: true },
+  { label: '多選框 Checkbox', id: 'section-checkbox', isUpdated: true },
+  { label: '標籤 Tag', id: 'section-tag', isUpdated: true },
   { label: '文字區域 Textarea', id: 'section-textarea' },
   { label: '徽章 Badge', id: 'section-badge' },
   { label: '分頁 Pagination', id: 'section-pagination' },
@@ -93,8 +94,9 @@ const sections = [
   { label: '日期選擇器 DatePicker', id: 'section-datepicker' },
   { label: '分隔線 Divider', id: 'section-divider' },
   { label: '圖片 Image', id: 'section-image' },
-  { label: '開關 Toggle', id: 'section-toggle', isNew: true },
-  { label: '選擇器 Select', id: 'section-select', isNew: true },
+  { label: '開關 Toggle', id: 'section-toggle' },
+  { label: '選擇器 Select', id: 'section-select' },
+  { label: '頁籤 Tabs', id: 'section-tabs', isNew: true },
 ];
 
 function scrollToSection(id) {
@@ -138,6 +140,9 @@ function scrollToSection(id) {
               <span class="btn-content">
                 <span class="btn-text">{{ section.label }}</span>
                 <span v-if="section.isNew" class="new-badge">NEW</span>
+                <span v-if="section.isUpdated" class="updated-badge"
+                  >UPDATE</span
+                >
               </span>
             </button>
           </li>
@@ -216,6 +221,7 @@ function scrollToSection(id) {
       <h2 class="section-title-aligned text-xl">標籤 Tag</h2>
       <TestTag />
     </div>
+
     <div class="flex flex-col mb-10" id="section-textarea">
       <h2 class="section-title-aligned text-xl">文字區域 Textarea</h2>
       <TestTextarea />
@@ -272,6 +278,10 @@ function scrollToSection(id) {
       <h2 class="section-title-aligned text-xl">選擇器 Select</h2>
       <TestSelect />
     </div>
+    <div class="flex flex-col mb-10" id="section-tabs">
+      <h2 class="section-title-aligned text-xl">頁籤 Tabs</h2>
+      <TestTabs />
+    </div>
   </div>
 </template>
 
@@ -301,7 +311,7 @@ function scrollToSection(id) {
 
 .back-to-top-btn {
   position: fixed;
-  right: 32px;
+  right: 80px;
   bottom: 32px;
   z-index: 100;
   background: #2563eb;
@@ -433,6 +443,7 @@ function scrollToSection(id) {
 }
 
 .new-badge {
+  min-width: 56px;
   background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
   color: white;
   font-size: 9px;
@@ -444,6 +455,35 @@ function scrollToSection(id) {
   animation: pulse-new 2s ease-in-out infinite;
   letter-spacing: 0.5px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.updated-badge {
+  min-width: 56px;
+  background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 8px;
+  box-shadow: 0 1px 3px rgba(14, 165, 233, 0.18);
+  animation: pulse-updated 2s ease-in-out infinite;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+@keyframes pulse-updated {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 1px 3px rgba(14, 165, 233, 0.18);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 2px 6px rgba(14, 165, 233, 0.28);
+  }
 }
 
 @keyframes pulse-new {
