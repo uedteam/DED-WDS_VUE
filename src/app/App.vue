@@ -5,19 +5,31 @@ import { Icon } from '../../libs/src/index';
 
 const route = useRoute();
 const isTemplateDropdownOpen = ref(false);
+const isChartsDropdownOpen = ref(false);
 
 const toggleTemplateDropdown = () => {
   isTemplateDropdownOpen.value = !isTemplateDropdownOpen.value;
+  isChartsDropdownOpen.value = false; // 關閉其他下拉選單
+};
+
+const toggleChartsDropdown = () => {
+  isChartsDropdownOpen.value = !isChartsDropdownOpen.value;
+  isTemplateDropdownOpen.value = false; // 關閉其他下拉選單
 };
 
 const closeTemplateDropdown = () => {
   isTemplateDropdownOpen.value = false;
 };
 
+const closeChartsDropdown = () => {
+  isChartsDropdownOpen.value = false;
+};
+
 // 點擊外部區域關閉下拉選單
 const handleClickOutside = (event) => {
   if (!event.target.closest('.nav-dropdown')) {
     isTemplateDropdownOpen.value = false;
+    isChartsDropdownOpen.value = false;
   }
 };
 
@@ -56,6 +68,114 @@ onUnmounted(() => {
           >
             組件測試
           </router-link>
+
+          <!-- Charts 下拉選單 -->
+          <div class="nav-dropdown">
+            <button
+              class="nav-link dropdown-toggle"
+              :class="{
+                'router-link-active': [
+                  'charts',
+                  'chartsControl',
+                  'chartSpacingTest',
+                  'chartSpacingFixed',
+                  'chartOverlapFull',
+                ].includes(route.name),
+              }"
+              @click="toggleChartsDropdown"
+            >
+              <Icon
+                name="SvgBarChart"
+                size="20"
+                color="currentColor"
+                class="template-icon"
+              />
+              Charts
+              <Icon
+                name="SvgArrowDown"
+                size="20"
+                color="currentColor"
+                class="dropdown-icon"
+                :class="{ 'rotate-180': isChartsDropdownOpen }"
+              />
+            </button>
+            <div
+              class="dropdown-menu"
+              :style="{ display: isChartsDropdownOpen ? 'block' : 'none' }"
+            >
+              <router-link
+                to="/charts"
+                class="dropdown-item"
+                :class="{ active: route.name === 'charts' }"
+                @click="closeChartsDropdown"
+              >
+                <Icon
+                  name="SvgBarChart"
+                  size="20"
+                  color="transparent"
+                  className="item-icon charts-item"
+                />
+                圖表展示
+              </router-link>
+              <router-link
+                to="/charts-control"
+                class="dropdown-item"
+                :class="{ active: route.name === 'chartsControl' }"
+                @click="closeChartsDropdown"
+              >
+                <Icon
+                  name="SvgNotification"
+                  size="20"
+                  color="currentColor"
+                  className="item-icon control-item"
+                />
+                圖表控制台
+              </router-link>
+              <router-link
+                to="/chart-spacing-test"
+                class="dropdown-item"
+                :class="{ active: route.name === 'chartSpacingTest' }"
+                @click="closeChartsDropdown"
+              >
+                <Icon
+                  name="SvgMail"
+                  size="20"
+                  color="transparent"
+                  className="item-icon spacing-item"
+                />
+                間距測試
+              </router-link>
+              <router-link
+                to="/chart-spacing-fixed"
+                class="dropdown-item"
+                :class="{ active: route.name === 'chartSpacingFixed' }"
+                @click="closeChartsDropdown"
+              >
+                <Icon
+                  name="SvgCheck"
+                  size="20"
+                  color="currentColor"
+                  className="item-icon fixed-item"
+                />
+                間距修復
+              </router-link>
+              <router-link
+                to="/chart-overlap-full"
+                class="dropdown-item"
+                :class="{ active: route.name === 'chartOverlapFull' }"
+                @click="closeChartsDropdown"
+              >
+                <Icon
+                  name="SvgUser"
+                  size="20"
+                  color="transparent"
+                  className="item-icon overlap-item"
+                />
+                重疊測試
+              </router-link>
+            </div>
+          </div>
+
           <div class="nav-dropdown">
             <button
               class="nav-link dropdown-toggle"
@@ -551,6 +671,56 @@ onUnmounted(() => {
 }
 
 /* 特殊項目樣式 */
+.charts-item:hover {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-left: 3px solid #3b82f6;
+}
+
+.control-item:hover {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+  border-left: 3px solid #8b5cf6;
+}
+
+.spacing-item:hover {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border-left: 3px solid #10b981;
+}
+
+.fixed-item:hover {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-left: 3px solid #f59e0b;
+}
+
+.overlap-item:hover {
+  background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+  border-left: 3px solid #ef4444;
+}
+
+.charts-item.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border-left: 3px solid #1d4ed8;
+}
+
+.control-item.active {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border-left: 3px solid #6d28d9;
+}
+
+.spacing-item.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-left: 3px solid #047857;
+}
+
+.fixed-item.active {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-left: 3px solid #b45309;
+}
+
+.overlap-item.active {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-left: 3px solid #b91c1c;
+}
+
 .login-item:hover {
   background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
   border-left: 3px solid #f59e0b;
