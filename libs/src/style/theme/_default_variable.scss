@@ -2,7 +2,12 @@
 @use 'sass:list';
 
 // 主題色名稱
-$theme-color: ('AUO-BLUE', 'AUO-DARK', 'AUO-PURPLE', 'AUO-YELLOW');
+$theme-color: (
+  'AUO-BLUE',
+  'AUO-DARK',
+  'AUO-PURPLE',
+  'AUO-YELLOW'
+);
 $site: list.index($theme-color, 'AUO-BLUE');
 
 :root {
@@ -14,30 +19,84 @@ $site: list.index($theme-color, 'AUO-BLUE');
 
 // 主題色索引
 $font-family: 'Mabry Pro', Verdana, 'Noto Sans TC', 'Noto Sans SC', 'Noto Sans JP', 'Microsoft JhengHei', 'sans-serif',
-'新細明體', '細明體';
+  '新細明體', '細明體';
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
 // 麵包屑分隔符號
 $separate: '/';
 
 // 字級
-$levels: ('level-1', 'level-2', 'level-3', 'level-4', 'level-5', 'level-6');
+$levels: (
+  'level-1',
+  'level-2',
+  'level-3',
+  'level-4',
+  'level-5',
+  'level-6'
+);
 // 按鈕樣式清單
-$variants: (filled, 'soft', 'ghost', 'text');
+$variants: (
+  filled,
+  'soft',
+  'ghost',
+  'text'
+);
 // 主題清單
-$themes: ('neutral', 'primary', 'secondary', 'success', 'warning', 'error', 'info');
+$themes: (
+  'neutral',
+  'primary',
+  'secondary',
+  'success',
+  'warning',
+  'error',
+  'info'
+);
 // 尺寸清單
-$sizes: ('xsmall', 'small', 'medium', 'large');
+$sizes: (
+  'xsmall',
+  'small',
+  'medium',
+  'large'
+);
 // 形狀清單
-$borderStyles: ('line', 'shadow');
+$borderStyles: (
+  'line',
+  'shadow'
+);
 // Avatar 狀態清單
-$avatarStatus: ('online', 'idle', 'busy', 'offline');
+$avatarStatus: (
+  'online',
+  'idle',
+  'busy',
+  'offline'
+);
 // Avatar 外型樣式清單
-$avatarShape: ('circle', 'square');
+$avatarShape: (
+  'circle',
+  'square'
+);
 // 圖示比例清單
-$aspectRatio: ('1x1', '4x3', '5x4', '16x9');
+$aspectRatio: (
+  '1x1',
+  '4x3',
+  '5x4',
+  '16x9'
+);
 // Tooltip Arrow 位置擺放清單
-$arrowPosition: ('top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right', 'left-top', 'left-bottom', 'right-top', 'right-bottom');
+$arrowPosition: (
+  'top',
+  'bottom',
+  'left',
+  'right',
+  'top-left',
+  'top-right',
+  'bottom-left',
+  'bottom-right',
+  'left-top',
+  'left-bottom',
+  'right-top',
+  'right-bottom'
+);
 
 // 圖示比例
 $aspect-ratio-11: math.div(1, 1);
@@ -329,67 +388,233 @@ $font-size-40: 40px;
 $font-size: $font-size-16;
 
 // Theme-Variables
-$primary: (#0A7ECE, #1570AF, #1570AF, #1570AF);
-$secondary: (#059BFF, #1570AF, #1CC5C5, #1CC5C5);
+$primary: (
+  #0A7ECE,
+  #1570AF,
+  #1570AF,
+  #1570AF
+);
+$secondary: (
+  #059BFF,
+  #1570AF,
+  #1CC5C5,
+  #1CC5C5
+);
 // $tertiary: (#967FEF, #FFFFFF, #B491D7, #FFE664);
 
 // Theme-Layout
-$sidebar: (#005087, #0F1118, #9673B3, #FCE464);
-$header: (#FFFFFF, #1C1E24, #FFFFFF, #FFFFFF);
-$body: (#F2F2F2, #202127, #F2F2F2, #F2F2F2);
+$sidebar: (
+  #005087,
+  #0F1118,
+  #9673B3,
+  #FCE464
+);
+$header: (
+  #FFFFFF,
+  #1C1E24,
+  #FFFFFF,
+  #FFFFFF
+);
+$body: (
+  #F2F2F2,
+  #202127,
+  #F2F2F2,
+  #F2F2F2
+);
 
 // Theme-Neutral
-$neutral-0: (#FFFFFF, #000000, #FFFFFF, #FFFFFF);
-$neutral-50: (#F4F4F5, #3B3B3E, #F4F4F5, #F4F4F5);
-$neutral-100: (#E1E1E2, #59595D, #E1E1E2, #E1E1E2);
-$neutral-200: (#D0D0D4, #707074, #D0D0D4, #D0D0D4);
-$neutral-300: (#C0C0C5, #9D9DA2, #C0C0C5, #C0C0C5);
-$neutral-400: (#ABABAB, #ABABAB, #ABABAB, #ABABAB);
-$neutral-500: (#9D9DA2, #C0C0C5, #9D9DA2, #9D9DA2);
+$neutral-0: (
+  #FFFFFF,
+  #000000,
+  #FFFFFF,
+  #FFFFFF
+);
+$neutral-50: (
+  #F4F4F5,
+  #3B3B3E,
+  #F4F4F5,
+  #F4F4F5
+);
+$neutral-100: (
+  #E1E1E2,
+  #59595D,
+  #E1E1E2,
+  #E1E1E2
+);
+$neutral-200: (
+  #D0D0D4,
+  #707074,
+  #D0D0D4,
+  #D0D0D4
+);
+$neutral-300: (
+  #C0C0C5,
+  #9D9DA2,
+  #C0C0C5,
+  #C0C0C5
+);
+$neutral-400: (
+  #ABABAB,
+  #ABABAB,
+  #ABABAB,
+  #ABABAB
+);
+$neutral-500: (
+  #9D9DA2,
+  #C0C0C5,
+  #9D9DA2,
+  #9D9DA2
+);
 
-$neutral-600: (#707074, #D0D0D4, #707074, #707074);
-$neutral-700: (#59595D, #E1E1E2, #59595D, #59595D);
-$neutral-800: (#3B3B3E, #F4F4F5, #3B3B3E, #3B3B3E);
-$neutral-900: (#000000, #FFFFFF, #000000, #000000);
+$neutral-600: (
+  #707074,
+  #D0D0D4,
+  #707074,
+  #707074
+);
+$neutral-700: (
+  #59595D,
+  #E1E1E2,
+  #59595D,
+  #59595D
+);
+$neutral-800: (
+  #3B3B3E,
+  #F4F4F5,
+  #3B3B3E,
+  #3B3B3E
+);
+$neutral-900: (
+  #000000,
+  #FFFFFF,
+  #000000,
+  #000000
+);
 
 // Theme-Text
-$text-primary: (#005087, list.nth($neutral-900, $site), #00467C, #00467C);
-$text-secondary: (list.nth($neutral-700, $site),
-list.nth($neutral-800, $site),
-list.nth($neutral-700, $site),
-list.nth($neutral-700, $site));
-$text-helper: (list.nth($neutral-300, $site),
-list.nth($neutral-600, $site),
-list.nth($neutral-300, $site),
-list.nth($neutral-300, $site));
-$text-placeholder: (list.nth($neutral-100, $site),
-list.nth($neutral-500, $site),
-list.nth($neutral-100, $site),
-list.nth($neutral-100, $site));
+$text-primary: (
+  #005087,
+  list.nth($neutral-900, $site),
+  #00467C,
+  #00467C
+);
+$text-secondary: (
+  list.nth($neutral-700, $site),
+  list.nth($neutral-800, $site),
+  list.nth($neutral-700, $site),
+  list.nth($neutral-700, $site)
+);
+$text-helper: (
+  list.nth($neutral-300, $site),
+  list.nth($neutral-600, $site),
+  list.nth($neutral-300, $site),
+  list.nth($neutral-300, $site)
+);
+$text-placeholder: (
+  list.nth($neutral-100, $site),
+  list.nth($neutral-500, $site),
+  list.nth($neutral-100, $site),
+  list.nth($neutral-100, $site)
+);
 
 // Theme-Link
-$link-default: (#0D64FB, #FFFFFF, #B491D7, #FFE664);
-$link-hover: (#79A1F6, #FFFFFF, #79A1F6, #79A1F6);
-$link-focus: (#234FC2, #FFFFFF, #234FC2, #234FC2);
-$link-active: (#E8EFFE, #FFFFFF, #E8EFFE, #E8EFFE);
-$link-outline: (#D2DFFB, #FFFFFF, #D2DFFB, #D2DFFB);
+$link-default: (
+  #0D64FB,
+  #FFFFFF,
+  #B491D7,
+  #FFE664
+);
+$link-hover: (
+  #79A1F6,
+  #FFFFFF,
+  #79A1F6,
+  #79A1F6
+);
+$link-focus: (
+  #234FC2,
+  #FFFFFF,
+  #234FC2,
+  #234FC2
+);
+$link-active: (
+  #E8EFFE,
+  #FFFFFF,
+  #E8EFFE,
+  #E8EFFE
+);
+$link-outline: (
+  #D2DFFB,
+  #FFFFFF,
+  #D2DFFB,
+  #D2DFFB
+);
 
 // Theme-Form
-$form-default: (#0D64FB, #FFFFFF, #B491D7, #FFE664);
-$form-hover: (#79A1F6, #FFFFFF, #79A1F6, #79A1F6);
-$form-focus: (#234FC2, #FFFFFF, #234FC2, #234FC2);
-$form-active: (#E8EFFE, #FFFFFF, #E8EFFE, #E8EFFE);
-$form-outline: (#D2DFFB, #FFFFFF, #D2DFFB, #D2DFFB);
+$form-default: (
+  #0D64FB,
+  #FFFFFF,
+  #B491D7,
+  #FFE664
+);
+$form-hover: (
+  #79A1F6,
+  #FFFFFF,
+  #79A1F6,
+  #79A1F6
+);
+$form-focus: (
+  #234FC2,
+  #FFFFFF,
+  #234FC2,
+  #234FC2
+);
+$form-active: (
+  #E8EFFE,
+  #FFFFFF,
+  #E8EFFE,
+  #E8EFFE
+);
+$form-outline: (
+  #D2DFFB,
+  #FFFFFF,
+  #D2DFFB,
+  #D2DFFB
+);
 
 // Theme-Button
-$button-primary: (#0D64FB, #0D64FB, #0D64FB, #0D64FB);
-$button-secondary: (#059BFF, #1570AF, #1CC5C5, #1CC5C5);
+$button-primary: (
+  #0D64FB,
+  #0D64FB,
+  #0D64FB,
+  #0D64FB
+);
+$button-secondary: (
+  #059BFF,
+  #1570AF,
+  #1CC5C5,
+  #1CC5C5
+);
 // $button-tertiary: (#967FEF, #FFFFFF, #B491D7, #FFE664);
 
 // Theme-Disabled
-$disabled-text: (#C0C0C5, #707074, #C0C0C5, #C0C0C5);
-$disabled-background: (#F4F4F5, #C0C0C5, #F4F4F5, #F4F4F5);
-$disabled-border: (#C0C0C5, #707074, #C0C0C5, #C0C0C5);
+$disabled-text: (
+  #C0C0C5,
+  #707074,
+  #C0C0C5,
+  #C0C0C5
+);
+$disabled-background: (
+  #F4F4F5,
+  #C0C0C5,
+  #F4F4F5,
+  #F4F4F5
+);
+$disabled-border: (
+  #C0C0C5,
+  #707074,
+  #C0C0C5,
+  #C0C0C5
+);
 
 // Shadow-light
 $shadow-light-100: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
