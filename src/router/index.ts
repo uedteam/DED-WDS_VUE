@@ -52,6 +52,14 @@ const router = createRouter({
       },
     },
     {
+      path: '/portfolio',
+      name: 'portfolio',
+      component: () => import('../template/Portfolio.vue'),
+      meta: {
+        title: 'Portfolio Template',
+      },
+    },
+    {
       path: '/charts',
       name: 'charts',
       component: () => import('../pages/ChartsDemo.vue'),

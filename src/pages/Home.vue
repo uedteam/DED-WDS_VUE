@@ -110,6 +110,9 @@
           <router-link to="/charts" class="btn btn-secondary">
             圖表展示
           </router-link>
+          <router-link to="/portfolio" class="btn btn-secondary">
+            Portfolio 模板
+          </router-link>
           <router-link to="/crm" class="btn btn-secondary">
             CRM 系統
           </router-link>
