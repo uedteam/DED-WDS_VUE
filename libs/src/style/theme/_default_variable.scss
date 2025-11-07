@@ -184,6 +184,20 @@ $light-color-warning: #FF9F43FF;
 $light-color-error: #FF4C51FF;
 $light-color-info: #00BAD1FF;
 
+// 將 SCSS 變數轉為 CSS 自定義屬性，供 JavaScript 引用
+:root {
+  // 主題色票
+  --chart-primary: #{$light-color-primary};
+  --chart-secondary: #{$light-color-secondary};
+  --chart-tertiary: #{$light-color-tertiary};
+
+  // Light 支援色票
+  --chart-success: #{$light-color-success};
+  --chart-warning: #{$light-color-warning};
+  --chart-error: #{$light-color-error};
+  --chart-info: #{$light-color-info};
+}
+
 // Dark 支援色票
 $dark-color-success: #B1F04CFF;
 $dark-color-warning: #FFBE77FF;

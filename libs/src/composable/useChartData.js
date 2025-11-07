@@ -1,5 +1,15 @@
 import { ref, computed } from 'vue';
 
+// 引用 _default_variable.scss 中的支援色變數（通過 CSS 自定義屬性）
+const getChartColor = (colorName) => {
+  if (typeof window !== 'undefined') {
+    const rootStyle = getComputedStyle(document.documentElement);
+    return rootStyle.getPropertyValue(`--chart-${colorName}`).trim();
+  }
+  // 服務端渲染後備值（與 SCSS 變數保持同步）
+  return '';
+};
+
 // 圖表資料管理的 composable
 export function useChartData() {
   // 錯誤狀態管理
@@ -77,7 +87,7 @@ export function useChartData() {
           {
             name: '錯誤',
             data: [0],
-            color: '#EF4444',
+            color: getChartColor('error'), // 引用 $light-color-error
           },
         ],
       };
@@ -106,12 +116,12 @@ export function useChartData() {
           {
             name: '2024年',
             data: [120, 135, 150, 142, 168, 175, 190, 185, 200, 215, 245, 280],
-            color: '#3B82F6',
+            color: getChartColor('primary'), // 引用 $light-color-primary
           },
           {
             name: '2023年',
             data: [100, 115, 130, 125, 140, 155, 160, 165, 170, 180, 195, 210],
-            color: '#10B981',
+            color: getChartColor('success'), // 引用 $light-color-success
           },
         ],
       }),
@@ -125,17 +135,17 @@ export function useChartData() {
       {
         name: '活躍客戶',
         y: 856,
-        color: '#10B981',
+        color: getChartColor('success'), // 引用 $light-color-success
       },
       {
         name: '潛在客戶',
         y: 284,
-        color: '#F59E0B',
+        color: getChartColor('warning'), // 引用 $light-color-warning
       },
       {
         name: '非活躍客戶',
         y: 108,
-        color: '#EF4444',
+        color: getChartColor('error'), // 引用 $light-color-error
       },
     ],
   });
@@ -149,12 +159,12 @@ export function useChartData() {
           {
             name: '本月',
             data: [450, 320, 180, 240, 150],
-            color: '#3B82F6',
+            color: getChartColor('primary'), // 引用 $light-color-primary
           },
           {
             name: '上月',
             data: [380, 285, 165, 220, 135],
-            color: '#8B5CF6',
+            color: getChartColor('info'), // 引用 $light-color-info
           },
         ],
       }),
@@ -171,7 +181,7 @@ export function useChartData() {
           {
             name: '轉換率',
             data: [22.5, 24.1, 25.8, 23.2, 26.4, 24.8],
-            color: '#06B6D4',
+            color: getChartColor('info'), // 引用 $light-color-info
             fillOpacity: 0.3,
           },
         ],
@@ -189,17 +199,17 @@ export function useChartData() {
           {
             name: '2024年',
             data: [5.2, 6.8, 7.1, 8.5],
-            color: '#3B82F6',
+            color: getChartColor('primary'), // 引用 $light-color-primary
           },
           {
             name: '2023年',
             data: [4.8, 5.9, 6.2, 7.1],
-            color: '#10B981',
+            color: getChartColor('success'), // 引用 $light-color-success
           },
           {
             name: '2022年',
             data: [4.2, 5.1, 5.5, 6.3],
-            color: '#F59E0B',
+            color: getChartColor('warning'), // 引用 $light-color-warning
           },
         ],
       }),
@@ -216,7 +226,7 @@ export function useChartData() {
           {
             name: '銷售量',
             data: [2850, 2340, 1890, 1560, 1240],
-            color: '#8B5CF6',
+            color: getChartColor('tertiary'), // 引用 $light-color-tertiary
           },
         ],
       }),
