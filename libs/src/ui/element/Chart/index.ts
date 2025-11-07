@@ -1,6 +1,7 @@
 export { default as BaseChart } from './BaseChart.vue';
 export { default as LineChart } from './LineChart.vue';
 export { default as PieChart } from './PieChart.vue';
+export { default as DonutChart } from './DonutChart.vue';
 export { default as ColumnChart } from './ColumnChart.vue';
 export { default as AreaChart } from './AreaChart.vue';
 

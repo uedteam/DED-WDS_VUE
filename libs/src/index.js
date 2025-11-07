@@ -40,6 +40,7 @@ import Tooltip from './ui/element/Tooltip/Tooltip.vue';
 import BaseChart from './ui/element/Chart/BaseChart.vue';
 import LineChart from './ui/element/Chart/LineChart.vue';
 import PieChart from './ui/element/Chart/PieChart.vue';
+import DonutChart from './ui/element/Chart/DonutChart.vue';
 import ColumnChart from './ui/element/Chart/ColumnChart.vue';
 import AreaChart from './ui/element/Chart/AreaChart.vue';
 import Column from './ui/layout/Grid/Column.vue';
@@ -96,6 +97,7 @@ export {
   BaseChart,
   LineChart,
   PieChart,
+  DonutChart,
   ColumnChart,
   AreaChart,
   Column,
@@ -153,6 +155,7 @@ const components = [
   { key: 'BaseChart', value: BaseChart },
   { key: 'LineChart', value: LineChart },
   { key: 'PieChart', value: PieChart },
+  { key: 'DonutChart', value: DonutChart },
   { key: 'ColumnChart', value: ColumnChart },
   { key: 'AreaChart', value: AreaChart },
   { key: 'Column', value: Column },
