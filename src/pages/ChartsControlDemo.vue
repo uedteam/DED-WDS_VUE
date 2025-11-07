@@ -27,6 +27,7 @@
                   <option value="area">面積圖</option>
                   <option value="column">長條圖</option>
                   <option value="pie">圓餅圖</option>
+                  <option value="donut">甜甜圈圖</option>
                 </select>
               </div>
 
@@ -175,6 +176,15 @@
                 :showLegend="showLegend"
                 :showDataLabels="showDataLabels"
               />
+              <DonutChart
+                v-else-if="selectedChartType === 'donut'"
+                :title="currentChartData.title"
+                :data="currentChartData.data"
+                :height="chartHeight"
+                :showLegend="showLegend"
+                :showDataLabels="showDataLabels"
+                innerSize="60%"
+              />
             </div>
           </div>
 
@@ -197,6 +207,7 @@ import {
   AreaChart,
   ColumnChart,
   PieChart,
+  DonutChart,
   Toggle,
   CodeBlock,
 } from '../../libs/src/index';
@@ -230,9 +241,12 @@ const currentChartData = computed(() => {
   if (!data) return {};
 
   // 為圓餅圖調整資料格式
-  if (selectedChartType.value === 'pie') {
+  if (
+    selectedChartType.value === 'pie' ||
+    selectedChartType.value === 'donut'
+  ) {
     if (selectedDataset.value !== 'customerDistribution') {
-      // 將其他資料轉換為圓餅圖格式
+      // 將其他資料轉換為圓餅圖/甜甜圈圖格式
       const series = data.series?.[0];
       if (series && data.categories) {
         return {
@@ -244,6 +258,22 @@ const currentChartData = computed(() => {
           })),
         };
       }
+    }
+  } else {
+    // 為其他圖表類型調整資料格式（當選擇客戶分布時）
+    if (selectedDataset.value === 'customerDistribution' && data.data) {
+      // 將圓餅圖格式轉換為其他圖表類型格式
+      return {
+        title: data.title,
+        categories: data.data.map((item) => item.name),
+        series: [
+          {
+            name: data.seriesName || '客戶數量',
+            data: data.data.map((item) => item.y),
+            color: '#3B82F6', // 使用藍色作為預設顏色
+          },
+        ],
+      };
     }
   }
 
@@ -257,6 +287,7 @@ const codeExample = computed(() => {
     area: 'AreaChart',
     column: 'ColumnChart',
     pie: 'PieChart',
+    donut: 'DonutChart',
   }[selectedChartType.value];
 
   const baseProps = [
@@ -320,10 +351,8 @@ const resetSettings = () => {
 };
 
 // 監聽器
-watch(selectedChartType, (newType) => {
-  if (newType === 'pie') {
-    selectedDataset.value = 'customerDistribution';
-  }
+watch(selectedChartType, () => {
+  // 僅重新渲染圖表，不強制切換資料集
   chartKey.value++;
 });
 
