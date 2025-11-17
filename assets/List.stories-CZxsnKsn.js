@@ -1,4 +1,4 @@
-import{_ as o}from"./List-BkpLK-Aa.js";import{a as i}from"./index-B-lxVbXh.js";import"./vue.esm-bundler-CRlgvgXF.js";import"./Icon-CUK9ssyM.js";import"./v4-CtRu48qb.js";function c(t){return`    ${t.map(a=>`{
+import{_ as o}from"./List-d0d3Hebs.js";import{a as i}from"./index-B-lxVbXh.js";import"./vue.esm-bundler-CRlgvgXF.js";import"./Icon-CUK9ssyM.js";import"./v4-CtRu48qb.js";function c(t){return`    ${t.map(a=>`{
         ${[a.label?`label: "${a.label}"`:"",a.value?`value: "${a.value}"`:"",a.href?`href: "${a.href}"`:"",a.prefix?`prefix: "${a.prefix}"`:"",a.isDisabled!==void 0?`isDisabled: ${a.isDisabled}`:""].filter(Boolean).join(`,
         `)}
     }`).join(`,
