@@ -44,7 +44,7 @@
     "print-access-token": "gcloud auth application-default print-access-token"
   },
   "dependencies": {
-    "@ded-wds-vue/ui": "^1.0.0",
+    // "@ded-wds-vue/ui": "^1.0.0",
     "@uppy/core": "^4.4.4",
     "@uppy/dashboard": "^4.3.3",
     "@uppy/drag-drop": "^4.1.2",
