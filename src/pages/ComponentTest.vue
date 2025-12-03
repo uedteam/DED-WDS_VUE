@@ -19,6 +19,7 @@ import TestDivider from '../test/divider/TestDivider.vue';
 import TestImage from '../test/image/TestImage.vue';
 import TestToggle from '../test/toggle/TestToggle.vue';
 import TestSelect from '../test/select/TestSelect.vue';
+import TestForm from '../test/form/TestForm.vue';
 
 import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 
@@ -79,24 +80,25 @@ onUnmounted(() => {
 const sections = [
   { label: '按鈕 Button', id: 'section-button' },
   { label: '輸入框 Input', id: 'section-input' },
-  { label: '單選框 Radio', id: 'section-radio', isUpdated: true },
-  { label: '多選框 Checkbox', id: 'section-checkbox', isUpdated: true },
-  { label: '標籤 Tag', id: 'section-tag', isUpdated: true },
+  { label: '單選框 Radio', id: 'section-radio' },
+  { label: '多選框 Checkbox', id: 'section-checkbox' },
+  { label: '標籤 Tag', id: 'section-tag' },
   { label: '文字區域 Textarea', id: 'section-textarea' },
   { label: '徽章 Badge', id: 'section-badge' },
   { label: '分頁 Pagination', id: 'section-pagination' },
   { label: '步進器 Stepper', id: 'section-stepper' },
   { label: '滑桿 Slider', id: 'section-slider' },
-  { label: '表格 Table', id: 'section-table' },
-  { label: '頭像 Avatar', id: 'section-avatar' },
-  { label: '手風琴 Accordion', id: 'section-accordion' },
-  { label: '麵包屑 Breadcrumb', id: 'section-breadcrumb' },
-  { label: '日期選擇器 DatePicker', id: 'section-datepicker' },
+  { label: '表格 Table', id: 'section-table', isUpdated: true },
+  { label: '頭像 Avatar', id: 'section-avatar', isUpdated: true },
+  { label: '手風琴 Accordion', id: 'section-accordion', isUpdated: true },
+  { label: '麵包屑 Breadcrumb', id: 'section-breadcrumb', isUpdated: true },
+  { label: '日期選擇器 DatePicker', id: 'section-datepicker', isUpdated: true },
   { label: '分隔線 Divider', id: 'section-divider' },
   { label: '圖片 Image', id: 'section-image' },
   { label: '開關 Toggle', id: 'section-toggle' },
   { label: '選擇器 Select', id: 'section-select' },
-  { label: '頁籤 Tabs', id: 'section-tabs', isNew: true },
+  { label: '頁籤 Tabs', id: 'section-tabs' },
+  { label: '表單 Form', id: 'section-form' },
 ];
 
 function scrollToSection(id) {
@@ -281,6 +283,10 @@ function scrollToSection(id) {
     <div class="flex flex-col mb-10" id="section-tabs">
       <h2 class="section-title-aligned text-xl">頁籤 Tabs</h2>
       <TestTabs />
+    </div>
+    <div class="flex flex-col mb-10" id="section-form">
+      <h2 class="section-title-aligned text-xl">表單 Form</h2>
+      <TestForm />
     </div>
   </div>
 </template>

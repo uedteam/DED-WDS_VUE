@@ -59,7 +59,7 @@
 
     &-tbody {
       &-tr {
-        &-sprite:nth-child(odd) {
+        &-sprite:nth-child(even) {
           background-color: list.nth($neutral-50, $site);
         }
 

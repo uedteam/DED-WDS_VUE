@@ -86,7 +86,7 @@ const hintTextClass = computed(() => ({
       />
 
       <!-- 輸入字數提示 -->
-      <template v-if="modelValue.length > 0 && props.limit !== 0">
+      <template v-if="modelValue && modelValue.length > 0 && props.limit !== 0">
         <small
           class="ded-textarea-hint-count"
           :class="{ 'ded-textarea-disable': props.isDisabled }"

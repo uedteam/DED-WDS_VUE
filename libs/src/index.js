@@ -12,6 +12,8 @@ import DatePicker from './ui/element/DatePicker/DatePicker.vue';
 import Dialog from './ui/element/Dialog/Dialog.vue';
 import Divider from './ui/element/Divider/Divider.vue';
 import Dropdown from './ui/element/Dropdown/Dropdown.vue';
+import Form from './ui/element/Form/Form.vue';
+import FormItem from './ui/element/Form/FormItem.vue';
 import Icon from './ui/element/Icon/Icon.vue';
 import Image from './ui/element/Image/Image.vue';
 import Input from './ui/element/Input/Input.vue';
@@ -69,6 +71,8 @@ export {
   Dialog,
   Divider,
   Dropdown,
+  Form,
+  FormItem,
   Icon,
   Image,
   Input,
@@ -127,6 +131,8 @@ const components = [
   { key: 'Dialog', value: Dialog },
   { key: 'Divider', value: Divider },
   { key: 'Dropdown', value: Dropdown },
+  { key: 'Form', value: Form },
+  { key: 'FormItem', value: FormItem },
   { key: 'Icon', value: Icon },
   { key: 'Image', value: Image },
   { key: 'Input', value: Input },

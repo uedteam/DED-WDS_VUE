@@ -93,13 +93,21 @@ function toggleDisabled() {
 
 <style scoped>
 .test-tabs-container {
-  background-color: #fff;
+  background-color: #ffffff;
   padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 24px auto;
+  width: 720px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .test-tabs-container {
+    min-width: auto;
+    width: calc(100% - 40px);
+    margin: 20px;
+  }
 }
 .test-tabs-title {
   font-size: 20px;

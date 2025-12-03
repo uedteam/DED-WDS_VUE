@@ -1,167 +1,305 @@
 @use 'sass:list';
+@use 'sass:color';
 @use '../../theme/index' as *;
 
 :root {
-    --progress: 0%;
+  --progress: 0%;
 }
 
 .ded-slider-container {
-    position: relative;
-    padding-block: 16px;
-    margin: 16px auto;
+  position: relative;
+  padding-block: 20px;
+  margin: 16px auto;
+  transition: all 0.3s ease;
 }
 
 .ded-slider-container-fluid {
-    width: 100%;
+  width: 100%;
 }
 
 .ded-slider-container-range {
-    width: calc(100% - 84px);
+  width: calc(100% - 84px);
 }
 
 .ded-slider-wrapper {
-    position: relative;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing;
+  padding: 8px 0;
+
+  .ded-slider-range {
+    width: 32px;
+    position: absolute;
+    font-size: 13px;
+    font-weight: 600;
+    color: list.nth($text-secondary, $site);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 6px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    text-align: center;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: $spacing;
+    justify-content: center;
+  }
 
-    .ded-slider-range {
-        width: 32px;
-        position: absolute;
-        font-size: 14px;
-        color: list.nth($text-secondary, $site);
-    }
+  .ded-slider-range-start {
+    left: calc(0% - 42px);
+  }
 
-    .ded-slider-range-start {
-        text-align: right;
-        left: calc(0% - 42px);
-    }
+  .ded-slider-range-end {
+    right: calc(0% - 42px);
+  }
 
-    .ded-slider-range-end {
-        text-align: left;
-        right: calc(0% - 42px);
-    }
+  .ded-slider-range-disable {
+    color: list.nth($neutral-200, $site);
+    pointer-events: none;
+    opacity: 0.6;
+    background: rgba(0, 0, 0, 0.05);
+  }
 
-    .ded-slider-range-disable {
-        color: list.nth($neutral-200, $site);
-        pointer-events: none;
-    }
-
-    .ded-slider {
-        position: relative;
-        width: 100%;
-        border-radius: $radius-8;
-    }
-}
-
-.ded-slider {
+  .ded-slider {
     position: relative;
     width: 100%;
     border-radius: $radius-8;
+  }
+}
+
+.ded-slider {
+  position: relative;
+  width: 100%;
+  border-radius: $radius-8;
 }
 
 .ded-slider-tooltip {
-    position: absolute;
-    top: -20px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    border-radius: $radius;
-    font-size: 14px;
-    white-space: nowrap;
+  position: absolute;
+  top: -40px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.ded-slider-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
 }
 
 /* remove default style */
 input[type="range"].ded-slider,
 input[type="range"].ded-slider::-webkit-slider-runnable-track,
 input[type="range"].ded-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 input[type="range"].ded-slider {
-    width: 100%;
-    height: 6px;
-    background-color: list.nth($neutral-200, $site);
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="range"].ded-slider:focus {
+  outline: 2px solid rgba(0, 123, 255, 0.3);
+  outline-offset: 2px;
 }
 
 input[type="range"].ded-slider::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: -6px;
-    width: 2px;
-    height: 6px;
-    background-color: list.nth($neutral-200, $site);
-    transform: translateX(-50%);
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  width: 2px;
+  height: 8px;
+  background-color: list.nth($neutral-200, $site);
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+input[type="range"].ded-slider:hover::before {
+  opacity: 1;
 }
 
 input[type="range"].ded-slider::-webkit-slider-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border: 3px solid white;
+}
+
+input[type="range"].ded-slider::-webkit-slider-thumb:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+input[type="range"].ded-slider::-webkit-slider-thumb:active {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 input[type="range"].ded-slider::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 6px;
-    border-radius: 5px;
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+input[type="range"].ded-slider:hover::-webkit-slider-runnable-track {
+  height: 10px;
 }
 
 input[type="range"].ded-slider::-webkit-slider-thumb {
-    background-color: $auo-form-default;
+  background: linear-gradient(135deg, $auo-form-default, color.adjust($auo-form-default, $lightness: -10%));
 }
 
 input[type="range"].ded-slider::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, $auo-form-outline 0%, $auo-form-outline var(--progress), list.nth($neutral-200, $site) var(--progress), list.nth($neutral-200, $site) 100%);
+  background: linear-gradient(to right,
+      color.adjust($auo-form-outline, $lightness: 5%) 0%,
+      $auo-form-outline var(--progress),
+      list.nth($neutral-200, $site) var(--progress),
+      list.nth($neutral-200, $site) 100%);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .ded-slider-tooltip {
-    color: $auo-form-default
+  color: $auo-form-default;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
 }
 
 // @each $theme in $themes {
 //   input[type="range"].ded-slider-#{$theme}::-webkit-slider-thumb {
-//     background-color: getThemeColor($theme, 'default');
+//     background: linear-gradient(135deg, getThemeColor($theme, 'default'), darken(getThemeColor($theme, 'default'), 10%));
 //   }
 
 //   input[type="range"].ded-slider-#{$theme}::-webkit-slider-runnable-track {
-//     background: linear-gradient(to right, getThemeColor($theme, 'default') 0%, getThemeColor($theme, 'default') var(--progress), list.nth($neutral-200, $site) var(--progress), list.nth($neutral-200, $site) 100%);
+//     background: linear-gradient(to right, 
+//         lighten(getThemeColor($theme, 'default'), 5%) 0%, 
+//         getThemeColor($theme, 'default') var(--progress), 
+//         list.nth($neutral-200, $site) var(--progress), 
+//         list.nth($neutral-200, $site) 100%);
 //   }
 
 //   .ded-slider-tooltip-#{$theme} {
 //     color: getThemeColor($theme, 'default');
+//     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
 //   }
 // }
 
+/* 禁用狀態樣式 */
+input[type="range"].ded-slider-disable {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 input[type="range"].ded-slider-disable::-webkit-slider-thumb {
-    background-color: list.nth($neutral-200, $site);
-    pointer-events: none;
-    cursor: not-allowed;
+  background: linear-gradient(135deg, list.nth($neutral-200, $site), color.adjust(list.nth($neutral-200, $site), $lightness: -5%));
+  pointer-events: none;
+  cursor: not-allowed;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"].ded-slider-disable::-webkit-slider-thumb:hover {
+  transform: translateY(-50%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .ded-slider-container input[type="range"].ded-slider-disable::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, list.nth($neutral-200, $site) 0%, list.nth($neutral-200, $site) var(--progress), list.nth($neutral-200, $site) var(--progress), list.nth($neutral-200, $site) 100%);
-    pointer-events: none;
-    cursor: not-allowed;
-}
-
-.ded-slider-container input[type="range"].ded-slider-disable::-webkit-slider-runnable-track {
-    background: linear-gradient(to right,
-            list.nth($neutral-200, $site) 0%,
-            list.nth($neutral-200, $site) var(--progress),
-            list.nth($neutral-200, $site) var(--progress),
-            list.nth($neutral-200, $site) 100%);
-    pointer-events: none;
-    cursor: not-allowed;
+  background: linear-gradient(to right,
+      list.nth($neutral-200, $site) 0%,
+      list.nth($neutral-200, $site) var(--progress),
+      color.adjust(list.nth($neutral-200, $site), $lightness: 10%) var(--progress),
+      color.adjust(list.nth($neutral-200, $site), $lightness: 10%) 100%);
+  pointer-events: none;
+  cursor: not-allowed;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .ded-slider-tooltip-disable {
-    color: list.nth($neutral-200, $site);
-    pointer-events: none;
+  color: list.nth($neutral-200, $site);
+  pointer-events: none;
+  opacity: 0.6;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 添加響應式設計和動畫效果 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ded-slider-container {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* 針對移動裝置的優化 */
+@media (max-width: 768px) {
+  .ded-slider-wrapper .ded-slider-range {
+    font-size: 12px;
+    padding: 3px 5px;
+  }
+
+  input[type="range"].ded-slider::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ded-slider-tooltip {
+    font-size: 12px;
+    padding: 4px 8px;
+    top: -35px;
+  }
+}
+
+/* 提升觸控體驗 */
+@media (pointer: coarse) {
+  input[type="range"].ded-slider::-webkit-slider-thumb {
+    width: 28px;
+    height: 28px;
+  }
+
+  input[type="range"].ded-slider {
+    height: 10px;
+  }
+
+  input[type="range"].ded-slider::-webkit-slider-runnable-track {
+    height: 10px;
+  }
 }

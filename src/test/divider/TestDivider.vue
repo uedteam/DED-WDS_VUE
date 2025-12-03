@@ -151,9 +151,18 @@ onMounted(() => {
   padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  max-width: 600px;
+  width: 720px;
   margin: 20px auto;
   position: relative;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .test-divider-container {
+    min-width: auto;
+    width: calc(100% - 40px);
+    margin: 20px;
+  }
 }
 
 .operation-message {

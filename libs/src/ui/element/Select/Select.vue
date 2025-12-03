@@ -1,6 +1,6 @@
 <script setup>
-import Icon from "@/ui/element/Icon/Icon.vue"
-import { ref } from "vue"
+import Icon from '@/ui/element/Icon/Icon.vue';
+import { watch } from 'vue';
 
 // 定義 props
 const props = defineProps({
@@ -10,7 +10,7 @@ const props = defineProps({
   },
   placeholder: {
     type: String,
-    default: "Select",
+    default: 'Select',
   },
   suffix: {
     type: String,
@@ -21,21 +21,29 @@ const props = defineProps({
   },
   className: {
     type: String,
-    default: "",
+    default: '',
   },
-})
+});
 
-// 定義 Model
-const modelValue = defineModel()
+// 定義 Model 和 emits
+const modelValue = defineModel();
+const emits = defineEmits(['change']);
 
-// 響應式值
-const selectedValue = ref(modelValue)
+// 監聽 modelValue 變化並觸發 change 事件
+watch(modelValue, (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    emits('change', newValue);
+  }
+});
 </script>
 
 <template>
-  <div class="ded-select-container" :class="{ [props.className]: !!props.className }">
+  <div
+    class="ded-select-container"
+    :class="{ [props.className]: !!props.className }"
+  >
     <select
-      v-model="selectedValue"
+      v-model="modelValue"
       class="ded-select"
       :class="{ 'ded-select-disabled': props.isDisabled }"
       :disabled="props.isDisabled"
@@ -51,12 +59,13 @@ const selectedValue = ref(modelValue)
         {{ item.label }}
       </option>
     </select>
-    <div class="ded-select-icon" :class="{ 'ded-select-icon-disabled': props.isDisabled }">
+    <div
+      class="ded-select-icon"
+      :class="{ 'ded-select-icon-disabled': props.isDisabled }"
+    >
       <Icon :name="props.suffix" size="18" />
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

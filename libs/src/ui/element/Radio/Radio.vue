@@ -30,6 +30,14 @@ const generateId = (index) => `${baseId}-radio-${index}`;
 
 // 定義 Model
 const modelValue = defineModel();
+
+// 定義 emits
+const emits = defineEmits(['change']);
+
+// 處理值變化
+function handleChange(value) {
+  emits('change', value);
+}
 </script>
 
 <template>
@@ -59,6 +67,7 @@ const modelValue = defineModel();
         :value="item.value"
         :name="item.name"
         :disabled="item.isDisabled"
+        @change="handleChange(item.value)"
       />
       <div
         class="ded-radio-icon"

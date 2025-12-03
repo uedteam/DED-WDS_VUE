@@ -32,6 +32,9 @@ const modelValue = defineModel({
   default: [],
 });
 
+// 定義 emits
+const emits = defineEmits(['change']);
+
 // 使用唯一識別碼生成方法
 const baseId = uuidv4();
 const generateId = (index) => `${baseId}-checkbox-${index}`;
@@ -43,6 +46,8 @@ function handleCheck(item) {
   } else {
     modelValue.value = [...modelValue.value, item.value];
   }
+  // 觸發 change 事件
+  emits('change', modelValue.value);
 }
 </script>
 

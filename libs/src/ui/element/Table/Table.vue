@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 const props = defineProps({
   columns: {
@@ -26,12 +26,30 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  // onRowClick: Function,
-  // onSelect: Function,
 });
+
+const emit = defineEmits(['select', 'rowClick']);
 
 // Reactive State
 const selectedRowKeys = ref([]);
+
+// 監聽 dataSource 變化,清理無效的選擇
+watch(
+  () => props.dataSource,
+  (newDataSource) => {
+    const validKeys = newDataSource.map((item) => item.head);
+    const filteredKeys = selectedRowKeys.value.filter((key) =>
+      validKeys.includes(key)
+    );
+
+    // 如果選擇的項目有變化,更新並發出事件
+    if (filteredKeys.length !== selectedRowKeys.value.length) {
+      selectedRowKeys.value = filteredKeys;
+      emit('select', [...selectedRowKeys.value]);
+    }
+  },
+  { deep: true }
+);
 
 // Computed Properties
 const allSelected = computed(
@@ -100,7 +118,7 @@ const getColumnStyle = computed(() => (col) => {
 
 // Methods
 function handleClick(record) {
-  props.onRowClick && props.onRowClick(record);
+  emit('rowClick', record);
 }
 
 function handleSelectRow(key) {
@@ -111,7 +129,7 @@ function handleSelectRow(key) {
   } else {
     selectedRowKeys.value.push(key);
   }
-  props.onSelect && props.onSelect([...selectedRowKeys.value]);
+  emit('select', [...selectedRowKeys.value]);
 }
 
 function handleSelectAll(event) {
@@ -120,7 +138,7 @@ function handleSelectAll(event) {
   } else {
     selectedRowKeys.value = [];
   }
-  props.onSelect && props.onSelect([...selectedRowKeys.value]);
+  emit('select', [...selectedRowKeys.value]);
 }
 </script>
 

@@ -176,6 +176,20 @@ onUnmounted(() => {
             </div>
           </div>
 
+          <router-link
+            to="/auo-design-center"
+            class="nav-link"
+            :class="{ 'router-link-active': route.name === 'auoDesignCenter' }"
+          >
+            <Icon
+              name="SvgPalette"
+              size="20"
+              color="currentColor"
+              class="template-icon"
+            />
+            AUO 設計中心
+          </router-link>
+
           <div class="nav-dropdown">
             <button
               class="nav-link dropdown-toggle"
@@ -185,6 +199,7 @@ onUnmounted(() => {
                   'landing',
                   'cms',
                   'crm',
+                  'portfolio',
                 ].includes(route.name),
               }"
               @click="toggleTemplateDropdown"
@@ -252,6 +267,19 @@ onUnmounted(() => {
               >
                 <Icon name="SvgUser" size="20" className="item-icon crm-item" />
                 CRM 模板
+              </router-link>
+              <router-link
+                to="/portfolio"
+                class="dropdown-item"
+                :class="{ active: route.name === 'portfolio' }"
+                @click="closeTemplateDropdown"
+              >
+                <Icon
+                  name="SvgUser"
+                  size="20"
+                  className="item-icon portfolio-item"
+                />
+                Portfolio 模板
               </router-link>
             </div>
           </div>

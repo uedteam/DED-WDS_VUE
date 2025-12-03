@@ -1,0 +1,393 @@
+// Form 表單組件樣式
+.ded-form {
+  @apply w-full;
+
+  // 基本布局
+  &-vertical {
+    @apply flex flex-col;
+
+    .ded-form-item {
+      // 垂直布局時確保每個表單項目有足夠的空間
+      margin-bottom: 4px; // 額外的底部間距確保錯誤訊息不會太緊湊
+    }
+  }
+
+  &-horizontal {
+    @apply flex flex-col;
+
+    .ded-form-item {
+      @apply flex items-start gap-4;
+      // 水平布局時調整最小高度，考慮標籤和控制項並列的情況
+      min-height: calc(40px + 20px); // 控制項高度 + 錯誤訊息空間
+
+      &-label-wrapper {
+        @apply flex-shrink-0 pt-2;
+      }
+
+      &-control {
+        @apply flex-1;
+      }
+
+      // 水平布局時錯誤訊息不影響標籤對齊
+      &-error-message {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  &-inline {
+    @apply flex flex-wrap items-start; // 移除 gap-4
+
+    .ded-form-item {
+      @apply flex flex-col gap-2; // 改為垂直排列避免錯誤訊息影響行內佈局
+      min-width: 200px; // 設置最小寬度確保有足夠空間
+
+      &-label-wrapper {
+        @apply flex-shrink-0;
+      }
+
+      &-control {
+        @apply flex-shrink-0;
+      }
+
+      // 行內布局時的錯誤訊息樣式
+      &-error-message {
+        width: 100%;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  // 尺寸變化
+  &-small {
+    // 移除 gap-4
+
+    .ded-form-item {
+      @apply gap-3;
+    }
+  }
+
+  &-medium {
+    // 移除 gap-6
+
+    .ded-form-item {
+      @apply gap-4;
+    }
+  }
+
+  &-large {
+    // 移除 gap-8
+
+    .ded-form-item {
+      @apply gap-5;
+    }
+  }
+
+  // 標籤位置
+  &-label-top .ded-form-item {
+    @apply flex-col items-start;
+
+    &-label-wrapper {
+      @apply w-full;
+    }
+  }
+
+  &-label-left .ded-form-item {
+    @apply flex-row items-start;
+
+    &-label-wrapper {
+      @apply flex-shrink-0 pt-2;
+    }
+  }
+
+  &-label-right .ded-form-item {
+    @apply flex-row-reverse items-start;
+
+    &-label-wrapper {
+      @apply flex-shrink-0 pt-2;
+    }
+  }
+
+  // 禁用狀態
+  &-disabled {
+    @apply opacity-60 pointer-events-none;
+  }
+
+  // 表單標題區域
+  &-header {
+    @apply mb-6;
+  }
+
+  &-title {
+    @apply font-semibold text-gray-900 mb-2;
+  }
+
+  &-description {
+    @apply text-gray-600 leading-relaxed;
+  }
+
+  // 驗證摘要
+  &-validation-summary {
+    @apply bg-red-50 border border-red-200 rounded-lg p-4 mb-6;
+
+    &-title {
+      @apply text-red-800 font-medium mb-2 text-sm;
+    }
+
+    &-list {
+      @apply list-none m-0 p-0;
+    }
+
+    &-item {
+      @apply text-red-700 text-sm mb-1 last:mb-0;
+
+      strong {
+        @apply font-medium;
+      }
+    }
+  }
+
+  // 表單內容區域
+  &-content {
+    @apply flex-1;
+  }
+
+  // 表單操作區域
+  &-actions {
+    @apply mt-8 pt-6 border-t border-gray-200;
+  }
+}
+
+// FormItem 表單項目樣式
+.ded-form-item {
+  @apply w-full;
+  // 為錯誤訊息預留空間，避免佈局跳動
+  min-height: calc(1em + 0.5rem + 20px); // 控制項高度 + 間距 + 錯誤訊息空間
+
+  // 標籤樣式
+  &-label-wrapper {
+    @apply flex items-center;
+  }
+
+  &-label {
+    @apply font-medium text-gray-700 leading-tight;
+
+    &.ded-text-small {
+      @apply text-sm;
+    }
+
+    &.ded-text-medium {
+      @apply text-base;
+    }
+
+    &.ded-text-large {
+      @apply text-lg;
+    }
+  }
+
+  // 必填標記
+  &-required-mark {
+    @apply text-red-500 ml-1;
+  }
+
+  // 控制項區域
+  &-control {
+    @apply flex-1;
+
+    &-wrapper {
+      @apply relative;
+      // 確保控制項有固定的最小高度
+      min-height: 40px; // 適當的控制項最小高度
+    }
+  }
+
+  // 錯誤訊息區域 - 固定高度避免佈局跳動
+  &-error-message {
+    @apply mt-1;
+    min-height: 20px; // 固定高度預留錯誤訊息空間
+    @apply flex flex-col justify-start; // 確保錯誤訊息從頂部對齊
+    @apply transition-all duration-300 ease-in-out; // 整個區域的過渡效果
+  }
+
+  &-error-text {
+    @apply text-red-600 text-sm leading-tight;
+    @apply transition-all duration-200 ease-in-out; // 添加過渡效果
+    @apply transform; // 確保 transform 可用於動畫
+
+    &:not(:last-child) {
+      @apply mb-1;
+    }
+
+    // 錯誤訊息進入動畫
+    &:not(.opacity-0) {
+      @apply animate-pulse; // 輕微的脈衝動畫提醒用戶注意
+      animation-iteration-count: 2; // 只閃爍兩次
+    }
+
+    // 隱藏狀態的樣式
+    &.opacity-0 {
+      @apply pointer-events-none; // 隱藏時不可交互
+    }
+  }
+
+  // 狀態修飾符
+  // required 狀態的星號由 Vue 模板中的 required-mark 處理
+
+  &-disabled {
+    @apply opacity-60 pointer-events-none;
+  }
+
+  &-error {
+    .ded-form-item-label {
+      @apply text-red-700;
+    }
+
+    // 移除通用的邊框樣式，讓各組件自己處理錯誤狀態
+    // 某些組件（如 Checkbox、Radio）不適合用邊框來表示錯誤
+
+    // Input 組件已經有自己的錯誤處理 (.ded-input-border-error)
+    // Select 組件需要添加錯誤邊框
+    .ded-select-wrapper,
+    .ded-select-group {
+      @apply border-red-500 ring-1 ring-red-200;
+      @apply transition-all duration-200 ease-in-out;
+    }
+
+    // Textarea 組件需要添加錯誤邊框
+    .ded-textarea-wrapper,
+    .ded-textarea {
+      @apply border-red-500 ring-1 ring-red-200;
+      @apply transition-all duration-200 ease-in-out;
+    }
+
+    // Checkbox 和 Radio 組件使用不同的錯誤指示方式
+    .ded-checkbox-group,
+    .ded-radio-group {
+      @apply relative;
+
+      // 為 Checkbox/Radio 組添加微妙的背景色提示而非邊框
+      &::before {
+        content: '';
+        @apply absolute -inset-1 bg-red-50 rounded border border-red-100;
+        @apply opacity-30 pointer-events-none z-[-1];
+        @apply transition-opacity duration-200;
+      }
+    }
+
+    // 輕微的錯誤狀態動畫（只針對標籤）
+    .ded-form-item-label {
+      @apply transition-colors duration-200;
+    }
+  }
+
+  // 尺寸修飾符
+  &-small {
+    @apply gap-2;
+    min-height: calc(1em + 0.5rem + 16px); // 小尺寸的預留空間
+
+    .ded-form-item-control-wrapper {
+      min-height: 32px; // 小尺寸控制項高度
+    }
+
+    .ded-form-item-error-message {
+      min-height: 16px; // 小尺寸錯誤訊息空間
+    }
+
+    .ded-form-item-error-text {
+      @apply text-xs;
+    }
+  }
+
+  &-medium {
+    @apply gap-3;
+    min-height: calc(1em + 0.5rem + 20px); // 中等尺寸的預留空間
+
+    .ded-form-item-control-wrapper {
+      min-height: 40px; // 中等尺寸控制項高度
+    }
+
+    .ded-form-item-error-message {
+      min-height: 20px; // 中等尺寸錯誤訊息空間
+    }
+
+    .ded-form-item-error-text {
+      @apply text-sm;
+    }
+  }
+
+  &-large {
+    @apply gap-4;
+    min-height: calc(1em + 0.5rem + 24px); // 大尺寸的預留空間
+
+    .ded-form-item-control-wrapper {
+      min-height: 48px; // 大尺寸控制項高度
+    }
+
+    .ded-form-item-error-message {
+      min-height: 24px; // 大尺寸錯誤訊息空間
+    }
+
+    .ded-form-item-error-text {
+      @apply text-base;
+    }
+  }
+
+  // 標籤位置修飾符
+  &-top {
+    @apply flex-col items-start;
+
+    .ded-form-item-label-wrapper {
+      @apply w-full mb-2;
+    }
+  }
+
+  &-left {
+    @apply flex-row items-start;
+
+    .ded-form-item-label-wrapper {
+      @apply flex-shrink-0 pt-2 pr-4;
+    }
+
+    .ded-form-item-control {
+      @apply flex-1;
+    }
+  }
+
+  &-right {
+    @apply flex-row-reverse items-start;
+
+    .ded-form-item-label-wrapper {
+      @apply flex-shrink-0 pt-2 pl-4;
+    }
+
+    .ded-form-item-control {
+      @apply flex-1;
+    }
+  }
+}
+
+// 響應式調整
+@media (max-width: 640px) {
+  .ded-form {
+    &-horizontal {
+      .ded-form-item {
+        @apply flex-col items-start;
+
+        &-label-wrapper {
+          @apply w-full pt-0 mb-2;
+        }
+      }
+    }
+
+    &-label-left,
+    &-label-right {
+      .ded-form-item {
+        @apply flex-col items-start;
+
+        &-label-wrapper {
+          @apply w-full pt-0 mb-2 pr-0 pl-0;
+        }
+      }
+    }
+  }
+}

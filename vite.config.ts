@@ -18,6 +18,7 @@ export default defineConfig({
   server: {
     port: 4200,
     host: true,
+    allowedHosts: ['.ngrok-free.app', '.ngrok.io'],
   },
 
   preview: {

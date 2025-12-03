@@ -1,46 +1,74 @@
-<script setup lang="ts">
+<script setup>
 import { ref, computed } from 'vue';
-import Avatar from '../../../libs/src/ui/element/Avatar/Avatar.vue';
-import AvatarStatus from '../../../libs/src/ui/element/Avatar/AvatarStatus.vue';
+import Form from '@/ui/element/Form/Form.vue';
+import FormItem from '@/ui/element/Form/FormItem.vue';
+import Input from '@/ui/element/Input/Input.vue';
+import Button from '@/ui/element/Button/Button.vue';
 import CodeBlock from '../../../libs/src/ui/element/CodeBlock/CodeBlock.vue';
 
-const src = ref('https://randomuser.me/api/portraits/men/32.jpg');
-const src2 = ref('https://randomuser.me/api/portraits/women/44.jpg');
+// 表單屬性控制
+const title = ref('表單組件測試');
 const size = ref('medium');
-const shape = ref('circle');
-const alt = ref('男生頭像');
-const alt2 = ref('女生頭像');
-const status = ref('online');
-const status2 = ref('offline');
+const layout = ref('vertical');
+const showValidationSummary = ref(true);
 
 // CodeBlock 收合狀態
 const isCodeCollapsed = ref(true);
 
-const statusList = ['none', 'online', 'idle', 'busy', 'offline'];
-const sizeList = ['small', 'medium', 'large'];
+// 表單資料
+const formData = ref({
+  username: '',
+  email: '',
+});
 
-function toggleSize() {
-  const idx = sizeList.indexOf(size.value);
-  size.value = sizeList[(idx + 1) % sizeList.length];
-}
+// 驗證器
+const emailValidator = (value) => {
+  if (!value) return true;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(value) || '請輸入有效的電子信箱格式';
+};
 
-function toggleShape() {
-  shape.value = shape.value === 'circle' ? 'square' : 'circle';
-}
+// 表單 ref
+const formRef = ref();
 
-function toggleStatus() {
-  const idx = statusList.indexOf(status.value);
-  status.value = statusList[(idx + 1) % statusList.length];
-}
+// 控制函數
+const toggleSize = () => {
+  const sizes = ['small', 'medium', 'large'];
+  const currentIndex = sizes.indexOf(size.value);
+  size.value = sizes[(currentIndex + 1) % sizes.length];
+};
 
-function toggleStatus2() {
-  const idx = statusList.indexOf(status2.value);
-  status2.value = statusList[(idx + 1) % statusList.length];
-}
+const toggleLayout = () => {
+  const layouts = ['vertical', 'horizontal'];
+  const currentIndex = layouts.indexOf(layout.value);
+  layout.value = layouts[(currentIndex + 1) % layouts.length];
+};
 
-// 收合/展開程式碼
+const toggleValidationSummary = () => {
+  showValidationSummary.value = !showValidationSummary.value;
+};
+
 const toggleCodeCollapse = () => {
   isCodeCollapsed.value = !isCodeCollapsed.value;
+};
+
+const fillSampleData = () => {
+  formData.value = {
+    username: 'testuser',
+    email: 'test@example.com',
+  };
+};
+
+const clearFormData = () => {
+  formData.value = {
+    username: '',
+    email: '',
+  };
+};
+
+// 事件處理
+const handleSubmit = (event) => {
+  console.log('表單提交:', event);
 };
 
 // 產生動態程式碼範例
@@ -51,84 +79,138 @@ const codeExample = computed(() => {
   return (
     scriptStart +
     `
-import { Avatar, AvatarStatus } from '@ded-wds-vue/ui';
 import { ref } from 'vue';
+import { Form, FormItem, Input, Button } from '@ded-wds-vue/ui';
 
-const src = ref('${src.value}');
-const size = ref('${size.value}');
-const shape = ref('${shape.value}');
-const alt = ref('${alt.value}');
-const status = ref('${status.value}');
+const formData = ref({
+  username: '',
+  email: ''
+});
+
+const handleSubmit = (event) => {
+  console.log('表單提交:', event);
+};
 ` +
     scriptEnd +
     `
 
 <template>
-  <div style="position: relative; display: inline-block">
-    <Avatar 
-      :src="src" 
-      :size="size" 
-      :shape="shape" 
-      :alt="alt" 
-    />
-    <AvatarStatus
-      :avatarSize="size"
-      :avatarStatus="status"
-      style="position: absolute; right: -6px; bottom: -6px"
-    />
-  </div>
+  <Form
+    title="${title.value}"
+    size="${size.value}"
+    layout="${layout.value}"
+    v-model="formData"
+    @submit="handleSubmit"
+  >
+    <FormItem name="username" label="使用者名稱" :required="true">
+      <template #username="{ fieldChange, fieldBlur, size, isDisabled, hint }">
+        <Input
+          v-model="formData.username"
+          placeholder="請輸入使用者名稱"
+          :size="size"
+          :isDisabled="isDisabled"
+          :hint="hint"
+          @input="fieldChange"
+          @blur="fieldBlur"
+        />
+      </template>
+    </FormItem>
+  </Form>
 </template>`
   );
 });
 </script>
 
 <template>
-  <div class="test-avatar-container">
-    <div class="avatar-demo-row">
-      <div style="position: relative; display: inline-block">
-        <Avatar :src="src" :size="size" :shape="shape" :alt="alt" />
-        <AvatarStatus
-          :avatarSize="size"
-          :avatarStatus="status"
-          style="position: absolute; right: -6px; bottom: -6px"
-        />
-      </div>
-      <div style="position: relative; display: inline-block">
-        <Avatar :src="src2" :size="size" :shape="shape" :alt="alt2" />
-        <AvatarStatus
-          :avatarSize="size"
-          :avatarStatus="status2"
-          style="position: absolute; right: -6px; bottom: -6px"
-        />
-      </div>
-    </div>
+  <div class="test-form-container">
+    <Form
+      ref="formRef"
+      :title="title"
+      :size="size"
+      :layout="layout"
+      :showValidationSummary="showValidationSummary"
+      v-model="formData"
+      @submit="handleSubmit"
+    >
+      <FormItem name="username" label="使用者名稱" :required="true">
+        <template
+          #username="{ fieldChange, fieldBlur, size, isDisabled, hint }"
+        >
+          <Input
+            v-model="formData.username"
+            placeholder="請輸入使用者名稱"
+            :size="size"
+            :isDisabled="isDisabled"
+            :hint="hint"
+            @input="fieldChange"
+            @blur="fieldBlur"
+          />
+        </template>
+      </FormItem>
 
-    <div class="avatar-controls">
-      <p class="settings-title">當前頭像設定:</p>
+      <FormItem
+        name="email"
+        label="電子信箱"
+        :required="true"
+        :validator="emailValidator"
+      >
+        <template #email="{ fieldChange, fieldBlur, size, isDisabled, hint }">
+          <Input
+            v-model="formData.email"
+            type="email"
+            placeholder="請輸入電子信箱"
+            :size="size"
+            :isDisabled="isDisabled"
+            :hint="hint"
+            @input="fieldChange"
+            @blur="fieldBlur"
+          />
+        </template>
+      </FormItem>
+
+      <template #actions="{ formState }">
+        <div class="flex gap-4 justify-end">
+          <Button
+            variant="outlined"
+            themeColor="neutral"
+            size="medium"
+            @click="formRef?.reset()"
+          >
+            重設
+          </Button>
+          <Button
+            variant="filled"
+            themeColor="primary"
+            size="medium"
+            type="submit"
+            :isDisabled="formState.isSubmitting"
+          >
+            {{ formState.isSubmitting ? '提交中...' : '提交' }}
+          </Button>
+        </div>
+      </template>
+    </Form>
+
+    <div class="form-controls">
+      <p class="settings-title">當前表單設定:</p>
       <div class="settings-grid">
+        <div class="setting-item">
+          <span class="setting-label">標題:</span>
+          <strong class="setting-value">{{ title }}</strong>
+        </div>
         <div class="setting-item">
           <span class="setting-label">尺寸:</span>
           <strong class="setting-value">{{ size }}</strong>
         </div>
         <div class="setting-item">
-          <span class="setting-label">形狀:</span>
-          <strong class="setting-value">{{ shape }}</strong>
+          <span class="setting-label">佈局:</span>
+          <strong class="setting-value">{{ layout }}</strong>
         </div>
         <div class="setting-item">
-          <span class="setting-label">狀態1:</span>
-          <strong class="setting-value">{{ status }}</strong>
-        </div>
-        <div class="setting-item">
-          <span class="setting-label">狀態2:</span>
-          <strong class="setting-value">{{ status2 }}</strong>
-        </div>
-        <div class="setting-item">
-          <span class="setting-label">Alt文字1:</span>
-          <strong class="setting-value">{{ alt }}</strong>
-        </div>
-        <div class="setting-item">
-          <span class="setting-label">Alt文字2:</span>
-          <strong class="setting-value">{{ alt2 }}</strong>
+          <span class="setting-label">驗證摘要:</span>
+          <strong class="setting-value">{{
+            showValidationSummary ? '顯示' : '隱藏'
+          }}</strong>
         </div>
       </div>
 
@@ -140,50 +222,30 @@ const status = ref('${status.value}');
             <button @click="toggleSize" class="control-button primary">
               切換尺寸
             </button>
-            <button @click="toggleShape" class="control-button primary">
-              切換形狀
+            <button @click="toggleLayout" class="control-button primary">
+              切換佈局
+            </button>
+            <button
+              @click="toggleValidationSummary"
+              class="control-button primary"
+            >
+              {{ showValidationSummary ? '隱藏摘要' : '顯示摘要' }}
             </button>
           </div>
         </div>
 
-        <!-- 狀態控制組 -->
+        <!-- 資料控制組 -->
         <div class="control-group">
-          <h4 class="group-title">狀態控制</h4>
+          <h4 class="group-title">資料控制</h4>
           <div class="control-buttons">
-            <button @click="toggleStatus" class="control-button secondary">
-              切換狀態1
+            <button @click="fillSampleData" class="control-button accent">
+              填入範例資料
             </button>
-            <button @click="toggleStatus2" class="control-button secondary">
-              切換狀態2
+            <button @click="clearFormData" class="control-button accent">
+              清空資料
             </button>
-          </div>
-        </div>
-
-        <!-- 圖片切換組 -->
-        <div class="control-group">
-          <h4 class="group-title">圖片切換</h4>
-          <div class="control-buttons">
-            <button
-              @click="
-                src =
-                  src === 'https://randomuser.me/api/portraits/men/32.jpg'
-                    ? 'https://randomuser.me/api/portraits/men/45.jpg'
-                    : 'https://randomuser.me/api/portraits/men/32.jpg'
-              "
-              class="control-button accent"
-            >
-              切換圖片1
-            </button>
-            <button
-              @click="
-                src2 =
-                  src2 === 'https://randomuser.me/api/portraits/women/44.jpg'
-                    ? 'https://randomuser.me/api/portraits/women/68.jpg'
-                    : 'https://randomuser.me/api/portraits/women/44.jpg'
-              "
-              class="control-button accent"
-            >
-              切換圖片2
+            <button @click="formRef?.validate()" class="control-button accent">
+              手動驗證
             </button>
           </div>
         </div>
@@ -197,7 +259,6 @@ const status = ref('${status.value}');
           @click="toggleCodeCollapse"
           class="toggle-code-button"
           :class="{ collapsed: isCodeCollapsed }"
-          :title="isCodeCollapsed ? '顯示程式碼' : '隱藏程式碼'"
         >
           <div class="toggle-icon-container">
             <svg
@@ -220,17 +281,23 @@ const status = ref('${status.value}');
           <CodeBlock
             :code="codeExample"
             language="vue"
-            title="Avatar 組件程式碼範例"
+            title="Form 組件程式碼範例"
             :showLanguageLabel="true"
           />
         </div>
       </transition>
     </div>
+
+    <!-- 表單資料顯示 -->
+    <div class="form-data-display">
+      <h3 class="data-title">表單資料：</h3>
+      <pre class="data-content">{{ JSON.stringify(formData, null, 2) }}</pre>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.test-avatar-container {
+.test-form-container {
   background-color: #ffffff;
   padding: 20px;
   border: 1px solid #e0e0e0;
@@ -241,23 +308,14 @@ const status = ref('${status.value}');
 }
 
 @media (max-width: 768px) {
-  .test-avatar-container {
+  .test-form-container {
     min-width: auto;
     width: calc(100% - 40px);
     margin: 20px;
   }
 }
 
-.avatar-demo-row {
-  display: flex;
-  gap: 32px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-  padding: 20px;
-}
-
-.avatar-controls {
+.form-controls {
   margin-top: 20px;
   padding-top: 15px;
   border-top: 1px solid #eaeaea;
@@ -332,29 +390,6 @@ const status = ref('${status.value}');
   }
 }
 
-@media (min-width: 768px) {
-  .control-groups {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .control-groups {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .control-buttons {
-    grid-template-columns: 1fr;
-  }
-
-  .control-button {
-    padding: 12px 16px;
-    font-size: 14px;
-  }
-}
-
 .control-group {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
@@ -363,11 +398,6 @@ const status = ref('${status.value}');
   min-height: 120px;
   display: flex;
   flex-direction: column;
-}
-
-.control-group .control-buttons {
-  flex: 1;
-  align-content: start;
 }
 
 .group-title {
@@ -404,16 +434,6 @@ const status = ref('${status.value}');
 
 .control-button.primary:hover {
   background: linear-gradient(135deg, #0056b3, #004085);
-  transform: translateY(-1px);
-}
-
-.control-button.secondary {
-  background: linear-gradient(135deg, #6c757d, #495057);
-  color: white;
-}
-
-.control-button.secondary:hover {
-  background: linear-gradient(135deg, #495057, #343a40);
   transform: translateY(-1px);
 }
 
@@ -462,17 +482,8 @@ const status = ref('${status.value}');
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.toggle-code-button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .toggle-code-button.collapsed {
   background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-}
-
-.toggle-code-button.collapsed:hover {
-  background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
 }
 
 .toggle-icon-container {
@@ -494,14 +505,6 @@ const status = ref('${status.value}');
   transform: rotate(-90deg);
 }
 
-.toggle-code-button:hover .toggle-svg {
-  transform: scale(1.1);
-}
-
-.toggle-code-button.collapsed:hover .toggle-svg {
-  transform: rotate(-90deg) scale(1.1);
-}
-
 .button-text {
   font-weight: 500;
   letter-spacing: 0.025em;
@@ -511,7 +514,6 @@ const status = ref('${status.value}');
   overflow: hidden;
 }
 
-/* 滑動展開/收合動畫 */
 .slide-down-enter-active,
 .slide-down-leave-active {
   transition: all 0.3s ease;
@@ -529,5 +531,30 @@ const status = ref('${status.value}');
   opacity: 1;
   max-height: 1000px;
   transform: translateY(0);
+}
+
+.form-data-display {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eaeaea;
+}
+
+.data-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.data-content {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 12px;
+  color: #495057;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 </style>

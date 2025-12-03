@@ -1,30 +1,31 @@
 <script setup>
-import Divider from "@/ui/element/Divider/Divider.vue"
-import Title from "@/ui/element/Title/Title.vue"
-import Column from "@/ui/layout/Grid/Column.vue"
-import Grid from "@/ui/layout/Grid/Grid.vue"
-import Row from "@/ui/layout/Grid/Row.vue"
-import Layout, { Content } from "@/ui/layout/Layout"
+import Divider from '@/ui/element/Divider/Divider.vue';
+import Title from '@/ui/element/Title/Title.vue';
+import Column from '@/ui/layout/Grid/Column.vue';
+import Grid from '@/ui/layout/Grid/Grid.vue';
+import Row from '@/ui/layout/Grid/Row.vue';
+import Layout, { Content } from '@/ui/layout/Layout';
+import Button from '@/ui/element/Button/Button.vue';
 
 // 定義 props
 const props = defineProps({
   bgColorSrc: {
     type: String,
-    default: "",
+    default: '',
   },
   bgImgSrc: {
     type: String,
-    default: "",
+    default: '',
   },
   title: {
     type: String,
-    default: "",
+    default: '',
   },
   className: {
     type: String,
-    default: "",
+    default: '',
   },
-})
+});
 </script>
 
 <template>
@@ -37,7 +38,9 @@ const props = defineProps({
             <div
               class="ded-login-bg"
               :style="{
-                backgroundImage: props.bgImgSrc ? `url(${props.bgImgSrc})` : 'none',
+                backgroundImage: props.bgImgSrc
+                  ? `url(${props.bgImgSrc})`
+                  : 'none',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
               }"
@@ -50,9 +53,17 @@ const props = defineProps({
                 <!-- 標題 -->
                 <Row has-gap>
                   <Column md="12">
-                    <Title :level="1">
-                      {{ props.title }}
-                    </Title>
+                    <Button
+                      themeColor="secondary"
+                      variant="filled"
+                      size="medium"
+                      width="fit"
+                      borderWidth="1px"
+                      radius="4px"
+                      @click="handleClick"
+                    >
+                      Button
+                    </Button>
                   </Column>
                 </Row>
 
@@ -92,6 +103,4 @@ const props = defineProps({
   </Layout>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

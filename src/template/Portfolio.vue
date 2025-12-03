@@ -1000,7 +1000,7 @@
 
           <div class="border-t border-gray-800 pt-6">
             <p class="text-gray-400 text-sm">
-              © 2024 楊凱文. 使用 Vue.js 和 Tailwind CSS 建構.
+              © 2025 楊凱文. 使用 Vue.js、Tailwind CSS 和 WDS 建構.
             </p>
           </div>
         </div>

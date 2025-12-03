@@ -60,6 +60,17 @@ const router = createRouter({
       },
     },
     {
+      path: '/auo-design-center',
+      name: 'auoDesignCenter',
+      component: () => import('../template/CorporatePortfolio.vue'),
+      meta: {
+        title: 'AUO 友達設計中心 - Design Innovation Hub',
+        description: '友達光電設計中心專業創意設計與使用者體驗創新',
+        keywords:
+          '友達設計中心, AUO Design Center, UI/UX設計, 創意設計, 視覺設計, 使用者體驗',
+      },
+    },
+    {
       path: '/charts',
       name: 'charts',
       component: () => import('../pages/ChartsDemo.vue'),
@@ -100,11 +111,11 @@ const router = createRouter({
       },
     },
     {
-      path: '/table-flex-width',
-      name: 'tableFlexWidth',
-      component: () => import('../test/table/TestTableFlexWidth.vue'),
+      path: '/form-test',
+      name: 'formTest',
+      component: () => import('../test/form/TestForm.vue'),
       meta: {
-        title: '表格彈性寬度測試',
+        title: 'Form 表單組件測試',
       },
     },
     // 重定向未匹配的路由到首頁
