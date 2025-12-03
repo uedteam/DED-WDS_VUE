@@ -35,6 +35,7 @@
     "reset": "nx reset",
     "start": "nx serve",
     "build": "nx build",
+    "preview": "nx preview",
     "test": "nx test",
     "storybook": "nx storybook",
     "deploy": "nx build && gh-pages -d build/DED-WDS",
