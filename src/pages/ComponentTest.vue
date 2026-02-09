@@ -1,4 +1,5 @@
 <script setup>
+import TestTitle from '../test/title/TestTitle.vue';
 import TestButton from '../test/button/TestButton.vue';
 import TestInput from '../test/input/TestInput.vue';
 import TestRadio from '../test/radio/TestRadio.vue';
@@ -7,6 +8,8 @@ import TestTag from '../test/tag/TestTag.vue';
 import TestTabs from '../test/tab/TestTabs.vue';
 import TestTextarea from '../test/textarea/TestTextarea.vue';
 import TestBadge from '../test/badge/TestBadge.vue';
+import TestCircleProgress from '../test/progress/TestCircleProgress.vue';
+import TestLineProgress from '../test/progress/TestLineProgress.vue';
 import TestPagination from '../test/pagination/TestPagination.vue';
 import TestStepper from '../test/stepper/TestStepper.vue';
 import TestSlider from '../test/slider/TestSlider.vue';
@@ -20,6 +23,9 @@ import TestImage from '../test/image/TestImage.vue';
 import TestToggle from '../test/toggle/TestToggle.vue';
 import TestSelect from '../test/select/TestSelect.vue';
 import TestForm from '../test/form/TestForm.vue';
+import TestInfiniteScroll from '../test/scroll/TestInfiniteScroll.vue';
+
+import TestCard from '../test/card/TestCard.vue';
 
 import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 
@@ -68,6 +74,7 @@ function scrollToTop() {
 }
 
 onMounted(() => {
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   window.addEventListener('scroll', handleScroll);
   checkInitialScrollState();
 });
@@ -85,20 +92,35 @@ const sections = [
   { label: '標籤 Tag', id: 'section-tag' },
   { label: '文字區域 Textarea', id: 'section-textarea' },
   { label: '徽章 Badge', id: 'section-badge' },
+  {
+    label: '圓形進度 CircleProgress',
+    id: 'section-circle-progress',
+  },
+  {
+    label: '線型進度 LineProgress',
+    id: 'section-line-progress',
+  },
   { label: '分頁 Pagination', id: 'section-pagination' },
   { label: '步進器 Stepper', id: 'section-stepper' },
   { label: '滑桿 Slider', id: 'section-slider' },
-  { label: '表格 Table', id: 'section-table', isUpdated: true },
-  { label: '頭像 Avatar', id: 'section-avatar', isUpdated: true },
-  { label: '手風琴 Accordion', id: 'section-accordion', isUpdated: true },
-  { label: '麵包屑 Breadcrumb', id: 'section-breadcrumb', isUpdated: true },
-  { label: '日期選擇器 DatePicker', id: 'section-datepicker', isUpdated: true },
+  { label: '表格 Table', id: 'section-table' },
+  { label: '頭像 Avatar', id: 'section-avatar' },
+  { label: '手風琴 Accordion', id: 'section-accordion' },
+  { label: '麵包屑 Breadcrumb', id: 'section-breadcrumb' },
+  { label: '日期選擇器 DatePicker', id: 'section-datepicker' },
   { label: '分隔線 Divider', id: 'section-divider' },
   { label: '圖片 Image', id: 'section-image' },
   { label: '開關 Toggle', id: 'section-toggle' },
   { label: '選擇器 Select', id: 'section-select' },
   { label: '頁籤 Tabs', id: 'section-tabs' },
   { label: '表單 Form', id: 'section-form' },
+  { label: '卡片 Card', id: 'section-card', isNew: true },
+  {
+    label: '無限捲動 InfiniteScroll',
+    id: 'section-infinite-scroll',
+    isNew: true,
+  },
+  { label: '標題 Title', id: 'section-title', isNew: true },
 ];
 
 function scrollToSection(id) {
@@ -202,15 +224,31 @@ function scrollToSection(id) {
         搜尋
       </button>
     </div> -->
-
+    <div class="flex flex-col mb-10" id="section-title">
+      <h2 class="section-title-aligned text-xl">
+        標題 Title <span class="new-badge">NEW</span>
+      </h2>
+      <TestTitle />
+    </div>
     <div class="flex flex-col mb-10" id="section-button">
       <h2 class="section-title-aligned text-xl">按鈕 Button</h2>
       <TestButton />
+    </div>
+    <div class="flex flex-col mb-10" id="section-card">
+      <h2 class="section-title-aligned text-xl">卡片 Card</h2>
+      <TestCard />
+    </div>
+    <div class="flex flex-col mb-10" id="section-infinite-scroll">
+      <h2 class="section-title-aligned text-xl">
+        無限捲動 InfiniteScroll <span class="new-badge">NEW</span>
+      </h2>
+      <TestInfiniteScroll />
     </div>
     <div class="flex flex-col mb-10" id="section-input">
       <h2 class="section-title-aligned text-xl">輸入框 Input</h2>
       <TestInput />
     </div>
+
     <div class="flex flex-col mb-10" id="section-radio">
       <h2 class="section-title-aligned text-xl">單選框 Radio</h2>
       <TestRadio />
@@ -231,6 +269,18 @@ function scrollToSection(id) {
     <div class="flex flex-col mb-10" id="section-badge">
       <h2 class="section-title-aligned text-xl">徽章 Badge</h2>
       <TestBadge />
+    </div>
+    <div class="flex flex-col mb-10" id="section-circle-progress">
+      <h2 class="section-title-aligned text-xl">
+        圓形進度 CircleProgress <span class="new-badge">NEW</span>
+      </h2>
+      <TestCircleProgress />
+    </div>
+    <div class="flex flex-col mb-10" id="section-line-progress">
+      <h2 class="section-title-aligned text-xl">
+        線型進度 LineProgress <span class="new-badge">NEW</span>
+      </h2>
+      <TestLineProgress />
     </div>
     <div class="flex flex-col mb-10" id="section-pagination">
       <h2 class="section-title-aligned text-xl">分頁 Pagination</h2>

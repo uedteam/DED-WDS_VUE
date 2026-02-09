@@ -281,6 +281,19 @@ onUnmounted(() => {
                 />
                 Portfolio 模板
               </router-link>
+              <router-link
+                to="/e-commerce"
+                class="dropdown-item"
+                :class="{ active: route.name === 'e-commerce' }"
+                @click="closeTemplateDropdown"
+              >
+                <Icon
+                  name="SvgUser"
+                  size="20"
+                  className="item-icon e-commerce-item"
+                />
+                E-Commerce 模板
+              </router-link>
             </div>
           </div>
           <a
