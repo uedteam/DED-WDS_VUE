@@ -1,69 +1,66 @@
 <template>
-  <div class="test-tabs-container">
-    <Tabs
-      :dataSource="dataSource"
-      :activeIndex="activeIndex"
-      @update:activeIndex="activeIndex = $event"
-      :themeColor="themeColor"
-      :type="type"
-      :prefix="prefix"
-      :isDisabled="isDisabled"
-      :className="'w-full'"
-    />
-    <div class="tabs-controls">
-      <p class="settings-title">當前頁籤設定:</p>
+  <div class="test-scroll-container">
+    <div class="scroll-demo-row">
+      <div class="scroll-wrapper">
+        <InfiniteScroll
+          :height="height"
+          :isLoading="isLoading"
+          :onScrollBottom="loadMore"
+        >
+          <div v-for="item in items" :key="item" class="scroll-item">
+            項目 #{{ item }}
+          </div>
+        </InfiniteScroll>
+      </div>
+    </div>
+
+    <div class="scroll-controls">
+      <p class="settings-title">當前 InfiniteScroll 設定:</p>
       <div class="settings-grid">
         <div class="setting-item">
-          <span class="setting-label">索引:</span>
-          <strong class="setting-value">{{ activeIndex }}</strong>
+          <span class="setting-label">高度:</span>
+          <strong class="setting-value">{{ height }}px</strong>
         </div>
         <div class="setting-item">
-          <span class="setting-label">主題色:</span>
-          <strong class="setting-value">{{ themeColor }}</strong>
-        </div>
-        <div class="setting-item">
-          <span class="setting-label">樣式:</span>
-          <strong class="setting-value">{{ type }}</strong>
-        </div>
-        <div class="setting-item">
-          <span class="setting-label">Prefix:</span>
-          <strong class="setting-value">{{ prefix || '無' }}</strong>
-        </div>
-        <div class="setting-item">
-          <span class="setting-label">狀態:</span>
+          <span class="setting-label">Loading 狀態:</span>
           <strong class="setting-value">{{
-            isDisabled ? '禁用' : '啟用'
+            isLoading ? '顯示' : '隱藏'
           }}</strong>
         </div>
+        <div class="setting-item">
+          <span class="setting-label">目前項目數:</span>
+          <strong class="setting-value">{{ items.length }}</strong>
+        </div>
       </div>
+
       <div class="control-groups">
+        <!-- 參數控制組 -->
         <div class="control-group">
-          <h4 class="group-title">外觀樣式</h4>
+          <h4 class="group-title">參數控制</h4>
           <div class="control-buttons">
-            <button @click="toggleThemeColor" class="control-button primary">
-              切換主題色
+            <button @click="increaseHeight" class="control-button primary">
+              增加高度
             </button>
-            <button @click="toggleType" class="control-button primary">
-              切換樣式
-            </button>
-            <button @click="togglePrefix" class="control-button primary">
-              切換 Prefix
+            <button
+              @click="decreaseHeight"
+              class="control-button primary"
+              :disabled="height <= 200"
+            >
+              減少高度
             </button>
           </div>
         </div>
+
+        <!-- 資料控制組 -->
         <div class="control-group">
-          <h4 class="group-title">狀態控制</h4>
+          <h4 class="group-title">資料控制</h4>
           <div class="control-buttons">
-            <button @click="toggleDisabled" class="control-button accent">
-              {{ isDisabled ? '啟用' : '禁用' }}
-            </button>
-            <button @click="cycleTab" class="control-button accent">
-              切換 Tab
-            </button>
+            <button @click="reset" class="control-button accent">重置</button>
           </div>
         </div>
       </div>
     </div>
+
     <!-- 程式碼範例區塊 -->
     <div class="code-example-section">
       <div class="code-section-header">
@@ -93,7 +90,7 @@
           <CodeBlock
             :code="codeExample"
             language="vue"
-            title="Tabs 組件程式碼範例"
+            title="InfiniteScroll 組件程式碼範例"
             :showLanguageLabel="true"
           />
         </div>
@@ -102,68 +99,53 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, computed } from 'vue';
-import Tabs from '../../../libs/src/ui/element/Tabs/Tabs.vue';
+import InfiniteScroll from '../../../libs/src/ui/element/Scroll/InfiniteScroll.vue';
 import CodeBlock from '../../../libs/src/ui/element/CodeBlock/CodeBlock.vue';
 
-const dataSource = [
-  { title: 'Tab 1', content: '這是 Tab 1 的內容' },
-  { title: 'Tab 2', content: '這是 Tab 2 的內容' },
-  { title: 'Tab 3', content: '這是 Tab 3 的內容' },
-];
-const activeIndex = ref(0);
-const themeColors = [
-  'primary',
-  'secondary',
-  'neutral',
-  'info',
-  'success',
-  'warning',
-  'error',
-];
-const types = ['basic', 'outline', 'button'];
-const prefixes = ['', 'SvgArrowDown'];
-const themeColor = ref('primary');
-const type = ref('basic');
-const prefix = ref('');
-const isDisabled = ref(false);
-function cycleTab() {
-  activeIndex.value = (activeIndex.value + 1) % dataSource.length;
-}
-function toggleThemeColor() {
-  const idx = themeColors.indexOf(themeColor.value);
-  themeColor.value = themeColors[(idx + 1) % themeColors.length];
-}
-function toggleType() {
-  const idx = types.indexOf(type.value);
-  type.value = types[(idx + 1) % types.length];
-}
-function togglePrefix() {
-  const idx = prefixes.indexOf(prefix.value);
-  prefix.value = prefixes[(idx + 1) % prefixes.length];
-}
-function toggleDisabled() {
-  isDisabled.value = !isDisabled.value;
-}
+const items = ref(Array.from({ length: 30 }, (_, i) => i + 1));
+const isLoading = ref(false);
+const height = ref(400);
 const isCodeCollapsed = ref(true);
+
+function loadMore() {
+  if (isLoading.value) return;
+  isLoading.value = true;
+  setTimeout(() => {
+    const next = items.value.length + 1;
+    items.value.push(...Array.from({ length: 10 }, (_, i) => next + i));
+    isLoading.value = false;
+  }, 1200);
+}
+
+function reset() {
+  items.value = Array.from({ length: 30 }, (_, i) => i + 1);
+}
+function increaseHeight() {
+  height.value += 50;
+}
+function decreaseHeight() {
+  if (height.value > 200) height.value -= 50;
+}
+const toggleCodeCollapse = () => {
+  isCodeCollapsed.value = !isCodeCollapsed.value;
+};
+
 const codeExample = computed(() => {
   const scriptStart = '<' + 'script setup>';
   const scriptEnd = '</' + 'script>';
   return (
     scriptStart +
-    `\nimport { ref } from 'vue';\nimport { Tabs } from '@ded-wds-vue/ui';\n\nconst dataSource = [\n  { title: 'Tab 1', content: '這是 Tab 1 的內容' },\n  { title: 'Tab 2', content: '這是 Tab 2 的內容' },\n  { title: 'Tab 3', content: '這是 Tab 3 的內容' },\n];\nconst activeIndex = ref(${activeIndex.value});\n\nconst themeColor = ref('${themeColor.value}');\nconst type = ref('${type.value}');\nconst prefix = ref('${prefix.value}');\nconst isDisabled = ref(${isDisabled.value});\n` +
+    `\nimport { InfiniteScroll } from '@ded-wds-vue/ui';\nimport { ref } from 'vue';\n\nconst items = ref(${JSON.stringify(items.value, null, 2)});\nconst isLoading = ref(${isLoading.value});\nconst height = ref(${height.value});\n` +
     scriptEnd +
-    `\n\n<template>\n  <Tabs\n    :dataSource="dataSource"\n    :activeIndex="activeIndex"\n    @update:activeIndex="activeIndex = $event"\n    :themeColor="themeColor"\n    :type="type"\n    :prefix="prefix"\n    :isDisabled="isDisabled"\n    :className="'w-full'"\n  />\n</template>`
+    `\n\n<template>\n  <InfiniteScroll\n    :height="height"\n    :isLoading="isLoading"\n    :onScrollBottom="loadMore"\n  >\n    <div v-for="item in items" :key="item">\n      項目 #{{ item }}\n    </div>\n  </InfiniteScroll>\n</template>`
   );
 });
-function toggleCodeCollapse() {
-  isCodeCollapsed.value = !isCodeCollapsed.value;
-}
 </script>
 
 <style scoped>
-.test-tabs-container {
+.test-scroll-container {
   background-color: #ffffff;
   padding: 20px;
   border: 1px solid #e0e0e0;
@@ -174,29 +156,59 @@ function toggleCodeCollapse() {
 }
 
 @media (max-width: 768px) {
-  .test-tabs-container {
+  .test-scroll-container {
     min-width: auto;
     width: calc(100% - 40px);
     margin: 20px;
   }
 }
-.tabs-controls {
+
+.scroll-demo-row {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  padding: 20px;
+}
+
+.scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.scroll-item {
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  font-size: 15px;
+  color: #2c3e50;
+  transition: background 0.2s;
+}
+.scroll-item:hover {
+  background: #f8f9fa;
+}
+
+.scroll-controls {
   margin-top: 20px;
   padding-top: 15px;
   border-top: 1px solid #eaeaea;
 }
+
 .settings-title {
   margin-bottom: 15px;
   font-weight: 600;
   font-size: 16px;
   color: #2c3e50;
 }
+
 .settings-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px 20px;
   margin-bottom: 20px;
 }
+
 .setting-item {
   display: flex;
   justify-content: space-between;
@@ -212,6 +224,7 @@ function toggleCodeCollapse() {
   transform: translateX(2px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
 .setting-label {
   font-size: 15px;
   color: #495057;
@@ -219,6 +232,7 @@ function toggleCodeCollapse() {
   white-space: nowrap;
   flex-shrink: 0;
 }
+
 .setting-value {
   font-size: 16px;
   color: #007bff;
@@ -228,33 +242,49 @@ function toggleCodeCollapse() {
   word-break: break-word;
   text-align: right;
 }
+
 @media (max-width: 640px) {
   .settings-grid {
     grid-template-columns: 1fr;
     gap: 8px;
   }
 }
+
 .control-groups {
   display: grid;
   gap: 20px;
   margin-top: 15px;
   grid-template-columns: 1fr;
 }
+
 @media (min-width: 640px) {
   .control-groups {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (min-width: 768px) {
   .control-groups {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 }
+
 @media (min-width: 1024px) {
   .control-groups {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+@media (max-width: 480px) {
+  .control-buttons {
+    grid-template-columns: 1fr;
+  }
+  .control-button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
 .control-group {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
@@ -268,6 +298,7 @@ function toggleCodeCollapse() {
   flex: 1;
   align-content: start;
 }
+
 .group-title {
   margin: 0 0 12px 0;
   font-size: 14px;
@@ -276,11 +307,13 @@ function toggleCodeCollapse() {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
 .control-buttons {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
 }
+
 .control-button {
   padding: 10px 16px;
   border: none;
@@ -300,14 +333,6 @@ function toggleCodeCollapse() {
   background: linear-gradient(135deg, #0056b3, #004085);
   transform: translateY(-1px);
 }
-.control-button.secondary {
-  background: linear-gradient(135deg, #6c757d, #495057);
-  color: white;
-}
-.control-button.secondary:hover {
-  background: linear-gradient(135deg, #495057, #343a40);
-  transform: translateY(-1px);
-}
 .control-button.accent {
   background: linear-gradient(135deg, #28a745, #1e7e34);
   color: white;
@@ -316,17 +341,20 @@ function toggleCodeCollapse() {
   background: linear-gradient(135deg, #1e7e34, #155724);
   transform: translateY(-1px);
 }
+
 .code-example-section {
   margin-top: 30px;
   padding-top: 20px;
   border-top: 2px solid #e0e0e0;
 }
+
 .code-section-header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 15px;
 }
+
 .toggle-code-button {
   display: flex;
   align-items: center;
@@ -386,6 +414,7 @@ function toggleCodeCollapse() {
 .code-container {
   overflow: hidden;
 }
+/* 滑動展開/收合動畫 */
 .slide-down-enter-active,
 .slide-down-leave-active {
   transition: all 0.3s ease;

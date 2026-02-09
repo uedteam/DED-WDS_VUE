@@ -1,39 +1,75 @@
+<script setup>
+import Title from '@/ui/element/Title/Title.vue';
+import CodeBlock from '../../../libs/src/ui/element/CodeBlock/CodeBlock.vue';
+import { ref, computed, nextTick, onMounted } from 'vue';
+
+const availableColors = [
+  'primary',
+  'secondary',
+  'neutral',
+  'info',
+  'success',
+  'warning',
+  'error',
+];
+const themeColor = ref('primary');
+const level = ref(3);
+const className = ref('');
+
+const isCodeCollapsed = ref(true);
+
+const toggleThemeColor = async () => {
+  const currentIndex = availableColors.indexOf(themeColor.value);
+  const nextIndex =
+    currentIndex !== -1 ? (currentIndex + 1) % availableColors.length : 0;
+  themeColor.value = availableColors[nextIndex];
+  await nextTick();
+};
+
+const increaseLevel = () => {
+  if (level.value < 6) level.value++;
+};
+const decreaseLevel = () => {
+  if (level.value > 0) level.value--;
+};
+
+const toggleCodeCollapse = () => {
+  isCodeCollapsed.value = !isCodeCollapsed.value;
+};
+
+const codeExample = computed(() => {
+  const classAttr = className.value
+    ? `\n    className="${className.value}"`
+    : '';
+  const scriptStart = '<' + 'script setup>';
+  const scriptEnd = '</' + 'script>';
+  return (
+    scriptStart +
+    `\nimport { Title } from '@ded-wds-vue/ui';\n\nconst themeColor = ref('${themeColor.value}');\nconst level = ref(${level.value});\n` +
+    scriptEnd +
+    `\n\n<template>\n  <Title\n    :themeColor="themeColor"\n    :level="level"${classAttr}\n  >\n    這是 Title 組件\n  </Title>\n</template>`
+  );
+});
+
+onMounted(() => {});
+</script>
+
 <template>
-  <div class="test-tabs-container">
-    <Tabs
-      :dataSource="dataSource"
-      :activeIndex="activeIndex"
-      @update:activeIndex="activeIndex = $event"
-      :themeColor="themeColor"
-      :type="type"
-      :prefix="prefix"
-      :isDisabled="isDisabled"
-      :className="'w-full'"
-    />
-    <div class="tabs-controls">
-      <p class="settings-title">當前頁籤設定:</p>
+  <div class="test-title-container">
+    <Title :themeColor="themeColor" :level="level" :className="className">
+      這是 Title 組件
+    </Title>
+
+    <div class="title-controls">
+      <p class="settings-title">當前 Title 設定:</p>
       <div class="settings-grid">
         <div class="setting-item">
-          <span class="setting-label">索引:</span>
-          <strong class="setting-value">{{ activeIndex }}</strong>
-        </div>
-        <div class="setting-item">
-          <span class="setting-label">主題色:</span>
+          <span class="setting-label">主題顏色:</span>
           <strong class="setting-value">{{ themeColor }}</strong>
         </div>
         <div class="setting-item">
-          <span class="setting-label">樣式:</span>
-          <strong class="setting-value">{{ type }}</strong>
-        </div>
-        <div class="setting-item">
-          <span class="setting-label">Prefix:</span>
-          <strong class="setting-value">{{ prefix || '無' }}</strong>
-        </div>
-        <div class="setting-item">
-          <span class="setting-label">狀態:</span>
-          <strong class="setting-value">{{
-            isDisabled ? '禁用' : '啟用'
-          }}</strong>
+          <span class="setting-label">等級 Level:</span>
+          <strong class="setting-value">{{ level }}</strong>
         </div>
       </div>
       <div class="control-groups">
@@ -41,30 +77,23 @@
           <h4 class="group-title">外觀樣式</h4>
           <div class="control-buttons">
             <button @click="toggleThemeColor" class="control-button primary">
-              切換主題色
-            </button>
-            <button @click="toggleType" class="control-button primary">
-              切換樣式
-            </button>
-            <button @click="togglePrefix" class="control-button primary">
-              切換 Prefix
+              切換顏色
             </button>
           </div>
         </div>
         <div class="control-group">
-          <h4 class="group-title">狀態控制</h4>
+          <h4 class="group-title">等級調整</h4>
           <div class="control-buttons">
-            <button @click="toggleDisabled" class="control-button accent">
-              {{ isDisabled ? '啟用' : '禁用' }}
+            <button @click="increaseLevel" class="control-button accent">
+              增加 Level
             </button>
-            <button @click="cycleTab" class="control-button accent">
-              切換 Tab
+            <button @click="decreaseLevel" class="control-button accent">
+              減少 Level
             </button>
           </div>
         </div>
       </div>
     </div>
-    <!-- 程式碼範例區塊 -->
     <div class="code-example-section">
       <div class="code-section-header">
         <button
@@ -93,7 +122,7 @@
           <CodeBlock
             :code="codeExample"
             language="vue"
-            title="Tabs 組件程式碼範例"
+            title="Title 組件程式碼範例"
             :showLanguageLabel="true"
           />
         </div>
@@ -102,69 +131,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, computed } from 'vue';
-import Tabs from '../../../libs/src/ui/element/Tabs/Tabs.vue';
-import CodeBlock from '../../../libs/src/ui/element/CodeBlock/CodeBlock.vue';
-
-const dataSource = [
-  { title: 'Tab 1', content: '這是 Tab 1 的內容' },
-  { title: 'Tab 2', content: '這是 Tab 2 的內容' },
-  { title: 'Tab 3', content: '這是 Tab 3 的內容' },
-];
-const activeIndex = ref(0);
-const themeColors = [
-  'primary',
-  'secondary',
-  'neutral',
-  'info',
-  'success',
-  'warning',
-  'error',
-];
-const types = ['basic', 'outline', 'button'];
-const prefixes = ['', 'SvgArrowDown'];
-const themeColor = ref('primary');
-const type = ref('basic');
-const prefix = ref('');
-const isDisabled = ref(false);
-function cycleTab() {
-  activeIndex.value = (activeIndex.value + 1) % dataSource.length;
-}
-function toggleThemeColor() {
-  const idx = themeColors.indexOf(themeColor.value);
-  themeColor.value = themeColors[(idx + 1) % themeColors.length];
-}
-function toggleType() {
-  const idx = types.indexOf(type.value);
-  type.value = types[(idx + 1) % types.length];
-}
-function togglePrefix() {
-  const idx = prefixes.indexOf(prefix.value);
-  prefix.value = prefixes[(idx + 1) % prefixes.length];
-}
-function toggleDisabled() {
-  isDisabled.value = !isDisabled.value;
-}
-const isCodeCollapsed = ref(true);
-const codeExample = computed(() => {
-  const scriptStart = '<' + 'script setup>';
-  const scriptEnd = '</' + 'script>';
-  return (
-    scriptStart +
-    `\nimport { ref } from 'vue';\nimport { Tabs } from '@ded-wds-vue/ui';\n\nconst dataSource = [\n  { title: 'Tab 1', content: '這是 Tab 1 的內容' },\n  { title: 'Tab 2', content: '這是 Tab 2 的內容' },\n  { title: 'Tab 3', content: '這是 Tab 3 的內容' },\n];\nconst activeIndex = ref(${activeIndex.value});\n\nconst themeColor = ref('${themeColor.value}');\nconst type = ref('${type.value}');\nconst prefix = ref('${prefix.value}');\nconst isDisabled = ref(${isDisabled.value});\n` +
-    scriptEnd +
-    `\n\n<template>\n  <Tabs\n    :dataSource="dataSource"\n    :activeIndex="activeIndex"\n    @update:activeIndex="activeIndex = $event"\n    :themeColor="themeColor"\n    :type="type"\n    :prefix="prefix"\n    :isDisabled="isDisabled"\n    :className="'w-full'"\n  />\n</template>`
-  );
-});
-function toggleCodeCollapse() {
-  isCodeCollapsed.value = !isCodeCollapsed.value;
-}
-</script>
-
 <style scoped>
-.test-tabs-container {
-  background-color: #ffffff;
+.test-title-container {
+  background-color: #fff;
   padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -172,15 +141,14 @@ function toggleCodeCollapse() {
   margin: 20px auto;
   box-sizing: border-box;
 }
-
 @media (max-width: 768px) {
-  .test-tabs-container {
+  .test-title-container {
     min-width: auto;
     width: calc(100% - 40px);
     margin: 20px;
   }
 }
-.tabs-controls {
+.title-controls {
   margin-top: 20px;
   padding-top: 15px;
   border-top: 1px solid #eaeaea;
@@ -255,12 +223,21 @@ function toggleCodeCollapse() {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+@media (max-width: 480px) {
+  .control-buttons {
+    grid-template-columns: 1fr;
+  }
+  .control-button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
 .control-group {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 8px;
   padding: 20px;
-  min-height: 120px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
 }
@@ -298,14 +275,6 @@ function toggleCodeCollapse() {
 }
 .control-button.primary:hover {
   background: linear-gradient(135deg, #0056b3, #004085);
-  transform: translateY(-1px);
-}
-.control-button.secondary {
-  background: linear-gradient(135deg, #6c757d, #495057);
-  color: white;
-}
-.control-button.secondary:hover {
-  background: linear-gradient(135deg, #495057, #343a40);
   transform: translateY(-1px);
 }
 .control-button.accent {
