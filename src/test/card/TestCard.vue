@@ -1,148 +1,109 @@
 <script setup>
-import Divider from '@/ui/element/Divider/Divider.vue';
+import Card from '../../../libs/src/ui/element/Card/Card.vue';
 import CodeBlock from '../../../libs/src/ui/element/CodeBlock/CodeBlock.vue';
-import { ref, nextTick, onMounted, computed } from 'vue';
+import { ref, computed } from 'vue';
 
-const width = ref('1px');
-const type = ref('solid');
-const align = ref('center');
-const className = ref('');
-const dividerRef = ref(null);
-const showText = ref(true);
-const dividerText = ref('分隔線');
+// 控制屬性
+const hasHeaderDivider = ref(true);
+const showHeader = ref(true);
+const showFooter = ref(true);
+const cardClass = ref('custom-class');
+const bodyText = ref('這是卡片內容');
+const headerText = ref('卡片標題');
+const footerText = ref('卡片頁腳');
 const isCodeCollapsed = ref(true);
-const operationMessage = ref('');
 
-const availableWidths = ['1px', '2px', '3px', '4px', '5px'];
-const availableTypes = ['solid', 'dashed', 'dotted'];
-const availableAligns = ['start', 'center', 'end'];
+const toggleHeader = () => (showHeader.value = !showHeader.value);
+const toggleFooter = () => (showFooter.value = !showFooter.value);
+const toggleDivider = () => (hasHeaderDivider.value = !hasHeaderDivider.value);
+const toggleClass = () =>
+  (cardClass.value = cardClass.value ? '' : 'custom-class');
+const toggleCodeCollapse = () =>
+  (isCodeCollapsed.value = !isCodeCollapsed.value);
 
-const toggleWidth = async () => {
-  const idx = availableWidths.indexOf(width.value);
-  width.value = availableWidths[(idx + 1) % availableWidths.length];
-  await nextTick();
-  showOperationMessage(`寬度已切換到: ${width.value}`);
-};
-const toggleType = async () => {
-  const idx = availableTypes.indexOf(type.value);
-  type.value = availableTypes[(idx + 1) % availableTypes.length];
-  await nextTick();
-  showOperationMessage(`樣式已切換到: ${type.value}`);
-};
-const toggleAlign = async () => {
-  const idx = availableAligns.indexOf(align.value);
-  align.value = availableAligns[(idx + 1) % availableAligns.length];
-  await nextTick();
-  showOperationMessage(`對齊已切換到: ${align.value}`);
-};
-const toggleText = () => {
-  showText.value = !showText.value;
-  showOperationMessage(`文字已${showText.value ? '顯示' : '隱藏'}`);
-};
-const updateText = () => {
-  const texts = ['分隔線', '我是分割線', 'Divider', '內容分隔', '區塊分隔'];
-  const idx = texts.indexOf(dividerText.value);
-  dividerText.value = texts[(idx + 1) % texts.length];
-  showOperationMessage(`文字已切換為: ${dividerText.value}`);
-};
-const toggleCodeCollapse = () => {
-  isCodeCollapsed.value = !isCodeCollapsed.value;
-};
-const showOperationMessage = (msg) => {
-  operationMessage.value = msg;
-  setTimeout(() => (operationMessage.value = ''), 2000);
-};
-
+// 產生動態程式碼範例
 const codeExample = computed(() => {
   const scriptStart = '<' + 'script setup>';
   const scriptEnd = '</' + 'script>';
-  const propsBlock = `\nimport { ref } from 'vue';\n\nconst width = ref('${width.value}');\nconst type = ref('${type.value}');\nconst align = ref('${align.value}');\nconst showText = ref(${showText.value});\nconst dividerText = ref('${dividerText.value}');\n`;
-  const dividerBlock = showText.value
-    ? `<Divider\n  :width=\"width.value\"\n  :type=\"type.value\"\n  direction=\"horizontal\"\n  :align=\"align.value\"\n>\n  {{ dividerText.value }}\n</Divider>`
-    : `<Divider\n  :width=\"width.value\"\n  :type=\"type.value\"\n  direction=\"horizontal\"\n  :align=\"align.value\"\n/>`;
   return (
     scriptStart +
-    propsBlock +
+    `\nimport { Card } from '@ded-wds-vue/ui';\n` +
     scriptEnd +
-    '\n\n<template>\n  ' +
-    dividerBlock +
-    '\n</template>'
+    `\n\n<template>\n  <Card` +
+    (hasHeaderDivider.value ? `\n    :hasHeaderDivider=\n"true\n"` : '') +
+    (cardClass.value ? `\n    className=\n"custom-class\n"` : '') +
+    `>` +
+    (showHeader.value
+      ? `\n    <template #cardHeader>\n      ${headerText.value}\n    </template>`
+      : '') +
+    `\n    ${bodyText.value}` +
+    (showFooter.value
+      ? `\n    <template #cardFooter>\n      ${footerText.value}\n    </template>`
+      : '') +
+    `\n  </Card>\n</template>`
   );
-});
-
-onMounted(() => {
-  console.log('Divider component mounted');
 });
 </script>
 
 <template>
-  <div class="test-divider-container">
-    <div v-if="operationMessage" class="operation-message">
-      {{ operationMessage }}
-    </div>
-    <Divider
-      ref="dividerRef"
-      :width="width"
-      :type="type"
-      direction="horizontal"
-      :align="align"
-      :className="className"
-    >
-      {{ showText ? dividerText : '' }}
-    </Divider>
+  <div class="test-card-container">
+    <Card :hasHeaderDivider="hasHeaderDivider" :className="cardClass">
+      <template v-if="showHeader" #cardHeader>
+        <div>{{ headerText }}</div>
+      </template>
+      <div>{{ bodyText }}</div>
+      <template v-if="showFooter" #cardFooter>
+        <div>{{ footerText }}</div>
+      </template>
+    </Card>
 
-    <div class="divider-controls">
-      <p class="settings-title">當前 Divider 設定:</p>
+    <div class="card-controls">
+      <p class="settings-title">當前卡片設定:</p>
       <div class="settings-grid">
         <div class="setting-item">
-          <span class="setting-label">寬度:</span>
-          <strong class="setting-value">{{ width }}</strong>
+          <span class="setting-label">標題區塊:</span>
+          <strong class="setting-value">{{
+            showHeader ? '顯示' : '隱藏'
+          }}</strong>
         </div>
         <div class="setting-item">
-          <span class="setting-label">樣式:</span>
-          <strong class="setting-value">{{ type }}</strong>
+          <span class="setting-label">分隔線:</span>
+          <strong class="setting-value">{{
+            hasHeaderDivider ? '顯示' : '隱藏'
+          }}</strong>
         </div>
         <div class="setting-item">
-          <span class="setting-label">對齊:</span>
-          <strong class="setting-value">{{ align }}</strong>
+          <span class="setting-label">頁腳區塊:</span>
+          <strong class="setting-value">{{
+            showFooter ? '顯示' : '隱藏'
+          }}</strong>
         </div>
         <div class="setting-item">
-          <span class="setting-label">顯示文字:</span>
-          <strong class="setting-value">{{ showText ? '是' : '否' }}</strong>
-        </div>
-        <div class="setting-item" v-if="showText">
-          <span class="setting-label">文字內容:</span>
-          <strong class="setting-value">{{ dividerText }}</strong>
+          <span class="setting-label">自訂 class:</span>
+          <strong class="setting-value">{{ cardClass || '無' }}</strong>
         </div>
       </div>
 
       <div class="control-groups">
         <div class="control-group">
-          <h4 class="group-title">外觀樣式</h4>
+          <h4 class="group-title">區塊顯示</h4>
           <div class="control-buttons">
-            <button @click="toggleWidth" class="control-button primary">
-              切換寬度
+            <button @click="toggleHeader" class="control-button primary">
+              切換標題
             </button>
-            <button @click="toggleType" class="control-button primary">
-              切換樣式
-            </button>
-            <button @click="toggleAlign" class="control-button primary">
-              切換對齊
+            <button @click="toggleFooter" class="control-button primary">
+              切換頁腳
             </button>
           </div>
         </div>
         <div class="control-group">
-          <h4 class="group-title">文字設定</h4>
+          <h4 class="group-title">外觀樣式</h4>
           <div class="control-buttons">
-            <button @click="toggleText" class="control-button secondary">
-              {{ showText ? '隱藏文字' : '顯示文字' }}
+            <button @click="toggleDivider" class="control-button secondary">
+              切換分隔線
             </button>
-            <button
-              @click="updateText"
-              class="control-button accent"
-              :disabled="!showText"
-            >
-              切換文字內容
+            <button @click="toggleClass" class="control-button secondary">
+              切換 class
             </button>
           </div>
         </div>
@@ -177,7 +138,7 @@ onMounted(() => {
           <CodeBlock
             :code="codeExample"
             language="vue"
-            title="Divider 組件程式碼範例"
+            title="Card 組件程式碼範例"
             :showLanguageLabel="true"
           />
         </div>
@@ -187,8 +148,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.test-divider-container {
-  background-color: #ffffff;
+.test-card-container {
+  background-color: #fff;
   padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -197,40 +158,16 @@ onMounted(() => {
   box-sizing: border-box;
 }
 @media (max-width: 768px) {
-  .test-divider-container {
+  .test-card-container {
     min-width: auto;
     width: calc(100% - 40px);
     margin: 20px;
   }
 }
-.operation-message {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 14px;
-  animation: fadeInOut 2s ease;
-  z-index: 100;
+.custom-class {
+  border: 2px dashed #007aff;
 }
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-.divider-controls {
+.card-controls {
   margin-top: 20px;
   padding-top: 15px;
   border-top: 1px solid #eaeaea;
@@ -278,6 +215,12 @@ onMounted(() => {
   word-break: break-word;
   text-align: right;
 }
+@media (max-width: 640px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
 .control-groups {
   display: grid;
   gap: 20px;
@@ -287,6 +230,11 @@ onMounted(() => {
 @media (min-width: 640px) {
   .control-groups {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  .control-groups {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 }
 @media (min-width: 1024px) {
@@ -299,7 +247,7 @@ onMounted(() => {
   border: 1px solid #e9ecef;
   border-radius: 8px;
   padding: 20px;
-  min-height: 120px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
 }
@@ -355,11 +303,6 @@ onMounted(() => {
   background: linear-gradient(135deg, #1e7e34, #155724);
   transform: translateY(-1px);
 }
-.control-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-/* 以下為程式碼範例區塊樣式，如啟用 CodeBlock 可一併啟用 */
 .code-example-section {
   margin-top: 30px;
   padding-top: 20px;

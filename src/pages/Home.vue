@@ -113,6 +113,9 @@
           <router-link to="/portfolio" class="btn btn-secondary">
             Portfolio 模板
           </router-link>
+          <router-link to="/e-commerce" class="btn btn-secondary">
+            E-Commerce 模板
+          </router-link>
           <router-link to="/crm" class="btn btn-secondary">
             CRM 系統
           </router-link>

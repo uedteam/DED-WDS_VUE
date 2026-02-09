@@ -60,6 +60,14 @@ const router = createRouter({
       },
     },
     {
+      path: '/e-commerce',
+      name: 'e-commerce',
+      component: () => import('../template/EcommerceTemplate.vue'),
+      meta: {
+        title: 'E-commerce Template',
+      },
+    },
+    {
       path: '/auo-design-center',
       name: 'auoDesignCenter',
       component: () => import('../template/CorporatePortfolio.vue'),
