@@ -1,10 +1,10 @@
 <script setup>
-import Avatar from "@/ui/element/Avatar/Avatar.vue"
-import Badge from "@/ui/element/Badge/Badge.vue"
-import Button from "@/ui/element/Button/Button.vue"
-import Icon from "@/ui/element/Icon/Icon.vue"
-import Input from "@/ui/element/Input/Input.vue"
-import { computed } from "vue"
+import Avatar from '@/ui/element/Avatar/Avatar.vue';
+import Badge from '@/ui/element/Badge/Badge.vue';
+import Button from '@/ui/element/Button/Button.vue';
+import Icon from '@/ui/element/Icon/Icon.vue';
+import Input from '@/ui/element/Input/Input.vue';
+import { computed } from 'vue';
 
 // 定義 props
 const props = defineProps({
@@ -19,7 +19,7 @@ const props = defineProps({
   logoSrc: {
     type: String,
     required: true,
-    default: "",
+    default: '',
   },
   logoLink: {
     type: String,
@@ -29,20 +29,22 @@ const props = defineProps({
   },
   className: {
     type: String,
-    default: "",
+    default: '',
   },
-})
+});
 
 // 定義 Model
-const modelValue = defineModel()
+const modelValue = defineModel();
+// 購物車數量（可依實際狀態傳入或寫死 demo 數字）
+const cartCount = 2;
 
 const sortDataSource = computed(() => {
-  return [...props.dataSource].sort((a, b) => a.order - b.order)
-})
+  return [...props.dataSource].sort((a, b) => a.order - b.order);
+});
 
 function handleLogoClick() {
   if (props.logoLink) {
-    window.open(props.logoLink, "_self")
+    window.open(props.logoLink, '_self');
   }
 }
 </script>
@@ -72,18 +74,6 @@ function handleLogoClick() {
     </div>
 
     <div class="navbar-feature">
-      <form class="navbar-form-search" action="">
-        <Input
-          v-model="modelValue"
-          type="text"
-          :placeholder="props.placeholder"
-          prefix="SvgSearch"
-          :size="props.size"
-          init-value=""
-          :is-disable="props.isDisable"
-          class-name="ded-search-input"
-        />
-      </form>
       <div class="navbar-icons">
         <div class="navbar-icons-icon">
           <Badge
@@ -94,6 +84,18 @@ function handleLogoClick() {
             class-name=""
           >
             <Icon name="SvgNotification" size="26" />
+          </Badge>
+        </div>
+        <!-- 購物車 icon -->
+        <div class="navbar-icons-icon">
+          <Badge
+            theme-color="primary"
+            :is-show-dot="false"
+            :value="cartCount"
+            :limit="99"
+            class-name=""
+          >
+            <Icon name="SvgCart" size="26" />
           </Badge>
         </div>
         <div class="navbar-icons-icon">
@@ -107,7 +109,7 @@ function handleLogoClick() {
           />
         </div>
       </div>
-      <button class="navbar-switch">
+      <button class="navbar-switch block md:hidden">
         <div class="navbar-switch-bar" />
         <div class="navbar-switch-bar" />
         <div class="navbar-switch-bar" />

@@ -3,35 +3,35 @@
 const props = defineProps({
   width: {
     type: String,
-    default: "1px",
-    validator: value =>
-      ["1px", "2px", "3px", "4px", "5px"].includes(value),
+    default: '1px',
+    validator: (value) => ['1px', '2px', '3px', '4px', '5px'].includes(value),
   },
   type: {
     type: String,
-    default: "solid",
-    validator: value => ["solid", "dashed", "dotted"].includes(value),
+    default: 'solid',
+    validator: (value) => ['solid', 'dashed', 'dotted'].includes(value),
   },
   direction: {
     type: String,
-    default: "horizontal",
-    validator: value => ["horizontal", "vertical"].includes(value),
+    default: 'horizontal',
+    validator: (value) => ['horizontal', 'vertical'].includes(value),
   },
   align: {
     type: String,
-    default: "center",
-    validator: value => ["start", "center", "end"].includes(value),
+    default: 'center',
+    validator: (value) => ['start', 'center', 'end'].includes(value),
   },
   className: {
     type: String,
-    default: "",
+    default: '',
   },
-})
+});
 </script>
 
 <template>
   <div
-    class="ded-divider" :class="[
+    class="ded-divider"
+    :class="[
       `ded-divider-${props.direction}`,
       `ded-divider-${props.width}`,
       `ded-divider-${props.type}`,
@@ -39,7 +39,16 @@ const props = defineProps({
       ...props.className.split(' '),
     ]"
   >
-    <template v-if="$slots.default && $slots.default().some(node => node.children?.trim())">
+    <template
+      v-if="
+        $slots.default &&
+        $slots
+          .default()
+          .some(
+            (node) => typeof node.children === 'string' && node.children.trim(),
+          )
+      "
+    >
       <div class="ded-divider-content">
         <slot />
       </div>
